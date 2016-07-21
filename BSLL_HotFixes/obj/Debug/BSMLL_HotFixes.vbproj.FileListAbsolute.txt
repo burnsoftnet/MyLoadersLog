@@ -1,0 +1,35 @@
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\adodb.dll
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\hotfix.ini
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.pdb
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\ResolveAssemblyReference.cache
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.Resources.resources
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.exe
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.pdb
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe.config
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource.read.1.tlog
+C:\Shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource.write.1.tlog
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\adodb.dll
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\hotfix.ini
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe.config
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.pdb
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\ResolveAssemblyReference.cache
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.Resources.resources
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource-ResGen.read.1.tlog
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource.read.1.tlog
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource-ResGen.write.1.tlog
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\GenerateResource.write.1.tlog
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.exe
+E:\shares\My Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.pdb
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\adodb.dll
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\hotfix.ini
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe.config
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.exe
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\bin\Debug\BSMLL_HotFixes.pdb
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.Resources.resources
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.vbproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.exe
+\\psf\Home\Documents\Visual Studio 2010\Projects\BSMyLoadersLog\BSLL_HotFixes\obj\Debug\BSMLL_HotFixes.pdb

@@ -1,0 +1,544 @@
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.pdb
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.AboutBox1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Resources.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.vbproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.pdb
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.BSRegistration.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.MDIParentMain.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\MLL.mdb
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe.config
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmOptions.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSMyLoadersLog.exe.config
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSMyLoadersLog.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.AboutBox1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.BSRegistration.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddBullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddPowder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddPrimer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddShells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmOptions.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.MDIParentMain.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Resources.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.vbproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddBullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPowder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPrimer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmImportFirearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.XmlSerializers.dll
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\Config.xml
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBBackup.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBRestore.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\FileDownloader.dll
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\ProxyConfig.xml
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddCaliberToCollection.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Firearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSApplicationUpdater.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSApplicationUpdater.XmlSerializers.dll
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\Config.xml
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBBackup.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBRestore.exe
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\FileDownloader.dll
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\MLL.mdb
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\ProxyConfig.xml
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddCaliberToCollection.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmImportFirearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Firearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddEquipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddFirearm.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_RP_1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_Powder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Configuration_Sheet.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Equipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ConfigurationsByCal.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.SplashScreen1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Bullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Powder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Primer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Shells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLogin.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmExportFirearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddEquipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddFirearm.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_Powder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_RP_1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmExportFirearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmLogin.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_Configuration_Sheet.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Bullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_ConfigurationsByCal.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Equipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Powder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Primer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Shells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.SplashScreen1.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmDBCleanup.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Loaded_Ammunition.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLoadMakeReady_Details.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditBullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditEquipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditFirearm.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPowder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPrimer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditShells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditConfig.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_CFG.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_RiflePistols.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistol.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistols.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.compiled
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistolsWOC.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistolWOC.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Loaded_Ammunition.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Loaded_Ammunition.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_RiflePistols.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_RiflePistolsWOC.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_Loaded_Ammunition.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddDataSheet_RiflePistols_CFG.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmDBCleanup.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditBullets.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditConfig.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditEquipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditFirearm.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditPowder.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditPrimer.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditShells.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmLoadMakeReady_Details.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_RiflePistol.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_RiflePistolWOC.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Loaded_Ammunition.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmViewDataSheet_RiflePistols.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_Loaded_Ammunition.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\RdlCompile.cache
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\RdlCompile.compiled
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Equipment.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Firearms.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Equipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Firearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PowderInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PrimerInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PowderInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_MAN.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PrimerInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_BulletInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_CaseInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_BulletInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_CaseInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_BulletInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_CaseInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_List_Equipment.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_List_Firearms.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_PowderInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_PrimerInventory.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddDataSheet_RiflePistols_MAN.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_BulletInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_CaseInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_List_Equipment.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_List_Firearms.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_PowderInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_PrimerInventory.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_General_Calibers.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_PrimerTypes.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_AmmunitionTypes.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_SuggestedUse.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_AmmunitionTypes.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_PrimerTypes.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_SuggestedUse.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_General_Calibers.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_Shotgun.rdlc
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShell.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddWad.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditGuages.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_ShotWeight.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_Shotgun.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_ShotgunWOC.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_Shotgun.resources
+D:\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_ShotgunWC.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe.config
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.exe
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.pdb
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.exe
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.XmlSerializers.dll
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\Config.xml
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBBackup.exe
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBRestore.exe
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\FileDownloader.dll
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\MLL.mdb
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\ProxyConfig.xml
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\my_loaders_log_help.chm
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.pdb
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_BulletInventory.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_CaseInventory.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Config_RiflePistol.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistols.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistolsWOC.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_Shotgun.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_ShotgunWC.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_HullInventory.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Equipment.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Firearms.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_WADS.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Loaded_Ammunition.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PowderInventory.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PrimerInventory.rdlc
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.AboutBox1.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.BSRegistration.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddBullets.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddCaliberToCollection.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_CFG.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_MAN.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddEquipment.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddFirearm.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPowder.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPrimer.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShell.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShells.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddWad.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_Powder.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_RP_1.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmDBCleanup.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditBullets.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditConfig.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditEquipment.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditFirearm.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditGuages.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditHulls.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPowder.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPrimer.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditShells.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditWADS.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_AmmunitionTypes.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_PrimerTypes.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_ShotWeight.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_SuggestedUse.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmExportFirearms.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmImportFirearms.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLoadMakeReady_Details.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLogin.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmOptions.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_BulletInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_CaseInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Configuration_Sheet.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Custom.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistol.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistolWOC.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_Shotgun.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_ShotgunWOC.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_HullInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Equipment.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Firearms.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Loaded_Ammunition.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PowderInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PrimerInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_WADInventory.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmSearchConfig_RiflePistol.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_RiflePistols.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_Shotgun.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Configuration_Sheet.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_General_Calibers.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Bullets.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ConfigurationsByCal.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Equipment.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Firearms.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Powder.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Primer.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ShellHulls.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Shells.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_WADS.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Loaded_Ammunition.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.MDIParentMain.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Resources.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.SplashScreen1.resources
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.vbproj.GenerateResource.Cache
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.cache
+C:\Documents and Settings\burnsoft.BURNSOFT\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.compiled
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\MLL.mdb
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\adodb.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSApplicationUpdater.XmlSerializers.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\Config.xml
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DataGridViewAutoFilter.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBBackup.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBRestore.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\FileDownloader.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\ProxyConfig.xml
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBBackup.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\DBRestore.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\my_loaders_log_help.chm
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BSMyLoadersLog.pdb
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Debug\BurnSoft.MsgBox.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\ResolveAssemblyReference.cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Config_Shotgun_Slug.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_BulletInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_CaseInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Config_RiflePistol.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Config_Shotgun.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistols.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_RiflePistolsWOC.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_Shotgun.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_DataSheet_ShotgunWC.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_HullInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Equipment.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_Firearms.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_List_WADS.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_Loaded_Ammunition.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PowderInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_PrimerInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_ShotInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Report_SlugInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.AboutBox1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.BSRegistration.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ConfigurationsByCal_SG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Configuration_Sheet_SG_Slug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Configuration_Sheet_SG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddCaliberToCollection.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_CFG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddDataSheet_RiflePistols_MAN.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddEquipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddFirearm.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddPrimer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyPrimers.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyShellcase.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtySlug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddQtyWAD.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShell.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddSlugs.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddWad.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_RP_1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_SG_1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_SG_2.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_SG_3.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmConfig_Add_Wizard_SG_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmCopy_DataSheet_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmDBCleanup.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditConfig.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditDataSheet_RiflePistols.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditEquipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditFirearm.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditGuages.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditHulls.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditPrimer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditShells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditSlug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditWADS.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_AmmunitionTypes.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_PrimerTypes.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_ShotWeight.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEdit_SuggestedUse.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmExportFirearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmForgotPassword.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmImportConfiguration.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmImportFirearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLoadMakeReady_Details.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmLogin.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmOptions.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_BulletInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_CaseInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Configuration_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Custom.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_RiflePistolWOC.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_Shotgun.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_DataLoader_ShotgunWOC.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_HullInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Equipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_List_Firearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_Loaded_Ammunition.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PowderInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_PrimerInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_ShotInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_SlugInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmReport_WADInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmSearchConfig_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_RiflePistols.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmViewDataSheet_Shotgun.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Configuration_Shotgun_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Shot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Configuration_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_General_Calibers.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Bullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ConfigurationsByCal.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Equipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Firearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Primer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_ShellHulls.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Shells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_Slug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_List_WADS.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Loaded_Ammunition.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.MDIParentMain.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.Resources.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.SplashScreen1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.vbproj.GenerateResource.Cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\RdlCompile.compiled
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.pdb
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\MLL.mdb
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\adodb.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSApplicationUpdater.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSApplicationUpdater.XmlSerializers.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\Config.xml
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DataGridViewAutoFilter.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBBackup.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBRestore.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\FileDownloader.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\ProxyConfig.xml
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBBackup.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\DBRestore.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\my_loaders_log_help.chm
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSMyLoadersLog.exe.config
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BSMyLoadersLog.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\bin\Release\BurnSoft.MsgBox.dll
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\ResolveAssemblyReference.cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_Config_Shotgun_Slug.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_BulletInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_CaseInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_Config_RiflePistol.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_Config_Shotgun.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_RiflePistols.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_RiflePistolsWOC.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_Shotgun.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_DataSheet_ShotgunWC.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_HullInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_List_Equipment.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_List_Firearms.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_List_WADS.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_Loaded_Ammunition.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_PowderInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_PrimerInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_ShotInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Report_SlugInventory.rdlc
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.AboutBox1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.BSRegistration.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_ConfigurationsByCal_SG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Configuration_Sheet_SG_Slug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Configuration_Sheet_SG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddCaliberToCollection.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddDataSheet_RiflePistols_CFG.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddDataSheet_RiflePistols_MAN.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddEquipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddFirearm.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddPrimer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyPrimers.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyShellcase.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtySlug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddQtyWAD.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddShell.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddShells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddSlugs.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmAddWad.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_RP_1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_SG_1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_SG_2.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_SG_3.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmConfig_Add_Wizard_SG_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmCopy_DataSheet_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmDBCleanup.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditBullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditConfig.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditDataSheet_RiflePistols.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditEquipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditFirearm.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditGuages.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditHulls.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditPowder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditPrimer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditShells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditShot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditSlug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEditWADS.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_AmmunitionTypes.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_PrimerTypes.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_ShotWeight.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmEdit_SuggestedUse.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmExportFirearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmForgotPassword.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmImportConfiguration.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmImportFirearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmLoadMakeReady_Details.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmLogin.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmOptions.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_BulletInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_CaseInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Configuration_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Custom.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_RiflePistolWOC.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_Shotgun.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_DataLoader_ShotgunWOC.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_HullInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_List_Equipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_List_Firearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_Loaded_Ammunition.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_PowderInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_PrimerInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_ShotInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_SlugInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmReport_WADInventory.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmSearchConfig_RiflePistol.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmViewDataSheet_RiflePistols.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmViewDataSheet_Shotgun.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_Configuration_Shotgun_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Shot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_Configuration_Sheet.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_General_Calibers.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Bullets.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_ConfigurationsByCal.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Equipment.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Firearms.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Primer.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_ShellHulls.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Shells.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_Slug.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_List_WADS.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.frmView_Loaded_Ammunition.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.MDIParentMain.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.Resources.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.SplashScreen1.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.vbproj.GenerateResource.Cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\RdlCompile.cache
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\RdlCompile.compiled
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Release\BSMyLoadersLog.exe
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddBushing_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditBushing_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Bushings_Powder.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmView_Bushings_Shot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmAddBushing_Shot.resources
+C:\Shares\My Documents\Visual Studio 2005\Projects\BSMyLoadersLog\BSMyLoadersLog\obj\Debug\BSMyLoadersLog.frmEditBushing_Shot.resources

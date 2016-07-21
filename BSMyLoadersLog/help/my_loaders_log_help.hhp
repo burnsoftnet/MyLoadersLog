@@ -1,0 +1,79 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=my_loaders_log_help.chm
+Contents file=Table of Contents.hhc
+Default topic=Files\home.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x409 English (United States)
+Title=BurnSoft My Loaders Log
+
+
+[FILES]
+Files\Applications_ApplicationUpdater.html
+Files\backup_database.htm
+Files\Contact_Technical_Support.html
+Files\home.htm
+Files\import_database.htm
+Files\KnowledgeBase.htm
+Files\Suggestions.htm
+Files\TechSupport.htm
+Files\User_Forum.html
+Files\versions.htm
+Files\Applications_ApplicationUpdater_Internet.html
+Files\Applications_ApplicationUpdater_File.html
+Files\Applications_ApplicationUpdater_Home.html
+Files\reportbug.htm
+Files\Add_Reloading_Equip.htm
+Files\Add_Cal_2_List.htm
+Files\Add_Firearm.htm
+Files\Add_New_Config.htm
+Files\Getting_Started.htm
+Files\Tools_Options.htm
+Files\Add_Powder2Inv.htm
+Files\Add_Primers2Inv.htm
+Files\Add_Bullet2Inv.htm
+Files\Add_Case2Inv.htm
+Files\Add_LL_RP_Man.htm
+Files\Add_LL_RP_Con.htm
+Files\Add_Wad2Inv.htm
+Files\add_shellhulls2Inv.htm
+Files\Edit_PreLoadedCalList.htm
+Files\Database_Cleanup.htm
+Files\Edit_AmmunitionTypes.htm
+Files\Edit_PrimerTypes.htm
+Files\Report_Inv_Ammunition.htm
+Files\Report_Inv_Brass.htm
+Files\Report_Inv_Bullet.htm
+Files\Report_Inv_Equipment.htm
+Files\Report_Inv_Firearm.htm
+Files\Report_Inv_Hulls.htm
+Files\Report_Inv_Powder.htm
+Files\Report_Inv_Primers.htm
+Files\Report_Inv_WAD.htm
+Files\Copy_LoadersLog_Entry.htm
+Files\View_Inv_Firearms.htm
+Files\View_Inv_ReadyToUseAmmo.htm
+Files\View_Inv_Equipment.htm
+Files\View_ConfigSheets.htm
+Files\View_ConfigSheets_Information.htm
+Files\View_ConfigSheets_Powder.htm
+Files\View_ConfigSheets_Notes.htm
+Files\View_ConfigSheets_Costs.htm
+Files\View_ConfigSheets_Audit.htm
+Files\View_Inv_Powder.htm
+Files\View_Inv_Primers.htm
+Files\View_Inv_Bullet.htm
+Files\View_inv_CaseList.htm
+Files\Copy_Config.htm
+Files\Edit_Config_RP.htm
+Files\Report_LoadersLog_w_config_RP.htm
+Files\View_LoadersLog_RP.htm
+Files\Report_LoadersLog_wo_Config_RP.htm
+Files\Search_RP.htm
+
+[MERGE FILES]
+BSAppUpdater.chm
+
+[INFOTYPES]
+

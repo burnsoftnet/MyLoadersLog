@@ -1,0 +1,27 @@
+BSMyLoadersLog.exe 2.x.x
+	Added Total to the the Equipment List Report.
+	Added the Ability to Track Reloading Inventory for Shotguns.
+	Added the Ability to Track the Load COnfigurations for shotguns.
+	While viewing the PowerList for a configuration, you now have the option right click and delete a powder from the list.
+	Added Additional Error Catching abilities.
+	Added a Label to Count how many rounds are in the "Ready to Use Ammunition" Inventory list.
+	While Viewing Bullet List, you can now filter out by Caliber.
+	While Viewing Case list, you can  now filter out by Caliber.
+	While Viewing the Primer List, you can now filter out by Primer Type.
+	While viewing Powder List, you can now filter out by Manufacturer.
+	While Viewing Equipment List, you can now filter out by Manufacturer.
+	While Viewing Firearm Collection, you can not filter out by Caliber and or manufacturer.
+	While Viewing Hull List, you can filter out by Gauge.
+	While Viewing Shot list, you can now filter out by Manufacturer and Shot No.
+	While Viewing WAD list, you can now filter out by Manufacturer.
+	While Viewing Ready to UseAmmunition List, you can now filter out by Caliber or grain.
+	Fixed: a small calculation error when Auditing the Ready to Make ammuntion feature, the total was lacking the total of powder used.
+	FIXED: when editing or making ready to use ammunition the Powder weight in pounds would not update.  Now it will.
+	While viewing the PowerList for a configuration, you now have the option right click and set another powder as the default.  Once you set another powder to default, it will reload all the information in the configuration to update the costs changes.
+	Added the abilty to Copy BUllets.  During the R&D process there where some bullets that worked for multi. calibers, and in order to save time from re-entering data, we added a copy function, where all you will need to do is change the caliber that it is for.
+
+MML Database:
+	Added Table List_SG_ShotType_Details to replace the 3 tables that were going to be used for shotgun reloading.
+	Dropped tables List_SG_ShotType_Details_Slugs and List_SG_ShotType_Details_Shot
+	Altered List_SG_WAD, added load_t (TEXT), load_d (DOUBLE), gauge (TEXT), GID (NuMBER) columns to the table.
+	Added Table List_Bullets_SupportingCaliber

