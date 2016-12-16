@@ -16,3 +16,27 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+BSLL_HotFixes/bin/Debug/BSMLL_HotFixes.exe
+BSLL_HotFixes/bin/Debug/BSMLL_HotFixes.pdb
+BSLL_HotFixes/obj/Debug/BSMLL_HotFixes.exe
+BSLL_HotFixes/obj/Debug/BSMLL_HotFixes.pdb
+BSLL_HotFixes/obj/Debug/BSMLL_HotFixes.vbproj.FileListAbsolute.txt
+BSLL_HotFixes/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+BSMyLoadersLog/bin/Debug/BSMyLoadersLog.exe
+BSMyLoadersLog/bin/Debug/BSMyLoadersLog.pdb
+BSMyLoadersLog/bin/Debug/err.log
+BSMyLoadersLog/bin/Debug/Microsoft.ReportViewer.WinForms.dll
+BSMyLoadersLog/bin/Debug/MLL.mdb
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.exe
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.frmAddDataSheet_ShotGun_CFG.resources
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.frmAddDataSheet_ShotGun_MAN.resources
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.frmCopy_DataSheet_Copy_ShotGun.resources
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.frmEditDataSheet_ShotGun.resources
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.frmViewDataSheet_Shotgun.resources
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.pdb
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbproj.FileListAbsolute.txt
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbproj.GenerateResource.Cache
+BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbprojResolveAssemblyReference.cache
+BSMyLoadersLog/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+BSMyLoadersLog/obj/Debug/RdlCompile.cache
+BSMyLoadersLog/obj/Debug/TempPE/MLLDataSet.Designer.vb.dll

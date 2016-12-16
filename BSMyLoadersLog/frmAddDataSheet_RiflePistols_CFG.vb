@@ -9,6 +9,7 @@ Public Class frmAddDataSheet_RiflePistols_CFG
             txtGroup.AutoCompleteCustomSource = ObjAF.Loaders_Log_NSG_GroupSize
             txtCon.AutoCompleteCustomSource = ObjAF.Loaders_Log_NSG_conditions
             txtLen.AutoCompleteCustomSource = ObjAF.Loaders_Log_NSG_tl
+            ObjAF = Nothing
         Catch ex As Exception
             Call LogError(Me.Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
         End Try
@@ -83,7 +84,9 @@ Public Class frmAddDataSheet_RiflePistols_CFG
     End Sub
     Private Sub frmAddDataSheet_RiflePistols_CFG_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            Me.Loaders_Log_FirearmsTableAdapter.FillByFullName(Me.MLLDataSet.Loaders_Log_Firearms)
+            'Replaced to narrow down none shotgun vs shotgun
+            'Me.Loaders_Log_FirearmsTableAdapter.FillByFullName(Me.MLLDataSet.Loaders_Log_Firearms)
+            Me.Loaders_Log_FirearmsTableAdapter.FillByFullNameNoneShotgun(Me.MLLDataSet.Loaders_Log_Firearms)
             cmbFirearm.SelectedValue = FID
             Call UpdateConfigList()
             Call LoadAutoFill()
@@ -108,5 +111,9 @@ Public Class frmAddDataSheet_RiflePistols_CFG
     End Sub
     Private Sub cmbFirearm_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbFirearm.SelectedIndexChanged
         Call UpdateConfigList()
+    End Sub
+
+    Private Sub txtGroup_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtGroup.TextChanged
+
     End Sub
 End Class

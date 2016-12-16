@@ -22,34 +22,34 @@ Partial Class frmAddDataSheet_RiflePistols_CFG
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddDataSheet_RiflePistols_CFG))
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.cmbFirearm = New System.Windows.Forms.ComboBox
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.cmbFirearm = New System.Windows.Forms.ComboBox()
         Me.LoadersLogFirearmsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet
-        Me.dtpTested = New System.Windows.Forms.DateTimePicker
-        Me.txtGroup = New System.Windows.Forms.TextBox
-        Me.txtCon = New System.Windows.Forms.TextBox
-        Me.txtLen = New System.Windows.Forms.TextBox
-        Me.txtNotes = New System.Windows.Forms.TextBox
-        Me.btnAdd = New System.Windows.Forms.Button
-        Me.btnCancel = New System.Windows.Forms.Button
-        Me.Loaders_Log_FirearmsTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.Loaders_Log_FirearmsTableAdapter
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.nudShots = New System.Windows.Forms.NumericUpDown
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.nudYards = New System.Windows.Forms.NumericUpDown
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.cmbConfig = New System.Windows.Forms.ComboBox
+        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet()
+        Me.dtpTested = New System.Windows.Forms.DateTimePicker()
+        Me.txtGroup = New System.Windows.Forms.TextBox()
+        Me.txtCon = New System.Windows.Forms.TextBox()
+        Me.txtLen = New System.Windows.Forms.TextBox()
+        Me.txtNotes = New System.Windows.Forms.TextBox()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.Loaders_Log_FirearmsTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.Loaders_Log_FirearmsTableAdapter()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.nudShots = New System.Windows.Forms.NumericUpDown()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.nudYards = New System.Windows.Forms.NumericUpDown()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmbConfig = New System.Windows.Forms.ComboBox()
         Me.ConfigListSimpleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
-        Me.ConfigList_SimpleTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.ConfigList_SimpleTableAdapter
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.ConfigList_SimpleTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.ConfigList_SimpleTableAdapter()
         CType(Me.LoadersLogFirearmsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MLLDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudShots, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,6 +212,7 @@ Partial Class frmAddDataSheet_RiflePistols_CFG
         Me.nudShots.Name = "nudShots"
         Me.nudShots.Size = New System.Drawing.Size(200, 20)
         Me.nudShots.TabIndex = 5
+        Me.nudShots.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label9
         '
@@ -229,6 +230,7 @@ Partial Class frmAddDataSheet_RiflePistols_CFG
         Me.nudYards.Name = "nudYards"
         Me.nudYards.Size = New System.Drawing.Size(200, 20)
         Me.nudYards.TabIndex = 3
+        Me.nudYards.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label4
         '

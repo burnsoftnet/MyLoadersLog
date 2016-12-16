@@ -76,6 +76,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
@@ -117,6 +118,24 @@
     <Compile Include="frmAddBushing_Shot.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmAddDataSheet_ShotGun_CFG.Designer.vb">
+      <DependentUpon>frmAddDataSheet_ShotGun_CFG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddDataSheet_ShotGun_CFG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddDataSheet_ShotGun_MAN.Designer.vb">
+      <DependentUpon>frmAddDataSheet_ShotGun_MAN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddDataSheet_ShotGun_MAN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.Designer.vb">
+      <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmEditBushing_Powder.Designer.vb">
       <DependentUpon>frmEditBushing_Powder.vb</DependentUpon>
     </Compile>
@@ -127,6 +146,12 @@
       <DependentUpon>frmEditBushing_Shot.vb</DependentUpon>
     </Compile>
     <Compile Include="frmEditBushing_Shot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditDataSheet_ShotGun.Designer.vb">
+      <DependentUpon>frmEditDataSheet_ShotGun.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditDataSheet_ShotGun.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmView_Bushings_Powder.Designer.vb">
@@ -746,6 +771,15 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmAddBushing_Shot.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddDataSheet_ShotGun_CFG.resx">
+      <DependentUpon>frmAddDataSheet_ShotGun_CFG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddDataSheet_ShotGun_MAN.resx">
+      <DependentUpon>frmAddDataSheet_ShotGun_MAN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCopy_DataSheet_Copy_ShotGun.resx">
+      <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEditBushing_Powder.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditBushing_Powder.vb</DependentUpon>
@@ -753,6 +787,9 @@
     <EmbeddedResource Include="frmEditBushing_Shot.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditBushing_Shot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditDataSheet_ShotGun.resx">
+      <DependentUpon>frmEditDataSheet_ShotGun.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmView_Bushings_Powder.resx">
       <SubType>Designer</SubType>

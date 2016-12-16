@@ -222,12 +222,18 @@ Namespace LoadersClass
     End Class
     Public Class BSDatabase
         Public Conn As OdbcConnection
+        ''' <summary>
+        ''' This function will generate the connection string needed to connect to the load access database
+        ''' <summary>
         Public Function sConnect() As String
             Dim sAns As String = ""
             Dim Obj As New BSRegistry
             sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & APPLICATION_PATH_DATA & "\" & Obj.DefaultDBName & ";Pwd=wtf.m@t3"
             Return sAns
         End Function
+        ''' <summary>
+        ''' This Sub will initialize the Conn ODBC Object with the connection string for database connection
+        ''' </summary>
         Public Sub ConnectDB()
             Try
                 Conn = New OdbcConnection(sConnect)
@@ -1333,12 +1339,21 @@ Namespace LoadersClass
         End Function
     End Class
     Public Class InventoryMath
+        ''' <summary>
+        ''' This is a the local Private Sub for Logging Errors in the Error Log
+        ''' </summary>
         Private Sub LogError(ByVal sProcedure As String, ByVal iErrNo As Long, ByVal sErrorDesc As String)
             Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
             Dim sForm As String = "LoadersClass.InventoryMath"
             Dim sMessage As String = sForm & "." & sProcedure & "::" & iErrNo & "::" & sErrorDesc
             ObjFS.LogFile(MyLogFile, sMessage)
         End Sub
+        ''' <summary>
+        ''' Gets the Powder ID ( PID ) from Config_List_Powder_Data_NSG Table for Non-Shotguns
+        ''' and returns the ID alonf with the Default Powder Load ( byref DefaultPowderLoad ) value.
+        ''' Just pass the Configuration ID to this function
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1361,6 +1376,12 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        ''' <summary>
+        ''' Get the Powder ID ( OID ) from the Config_List_Powder_Data_SG Table for Shotguns
+        ''' and returns the ID along with the Default Powder Load ( byref DefaultPowderLoad ) value.
+        ''' Just pass the configuration ID to this function
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPrefSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1383,6 +1404,10 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        ''' <summary>
+        ''' Get the preffered Powder ID and Measurement by passing the Configuration ID For Pistol/Rifle Configs
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPrefNSGPowderIDID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1405,6 +1430,10 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        ''' <summary>
+        ''' Get the preffered Powder ID and Measurement by passing the Conifuration ID for Shotgun Configs
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPrefSGPowderIDID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1427,6 +1456,10 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        ''' <summary>
+        '''  Get the Powder weight in grains by passing the Powder ID from the General_Powder Table
+        ''' </summary>
+        ''' <returns></returns>
         Function GetQTYPerPowder(ByVal lngPID As Long) As Double
             Dim dAns As Double = 0
             Try
@@ -1448,6 +1481,10 @@ Namespace LoadersClass
             End Try
             Return dAns
         End Function
+        ''' <summary>
+        '''  Get the Price Per Powder from the General_Powder Table by Passing the powder ID
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPricePerPowder(ByVal lngPID As Long) As Double
             Dim dAns As Double = 0
             Try
@@ -1469,6 +1506,10 @@ Namespace LoadersClass
             End Try
             Return dAns
         End Function
+        ''' <summary>
+        '''  Get the Ammunition Type from the General_Ammunition_Type table by passing the ID
+        ''' </summary>
+        ''' <returns></returns>
         Function GetAmmoType(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1489,6 +1530,10 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        ''' <summary>
+        ''' Get the Primer Type String Value from the General_Primer_Type table by passing the Primer ID
+        ''' </summary>
+        ''' <returns></returns>
         Function GetPrimerType(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1509,6 +1554,10 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Function GetCaliber(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1529,6 +1578,10 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub LoadBulletInfo(ByVal lngBID As Long, Optional ByRef Manufacturer As String = "", _
                     Optional ByRef Name As String = "", Optional ByRef Diameter As String = "", _
                     Optional ByRef Weight As String = "", Optional ByRef SectionalDensity As String = "", _
@@ -1561,6 +1614,11 @@ Namespace LoadersClass
                 Call LogError("LoadBulletInfo", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''  Get Primer Information from the PrimerID, to optional get the Manufacturer, Name
+        '''  Primer Type, Estimated Price Per Primer and current Quantity.
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub LoadPrimerInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                     Optional ByRef Name As String = "", Optional ByRef Primer_Type As String = "", _
                     Optional ByRef ePPP As Double = 0, Optional ByRef lQty As Long = 0)
@@ -1585,6 +1643,10 @@ Namespace LoadersClass
                 Call LogError("LoadPrimerInfo", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub LoadCaseInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                                 Optional ByRef Name As String = "", Optional ByRef Trim2length As String = "", _
                                 Optional ByRef TimesUsed As String = "0", Optional ByRef lQty As Long = 0, _
@@ -1612,6 +1674,11 @@ Namespace LoadersClass
                 Call LogError("LoadCaseInfo", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''  Get the Shull/shotgun Case information by passing the Case ID and optionally getting the Manufacturer,
+        '''  Name, Trim to Length, Current Qty, Estimated Price Per Case, and DRAM
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub LoadHullInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                                Optional ByRef Name As String = "", Optional ByRef Trim2length As String = "", _
                                Optional ByRef lQty As Long = 0, _
@@ -1640,6 +1707,10 @@ Namespace LoadersClass
                 Call LogError("LoadHullInfo", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub LoadWADInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                                Optional ByRef Name As String = "", Optional ByRef MaxLoad As String = "", _
                                 Optional ByRef dMaxLoad As Double = 0, Optional ByRef lQty As Long = 0, _
@@ -1667,6 +1738,10 @@ Namespace LoadersClass
                 Call LogError("LoadWADInfo", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Sub LoadSG_ShotType_Details(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                                Optional ByRef Name As String = "", Optional ByRef IsSlug As Boolean = False, _
                                 Optional ByRef material As String = "", Optional ByRef ShotNo As String = "", _
@@ -1716,6 +1791,10 @@ Namespace LoadersClass
                 Call LogError("LoadSG_ShotType_Details", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Sub LoadConfig(ByVal configid As Long, Optional ByRef IsPersonal As Boolean = False, _
                                 Optional ByRef IsShotGun As Boolean = False, Optional ByRef strNotes As String = "", _
                                 Optional ByRef IsActive As Boolean = False, Optional ByRef IsFav As Boolean = False)
@@ -1723,7 +1802,7 @@ Namespace LoadersClass
                 Dim Obj As New BSDatabase
                 Dim SQL As String = "SELECT * from Config_List_Name where ID=" & configid
                 Call Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(Sql, Obj.Conn)
+                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
                 Dim RS As OdbcDataReader
                 RS = CMD.ExecuteReader
                 While RS.Read
@@ -1740,11 +1819,19 @@ Namespace LoadersClass
                 Call LogError("LoadConfig", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Function ConvertToDollars(ByVal dValue As Double) As Double
             Dim dAns As Double = 0
             dAns = Math.Round(dValue, 2)
             Return dAns
         End Function
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub ARUNSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
                     ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, ByVal dGrainsUses As Double)
             Try
@@ -1766,6 +1853,10 @@ Namespace LoadersClass
                 Call LogError("ARUNSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub ARUSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
                     ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, _
                     ByVal dGrainsUses As Double, ByVal lQWADS As Long, ByVal WID As Long, ByVal IsSlug As Boolean, _
@@ -1805,6 +1896,10 @@ Namespace LoadersClass
                 Call LogError("ARUSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
             End Try
         End Sub
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Function IsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
         ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
             Dim bAns As Boolean = False
@@ -1831,6 +1926,10 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        ''' <summary>
+        '''
+        ''' </summary>
+        ''' <returns></returns>
         Public Sub GetPowderDetails(ByVal PID As Long, Optional ByRef Manu As String = "", _
                     Optional ByRef sName As String = "", Optional ByVal weightlbs As Double = 0, _
                     Optional ByRef weightgn As Double = 0, Optional ByRef Price As Double = 0, _
