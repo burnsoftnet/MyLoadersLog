@@ -72,6 +72,9 @@ Public Class frmReport_BulletInventory
     End Sub
     Private Sub frmReport_BulletInventory_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            'TODO:  put in $ for all reports,
+            'example expression:
+            '="$" & IIF(isnumeric(Fields!InsuredValue.Value),cdbl(Fields!InsuredValue.Value),"0.00")
             Me.List_Bullets_DetailsTableAdapter.Fill(Me.MLLDataSet.List_Bullets_Details)
             Me.ReportViewer1.RefreshReport()
         Catch ex As Exception
