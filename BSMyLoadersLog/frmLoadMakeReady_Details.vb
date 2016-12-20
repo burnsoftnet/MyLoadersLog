@@ -26,6 +26,7 @@ Public Class frmLoadMakeReady_Details
     Dim INSTOCK_WAD As Double
     Dim ShotDetails_GR As Double
     Dim COST_WAD As Double
+    Dim FPS_MID As Double
     Dim IsSlug As Boolean
     Dim BID As Long
     Dim PRID As Long
@@ -91,12 +92,12 @@ Public Class frmLoadMakeReady_Details
             Dim Obj As New InventoryMath
             Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, "")
             If Not IsShotGun Then
-                PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER)
+                PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER, FPS_MID)
                 COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
                 INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
                 Call LoadConfig_RiflePistol()
             Else
-                PrefferedPowderID = Obj.GetPrefSGPowderID(ConfigID, MID_POWDER)
+                PrefferedPowderID = Obj.GetPrefSGPowderID(ConfigID, MID_POWDER, FPS_MID)
                 COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
                 INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
                 LoadConfig_ShotGun()
@@ -212,13 +213,14 @@ Public Class frmLoadMakeReady_Details
         Dim Obj As New BSDatabase
         Dim SQL As String = ""
         Dim MID As Long = 0
+
         If ObjIM.IsAlreadyListed(strManu, strName, strCaliber, strGrains, strJacket, cQty, MID) Then
             SQL = "UPDATE Loaders_Log_Ammunition set Qty='" & (cQty + iQty) & "' where id=" & MID
             Obj.ConnExec(SQL)
         Else
-            SQL = "INSERT INTO Loaders_Log_Ammunition(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal) VALUES('" & _
+            SQL = "INSERT INTO Loaders_Log_Ammunition(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,Vel) VALUES('" & _
                     strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
-                    strJacket & "'," & iQty & "," & dcal & ")"
+                    strJacket & "'," & iQty & "," & dcal & "," & FPS_MID & ")"
             Obj.ConnExec(SQL)
         End If
         If Not IsShotGun Then

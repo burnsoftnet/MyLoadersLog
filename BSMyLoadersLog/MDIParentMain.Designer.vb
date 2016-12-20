@@ -109,7 +109,6 @@ Partial Class MDIParentMain
         Me.ShotgunsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckForUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataBaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReRunHotfixUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CleanUpDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -132,7 +131,6 @@ Partial Class MDIParentMain
         Me.TechnicalSupportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportABugToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KnowledgeBaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SupportForumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip = New System.Windows.Forms.ToolStrip()
         Me.NewToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -145,7 +143,6 @@ Partial Class MDIParentMain
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.HelpToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnAddConfig = New System.Windows.Forms.Button()
@@ -757,7 +754,7 @@ Partial Class MDIParentMain
         '
         'ToolsMenu
         '
-        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.CheckForUpdatesToolStripMenuItem, Me.DataBaseToolStripMenuItem})
+        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.DataBaseToolStripMenuItem})
         Me.ToolsMenu.Name = "ToolsMenu"
         Me.ToolsMenu.Size = New System.Drawing.Size(48, 20)
         Me.ToolsMenu.Text = "&Tools"
@@ -766,23 +763,15 @@ Partial Class MDIParentMain
         '
         Me.OptionsToolStripMenuItem.Image = CType(resources.GetObject("OptionsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OptionsToolStripMenuItem.Text = "&Options"
-        '
-        'CheckForUpdatesToolStripMenuItem
-        '
-        Me.CheckForUpdatesToolStripMenuItem.Image = CType(resources.GetObject("CheckForUpdatesToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
-        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.CheckForUpdatesToolStripMenuItem.Text = "&Check For Updates"
-        Me.CheckForUpdatesToolStripMenuItem.Visible = False
         '
         'DataBaseToolStripMenuItem
         '
         Me.DataBaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReRunHotfixUpdatesToolStripMenuItem, Me.CleanUpDatabaseToolStripMenuItem})
         Me.DataBaseToolStripMenuItem.Image = CType(resources.GetObject("DataBaseToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem"
-        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DataBaseToolStripMenuItem.Text = "&DataBase"
         '
         'ReRunHotfixUpdatesToolStripMenuItem
@@ -845,7 +834,7 @@ Partial Class MDIParentMain
         '
         'HelpMenu
         '
-        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.IndexToolStripMenuItem, Me.SearchToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem, Me.RegisterToolStripMenuItem, Me.PurchaseToolStripMenuItem, Me.ToolStripSeparator5, Me.TechnicalSupportToolStripMenuItem, Me.ReportABugToolStripMenuItem, Me.KnowledgeBaseToolStripMenuItem, Me.SupportForumToolStripMenuItem})
+        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.IndexToolStripMenuItem, Me.SearchToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem, Me.RegisterToolStripMenuItem, Me.PurchaseToolStripMenuItem, Me.ToolStripSeparator5, Me.TechnicalSupportToolStripMenuItem, Me.ReportABugToolStripMenuItem, Me.KnowledgeBaseToolStripMenuItem})
         Me.HelpMenu.Name = "HelpMenu"
         Me.HelpMenu.Size = New System.Drawing.Size(44, 20)
         Me.HelpMenu.Text = "&Help"
@@ -926,18 +915,11 @@ Partial Class MDIParentMain
         Me.KnowledgeBaseToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.KnowledgeBaseToolStripMenuItem.Text = "&Knowledge Base"
         '
-        'SupportForumToolStripMenuItem
-        '
-        Me.SupportForumToolStripMenuItem.Image = CType(resources.GetObject("SupportForumToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.SupportForumToolStripMenuItem.Name = "SupportForumToolStripMenuItem"
-        Me.SupportForumToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.SupportForumToolStripMenuItem.Text = "Support &Forum"
-        '
         'ToolStrip
         '
         Me.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.OpenToolStripButton, Me.ToolStripButton1, Me.SaveToolStripButton, Me.ToolStripSeparator1, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripButton5, Me.ToolStripButton6, Me.ToolStripSeparator15, Me.ToolStripButton2, Me.HelpToolStripButton})
+        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.OpenToolStripButton, Me.ToolStripButton1, Me.SaveToolStripButton, Me.ToolStripSeparator1, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripButton5, Me.ToolStripButton6, Me.ToolStripSeparator15, Me.HelpToolStripButton})
         Me.ToolStrip.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip.Name = "ToolStrip"
         Me.ToolStrip.Size = New System.Drawing.Size(708, 39)
@@ -1030,16 +1012,6 @@ Partial Class MDIParentMain
         '
         Me.ToolStripSeparator15.Name = "ToolStripSeparator15"
         Me.ToolStripSeparator15.Size = New System.Drawing.Size(6, 39)
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(36, 36)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
-        Me.ToolStripButton2.Visible = False
         '
         'HelpToolStripButton
         '
@@ -1371,11 +1343,8 @@ Partial Class MDIParentMain
     Friend WithEvents TechnicalSupportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReportABugToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KnowledgeBaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SupportForumToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents CheckForUpdatesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DataBaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
     Friend WithEvents AddItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewConfigurationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CaliberReloadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

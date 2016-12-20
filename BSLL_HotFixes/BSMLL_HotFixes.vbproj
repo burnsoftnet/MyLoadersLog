@@ -35,7 +35,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\BSMyLoadersLog\Updates\</OutputPath>
+    <OutputPath>..\BSMyLoadersLog\bin\Release\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
@@ -96,9 +96,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BSMLL_HotFixes.exe.manifest" />
-    <None Include="hotfix.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -784,7 +784,7 @@ FROM         ((List_Bullets INNER JOIN
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Price.Value</Value>
+                              <Value>="$" &amp; Fields!Price.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

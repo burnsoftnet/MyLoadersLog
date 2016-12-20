@@ -138,6 +138,7 @@ Public Class frmOptions
     End Sub
     Private Sub frmOptions_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Call LoadData()
+        chkShotGun.Enabled = USE_SHOTGUN
     End Sub
     Sub SetSecurity()
         txtPWD.Enabled = chkSec.Checked

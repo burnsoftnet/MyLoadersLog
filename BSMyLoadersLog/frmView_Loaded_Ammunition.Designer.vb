@@ -22,29 +22,30 @@ Partial Class frmView_Loaded_Ammunition
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmView_Loaded_Ammunition))
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
-        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.LoadersLogAmmunitionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet
-        Me.Loaders_Log_AmmunitionTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.Loaders_Log_AmmunitionTableAdapter
-        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.ManufacturerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CalDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn
-        Me.GrainDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn
-        Me.JacketDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.QtyDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DcalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet()
+        Me.Loaders_Log_AmmunitionTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.Loaders_Log_AmmunitionTableAdapter()
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ManufacturerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn()
+        Me.GrainDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn()
+        Me.JacketDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QtyDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Vel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DcalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LoadersLogAmmunitionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +58,7 @@ Partial Class frmView_Loaded_Ammunition
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripLabel2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(631, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(722, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -105,7 +106,7 @@ Partial Class frmView_Loaded_Ammunition
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(136, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(146, 22)
         Me.ToolStripLabel1.Text = "Total Rounds in Inventory:"
         '
         'ToolStripLabel2
@@ -119,14 +120,14 @@ Partial Class frmView_Loaded_Ammunition
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.ManufacturerDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.CalDataGridViewTextBoxColumn, Me.GrainDataGridViewTextBoxColumn, Me.JacketDataGridViewTextBoxColumn, Me.QtyDataGridViewTextBoxColumn, Me.DcalDataGridViewTextBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.ManufacturerDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.CalDataGridViewTextBoxColumn, Me.GrainDataGridViewTextBoxColumn, Me.JacketDataGridViewTextBoxColumn, Me.QtyDataGridViewTextBoxColumn, Me.Vel, Me.DcalDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.LoadersLogAmmunitionBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 29)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 28)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(631, 239)
+        Me.DataGridView1.Size = New System.Drawing.Size(721, 239)
         Me.DataGridView1.TabIndex = 1
         '
         'LoadersLogAmmunitionBindingSource
@@ -176,7 +177,6 @@ Partial Class frmView_Loaded_Ammunition
         Me.CalDataGridViewTextBoxColumn.Name = "CalDataGridViewTextBoxColumn"
         Me.CalDataGridViewTextBoxColumn.ReadOnly = True
         Me.CalDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.CalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         '
         'GrainDataGridViewTextBoxColumn
         '
@@ -185,7 +185,6 @@ Partial Class frmView_Loaded_Ammunition
         Me.GrainDataGridViewTextBoxColumn.Name = "GrainDataGridViewTextBoxColumn"
         Me.GrainDataGridViewTextBoxColumn.ReadOnly = True
         Me.GrainDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GrainDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         '
         'JacketDataGridViewTextBoxColumn
         '
@@ -201,6 +200,13 @@ Partial Class frmView_Loaded_Ammunition
         Me.QtyDataGridViewTextBoxColumn.Name = "QtyDataGridViewTextBoxColumn"
         Me.QtyDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'Vel
+        '
+        Me.Vel.DataPropertyName = "Vel"
+        Me.Vel.HeaderText = "Velocity"
+        Me.Vel.Name = "Vel"
+        Me.Vel.ReadOnly = True
+        '
         'DcalDataGridViewTextBoxColumn
         '
         Me.DcalDataGridViewTextBoxColumn.DataPropertyName = "dcal"
@@ -213,7 +219,7 @@ Partial Class frmView_Loaded_Ammunition
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(631, 266)
+        Me.ClientSize = New System.Drawing.Size(722, 266)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.HelpProvider1.SetHelpKeyword(Me, "View Ready to Use Ammunition")
@@ -252,5 +258,6 @@ Partial Class frmView_Loaded_Ammunition
     Friend WithEvents GrainDataGridViewTextBoxColumn As DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn
     Friend WithEvents JacketDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents QtyDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Vel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DcalDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

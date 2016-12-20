@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("The BurnSoft My Loaders Log application allows you to store information about your Reloaded ammunition/Pet Loads inventory, configurations, and results safely and in a well-organized fashion.  It contains reports which allows you to print a hard copy of your information, export a configuration to share with a friend and more.  This application will also work with the My Gun Collection Application to Pull Firearms that is listed in that application as well as export the finished results of your test loads.")> 
 <Assembly: AssemblyCompany("BurnSoft ( www.burnsoft.net )")> 
 <Assembly: AssemblyProduct("BurnSoft My Loaders Log")> 
-<Assembly: AssemblyCopyright("Copyright © Burnsoft 2008-2016")> 
+<Assembly: AssemblyCopyright("Copyright © Burnsoft 2008-2017")> 
 <Assembly: AssemblyTrademark("BurnSoft, www.burnsoft.net, www.burnsoft.org")> 
 
 <Assembly: ComVisible(False)>

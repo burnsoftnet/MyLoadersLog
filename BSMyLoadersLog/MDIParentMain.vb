@@ -40,6 +40,22 @@ Public Class MDIParentMain
                 frmNew.MdiParent = Me
                 frmNew.Show()
             End If
+            If Not USE_SHOTGUN Then
+                ToolStripButton6.Visible = False
+                WADListToolStripMenuItem.Visible = False
+                ShellListToolStripMenuItem.Visible = False
+                ShotListToolStripMenuItem.Visible = False
+                SlugListToolStripMenuItem.Visible = False
+                BushingsChargeBarToolStripMenuItem.Visible = False
+                WADInventoryToolStripMenuItem.Visible = False
+                ShellInventoryToolStripMenuItem.Visible = False
+                ShotInventoryToolStripMenuItem.Visible = False
+                SlugInventoryToolStripMenuItem.Visible = False
+                ShotgunsToolStripMenuItem.Visible = False
+                ShotgunGaugesToolStripMenuItem.Visible = False
+                ShotWeightToolStripMenuItem.Visible = False
+
+            End If
             OwnerLoadName = Replace(GetLoadName(), "''", "'")
             If OwnerLoadName <> "My Loaders Log" Then Me.Text = OwnerLoadName & " Loaders Log"
             Call RefreshData()
@@ -255,18 +271,18 @@ Public Class MDIParentMain
             Call LogError(Me.Name, "DoHelp", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Sub CheckForUpdates()
-        Try
-            DoAutoBackup = False
-            Dim myProcess As New Process
-            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_UPDATER
-            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-            myProcess.Start()
-            Me.Close()
-        Catch ex As Exception
-            Call LogError(Me.Name, "CheckForUpdates", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
+    ' Sub CheckForUpdates()
+    '    Try
+    '        DoAutoBackup = False
+    'Dim myProcess As New Process
+    '       myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_UPDATER
+    '        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+    '        myProcess.Start()
+    '        Me.Close()
+    '    Catch ex As Exception
+    '        Call LogError(Me.Name, "CheckForUpdates", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
     Private Sub DoRegistrationProcessForApp()
         Try
             Dim ObjReg As New RegistrationProcess
@@ -413,7 +429,7 @@ Public Class MDIParentMain
         Call DoRestore()
     End Sub
     Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click, OpenToolStripButton.Click
-        Call DoBackup()
+        Call DoRestore()
     End Sub
 #End Region
 #Region "Tool Bar And Misc. Components Subs"
@@ -425,9 +441,9 @@ Public Class MDIParentMain
         frmOptions.MdiParent = Me
         frmOptions.Show()
     End Sub
-    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
-        Call CheckForUpdates()
-    End Sub
+    ' Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+    '    Call CheckForUpdates()
+    'End Sub
     Private Sub HelpToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpToolStripButton.Click
         Call DoHelp()
     End Sub
@@ -606,12 +622,12 @@ Public Class MDIParentMain
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
-    Private Sub SupportForumToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SupportForumToolStripMenuItem.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_FORUM
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
-    End Sub
+    'Private Sub SupportForumToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SupportForumToolStripMenuItem.Click
+    'Dim myProcess As New Process
+    '   myProcess.StartInfo.FileName = MENU_FORUM
+    '   myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+    '   myProcess.Start()
+    'End Sub
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
         Dim myProcess As New Process
         myProcess.StartInfo.FileName = MENU_SITESEARCH
@@ -624,9 +640,9 @@ Public Class MDIParentMain
     Private Sub ContentsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ContentsToolStripMenuItem.Click
         Call DoHelp()
     End Sub
-    Private Sub CheckForUpdatesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
-        Call CheckForUpdates()
-    End Sub
+    ' Private Sub CheckForUpdatesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
+    '    Call CheckForUpdates()
+    'End Sub
     Private Sub PowderToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PowderToolStripMenuItem.Click
         frmAddPowder.MdiParent = Me
         frmAddPowder.Show()

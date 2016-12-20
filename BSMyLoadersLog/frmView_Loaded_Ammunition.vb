@@ -29,6 +29,7 @@ Public Class frmView_Loaded_Ammunition
             Dim strCaliber As String = ""
             Dim strGrains As String = ""
             Dim strJacket As String = ""
+            Dim sVelocity As String = ""
             Dim dcal As Double = 0
             Dim SQL As String = "SELECT * from Loaders_Log_Ammunition"
             Dim CMD As New OdbcCommand(SQL, Obj.Conn)
@@ -42,15 +43,16 @@ Public Class frmView_Loaded_Ammunition
                 strCaliber = FluffContent(RS("Cal"))
                 strGrains = FluffContent(RS("Grain"))
                 strJacket = FluffContent(RS("Jacket"))
+                sVelocity = FluffContent(RS("Vel"))
                 dcal = RS("dcal")
                 If ObjMGC.AmmoIsAlreadyListed(strManu, strName, strCaliber, _
                         strGrains, strJacket, iQty, AID) Then
                     SQL = "UPDATE Gun_Collection_Ammo set Qty='" & (cQty + iQty) & "' where id=" & AID
                     ObjMGC.ConnExec(SQL)
                 Else
-                    SQL = "INSERT INTO Gun_Collection_Ammo(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal) VALUES('" & _
+                    SQL = "INSERT INTO Gun_Collection_Ammo(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,vel_n) VALUES('" & _
                             strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
-                            strJacket & "'," & cQty & "," & dcal & ")"
+                            strJacket & "'," & cQty & "," & dcal & "," & sVelocity & ")"
                     ObjMGC.ConnExec(SQL)
                 End If
                 Obj.ConnExec("DELETE from Loaders_Log_Ammunition where ID=" & MID)

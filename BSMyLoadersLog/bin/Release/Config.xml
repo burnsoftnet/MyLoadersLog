@@ -1,8 +1,0 @@
-<CONFIG>
-	<DETAILS>
-		<AppName>BurnSoft My Loaders Log</AppName>
-		<ProdName>BSMLL</ProdName>
-    <HOTFIXAPP>BSMLL_HotFixes.exe</HOTFIXAPP>
-    <MAINAPP>BSMyLoadersLog.exe</MAINAPP>
-	</DETAILS>
-</CONFIG>

@@ -10780,6 +10780,8 @@ Partial Public Class MLLDataSet
         
         Private columndcal As Global.System.Data.DataColumn
         
+        Private columnVel As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -10880,6 +10882,14 @@ Partial Public Class MLLDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property VelColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10916,9 +10926,9 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddLoaders_Log_AmmunitionRow(ByVal Manufacturer As String, ByVal Name As String, ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, ByVal Qty As Integer, ByVal dcal As Double) As Loaders_Log_AmmunitionRow
+        Public Overloads Function AddLoaders_Log_AmmunitionRow(ByVal Manufacturer As String, ByVal Name As String, ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, ByVal Qty As Integer, ByVal dcal As Double, ByVal Vel As Integer) As Loaders_Log_AmmunitionRow
             Dim rowLoaders_Log_AmmunitionRow As Loaders_Log_AmmunitionRow = CType(Me.NewRow,Loaders_Log_AmmunitionRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal, Vel}
             rowLoaders_Log_AmmunitionRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowLoaders_Log_AmmunitionRow)
             Return rowLoaders_Log_AmmunitionRow
@@ -10955,6 +10965,7 @@ Partial Public Class MLLDataSet
             Me.columnJacket = MyBase.Columns("Jacket")
             Me.columnQty = MyBase.Columns("Qty")
             Me.columndcal = MyBase.Columns("dcal")
+            Me.columnVel = MyBase.Columns("Vel")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10976,6 +10987,8 @@ Partial Public Class MLLDataSet
             MyBase.Columns.Add(Me.columnQty)
             Me.columndcal = New Global.System.Data.DataColumn("dcal", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndcal)
+            Me.columnVel = New Global.System.Data.DataColumn("Vel", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVel)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AllowDBNull = false
@@ -23730,6 +23743,21 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Vel() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableLoaders_Log_Ammunition.VelColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Vel' in table 'Loaders_Log_Ammunition' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableLoaders_Log_Ammunition.VelColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsManufacturerNull() As Boolean
             Return Me.IsNull(Me.tableLoaders_Log_Ammunition.ManufacturerColumn)
         End Function
@@ -23810,6 +23838,18 @@ Partial Public Class MLLDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetdcalNull()
             Me(Me.tableLoaders_Log_Ammunition.dcalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsVelNull() As Boolean
+            Return Me.IsNull(Me.tableLoaders_Log_Ammunition.VelColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetVelNull()
+            Me(Me.tableLoaders_Log_Ammunition.VelColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -43306,6 +43346,7 @@ Namespace MLLDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Jacket", "Jacket")
             tableMapping.ColumnMappings.Add("Qty", "Qty")
             tableMapping.ColumnMappings.Add("dcal", "dcal")
+            tableMapping.ColumnMappings.Add("Vel", "Vel")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -43314,7 +43355,7 @@ Namespace MLLDataSetTableAdapters
                 "` = ?)) AND ((? = 1 AND `Cal` IS NULL) OR (`Cal` = ?)) AND ((? = 1 AND `Grain` I"& _ 
                 "S NULL) OR (`Grain` = ?)) AND ((? = 1 AND `Jacket` IS NULL) OR (`Jacket` = ?)) A"& _ 
                 "ND ((? = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = 1 AND `dcal` IS NULL) OR"& _ 
-                " (`dcal` = ?)))"
+                " (`dcal` = ?)) AND ((? = 1 AND `Vel` IS NULL) OR (`Vel` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Manufacturer", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -43331,10 +43372,12 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_dcal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_dcal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `Loaders_Log_Ammunition` (`Manufacturer`, `Name`, `Cal`, `Grain`, `Ja"& _ 
-                "cket`, `Qty`, `dcal`) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                "cket`, `Qty`, `dcal`, `Vel`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Name", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Name", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -43343,15 +43386,17 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Jacket", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Jacket", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dcal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `Loaders_Log_Ammunition` SET `Manufacturer` = ?, `Name` = ?, `Cal` = ?, `G"& _ 
-                "rain` = ?, `Jacket` = ?, `Qty` = ?, `dcal` = ? WHERE ((`ID` = ?) AND ((? = 1 AND"& _ 
-                " `Manufacturer` IS NULL) OR (`Manufacturer` = ?)) AND ((? = 1 AND `Name` IS NULL"& _ 
-                ") OR (`Name` = ?)) AND ((? = 1 AND `Cal` IS NULL) OR (`Cal` = ?)) AND ((? = 1 AN"& _ 
-                "D `Grain` IS NULL) OR (`Grain` = ?)) AND ((? = 1 AND `Jacket` IS NULL) OR (`Jack"& _ 
-                "et` = ?)) AND ((? = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = 1 AND `dcal` "& _ 
-                "IS NULL) OR (`dcal` = ?)))"
+                "rain` = ?, `Jacket` = ?, `Qty` = ?, `dcal` = ?, `Vel` = ? WHERE ((`ID` = ?) AND "& _ 
+                "((? = 1 AND `Manufacturer` IS NULL) OR (`Manufacturer` = ?)) AND ((? = 1 AND `Na"& _ 
+                "me` IS NULL) OR (`Name` = ?)) AND ((? = 1 AND `Cal` IS NULL) OR (`Cal` = ?)) AND"& _ 
+                " ((? = 1 AND `Grain` IS NULL) OR (`Grain` = ?)) AND ((? = 1 AND `Jacket` IS NULL"& _ 
+                ") OR (`Jacket` = ?)) AND ((? = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = 1 "& _ 
+                "AND `dcal` IS NULL) OR (`dcal` = ?)) AND ((? = 1 AND `Vel` IS NULL) OR (`Vel` = "& _ 
+                "?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Name", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Name", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -43360,6 +43405,7 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Jacket", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Jacket", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dcal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Manufacturer", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -43375,6 +43421,8 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_dcal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_dcal", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dcal", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Vel", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Vel", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -43390,28 +43438,28 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal FROM Loaders_Log_Amm"& _ 
-                "unition"
+            Me._commandCollection(0).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal,Vel FROM Loaders_Log"& _ 
+                "_Ammunition"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal FROM Loaders_Log_Amm"& _ 
-                "unition ORDER BY CAL ASC"
+            Me._commandCollection(1).CommandText = "SELECT Cal, Grain, ID, Jacket, Manufacturer, Name, Qty, Vel, dcal FROM Loaders_Lo"& _ 
+                "g_Ammunition ORDER BY Cal"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal FROM Loaders_Log_Amm"& _ 
-                "unition order by dcal ASC"
+            Me._commandCollection(2).CommandText = "SELECT Cal, Grain, ID, Jacket, Manufacturer, Name, Qty, Vel, dcal FROM Loaders_Lo"& _ 
+                "g_Ammunition ORDER BY dcal"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal FROM Loaders_Log_Amm"& _ 
-                "unition order by Manufacturer, Name ASC"
+            Me._commandCollection(3).CommandText = "SELECT Cal, Grain, ID, Jacket, Manufacturer, Name, Qty, Vel, dcal FROM Loaders_Lo"& _ 
+                "g_Ammunition ORDER BY Manufacturer, Name"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT ID, Manufacturer, Name, Cal, Grain, Jacket, Qty, dcal FROM Loaders_Log_Amm"& _ 
-                "unition order by Qty ASC"
+            Me._commandCollection(4).CommandText = "SELECT Cal, Grain, ID, Jacket, Manufacturer, Name, Qty, Vel, dcal FROM Loaders_Lo"& _ 
+                "g_Ammunition ORDER BY Qty"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -43567,7 +43615,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Manufacturer As String, ByVal Original_Name As String, ByVal Original_Cal As String, ByVal Original_Grain As String, ByVal Original_Jacket As String, ByVal Original_Qty As Global.System.Nullable(Of Integer), ByVal Original_dcal As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Manufacturer As String, ByVal Original_Name As String, ByVal Original_Cal As String, ByVal Original_Grain As String, ByVal Original_Jacket As String, ByVal Original_Qty As Global.System.Nullable(Of Integer), ByVal Original_dcal As Global.System.Nullable(Of Double), ByVal Original_Vel As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
             If (Original_Manufacturer Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
@@ -43618,6 +43666,13 @@ Namespace MLLDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
+            If (Original_Vel.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Vel.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -43637,7 +43692,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Manufacturer As String, ByVal Name As String, ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, ByVal Qty As Global.System.Nullable(Of Integer), ByVal dcal As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Insert(ByVal Manufacturer As String, ByVal Name As String, ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, ByVal Qty As Global.System.Nullable(Of Integer), ByVal dcal As Global.System.Nullable(Of Double), ByVal Vel As Global.System.Nullable(Of Integer)) As Integer
             If (Manufacturer Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -43673,6 +43728,11 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
+            If (Vel.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Vel.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -43692,7 +43752,24 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Manufacturer As String, ByVal Name As String, ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, ByVal Qty As Global.System.Nullable(Of Integer), ByVal dcal As Global.System.Nullable(Of Double), ByVal Original_ID As Integer, ByVal Original_Manufacturer As String, ByVal Original_Name As String, ByVal Original_Cal As String, ByVal Original_Grain As String, ByVal Original_Jacket As String, ByVal Original_Qty As Global.System.Nullable(Of Integer), ByVal Original_dcal As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Update( _
+                    ByVal Manufacturer As String,  _
+                    ByVal Name As String,  _
+                    ByVal Cal As String,  _
+                    ByVal Grain As String,  _
+                    ByVal Jacket As String,  _
+                    ByVal Qty As Global.System.Nullable(Of Integer),  _
+                    ByVal dcal As Global.System.Nullable(Of Double),  _
+                    ByVal Vel As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ID As Integer,  _
+                    ByVal Original_Manufacturer As String,  _
+                    ByVal Original_Name As String,  _
+                    ByVal Original_Cal As String,  _
+                    ByVal Original_Grain As String,  _
+                    ByVal Original_Jacket As String,  _
+                    ByVal Original_Qty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_dcal As Global.System.Nullable(Of Double),  _
+                    ByVal Original_Vel As Global.System.Nullable(Of Integer)) As Integer
             If (Manufacturer Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -43728,55 +43805,67 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_ID,Integer)
-            If (Original_Manufacturer Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            If (Vel.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Vel.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Manufacturer,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_ID,Integer)
+            If (Original_Manufacturer Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Manufacturer,String)
             End If
             If (Original_Name Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Name,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Name,String)
             End If
             If (Original_Cal Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Cal,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Cal,String)
             End If
             If (Original_Grain Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Grain,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Grain,String)
             End If
             If (Original_Jacket Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Jacket,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Jacket,String)
             End If
             If (Original_Qty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Qty.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Qty.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
             If (Original_dcal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_dcal.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_dcal.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Vel.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Vel.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _

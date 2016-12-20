@@ -604,6 +604,32 @@ Namespace LoadersClass
         End Function
     End Class
     Public Class GlobalFunctions
+        Public Function DatabaseVersion() As Double
+            Dim dAns As Double = 0
+            Try
+                Dim Obj As New BSDatabase
+                Dim SQL As String = "SELECT top 1 dbver from DB_Version order by ID Desc"
+                Call Obj.ConnectDB()
+                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                Dim RS As OdbcDataReader
+                RS = CMD.ExecuteReader
+                If RS.HasRows Then
+                    While RS.Read()
+                        dAns = CDbl(RS("dbver"))
+                    End While
+                Else
+                    dAns = 0
+                End If
+                RS.Close()
+                RS = Nothing
+                Obj.CloseDB()
+                Obj = Nothing
+            Catch ex As Exception
+                Call LogError("LoadersClass.GlobablFunctions", "DatabaseVersion", Err.Number, ex.Message.ToString)
+                dAns = 0
+            End Try
+            Return dAns
+        End Function
         Public Function ObjectExistsinDB(ByVal strObject As String, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
                 Dim bAns As Boolean = False
@@ -961,7 +987,7 @@ Namespace LoadersClass
                 Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
-            Return bans
+            Return bAns
         End Function
         Private Function InSG(ByVal lCALID As Long) As Boolean
             Dim bAns As Boolean = False
@@ -1354,11 +1380,11 @@ Namespace LoadersClass
         ''' Just pass the Configuration ID to this function
         ''' </summary>
         ''' <returns></returns>
-        Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
+        Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
                 Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT PID,Load_Mid from Config_List_Powder_Data_NSG where IsPref=1 and CLNID=" & ConfigID
+                Dim SQL As String = "SELECT PID,Load_Mid,FPS_MID from Config_List_Powder_Data_NSG where IsPref=1 and CLNID=" & ConfigID
                 Obj.ConnectDB()
                 Dim CMD As New OdbcCommand(SQL, Obj.Conn)
                 Dim RS As OdbcDataReader
@@ -1366,6 +1392,7 @@ Namespace LoadersClass
                 While RS.Read
                     iAns = RS("PID")
                     DefaultPowderLoad = RS("Load_Mid")
+                    DefaultFPS = RS("FPS_MID")
                 End While
                 RS.Close()
                 RS = Nothing
@@ -1382,11 +1409,11 @@ Namespace LoadersClass
         ''' Just pass the configuration ID to this function
         ''' </summary>
         ''' <returns></returns>
-        Function GetPrefSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
+        Function GetPrefSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
                 Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT PID,Load_Mid from Config_List_Powder_Data_SG where IsPref=1 and CLNID=" & ConfigID
+                Dim SQL As String = "SELECT PID,Load_Mid,FPS_MID from Config_List_Powder_Data_SG where IsPref=1 and CLNID=" & ConfigID
                 Obj.ConnectDB()
                 Dim CMD As New OdbcCommand(SQL, Obj.Conn)
                 Dim RS As OdbcDataReader
@@ -1394,6 +1421,7 @@ Namespace LoadersClass
                 While RS.Read
                     iAns = RS("PID")
                     DefaultPowderLoad = RS("Load_Mid")
+                    DefaultFPS = RS("FPS_MID")
                 End While
                 RS.Close()
                 RS = Nothing

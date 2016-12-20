@@ -97,6 +97,8 @@ Module modHotFixes
             Call SaveDatabaseVersion(DBVersion)
             Console.WriteLine(vbTab & "You are now updated to Database Version " & DBVersion)
         End If
+        'Loaders_Log_Ammunition
+        Call AddColumn("Vel", "Loaders_Log_Ammunition", "N/A", "Number")
         'End Updates
         Call UpdateLastUpdate(strUpdateName)
         Call AppliedUpdates(strUpdateName)

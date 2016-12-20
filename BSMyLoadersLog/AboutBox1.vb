@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.LoadersClass
 Public NotInheritable Class AboutBox1
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -12,7 +13,9 @@ Public NotInheritable Class AboutBox1
         ' Initialize all of the text displayed on the About Box.
         '    properties dialog (under the "Project" menu).
         Me.LabelProductName.Text = My.Application.Info.ProductName
-        Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
+        Dim ObjGF As New GlobalFunctions
+        'Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
+        Me.LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", ObjGF.DatabaseVersion)
         Me.LabelCopyright.Text = My.Application.Info.Copyright
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
         Me.TextBoxDescription.Text = My.Application.Info.Description
