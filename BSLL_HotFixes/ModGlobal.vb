@@ -4,7 +4,7 @@ Module ModGlobal
     Public ReDo As Boolean
     Public strDBPath As String
     Public Const DATABASEPASSWORD = "wtf.m@t3"
-    Public Const RegRoot = "HKLM"
+    Public Const RegRoot = "HKCU"
     Public Const RegKey = "Software\\BurnSoft\\BSMLL"
     Public Const MyLogFile = "mllhf_err.log"
     Public Const DebugLogFile = "hotfix.debug.log"

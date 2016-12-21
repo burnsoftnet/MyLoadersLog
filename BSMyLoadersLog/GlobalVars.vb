@@ -46,7 +46,7 @@ Module GlobalVars
     Public Const WEIGHT_OZ_1LBS = 16
     Public Const WEIGHT_GRAMS_OZ = 28.35
     Public Const DATABASE_NAME = "MLL.mdb"
-    Public Const USE_SHOTGUN As Boolean = True
+    Public Const USE_SHOTGUN As Boolean = False
     Public Enum WeightType
         Pounds
         Grams

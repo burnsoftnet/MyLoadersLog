@@ -763,7 +763,7 @@ Partial Class MDIParentMain
         '
         Me.OptionsToolStripMenuItem.Image = CType(resources.GetObject("OptionsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.OptionsToolStripMenuItem.Text = "&Options"
         '
         'DataBaseToolStripMenuItem
@@ -771,7 +771,7 @@ Partial Class MDIParentMain
         Me.DataBaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReRunHotfixUpdatesToolStripMenuItem, Me.CleanUpDatabaseToolStripMenuItem})
         Me.DataBaseToolStripMenuItem.Image = CType(resources.GetObject("DataBaseToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem"
-        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.DataBaseToolStripMenuItem.Text = "&DataBase"
         '
         'ReRunHotfixUpdatesToolStripMenuItem

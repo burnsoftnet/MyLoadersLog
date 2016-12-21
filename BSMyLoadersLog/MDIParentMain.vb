@@ -24,7 +24,7 @@ Public Class MDIParentMain
     Private Sub MDIParent2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             LASTCONFIGEDVIEWED = 0
-            MyLogFile = Application.StartupPath & "\err.log"
+            'MyLogFile = Application.StartupPath & "\err.log"
             Call CheckforHotFix()
             If LoginEnabled(UseMyPWD, UseMyUID, UseMyForgotWord, UseMyForgotPhrase) And Not IsLoggedIN Then
                 frmLogin.Show()
@@ -424,12 +424,6 @@ Public Class MDIParentMain
         Catch ex As Exception
             Call LogError(Me.Name, "CopyConfigPowdersSG", Err.Number, ex.Message.ToString)
         End Try
-    End Sub
-    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripButton.Click, NewWindowToolStripMenuItem.Click
-        Call DoRestore()
-    End Sub
-    Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click, OpenToolStripButton.Click
-        Call DoRestore()
     End Sub
 #End Region
 #Region "Tool Bar And Misc. Components Subs"
@@ -1094,5 +1088,17 @@ Public Class MDIParentMain
         Dim frmNew As New frmView_Bushings_Shot
         frmNew.MdiParent = Me
         frmNew.Show()
+    End Sub
+
+    Private Sub OpenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpenToolStripMenuItem.Click
+        Call DoRestore()
+    End Sub
+
+    Private Sub OpenToolStripButton_Click(sender As System.Object, e As System.EventArgs) Handles OpenToolStripButton.Click
+        Call DoBackup()
+    End Sub
+
+    Private Sub NewToolStripButton_Click(sender As System.Object, e As System.EventArgs) Handles NewToolStripButton.Click
+        Call DoRestore()
     End Sub
 End Class
