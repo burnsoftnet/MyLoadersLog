@@ -67,3 +67,5 @@ BSMyLoadersLog/bin/Release/FileDownloader.dll
 BSMyLoadersLog/bin/Release/Microsoft.ReportViewer.WinForms.dll
 BSMyLoadersLog/bin/Release/MLL.mdb
 BSMyLoadersLog/bin/Release/ProxyConfig.xml
+CDFiles/Final/BSMyLoadersLog_Setup.msi
+CDFiles/Final/setup.exe
