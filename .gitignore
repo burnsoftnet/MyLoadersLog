@@ -27,3 +27,9 @@ BSMyLoadersLog/bin/Debug/*.*
 BSMyLoadersLog/bin/Release/*.*
 CDFiles/Final/*.*
 BSLL_HotFixes/bin/Debug/*.*
+BSLL_HotFixes/obj/*.*
+BSLL_HotFixes/obj/Debug/*.*
+BSLL_HotFixes/obj/Debug/TempPE/*.*
+BSLL_HotFixes/obj/*.*
+BSLL_HotFixes/obj/Release/TempPE/*.*
+BSMyLoadersLog/bin/Debug/*.*
