@@ -21,6 +21,9 @@ Public Class frmAddFirearm
             Dim strBarrel As String = FluffContent(txtBarrel.Text)
             Dim strType As String = FluffContent(txtType.Text)
             Dim MGCID As Integer = 0
+            Dim iExclude As Integer = 0
+            If chkExlude.Checked Then iExclude = 1
+
             If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
             If Not IsRequired(strModel, "model", Me.Text) Then Exit Sub
             If Not IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
@@ -29,10 +32,10 @@ Public Class frmAddFirearm
 
             Dim strFullName As String = strManu & " " & strModel
             Dim Obj As New BSDatabase
-            Dim SQL As String = "INSERT INTO Loaders_Log_Firearms (MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType)" & _
+            Dim SQL As String = "INSERT INTO Loaders_Log_Firearms (MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType,exclude)" & _
                         " VALUES (" & MGCID & ",'" & strFullName & "','" & strManu & "','" & _
                         strModel & "','" & strCal & "','" & strBarrel & "','" & strSerial & _
-                        "','" & strType & "')"
+                        "','" & strType & "'" & iExclude & ")"
             Obj.ConnExec(SQL)
             MsgBox(strFullName & " was added to the database!")
             Me.Close()

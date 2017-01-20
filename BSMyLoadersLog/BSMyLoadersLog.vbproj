@@ -130,6 +130,12 @@
     <Compile Include="frmAddDataSheet_ShotGun_MAN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmAddQtyHulls.Designer.vb">
+      <DependentUpon>frmAddQtyHulls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddQtyHulls.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCopy_DataSheet_Copy_ShotGun.Designer.vb">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
     </Compile>
@@ -776,6 +782,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddDataSheet_ShotGun_MAN.resx">
       <DependentUpon>frmAddDataSheet_ShotGun_MAN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddQtyHulls.resx">
+      <DependentUpon>frmAddQtyHulls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCopy_DataSheet_Copy_ShotGun.resx">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>

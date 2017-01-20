@@ -4,6 +4,19 @@ Public Class frmView_List_ShellHulls
     Public Sub LoadData()
         Try
             Me.List_SG_CaseTableAdapter.Fill(Me.MLLDataSet.List_SG_Case)
+            Select Case LCase(ToolStripComboBox1.SelectedItem.ToString)
+                Case LCase("All")
+                    Me.List_SG_CaseTableAdapter.Fill(Me.MLLDataSet.List_SG_Case)
+                Case LCase("Instock")
+                    'Me.List_SG_CaseTableAdapter.
+                    Me.List_SG_CaseTableAdapter.FillBy_Menu_InStock(Me.MLLDataSet.List_SG_Case)
+                Case LCase("Out-Of-Stock")
+                    Me.List_SG_CaseTableAdapter.FillBy_Menu_OutOfStock(Me.MLLDataSet.List_SG_Case)
+                Case LCase("Reference")
+                    Me.List_SG_CaseTableAdapter.FillBy_Menu_Refferance(Me.MLLDataSet.List_SG_Case)
+                Case Else
+                    Me.List_SG_CaseTableAdapter.Fill(Me.MLLDataSet.List_SG_Case)
+            End Select
         Catch ex As Exception
             Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
@@ -74,5 +87,25 @@ Public Class frmView_List_ShellHulls
             Return
         End If
         DataGridView1.AutoResizeColumns()
+    End Sub
+
+    Private Sub AddToQtyToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AddToQtyToolStripMenuItem.Click
+        Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+        Dim frmNew As New frmAddQtyHulls
+        frmNew.MdiParent = Me.MdiParent
+        frmNew.SID = ItemID
+        frmNew.FromView = True
+        frmNew.Show()
+    End Sub
+
+    Private Sub MarkAsOutOfStockToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarkAsOutOfStockToolStripMenuItem.Click
+        Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+        Dim SQL As String = "UPDATE List_SG_Case set QTY=0 where ID=" & ItemID
+        Dim Obj As New BSDatabase
+        Obj.ConnExec(SQL)
+        Call LoadData()
+    End Sub
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        Call LoadData()
     End Sub
 End Class

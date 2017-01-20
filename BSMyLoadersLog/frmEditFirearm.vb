@@ -6,6 +6,7 @@ Public Class frmEditFirearm
     Sub LoadData()
         Try
             Dim Obj As New BSDatabase
+            Dim iExclude As Integer = 0
             Call Obj.ConnectDB()
             Dim SQL As String = "SELECT * from Loaders_Log_Firearms where ID=" & FID
             Dim CMD As New OdbcCommand(SQL, Obj.Conn)
@@ -18,6 +19,8 @@ Public Class frmEditFirearm
                 If Not IsDBNull(RS("Cal")) Then txtCal.Text = UnFluffContent(RS("Cal"))
                 If Not IsDBNull(RS("Barrel")) Then txtBarrel.Text = UnFluffContent(RS("Barrel"))
                 If Not IsDBNull(RS("GType")) Then txtType.Text = UnFluffContent(RS("GType"))
+                If Not IsDBNull(RS("exclude")) Then iExclude = RS("exclude")
+                If iExclude = 1 Then chkExlude.Checked = True
             End While
             RS.Close()
             RS = Nothing
@@ -35,6 +38,9 @@ Public Class frmEditFirearm
             Dim strBarrel As String = FluffContent(txtBarrel.Text)
             Dim strType As String = FluffContent(txtType.Text)
             Dim MGCID As Integer = 0
+            Dim iExclude As Integer = 0
+            If chkExlude.Checked Then iExclude = 1
+
             If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
             If Not IsRequired(strModel, "model", Me.Text) Then Exit Sub
             If Not IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
@@ -45,8 +51,8 @@ Public Class frmEditFirearm
             Dim Obj As New BSDatabase
             Dim SQL As String = "UPDATE Loaders_Log_Firearms set FullName='" & strFullName & "'," & _
                         "Manu='" & strManu & "',Model='" & strModel & "',Cal='" & strCal & "',Barrel='" & strBarrel & "'" & _
-                        ",SerialNo='" & strSerial & "',GType='" & strType & "' " & _
-                        "where ID=" & FID
+                        ",SerialNo='" & strSerial & "',GType='" & strType & "',exclude=" & iExclude & _
+                        " where ID=" & FID
             Obj.ConnExec(SQL)
             If FromView Then Call frmView_List_Firearms.LoadData()
             Me.Close()

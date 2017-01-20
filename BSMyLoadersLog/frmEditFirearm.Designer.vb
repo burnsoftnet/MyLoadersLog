@@ -23,27 +23,29 @@ Partial Class frmEditFirearm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEditFirearm))
-        Me.btnCancel = New System.Windows.Forms.Button
-        Me.btnUpdate = New System.Windows.Forms.Button
-        Me.txtBarrel = New System.Windows.Forms.TextBox
-        Me.txtType = New System.Windows.Forms.TextBox
-        Me.txtCal = New System.Windows.Forms.TextBox
-        Me.txtSerial = New System.Windows.Forms.TextBox
-        Me.txtModel = New System.Windows.Forms.TextBox
-        Me.txtManu = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.txtBarrel = New System.Windows.Forms.TextBox()
+        Me.txtType = New System.Windows.Forms.TextBox()
+        Me.txtCal = New System.Windows.Forms.TextBox()
+        Me.txtSerial = New System.Windows.Forms.TextBox()
+        Me.txtModel = New System.Windows.Forms.TextBox()
+        Me.txtManu = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.chkExlude = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnCancel
         '
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(165, 170)
+        Me.btnCancel.Location = New System.Drawing.Point(165, 186)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 8
@@ -52,7 +54,7 @@ Partial Class frmEditFirearm
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(15, 170)
+        Me.btnUpdate.Location = New System.Drawing.Point(15, 186)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 7
@@ -171,13 +173,34 @@ Partial Class frmEditFirearm
         '
         Me.HelpProvider1.HelpNamespace = "my_loaders_log_help.chm"
         '
+        'chkExlude
+        '
+        Me.chkExlude.AutoSize = True
+        Me.chkExlude.Location = New System.Drawing.Point(91, 160)
+        Me.chkExlude.Name = "chkExlude"
+        Me.chkExlude.Size = New System.Drawing.Size(44, 17)
+        Me.chkExlude.TabIndex = 19
+        Me.chkExlude.Text = "Yes"
+        Me.chkExlude.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 161)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(51, 13)
+        Me.Label7.TabIndex = 20
+        Me.Label7.Text = "Exclude?"
+        '
         'frmEditFirearm
         '
         Me.AcceptButton = Me.btnUpdate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(253, 205)
+        Me.ClientSize = New System.Drawing.Size(254, 223)
+        Me.Controls.Add(Me.chkExlude)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.txtBarrel)
@@ -220,4 +243,6 @@ Partial Class frmEditFirearm
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents HelpProvider1 As System.Windows.Forms.HelpProvider
+    Friend WithEvents chkExlude As System.Windows.Forms.CheckBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
 End Class

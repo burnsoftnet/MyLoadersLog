@@ -32,9 +32,9 @@ Public Class frmImportFirearms
                 ProgressBar1.Refresh()
                 i = i + 1
                 Me.Refresh()
-                SQL = "INSERT INTO Loaders_Log_Firearms(MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType) VALUES(" & _
+                SQL = "INSERT INTO Loaders_Log_Firearms(MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType,exclude) VALUES(" & _
                         RS("ID") & ",'" & FluffContent(RS("FullName")) & "','" & FluffContent(RS("brand")) & "','" & FluffContent(RS("modelname")) & "','" & _
-                        RS("caliber") & "','" & RS("barrellength") & "','" & RS("serialnumber") & "','" & RS("type") & "')"
+                        RS("caliber") & "','" & RS("barrellength") & "','" & RS("serialnumber") & "','" & RS("type") & "',0)"
                 If Not ObjG.ObjectExistsinDB(CInt(RS("ID")), "MGCID", "Loaders_Log_Firearms") Then ObjL.ConnExec(SQL)
                 ProgressBar1.Value = i
                 ProgressBar1.Refresh()

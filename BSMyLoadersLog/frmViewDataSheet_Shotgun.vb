@@ -6,7 +6,7 @@ Public Class frmViewDataSheet_Shotgun
     Sub LoadComboBox()
         Try
             Dim Obj As New BSDatabase
-            Dim SQL As String = "SELECT * from Loaders_Log_Firearms where GType like '%shotgun%' order by FullName ASC"
+            Dim SQL As String = "SELECT * from Loaders_Log_Firearms where GType like '%shotgun%' and exclude=0 order by FullName ASC"
             Call Obj.ConnectDB()
             Dim CMD As New OdbcCommand(SQL, Obj.Conn)
             Dim RS As OdbcDataReader
@@ -65,13 +65,13 @@ Public Class frmViewDataSheet_Shotgun
     Sub LoadDatabyID()
         Try
             Me.Loaders_Log_SGTableAdapter.FillBy_FID(Me.MLLDataSet.Loaders_Log_SG, FID)
+            'Me.Loaders_Log_SGTableAdapter.FillBy_FID(Me.MLLDataSet.Loaders_Log_SG, FID)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadDatabyID", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     Sub LoadDatabyName()
         Try
-            'Me.Loaders_Log_SGTableAdapter.FillBy_FirearmName(Me.MLLDataSet.Loaders_Log_SG, FirearmName)
             Me.Loaders_Log_SGTableAdapter.FillBy_FirearmName(Me.MLLDataSet.Loaders_Log_SG, FirearmName)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadDatabyName", Err.Number, ex.Message.ToString)

@@ -3,7 +3,7 @@ Module modHotFixes
     Public Sub DoUpdates()
         If Not HotFixExists("1") Then Call HotFix_1()
         If Not HotFixExists("2") Then Call HotFix_2()
-        'If Not HotFixExists("3") Then Call HotFix_3()
+        If Not HotFixExists("3") Then Call HotFix_3()
         'If Not HotFixExists("4") Then Call HotFix_4()
         'If Not HotFixExists("5") Then Call HotFix_5()
         'If Not HotFixExists("6") Then Call HotFix_6()
@@ -12,7 +12,7 @@ Module modHotFixes
     Sub RedoAll()
         Call DelRegValue("HotFix", "1", "")
         Call DelRegValue("HotFix", "2", "")
-        'Call DelRegValue("HotFix", "3", "")
+        Call DelRegValue("HotFix", "3", "")
         'Call DelRegValue("HotFix", "4", "")
         'Call DelRegValue("HotFix", "5", "")
         'Call DelRegValue("HotFix", "6", "")
@@ -109,8 +109,17 @@ Module modHotFixes
         Dim strUpdateName As String
         strUpdateName = "3"
         Call DebugLog("HotFix_" & strUpdateName, "Starting HotFix " & strUpdateName)
+        Dim DBVersion As String = "2.2"
         'INSERT UPDATES HERE!!
-        
+        Dim SQL As String = ""
+        Call AddColumn("exclude", "Loaders_Log_Firearms", "N/A", "Number")
+        SQL = "UPDATE Loaders_Log_Firearms set exclude=0"
+        Call RunSQL(SQL)
+
+        If Not ValueDoesExist("DB_Version", "dbver", DBVersion) Then
+            Call SaveDatabaseVersion(DBVersion)
+            Console.WriteLine(vbTab & "You are now updated to Database Version " & DBVersion)
+        End If
         'End Updates
         Call UpdateLastUpdate(strUpdateName)
         Call AppliedUpdates(strUpdateName)

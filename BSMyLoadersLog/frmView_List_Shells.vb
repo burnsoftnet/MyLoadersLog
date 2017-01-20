@@ -3,6 +3,7 @@ Public Class frmView_List_Shells
     Const RegViewName As String = "View_Shells"
     Public Sub LoadData()
         Try
+            Me.List_Case_DetailsTableAdapter.Fill(Me.MLLDataSet.List_Case_Details)
             Select Case LCase(ToolStripComboBox1.SelectedItem.ToString)
                 Case LCase("All")
                     Me.List_Case_DetailsTableAdapter.FillByAllManu(Me.MLLDataSet.List_Case_Details)

@@ -7,7 +7,7 @@ Public Class frmViewDataSheet_RiflePistols
         Try
             Dim Obj As New BSDatabase
             Dim i As Integer = 0
-            Dim SQL As String = "select * from Loaders_Log_Firearms where GType not like '%shotgun%' order by FullName ASC"
+            Dim SQL As String = "select * from Loaders_Log_Firearms where GType not like '%shotgun%' and exclude=0 order by FullName ASC"
             Call Obj.ConnectDB()
             Dim CMD As New OdbcCommand(SQL, Obj.Conn)
             Dim RS As OdbcDataReader

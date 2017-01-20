@@ -30,10 +30,8 @@ Module GlobalVars
     Public APPLICATION_PATH_DATA As String
     Public Const MY_HELP_FILE = "my_loaders_log_help.chm"
     Public Const MY_HOTFIX_FILE = "BSMLL_HotFixes.exe"
-    'Public Const MY_UPDATER = "BSApplicationUpdater.exe"
     Public Const MY_BACKUP = "DBBackup.exe"
     Public Const MY_RESTORE = "DBRestore.exe"
-    'Public Const MENU_FORUM = "http://mllforum.burnsoft.net"
     Public Const MENU_WIKI = "http://wiki.burnsoft.net/AllPages.aspx?Cat=My%20Loaders%20Log"
     Public Const MENU_SHOP = "http://shopping.burnsoft.net"
     Public Const MENU_BUG = "http://bugreport.burnsoft.net"
@@ -46,7 +44,7 @@ Module GlobalVars
     Public Const WEIGHT_OZ_1LBS = 16
     Public Const WEIGHT_GRAMS_OZ = 28.35
     Public Const DATABASE_NAME = "MLL.mdb"
-    Public Const USE_SHOTGUN As Boolean = False
+    Public Const USE_SHOTGUN As Boolean = True
     Public Enum WeightType
         Pounds
         Grams

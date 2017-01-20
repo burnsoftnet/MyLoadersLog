@@ -7,7 +7,7 @@ Public Class frmView_List_Powder
     Const RegViewName As String = "View_Powders"
     Public Sub LoadData()
         Try
-            Me.General_PowderTableAdapter.Fill(Me.MLLDataSet.General_Powder)
+            'Me.General_PowderTableAdapter.Fill(Me.MLLDataSet.General_Powder)
             Select Case LCase(ToolStripComboBox1.SelectedItem.ToString)
                 Case LCase("All")
                     Me.General_PowderTableAdapter.Fill(Me.MLLDataSet.General_Powder)

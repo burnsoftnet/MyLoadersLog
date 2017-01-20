@@ -37,3 +37,4 @@ BSMyLoadersLog/bin/Debug/*.*
 BSMyLoadersLog/obj/Release/*.*
 BSMyLoadersLog/obj/Release/TempPE/*.*
 ToDelete/*.*
+BSMyLoadersLog/images/Thumbs.db

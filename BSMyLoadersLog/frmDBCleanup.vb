@@ -3,6 +3,7 @@ Imports System.Data.Odbc
 Imports System.Data
 Public Class frmDBCleanup
     Public i As Integer = 0
+    Const PROGRESSBAR_MAX = 15
 #Region "General Subs and Functions"
     Private Sub cbActionList_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbActionList.SelectedIndexChanged
         If cbActionList.SelectedItem <> Nothing Then
@@ -35,11 +36,15 @@ Public Class frmDBCleanup
         Obj.ConnExec(SQL)
     End Sub
     Sub AddToProgBar(ByVal strMsg As String)
-        lblStatus.Text = strMsg
-        lblStatus.Refresh()
-        i = i + 1
-        ProgressBar1.Value = i
-        ProgressBar1.Refresh()
+        Try
+            lblStatus.Text = strMsg
+            lblStatus.Refresh()
+            i = i + 1
+            ProgressBar1.Value = i
+            ProgressBar1.Refresh()
+        Catch ex As Exception
+            Call LogError(Me.Name, "AddToProgBar", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     Function ExistsinCollection(ByVal strID As String, ByVal strColumn As String, ByVal strTable As String) As Boolean
         Dim bAns As Boolean = False
@@ -320,7 +325,7 @@ Public Class frmDBCleanup
     Sub ClearAll()
         ProgressBar1.Visible = True
         ProgressBar1.Minimum = 0
-        ProgressBar1.Maximum = 13
+        ProgressBar1.Maximum = PROGRESSBAR_MAX
         i = 0
         Call AddToProgBar("Clearing General Calibers")
         Call Clear_GeneralCaliberList()

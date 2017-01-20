@@ -22,35 +22,35 @@ Partial Class frmView_List_Shells
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmView_List_Shells))
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
-        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ManufacturerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn()
+        Me.TrimtolengthDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsNewDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TimesUsedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QtyDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AddToQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.MarkAsOutOfStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddToQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MarkAsOutOfStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListCaseDetailsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet
-        Me.List_Case_DetailsTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.List_Case_DetailsTableAdapter
-        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.ManufacturerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CalDataGridViewTextBoxColumn = New DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn
-        Me.TrimtolengthDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IsNewDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TimesUsedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.QtyDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.MLLDataSet = New BSMyLoadersLog.MLLDataSet()
+        Me.List_Case_DetailsTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.List_Case_DetailsTableAdapter()
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -71,7 +71,7 @@ Partial Class frmView_List_Shells
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(46, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(47, 22)
         Me.ToolStripLabel1.Text = "Sort by:"
         '
         'ToolStripComboBox1
@@ -135,65 +135,6 @@ Partial Class frmView_List_Shells
         Me.DataGridView1.Size = New System.Drawing.Size(549, 241)
         Me.DataGridView1.TabIndex = 1
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.AddToQtyToolStripMenuItem, Me.MarkAsOutOfStockToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 114)
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.Image = CType(resources.GetObject("EditToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.EditToolStripMenuItem.Text = "&Edit"
-        '
-        'AddToolStripMenuItem
-        '
-        Me.AddToolStripMenuItem.Image = CType(resources.GetObject("AddToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.AddToolStripMenuItem.Text = "&Add"
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.Image = CType(resources.GetObject("DeleteToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.DeleteToolStripMenuItem.Text = "&Delete"
-        '
-        'AddToQtyToolStripMenuItem
-        '
-        Me.AddToQtyToolStripMenuItem.Image = CType(resources.GetObject("AddToQtyToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AddToQtyToolStripMenuItem.Name = "AddToQtyToolStripMenuItem"
-        Me.AddToQtyToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.AddToQtyToolStripMenuItem.Text = "Add to Qty"
-        '
-        'MarkAsOutOfStockToolStripMenuItem
-        '
-        Me.MarkAsOutOfStockToolStripMenuItem.Image = CType(resources.GetObject("MarkAsOutOfStockToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.MarkAsOutOfStockToolStripMenuItem.Name = "MarkAsOutOfStockToolStripMenuItem"
-        Me.MarkAsOutOfStockToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.MarkAsOutOfStockToolStripMenuItem.Text = "Mark as Out-Of-Stock"
-        '
-        'ListCaseDetailsBindingSource
-        '
-        Me.ListCaseDetailsBindingSource.DataMember = "List_Case_Details"
-        Me.ListCaseDetailsBindingSource.DataSource = Me.MLLDataSet
-        '
-        'MLLDataSet
-        '
-        Me.MLLDataSet.DataSetName = "MLLDataSet"
-        Me.MLLDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'List_Case_DetailsTableAdapter
-        '
-        Me.List_Case_DetailsTableAdapter.ClearBeforeFill = True
-        '
-        'HelpProvider1
-        '
-        Me.HelpProvider1.HelpNamespace = "my_loaders_log_help.chm"
-        '
         'IDDataGridViewTextBoxColumn
         '
         Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
@@ -223,7 +164,6 @@ Partial Class frmView_List_Shells
         Me.CalDataGridViewTextBoxColumn.Name = "CalDataGridViewTextBoxColumn"
         Me.CalDataGridViewTextBoxColumn.ReadOnly = True
         Me.CalDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.CalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         '
         'TrimtolengthDataGridViewTextBoxColumn
         '
@@ -260,6 +200,65 @@ Partial Class frmView_List_Shells
         Me.PriceDataGridViewTextBoxColumn.HeaderText = "Price"
         Me.PriceDataGridViewTextBoxColumn.Name = "PriceDataGridViewTextBoxColumn"
         Me.PriceDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.AddToQtyToolStripMenuItem, Me.MarkAsOutOfStockToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(191, 114)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Image = CType(resources.GetObject("EditToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.EditToolStripMenuItem.Text = "&Edit"
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Image = CType(resources.GetObject("AddToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.AddToolStripMenuItem.Text = "&Add"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Image = CType(resources.GetObject("DeleteToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.DeleteToolStripMenuItem.Text = "&Delete"
+        '
+        'AddToQtyToolStripMenuItem
+        '
+        Me.AddToQtyToolStripMenuItem.Image = CType(resources.GetObject("AddToQtyToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AddToQtyToolStripMenuItem.Name = "AddToQtyToolStripMenuItem"
+        Me.AddToQtyToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.AddToQtyToolStripMenuItem.Text = "Add to Qty"
+        '
+        'MarkAsOutOfStockToolStripMenuItem
+        '
+        Me.MarkAsOutOfStockToolStripMenuItem.Image = CType(resources.GetObject("MarkAsOutOfStockToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.MarkAsOutOfStockToolStripMenuItem.Name = "MarkAsOutOfStockToolStripMenuItem"
+        Me.MarkAsOutOfStockToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.MarkAsOutOfStockToolStripMenuItem.Text = "Mark as Out-Of-Stock"
+        '
+        'ListCaseDetailsBindingSource
+        '
+        Me.ListCaseDetailsBindingSource.DataMember = "List_Case_Details"
+        Me.ListCaseDetailsBindingSource.DataSource = Me.MLLDataSet
+        '
+        'MLLDataSet
+        '
+        Me.MLLDataSet.DataSetName = "MLLDataSet"
+        Me.MLLDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'List_Case_DetailsTableAdapter
+        '
+        Me.List_Case_DetailsTableAdapter.ClearBeforeFill = True
+        '
+        'HelpProvider1
+        '
+        Me.HelpProvider1.HelpNamespace = "my_loaders_log_help.chm"
         '
         'frmView_List_Shells
         '

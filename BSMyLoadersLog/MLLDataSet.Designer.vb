@@ -7877,6 +7877,8 @@ Partial Public Class MLLDataSet
         
         Private columnGType As Global.System.Data.DataColumn
         
+        Private columnexclude As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -7985,6 +7987,14 @@ Partial Public Class MLLDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property excludeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnexclude
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -8021,9 +8031,9 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddLoaders_Log_FirearmsRow(ByVal MGCID As Integer, ByVal FullName As String, ByVal Manu As String, ByVal Model As String, ByVal Cal As String, ByVal Barrel As String, ByVal SerialNo As String, ByVal GType As String) As Loaders_Log_FirearmsRow
+        Public Overloads Function AddLoaders_Log_FirearmsRow(ByVal MGCID As Integer, ByVal FullName As String, ByVal Manu As String, ByVal Model As String, ByVal Cal As String, ByVal Barrel As String, ByVal SerialNo As String, ByVal GType As String, ByVal exclude As Integer) As Loaders_Log_FirearmsRow
             Dim rowLoaders_Log_FirearmsRow As Loaders_Log_FirearmsRow = CType(Me.NewRow,Loaders_Log_FirearmsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType}
+            Dim columnValuesArray() As Object = New Object() {Nothing, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType, exclude}
             rowLoaders_Log_FirearmsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowLoaders_Log_FirearmsRow)
             Return rowLoaders_Log_FirearmsRow
@@ -8061,6 +8071,7 @@ Partial Public Class MLLDataSet
             Me.columnBarrel = MyBase.Columns("Barrel")
             Me.columnSerialNo = MyBase.Columns("SerialNo")
             Me.columnGType = MyBase.Columns("GType")
+            Me.columnexclude = MyBase.Columns("exclude")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8084,6 +8095,8 @@ Partial Public Class MLLDataSet
             MyBase.Columns.Add(Me.columnSerialNo)
             Me.columnGType = New Global.System.Data.DataColumn("GType", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGType)
+            Me.columnexclude = New Global.System.Data.DataColumn("exclude", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnexclude)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AllowDBNull = false
@@ -21329,6 +21342,21 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property exclude() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableLoaders_Log_Firearms.excludeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'exclude' in table 'Loaders_Log_Firearms' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableLoaders_Log_Firearms.excludeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsMGCIDNull() As Boolean
             Return Me.IsNull(Me.tableLoaders_Log_Firearms.MGCIDColumn)
         End Function
@@ -21421,6 +21449,18 @@ Partial Public Class MLLDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetGTypeNull()
             Me(Me.tableLoaders_Log_Firearms.GTypeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsexcludeNull() As Boolean
+            Return Me.IsNull(Me.tableLoaders_Log_Firearms.excludeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetexcludeNull()
+            Me(Me.tableLoaders_Log_Firearms.excludeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -38515,6 +38555,7 @@ Namespace MLLDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Barrel", "Barrel")
             tableMapping.ColumnMappings.Add("SerialNo", "SerialNo")
             tableMapping.ColumnMappings.Add("GType", "GType")
+            tableMapping.ColumnMappings.Add("exclude", "exclude")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -38523,7 +38564,8 @@ Namespace MLLDataSetTableAdapters
                 "AND ((? = 1 AND `Manu` IS NULL) OR (`Manu` = ?)) AND ((? = 1 AND `Model` IS NULL"& _ 
                 ") OR (`Model` = ?)) AND ((? = 1 AND `Cal` IS NULL) OR (`Cal` = ?)) AND ((? = 1 A"& _ 
                 "ND `Barrel` IS NULL) OR (`Barrel` = ?)) AND ((? = 1 AND `SerialNo` IS NULL) OR ("& _ 
-                "`SerialNo` = ?)) AND ((? = 1 AND `GType` IS NULL) OR (`GType` = ?)))"
+                "`SerialNo` = ?)) AND ((? = 1 AND `GType` IS NULL) OR (`GType` = ?)) AND ((? = 1 "& _ 
+                "AND `exclude` IS NULL) OR (`exclude` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_MGCID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MGCID", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -38542,10 +38584,12 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SerialNo", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SerialNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_GType", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_GType", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `Loaders_Log_Firearms` (`MGCID`, `FullName`, `Manu`, `Model`, `Cal`, "& _ 
-                "`Barrel`, `SerialNo`, `GType`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                "`Barrel`, `SerialNo`, `GType`, `exclude`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("MGCID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MGCID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("FullName", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FullName", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -38555,16 +38599,18 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Barrel", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Barrel", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SerialNo", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SerialNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("GType", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `Loaders_Log_Firearms` SET `MGCID` = ?, `FullName` = ?, `Manu` = ?, `Model"& _ 
-                "` = ?, `Cal` = ?, `Barrel` = ?, `SerialNo` = ?, `GType` = ? WHERE ((`ID` = ?) AN"& _ 
-                "D ((? = 1 AND `MGCID` IS NULL) OR (`MGCID` = ?)) AND ((? = 1 AND `FullName` IS N"& _ 
-                "ULL) OR (`FullName` = ?)) AND ((? = 1 AND `Manu` IS NULL) OR (`Manu` = ?)) AND ("& _ 
-                "(? = 1 AND `Model` IS NULL) OR (`Model` = ?)) AND ((? = 1 AND `Cal` IS NULL) OR "& _ 
-                "(`Cal` = ?)) AND ((? = 1 AND `Barrel` IS NULL) OR (`Barrel` = ?)) AND ((? = 1 AN"& _ 
-                "D `SerialNo` IS NULL) OR (`SerialNo` = ?)) AND ((? = 1 AND `GType` IS NULL) OR ("& _ 
-                "`GType` = ?)))"
+                "` = ?, `Cal` = ?, `Barrel` = ?, `SerialNo` = ?, `GType` = ?, `exclude` = ? WHERE"& _ 
+                " ((`ID` = ?) AND ((? = 1 AND `MGCID` IS NULL) OR (`MGCID` = ?)) AND ((? = 1 AND "& _ 
+                "`FullName` IS NULL) OR (`FullName` = ?)) AND ((? = 1 AND `Manu` IS NULL) OR (`Ma"& _ 
+                "nu` = ?)) AND ((? = 1 AND `Model` IS NULL) OR (`Model` = ?)) AND ((? = 1 AND `Ca"& _ 
+                "l` IS NULL) OR (`Cal` = ?)) AND ((? = 1 AND `Barrel` IS NULL) OR (`Barrel` = ?))"& _ 
+                " AND ((? = 1 AND `SerialNo` IS NULL) OR (`SerialNo` = ?)) AND ((? = 1 AND `GType"& _ 
+                "` IS NULL) OR (`GType` = ?)) AND ((? = 1 AND `exclude` IS NULL) OR (`exclude` = "& _ 
+                "?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("MGCID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MGCID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("FullName", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FullName", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -38574,6 +38620,7 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Barrel", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Barrel", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SerialNo", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SerialNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("GType", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_MGCID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MGCID", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_MGCID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MGCID", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -38591,6 +38638,8 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SerialNo", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SerialNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_GType", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_GType", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "GType", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_exclude", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "exclude", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -38606,48 +38655,48 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(8) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms"
+            Me._commandCollection(0).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType, exclude FR"& _ 
+                "OM Loaders_Log_Firearms"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by Barrel ASC"
+            Me._commandCollection(1).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms where exclude = 0 ORDER BY Barrel"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by Cal ASC"
+            Me._commandCollection(2).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms where exclude = 0 ORDER BY Cal"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by GType ASC"
+            Me._commandCollection(3).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms where exclude = 0 ORDER BY GType"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by FullName asc"
+            Me._commandCollection(4).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms where exclude = 0 ORDER BY FullName"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms where Gtype not like '%shotgun%' order by FullName asc"
+            Me._commandCollection(5).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms WHERE (GType NOT LIKE '%shotgun%') ORDER BY FullName"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(6) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms where Gtype like '%shotgun%' order by FullName asc"
+            Me._commandCollection(6).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms WHERE (GType LIKE '%shotgun%') ORDER BY FullName"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by Manu, Model ASC"
+            Me._commandCollection(7).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms where exclude = 0 ORDER BY Manu, Model"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT ID, MGCID, FullName, Manu, Model, Cal, Barrel, SerialNo, GType FROM Loader"& _ 
-                "s_Log_Firearms order by SerialNo ASC"
+            Me._commandCollection(8).CommandText = "SELECT Barrel, Cal, FullName, GType, ID, MGCID, Manu, Model, SerialNo, exclude FR"& _ 
+                "OM Loaders_Log_Firearms ORDER BY SerialNo"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -38899,7 +38948,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_MGCID As Global.System.Nullable(Of Integer), ByVal Original_FullName As String, ByVal Original_Manu As String, ByVal Original_Model As String, ByVal Original_Cal As String, ByVal Original_Barrel As String, ByVal Original_SerialNo As String, ByVal Original_GType As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_MGCID As Global.System.Nullable(Of Integer), ByVal Original_FullName As String, ByVal Original_Manu As String, ByVal Original_Model As String, ByVal Original_Cal As String, ByVal Original_Barrel As String, ByVal Original_SerialNo As String, ByVal Original_GType As String, ByVal Original_exclude As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
             If (Original_MGCID.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
@@ -38957,6 +39006,13 @@ Namespace MLLDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_GType,String)
             End If
+            If (Original_exclude.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_exclude.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -38976,7 +39032,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal MGCID As Global.System.Nullable(Of Integer), ByVal FullName As String, ByVal Manu As String, ByVal Model As String, ByVal Cal As String, ByVal Barrel As String, ByVal SerialNo As String, ByVal GType As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal MGCID As Global.System.Nullable(Of Integer), ByVal FullName As String, ByVal Manu As String, ByVal Model As String, ByVal Cal As String, ByVal Barrel As String, ByVal SerialNo As String, ByVal GType As String, ByVal exclude As Global.System.Nullable(Of Integer)) As Integer
             If (MGCID.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(MGCID.Value,Integer)
             Else
@@ -39017,6 +39073,11 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = CType(GType,String)
             End If
+            If (exclude.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(exclude.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -39045,6 +39106,7 @@ Namespace MLLDataSetTableAdapters
                     ByVal Barrel As String,  _
                     ByVal SerialNo As String,  _
                     ByVal GType As String,  _
+                    ByVal exclude As Global.System.Nullable(Of Integer),  _
                     ByVal Original_ID As Integer,  _
                     ByVal Original_MGCID As Global.System.Nullable(Of Integer),  _
                     ByVal Original_FullName As String,  _
@@ -39053,7 +39115,8 @@ Namespace MLLDataSetTableAdapters
                     ByVal Original_Cal As String,  _
                     ByVal Original_Barrel As String,  _
                     ByVal Original_SerialNo As String,  _
-                    ByVal Original_GType As String) As Integer
+                    ByVal Original_GType As String,  _
+                    ByVal Original_exclude As Global.System.Nullable(Of Integer)) As Integer
             If (MGCID.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(MGCID.Value,Integer)
             Else
@@ -39094,62 +39157,74 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = CType(GType,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_ID,Integer)
-            If (Original_MGCID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_MGCID.Value,Integer)
+            If (exclude.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(exclude.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_ID,Integer)
+            If (Original_MGCID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_MGCID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Original_FullName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_FullName,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_FullName,String)
             End If
             If (Original_Manu Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Manu,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Manu,String)
             End If
             If (Original_Model Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Model,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Model,String)
             End If
             If (Original_Cal Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Cal,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Cal,String)
             End If
             If (Original_Barrel Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Barrel,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Barrel,String)
             End If
             If (Original_SerialNo Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_SerialNo,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_SerialNo,String)
             End If
             If (Original_GType Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_GType,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_GType,String)
+            End If
+            If (Original_exclude.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_exclude.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -47295,70 +47370,70 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, fid, FirearmName, Caliber, BarrelLen, ConfigName, Shotwt, ShotSize, [c"& _ 
-                "ase], pbm, wad, primer, pd, yds, notes,dt FROM Loaders_Log_SG where fid=@fid wor"& _ 
-                "der by ID ASC"
+            Me._commandCollection(1).CommandText = "SELECT ID, fid, FirearmName, Caliber, BarrelLen, ConfigName, Shotwt, ShotSize, [c" & _
+                "ase], pbm, wad, primer, pd, yds, notes,dt FROM Loaders_Log_SG where fid=@fid ord" & _
+                "er by ID ASC"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("@FID", Global.System.Data.OleDb.OleDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "fid", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("@FID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0, Byte), CType(0, Byte), "fid", Global.System.Data.DataRowVersion.Current, False, Nothing))
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT ID, fid, FirearmName, Caliber, BarrelLen, ConfigName, Shotwt, ShotSize, [c"& _ 
-                "ase], pbm, wad, primer, pd, yds, notes, dt FROM Loaders_Log_SG where FirearmName"& _ 
+            Me._commandCollection(2).CommandText = "SELECT ID, fid, FirearmName, Caliber, BarrelLen, ConfigName, Shotwt, ShotSize, [c" & _
+                "ase], pbm, wad, primer, pd, yds, notes, dt FROM Loaders_Log_SG where FirearmName" & _
                 "=@FirearmName order by ID ASC"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("@FirearmName", Global.System.Data.OleDb.OleDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FirearmName", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("@FirearmName", Global.System.Data.OleDb.OleDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0, Byte), CType(0, Byte), "FirearmName", Global.System.Data.DataRowVersion.Current, False, Nothing))
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As MLLDataSet.Loaders_Log_SGDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As MLLDataSet.Loaders_Log_SGDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As MLLDataSet.Loaders_Log_SGDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData() As MLLDataSet.Loaders_Log_SGDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As MLLDataSet.Loaders_Log_SGDataTable = New MLLDataSet.Loaders_Log_SGDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy_FID(ByVal dataTable As MLLDataSet.Loaders_Log_SGDataTable, ByVal __FID As Global.System.Nullable(Of Short)) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillBy_FID(ByVal dataTable As MLLDataSet.Loaders_Log_SGDataTable, ByVal __FID As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (__FID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(__FID.Value,Short)
+            If (__FID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(__FID.Value, Integer)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataBy_FID(ByVal __FID As Global.System.Nullable(Of Short)) As MLLDataSet.Loaders_Log_SGDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataBy_FID(ByVal __FID As Global.System.Nullable(Of Integer)) As MLLDataSet.Loaders_Log_SGDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (__FID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(__FID.Value,Short)
+            If (__FID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(__FID.Value, Integer)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
@@ -49720,7 +49795,7 @@ Namespace MLLDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(6) {}
+            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(9) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT     ID, Manufacturer, Name, Gauge, GID, Length, Qty, Price, epps, DRAM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
@@ -49749,14 +49824,29 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT DRAM, GID, Gauge, ID, Length, Manufacturer, Name, Price, Qty, epps, DRAM F"& _ 
-                "ROM List_SG_Case ORDER BY Price"
+            Me._commandCollection(5).CommandText = "SELECT     ID, Manufacturer, Name, Gauge, GID, Length, Qty, Price, epps, DRAM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM         List_SG_Case where Qty <> 0 order by Manufacturer,Name ASC"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(6) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "SELECT DRAM, GID, Gauge, ID, Length, Manufacturer, Name, Price, Qty, epps, DRAM F"& _ 
-                "ROM List_SG_Case ORDER BY Qty"
+            Me._commandCollection(6).CommandText = "SELECT     ID, Manufacturer, Name, Gauge, GID, Length, Qty, Price, epps, DRAM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM         List_SG_Case where Qty=0 order by Manufacturer,Name ASC"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(7) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(7).Connection = Me.Connection
+            Me._commandCollection(7).CommandText = "SELECT     ID, Manufacturer, Name, Gauge, GID, Length, Qty, Price, epps, DRAM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM         List_SG_Case where Qty=0 and Price=0 order by Manufacturer,Name ASC"
+            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(8) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(8).Connection = Me.Connection
+            Me._commandCollection(8).CommandText = "SELECT DRAM, GID, Gauge, ID, Length, Manufacturer, Name, Price, Qty, epps, DRAM F"& _ 
+                "ROM List_SG_Case ORDER BY Price"
+            Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(9) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(9).Connection = Me.Connection
+            Me._commandCollection(9).CommandText = "SELECT DRAM, GID, Gauge, ID, Length, Manufacturer, Name, Price, Qty, epps, DRAM F"& _ 
+                "ROM List_SG_Case ORDER BY Qty"
+            Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -49893,8 +49983,80 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy_Price(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
+        Public Overloads Overridable Function FillBy_Menu_InStock(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy_Menu_InStock() As MLLDataSet.List_SG_CaseDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Dim dataTable As MLLDataSet.List_SG_CaseDataTable = New MLLDataSet.List_SG_CaseDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy_Menu_OutOfStock(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy_Menu_OutOfStock() As MLLDataSet.List_SG_CaseDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Dim dataTable As MLLDataSet.List_SG_CaseDataTable = New MLLDataSet.List_SG_CaseDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy_Menu_Refferance(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy_Menu_Refferance() As MLLDataSet.List_SG_CaseDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            Dim dataTable As MLLDataSet.List_SG_CaseDataTable = New MLLDataSet.List_SG_CaseDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy_Price(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -49907,7 +50069,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBy_Price() As MLLDataSet.List_SG_CaseDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
             Dim dataTable As MLLDataSet.List_SG_CaseDataTable = New MLLDataSet.List_SG_CaseDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -49918,7 +50080,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillBy_Qty(ByVal dataTable As MLLDataSet.List_SG_CaseDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(9)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -49931,7 +50093,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBy_Qty() As MLLDataSet.List_SG_CaseDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(9)
             Dim dataTable As MLLDataSet.List_SG_CaseDataTable = New MLLDataSet.List_SG_CaseDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
