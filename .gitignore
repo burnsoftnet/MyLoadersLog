@@ -33,3 +33,5 @@ BSLL_HotFixes/obj/Debug/TempPE/*.*
 BSLL_HotFixes/obj/*.*
 BSLL_HotFixes/obj/Release/TempPE/*.*
 BSMyLoadersLog/bin/Debug/*.*
+BSMyLoadersLog/obj/Release/*.*
+BSMyLoadersLog/obj/Release/TempPE/*.*
