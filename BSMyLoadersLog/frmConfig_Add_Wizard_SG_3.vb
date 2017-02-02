@@ -14,7 +14,7 @@ Public Class frmConfig_Add_Wizard_SG_3
             Me.List_SG_WADTableAdapter.FillBy_CFG_WADList(Me.MLLDataSet.List_SG_WAD, GID)
             Me.List_SG_CaseTableAdapter.FillBy_CFG_List(Me.MLLDataSet.List_SG_Case, GID)
             Me.ViewPrimerListTableAdapter.Fill(Me.MLLDataSet.viewPrimerList)
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
         Catch ex As Exception
             Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)

@@ -2,7 +2,7 @@ Imports BSMyLoadersLog.LoadersClass
 Public Class frmAddWad
     Sub AutoLoad()
         Try
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             txtManu.AutoCompleteCustomSource = ObjAF.List_SG_WAD_Manufacturer
             txtWAD.AutoCompleteCustomSource = ObjAF.List_SG_WAD_WAD
             txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_WAD_Price

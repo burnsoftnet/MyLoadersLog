@@ -5,7 +5,7 @@ Public Class frmEditHulls
     Public FromView As Boolean
     Sub AutoLoad()
         Try
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             txtManu.AutoCompleteCustomSource = ObjAF.List_SG_Case_Manufacturer
             txtName.AutoCompleteCustomSource = ObjAF.List_SG_Case_Name
             txtLen.AutoCompleteCustomSource = ObjAF.List_SG_Case_Length

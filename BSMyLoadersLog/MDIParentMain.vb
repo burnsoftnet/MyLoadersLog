@@ -1101,4 +1101,24 @@ Public Class MDIParentMain
     Private Sub NewToolStripButton_Click(sender As System.Object, e As System.EventArgs) Handles NewToolStripButton.Click
         Call DoRestore()
     End Sub
+
+    Private Sub DeleteErrorLogToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DeleteErrorLogToolStripMenuItem.Click
+        If System.IO.File.Exists(MyLogFile) Then
+            System.IO.File.Delete(MyLogFile)
+            MsgBox("Error Log was Deleted!")
+        Else
+            MsgBox("Error Log does not exist!")
+        End If
+    End Sub
+
+    Private Sub ViewErrorLogToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ViewErrorLogToolStripMenuItem.Click
+        If System.IO.File.Exists(MyLogFile) Then
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = MyLogFile
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+            myProcess.Start()
+        Else
+            MsgBox("Error Log does not exist!")
+        End If
+    End Sub
 End Class

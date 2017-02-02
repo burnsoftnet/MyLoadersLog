@@ -5,8 +5,9 @@ Public Class frmAddDataSheet_ShotGun_CFG
     Public FromView As Boolean
     Sub LoadAutoFill()
         Try
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             'Put in things that you want to autofill in this box
+            txtPattern.AutoCompleteCustomSource = ObjAF.List_SG_Log_SG_Patterns()
             ObjAF = Nothing
         Catch ex As Exception
             Call LogError(Me.Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
@@ -42,6 +43,27 @@ Public Class frmAddDataSheet_ShotGun_CFG
             Dim ObjIM As New InventoryMath
             Dim ObjGF As New GlobalFunctions
 
+            Dim ShotDetails_Manu As String = ""
+            Dim ShotDetails_Name As String = ""
+            Dim ShotDetails_QTY As Double
+            Dim ShotDetails_EPPS As Double
+            Dim ShotDetails_GR As Double
+            Dim IsSlug As Boolean = False
+            Dim ShotMaterial As String = ""
+            Dim ShotShotNo As String = ""
+            Dim SlugWeight As String = ""
+            Dim INSTOCK_SHOT_OZ As Double
+            Dim PrefLoad As String
+            Dim SHOT_PREFLOAD As Double
+            Dim COST_SLUG As Double
+            Dim COST_SHOT As Double
+            Dim INSTOCK_SHOT As Double
+            Dim INSTOCK_SLUG As Double
+
+            Dim ShotSize As String = ""
+            Dim CaseDetails As String = ""
+            Dim PrimerDetails As String = ""
+
             Dim PrefferedPowderID As Long = ObjIM.GetPrefSGPowderID(ConfigID, PowWei)
             Call ObjGF.GetFirearmDetails(lngFID, 0, "", "", "", "", strBarLen)
             Call Obj.ConnectDB()
@@ -54,15 +76,43 @@ Public Class frmAddDataSheet_ShotGun_CFG
                 'LEFTOFF - adding config data to log
                 'Subs are normally in the InvetoryMathSection
                 Caliber = ObjIM.GetCaliber(RS("CALID"))
+
                 Call ObjIM.LoadPrimerInfo(RS("PRID"), PriManu, PrimerName)
+                PrimerDetails = PriManu & " " & PrimerName
+
                 Call ObjIM.LoadHullInfo(RS("CAID"), HullManufacturer, HullName, HullLength, 0, 0, HullDram)
+                CaseDetails = "DRAM: " & HullDram & " - " & HullManufacturer & " " & HullName
+
+                Call ObjIM.LoadSG_ShotType_Details(RS("SCL"), ShotDetails_Manu, ShotDetails_Name, IsSlug, _
+                                    ShotMaterial, ShotShotNo, SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
+                                    0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+                If Not IsDBNull(RS("SW_t")) Then PrefLoad = RS("SW_t")
+                SHOT_PREFLOAD = RS("SW")
+                If Not IsSlug Then
+                    COST_SHOT = ShotDetails_EPPS
+                    INSTOCK_SHOT = ShotDetails_GR
+                    ShotSize = "SLUG - " & ShotDetails_Manu & " - " & ShotDetails_Name
+                Else
+                    COST_SLUG = ShotDetails_EPPS
+                    INSTOCK_SLUG = ShotDetails_QTY
+                    ShotSize = ShotSizeNo & " - " & ShotDetails_Manu & " - " & ShotDetails_Name
+                End If
+
+                'TODO: FINISHS THIS!!!
+                'Loaders_Log_SG
                 'THE SCL column is used for both Slug and Shot
-                'load shot or slug info into vars
+                'load wad information
+                wad = "wad details"
                 'load powder details into vars
+                pbm = "Power wt - Bushing - MFG"
             End While
+
             RS.Close()
             RS = Nothing
             CMD = Nothing
+            SQL = "INSERT INTO Loaders_Log_SG(fid,FirearmName,Caliber,BarrelLen,ConfigName,Shotwt,ShotSize,case,pbm,wad,primer,pd,yds,notes) VALUES(" & _
+                lngFID & ",'" & strFireArm & "','" & Caliber & "','" & strBarLen & "','" & ConfigName & "','" & ShotWt & "','" & ShotSize & _
+                "','" & CaseDetails & "','" & pbm & "','" & wad & "','" & PrimerDetails & "','" & pd & "'," & lngYards & ",'" & strNotes & "')"
 
 
         Catch ex As Exception

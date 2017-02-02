@@ -2,7 +2,7 @@ Imports BSMyLoadersLog.LoadersClass
 Public Class frmAddBushing_Shot
     Sub PreLoadData()
         Try
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             txtCharge.AutoCompleteCustomSource = ObjAF.List_SG_Bushings_Shot_sCharge
             txtManu.AutoCompleteCustomSource = ObjAF.List_SG_Bushings_Shot_Manufacturer
             txtName.AutoCompleteCustomSource = ObjAF.List_SG_Bushings_Shot_Name

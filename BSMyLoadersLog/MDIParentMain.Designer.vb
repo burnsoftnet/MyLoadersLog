@@ -174,6 +174,9 @@ Partial Class MDIParentMain
         Me.List_CalibersTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.List_CalibersTableAdapter()
         Me.Config_List_NameTableAdapter = New BSMyLoadersLog.MLLDataSetTableAdapters.Config_List_NameTableAdapter()
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.TechLogsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewErrorLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteErrorLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -754,7 +757,7 @@ Partial Class MDIParentMain
         '
         'ToolsMenu
         '
-        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.DataBaseToolStripMenuItem})
+        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.DataBaseToolStripMenuItem, Me.TechLogsToolStripMenuItem})
         Me.ToolsMenu.Name = "ToolsMenu"
         Me.ToolsMenu.Size = New System.Drawing.Size(48, 20)
         Me.ToolsMenu.Text = "&Tools"
@@ -763,7 +766,7 @@ Partial Class MDIParentMain
         '
         Me.OptionsToolStripMenuItem.Image = CType(resources.GetObject("OptionsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OptionsToolStripMenuItem.Text = "&Options"
         '
         'DataBaseToolStripMenuItem
@@ -771,7 +774,7 @@ Partial Class MDIParentMain
         Me.DataBaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReRunHotfixUpdatesToolStripMenuItem, Me.CleanUpDatabaseToolStripMenuItem})
         Me.DataBaseToolStripMenuItem.Image = CType(resources.GetObject("DataBaseToolStripMenuItem.Image"), System.Drawing.Image)
         Me.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem"
-        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.DataBaseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DataBaseToolStripMenuItem.Text = "&DataBase"
         '
         'ReRunHotfixUpdatesToolStripMenuItem
@@ -1257,6 +1260,25 @@ Partial Class MDIParentMain
         '
         Me.HelpProvider1.HelpNamespace = "my_loaders_log_help.chm"
         '
+        'TechLogsToolStripMenuItem
+        '
+        Me.TechLogsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewErrorLogToolStripMenuItem, Me.DeleteErrorLogToolStripMenuItem})
+        Me.TechLogsToolStripMenuItem.Name = "TechLogsToolStripMenuItem"
+        Me.TechLogsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TechLogsToolStripMenuItem.Text = "Tech Logs"
+        '
+        'ViewErrorLogToolStripMenuItem
+        '
+        Me.ViewErrorLogToolStripMenuItem.Name = "ViewErrorLogToolStripMenuItem"
+        Me.ViewErrorLogToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.ViewErrorLogToolStripMenuItem.Text = "View Error Log"
+        '
+        'DeleteErrorLogToolStripMenuItem
+        '
+        Me.DeleteErrorLogToolStripMenuItem.Name = "DeleteErrorLogToolStripMenuItem"
+        Me.DeleteErrorLogToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.DeleteErrorLogToolStripMenuItem.Text = "Delete Error Log"
+        '
         'MDIParentMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1444,5 +1466,8 @@ Partial Class MDIParentMain
     Friend WithEvents BushingsChargeBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PowderToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ShotToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TechLogsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ViewErrorLogToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DeleteErrorLogToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

@@ -377,6 +377,148 @@ Namespace LoadersClass
         End Function
     End Class
     Public Class AutoFillCollections
+        Public Class ShotGun
+            Private Function MainCollection(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
+                Dim iCol As New AutoCompleteStringCollection
+                Dim ArrList As New ArrayList
+                Dim SQL As String = "SELECT " & strColumn & " from " & strTable & " order by " & strColumn & " ASC"
+                Dim Obj As New BSDatabase
+                Call Obj.ConnectDB()
+                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                Dim RS As OdbcDataReader
+                RS = CMD.ExecuteReader
+                iCol.Clear()
+                If RS.HasRows Then
+                    While (RS.Read())
+                        If Not IsDBNull(RS(strColumn)) Then iCol.Add(RS(strColumn))
+                    End While
+                Else
+                    iCol.Add("N/A")
+                End If
+                RS.Close()
+                CMD = Nothing
+                Call Obj.CloseDB()
+                Return iCol
+            End Function
+            Private Function MainCollectionDistinct(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
+                Dim iCol As New AutoCompleteStringCollection
+                Dim ArrList As New ArrayList
+                Dim SQL As String = "SELECT distinct(" & strColumn & ") as Res from " & strTable & " order by " & strColumn & " ASC"
+                Dim Obj As New BSDatabase
+                Call Obj.ConnectDB()
+                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                Dim RS As OdbcDataReader
+                RS = CMD.ExecuteReader
+                iCol.Clear()
+                If RS.HasRows Then
+                    While (RS.Read())
+                        If Not IsDBNull(RS("Res")) Then iCol.Add(RS("Res"))
+                    End While
+                Else
+                    iCol.Add("N/A")
+                End If
+                RS.Close()
+                CMD = Nothing
+                Call Obj.CloseDB()
+                Return iCol
+            End Function
+            Public Function Config_Source_SG() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Source", "Config_List_Data_SG")
+            End Function
+            Public Function Config_LoadInOZ_SG() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("SW_t", "Config_List_Data_SG")
+            End Function
+            Public Function List_SG_WAD_Manufacturer() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Manufacturer", "List_SG_WAD")
+            End Function
+            Public Function List_SG_WAD_WAD() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("WAD", "List_SG_WAD")
+            End Function
+            Public Function List_SG_WAD_Price() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Price", "List_SG_WAD")
+            End Function
+            Public Function List_SG_Bushings_Powder_Manufacturer() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Powder")
+            End Function
+            Public Function List_SG_Bushings_Powder_Name() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("sName", "List_SG_Bushing_Powder")
+            End Function
+            Public Function List_SG_Bushings_Powder_sCharge() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Powder")
+            End Function
+            Public Function List_SG_Bushings_Powder_Powder() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("name", "General_Powder")
+            End Function
+            Public Function List_SG_Bushings_Shot_Manufacturer() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Shot")
+            End Function
+            Public Function List_SG_Bushings_Shot_Name() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("sName", "List_SG_Bushing_Shot")
+            End Function
+            Public Function List_SG_Bushings_Shot_sCharge() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Shot")
+            End Function
+            Public Function List_SG_Log_SG_Patterns() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("pd", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_ShotWt() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("shotwt", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_ShotSize() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("shotsize", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_Case() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("case", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_PowderBushing() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("pbm", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_Wad() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("wad", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Log_SG_Primer() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("primer", "Loaders_Log_SG")
+            End Function
+            Public Function List_SG_Case_Manufacturer() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Manufacturer", "List_SG_Case")
+            End Function
+            Public Function List_SG_Case_Name() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Name", "List_SG_Case")
+            End Function
+            Public Function List_SG_Case_DRAM() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("DRAM", "List_SG_Case")
+            End Function
+            Public Function List_SG_Case_Gauge() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Gauge", "List_SG_Case")
+            End Function
+            Public Function List_SG_Case_Length() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Length", "List_SG_Case")
+            End Function
+            Public Function List_SG_Case_Price() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Price", "List_SG_Case")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_Manu() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Manufacturer", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_Name() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Name", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_mat() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("mat", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_ShotNo() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("ShotNo", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_weight() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("weight", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_CAL() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("CAL", "List_SG_ShotType_Details")
+            End Function
+            Public Function List_SG_SHOTSLUG_Details_Price() As AutoCompleteStringCollection
+                Return MainCollectionDistinct("Price", "List_SG_ShotType_Details")
+            End Function
+        End Class
         Private Function MainCollection(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
             Dim iCol As New AutoCompleteStringCollection
             Dim ArrList As New ArrayList
@@ -498,44 +640,7 @@ Namespace LoadersClass
         End Function
         Public Function Config_Source_NSG() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Source", "Config_List_Data_NSG")
-        End Function
-        Public Function Config_Source_SG() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Source", "Config_List_Data_SG")
-        End Function
-        Public Function Config_LoadInOZ_SG() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("SW_t", "Config_List_Data_SG")
-        End Function
-        Public Function List_SG_WAD_Manufacturer() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_SG_WAD")
-        End Function
-        Public Function List_SG_WAD_WAD() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("WAD", "List_SG_WAD")
-        End Function
-        Public Function List_SG_WAD_Price() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Price", "List_SG_WAD")
-        End Function
-        Public Function List_SG_Bushings_Powder_Manufacturer() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Powder")
-        End Function
-        Public Function List_SG_Bushings_Powder_Name() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("sName", "List_SG_Bushing_Powder")
-        End Function
-        Public Function List_SG_Bushings_Powder_sCharge() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Powder")
-        End Function
-        Public Function List_SG_Bushings_Powder_Powder() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("name", "General_Powder")
-        End Function
-        Public Function List_SG_Bushings_Shot_Manufacturer() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Shot")
-        End Function
-        Public Function List_SG_Bushings_Shot_Name() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("sName", "List_SG_Bushing_Shot")
-        End Function
-        Public Function List_SG_Bushings_Shot_sCharge() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Shot")
-        End Function
-
+        End Function   
         Public Function Loaders_Log_NSG_GroupSize() As AutoCompleteStringCollection
             Return MainCollectionDistinct("gs", "Loaders_Log_NSG")
         End Function
@@ -563,45 +668,7 @@ Namespace LoadersClass
         Public Function Loaders_Log_NSG_ConfigName() As AutoCompleteStringCollection
             Return MainCollectionDistinct("ConfigName", "Loaders_Log_NSG")
         End Function
-        Public Function List_SG_Case_Manufacturer() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_SG_Case")
-        End Function
-        Public Function List_SG_Case_Name() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Name", "List_SG_Case")
-        End Function
-        Public Function List_SG_Case_DRAM() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("DRAM", "List_SG_Case")
-        End Function
-        Public Function List_SG_Case_Gauge() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Gauge", "List_SG_Case")
-        End Function
-        Public Function List_SG_Case_Length() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Length", "List_SG_Case")
-        End Function
-        Public Function List_SG_Case_Price() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Price", "List_SG_Case")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_Manu() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_Name() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Name", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_mat() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("mat", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_ShotNo() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("ShotNo", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_weight() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("weight", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_CAL() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("CAL", "List_SG_ShotType_Details")
-        End Function
-        Public Function List_SG_SHOTSLUG_Details_Price() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Price", "List_SG_ShotType_Details")
-        End Function
+      
     End Class
     Public Class GlobalFunctions
         Public Function DatabaseVersion() As Double

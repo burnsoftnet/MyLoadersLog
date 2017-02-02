@@ -3,7 +3,7 @@ Public Class frmAddSlugs
     Public FromView As Boolean
     Sub AutoFill()
         Try
-            Dim ObjAF As New AutoFillCollections
+            Dim ObjAF As New AutoFillCollections.ShotGun
             txtManu.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Manu
             txtName.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Name
             txtCal.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_CAL
