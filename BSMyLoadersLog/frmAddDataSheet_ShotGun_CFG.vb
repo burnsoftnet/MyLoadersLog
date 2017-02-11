@@ -59,6 +59,12 @@ Public Class frmAddDataSheet_ShotGun_CFG
             Dim COST_SHOT As Double
             Dim INSTOCK_SHOT As Double
             Dim INSTOCK_SLUG As Double
+            Dim WAD_MANU As String = ""
+            Dim WAD_NAME As String = ""
+            Dim POWDER_ID As Long = 0
+            Dim POWDER_DEFAULT As Double
+            Dim POWDER_MANU As String = ""
+            Dim POWDER_NAME As String = ""
 
             Dim ShotSize As String = ""
             Dim CaseDetails As String = ""
@@ -102,9 +108,13 @@ Public Class frmAddDataSheet_ShotGun_CFG
                 'Loaders_Log_SG
                 'THE SCL column is used for both Slug and Shot
                 'load wad information
-                wad = "wad details"
+                Call ObjIM.LoadWADInfo(RS("WAD"), WAD_MANU, WAD_NAME, "", 0, 0, 0)
+                wad = WAD_MANU & " " & WAD_NAME
                 'load powder details into vars
-                pbm = "Power wt - Bushing - MFG"
+                POWDER_ID = ObjIM.GetPrefSGPowderIDID(ConfigID, POWDER_DEFAULT)
+                Call ObjIM.GetPowderDetails(POWDER_ID, POWDER_MANU, POWDER_NAME, 0, 0, 0, "", 0)
+                pbm = POWDER_DEFAULT & " - " & "Bushing" & POWDER_MANU & " " & POWDER_NAME
+
             End While
 
             RS.Close()
