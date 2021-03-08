@@ -746,6 +746,7 @@
     <Compile Include="frmView_Loaded_Ammunition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="GlobalVars.vb" />
     <Compile Include="LoadersClass.vb" />
     <Compile Include="MDIParentMain.Designer.vb">

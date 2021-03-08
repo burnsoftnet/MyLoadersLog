@@ -1,6 +1,5 @@
 Imports System.Windows.Forms
 Imports BSMyLoadersLog.LoadersClass
-Imports BSMyLoadersLog.Cyhper
 Imports System.Data.Odbc
 Imports BurnSoft.MsgBox
 Public Class MDIParentMain
