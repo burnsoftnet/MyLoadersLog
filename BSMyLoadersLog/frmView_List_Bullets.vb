@@ -111,7 +111,7 @@ Public Class frmView_List_Bullets
         Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
         Dim frmNew As New frmAddBullets
         frmNew.DoCopy = True
-        frmNew.BID = ItemID
+        frmNew.Bid = ItemID
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub

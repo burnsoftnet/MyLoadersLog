@@ -1,81 +1,122 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
-Public Class frmAddBullets
+''' <summary>
+''' Class FrmAddBullets.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
+Public Class FrmAddBullets
+    ''' <summary>
+    ''' From view
+    ''' </summary>
     Public FromView As Boolean
+    ''' <summary>
+    ''' The do copy
+    ''' </summary>
     Public DoCopy As Boolean
-    Public BID As Long
+    ''' <summary>
+    ''' The bullet id
+    ''' </summary>
+    Public Bid As Long
+    ''' <summary>
+    ''' Loads the data.
+    ''' </summary>
     Sub LoadData()
         Try
-            Dim SQL As String = "SELECT * from List_Bullets where ID=" & BID
-            Dim Obj As New BSDatabase
-            Dim ObjIM As New InventoryMath
-            Call Obj.ConnectDB()
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
+            Dim sql As String = "SELECT * from List_Bullets where ID=" & Bid
+            Dim obj As New BSDatabase
+            Dim objIm As New InventoryMath
+            Call obj.ConnectDB()
+            Dim cmd As New OdbcCommand(sql, obj.Conn)
+            Dim rs As OdbcDataReader
+            rs = cmd.ExecuteReader
             Dim iQty As Integer = 0
             Dim eppo As Double = 0
+' ReSharper disable RedundantAssignment
             Dim dPrice As Double = 0
-            While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("Diameter")) Then txtDia.Text = UnFluffContent(RS("Diameter"))
-                If Not IsDBNull(RS("Weight")) Then txtWei.Text = UnFluffContent(RS("Weight"))
-                If Not IsDBNull(RS("Sec_Den")) Then txtSecDia.Text = UnFluffContent(RS("Sec_Den"))
-                If Not IsDBNull(RS("Part_number")) Then txtPartNo.Text = UnFluffContent(RS("Part_number"))
-                If Not IsDBNull(RS("Ballistic_Coefficient")) Then txtBC.Text = UnFluffContent(RS("Ballistic_Coefficient"))
-                If Not IsDBNull(RS("Bullet_Type")) Then
-                    cmbBT.SelectedValue = RS("Bullet_Type")
+' ReSharper restore RedundantAssignment
+            While rs.Read
+                If Not IsDBNull(rs("Manufacturer")) Then txtManu.Text = UnFluffContent(rs("Manufacturer"))
+                If Not IsDBNull(rs("Name")) Then txtName.Text = UnFluffContent(rs("Name"))
+                If Not IsDBNull(rs("Diameter")) Then txtDia.Text = UnFluffContent(rs("Diameter"))
+                If Not IsDBNull(rs("Weight")) Then txtWei.Text = UnFluffContent(rs("Weight"))
+                If Not IsDBNull(rs("Sec_Den")) Then txtSecDia.Text = UnFluffContent(rs("Sec_Den"))
+                If Not IsDBNull(rs("Part_number")) Then txtPartNo.Text = UnFluffContent(rs("Part_number"))
+                If Not IsDBNull(rs("Ballistic_Coefficient")) Then txtBC.Text = UnFluffContent(rs("Ballistic_Coefficient"))
+                If Not IsDBNull(rs("Bullet_Type")) Then
+                    cmbBT.SelectedValue = rs("Bullet_Type")
                     cmbBT.Update()
                 End If
-                If Not IsDBNull(RS("CID")) Then
-                    cmbCalList.SelectedValue = RS("CID")
+                If Not IsDBNull(rs("CID")) Then
+                    cmbCalList.SelectedValue = rs("CID")
                     cmbCalList.Update()
                 End If
-                If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
-                If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
-                If Not IsDBNull(RS("ePPB")) Then eppo = RS("ePPB")
+' ReSharper disable RedundantAssignment
+                If Not IsDBNull(rs("Price")) Then dPrice = rs("Price")
+' ReSharper restore RedundantAssignment
+                If Not IsDBNull(rs("Qty")) Then iQty = rs("Qty")
+                If Not IsDBNull(rs("ePPB")) Then eppo = rs("ePPB")
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = objIm.ConvertToDollars(dPrice)
             End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            Obj.CloseDB()
+            rs.Close()
+            ' ReSharper disable RedundantAssignment
+            rs = Nothing
+            cmd = Nothing
+' ReSharper restore RedundantAssignment
+            obj.CloseDB()
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub frmAddBullets_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.General_Ammunition_TypeTableAdapter.Fill(Me.MLLDataSet.General_Ammunition_Type)
+    ''' <summary>
+    ''' Handles the Load event of the frmAddBullets control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub frmAddBullets_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
+        General_Ammunition_TypeTableAdapter.Fill(MLLDataSet.General_Ammunition_Type)
         Try
-            Me.List_CalibersTableAdapter.Fill(Me.MLLDataSet.List_Calibers)
+            List_CalibersTableAdapter.Fill(MLLDataSet.List_Calibers)
             Call AutoFill()
             If DoCopy Then Call LoadData()
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
+    ''' <summary>
+    ''' Automatics the fill.
+    ''' </summary>
     Sub AutoFill()
         Try
-            Dim ObjAf As New AutoFillCollections
-            txtManu.AutoCompleteCustomSource = ObjAf.List_Bullets_Manufacturer
-            txtName.AutoCompleteCustomSource = ObjAf.List_Bullets_Name
-            txtDia.AutoCompleteCustomSource = ObjAf.List_Bullets_Diameter
-            txtWei.AutoCompleteCustomSource = ObjAf.List_Bullets_Weight
-            txtSecDia.AutoCompleteCustomSource = ObjAf.List_Bullets_Sec_Den
-            txtPartNo.AutoCompleteCustomSource = ObjAf.List_Bullets_Part_number
-            txtBC.AutoCompleteCustomSource = ObjAf.List_Bullets_Ballistic_Coefficient
-            txtPrice.AutoCompleteCustomSource = ObjAf.List_Bullets_Price
+            Dim objAf As New AutoFillCollections
+            txtManu.AutoCompleteCustomSource = objAf.List_Bullets_Manufacturer
+            txtName.AutoCompleteCustomSource = objAf.List_Bullets_Name
+            txtDia.AutoCompleteCustomSource = objAf.List_Bullets_Diameter
+            txtWei.AutoCompleteCustomSource = objAf.List_Bullets_Weight
+            txtSecDia.AutoCompleteCustomSource = objAf.List_Bullets_Sec_Den
+            txtPartNo.AutoCompleteCustomSource = objAf.List_Bullets_Part_number
+            txtBC.AutoCompleteCustomSource = objAf.List_Bullets_Ballistic_Coefficient
+            txtPrice.AutoCompleteCustomSource = objAf.List_Bullets_Price
         Catch ex As Exception
-            Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "AutoFill", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
             Dim strManu As String = FluffContent(txtManu.Text)
             Dim strName As String = FluffContent(txtName.Text)
@@ -83,34 +124,36 @@ Public Class frmAddBullets
             Dim strWei As String = FluffContent(txtWei.Text)
             Dim strSecDia As String = FluffContent(txtSecDia.Text)
             Dim strPartNo As String = FluffContent(txtPartNo.Text)
-            Dim strBC As String = FluffContent(txtBC.Text)
-            Dim intBT As Integer = cmbBT.SelectedValue
-            Dim ICal As Integer = cmbCalList.SelectedValue
+            Dim strBc As String = FluffContent(txtBC.Text)
+            Dim intBt As Integer = cmbBT.SelectedValue
+            Dim cal As Integer = cmbCalList.SelectedValue
             Dim strQty As Integer = nudQty.Value
             Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
 
-            If Not IsRequired(strManu, "Manufacturers", Me.Text) Then Exit Sub
-            If Not IsRequired(strManu, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strDia, "Diameter", Me.Text) Then Exit Sub
-            If Not IsRequired(strWei, "Weight", Me.Text) Then Exit Sub
-            If Not IsRequired(strSecDia, "Sectional Density", Me.Text) Then Exit Sub
-            If Not IsRequired(strBC, "Ballistic Coefficient", Me.Text) Then Exit Sub
-            If Not IsRequired(intBT, "Caliber", Me.Text) Then Exit Sub
-            Dim EstCostPerItem As Double = 0
+            If Not IsRequired(strManu, "Manufacturers", Text) Then Exit Sub
+            If Not IsRequired(strManu, "Name", Text) Then Exit Sub
+            If Not IsRequired(strDia, "Diameter", Text) Then Exit Sub
+            If Not IsRequired(strWei, "Weight", Text) Then Exit Sub
+            If Not IsRequired(strSecDia, "Sectional Density", Text) Then Exit Sub
+            If Not IsRequired(strBc, "Ballistic Coefficient", Text) Then Exit Sub
+            If Not IsRequired(intBt, "Caliber", Text) Then Exit Sub
+            Dim estCostPerItem As Double = 0
+' ReSharper disable CompareOfFloatsByEqualityOperator
             If dbPrice <> 0 Then
-                EstCostPerItem = (dbPrice / strQty)
+' ReSharper restore CompareOfFloatsByEqualityOperator
+                estCostPerItem = (dbPrice / strQty)
             End If
-            Dim Obj As New BSDatabase
-            Dim SQL As String = "INSERT INTO List_Bullets(Manufacturer,Name,Diameter," & _
+            Dim obj As New BSDatabase
+            Dim sql As String = "INSERT INTO List_Bullets(Manufacturer,Name,Diameter," & _
                 "Weight,Sec_Den,Part_number,Ballistic_Coefficient,Bullet_Type,Qty,Price,CID,eppb) VALUES" & _
                 "('" & strManu & "','" & strName & "','" & strDia & "','" & strWei & "','" & _
-                strSecDia & "','" & strPartNo & "','" & strBC & "'," & intBT & "," & strQty & _
-                "," & dbPrice & "," & ICal & "," & EstCostPerItem & ")"
-            Obj.ConnExec(SQL)
+                strSecDia & "','" & strPartNo & "','" & strBc & "'," & intBt & "," & strQty & _
+                "," & dbPrice & "," & cal & "," & estCostPerItem & ")"
+            obj.ConnExec(sql)
             If FromView Then Call frmView_List_Bullets.LoadData()
-            Me.Close()
+            Close()
         Catch ex As Exception
-            Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 End Class

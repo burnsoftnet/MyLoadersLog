@@ -35,7 +35,7 @@ Public Class frmView_Bushings_Powder
     End Sub
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-        Dim frmNew As New frmAddBushing_Powder
+        Dim frmNew As New FrmAddBushingPowder
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub

@@ -718,8 +718,9 @@ Public Class DataGridPrinter
     ''' <param name="gridLineFont">The grid line font.</param>
     ''' <param name="e">The e.</param>
     ''' <returns>System.Int32.</returns>
-' ReSharper disable once UnusedParameter.Local
+' ReSharper disable UnusedParameter.Local
     Private Function RowsPerPage(ByVal gridLineFont As Font, ByVal e As Graphics) As Integer
+' ReSharper restore UnusedParameter.Local
 
         Return CInt((_pageContentRectangle.Height / ((_cellGutter * 2) + _rowheight)) - 2)
 
@@ -735,6 +736,8 @@ Public Class DataGridPrinter
     ''' <param name="target">The target.</param>
     ''' <param name="printFont">The print font.</param>
     ''' <param name="fillColour">The fill colour.</param>
+' ReSharper disable once ParameterHidesMember
+' ReSharper disable ParameterHidesMember
     Public Sub DrawCellString(ByVal s As String, _
                                     ByVal horizontalAlignment As CellTextHorizontalAlignment, _
                                     ByVal verticalAlignment As CellTextVerticalAlignment, _
@@ -743,6 +746,7 @@ Public Class DataGridPrinter
                                     ByVal target As Graphics, _
                                     ByVal printFont As Font, _
                                     ByVal fillColour As Brush)
+' ReSharper restore ParameterHidesMember
 
 
         'Dim x As Single, y As Single
@@ -763,19 +767,19 @@ Public Class DataGridPrinter
 
         Dim boundingRectF As New RectangleF(boundingRect.X + _cellGutter, boundingRect.Y + _cellGutter, boundingRect.Width - (2 * _cellGutter), boundingRect.Height - (2 * _cellGutter))
 
-        target.DrawString(s, printFont, System.Drawing.Brushes.Black, boundingRectF, _textlayout)
+        target.DrawString(s, printFont, Brushes.Black, boundingRectF, _textlayout)
 
     End Sub
 
     '\\ --[RoundTo]-----------------------------------------------------------------------------
     '\\ Rounds the input number tot he nearest modulus of NearsetMultiple
     '\\ ----------------------------------------------------------------------------------------
-    Private Function RoundTo(ByVal Input As Double, ByVal NearestMultiple As Integer) As Integer
+    Private Function RoundTo(ByVal input As Double, ByVal nearestMultiple As Integer) As Integer
 
-        If ((Input Mod NearestMultiple) > (NearestMultiple / 2)) Then
-            Return ((CInt(Input) \ NearestMultiple) * NearestMultiple) + NearestMultiple
+        If ((input Mod nearestMultiple) > (nearestMultiple / 2)) Then
+            Return ((CInt(input) \ nearestMultiple) * nearestMultiple) + nearestMultiple
         Else
-            Return (CInt(Input) \ NearestMultiple) * NearestMultiple
+            Return (CInt(input) \ nearestMultiple) * nearestMultiple
         End If
 
     End Function
@@ -879,9 +883,13 @@ Public Class DataGridPrinter
         _gridPrintDocument = New PrintDocument
         _dataGrid = grid
 
+' ReSharper disable UnusedVariable.Compiler
         Dim loggedInuser As New WindowsPrincipal(WindowsIdentity.GetCurrent())
+' ReSharper restore UnusedVariable.Compiler
 
+' ReSharper disable RedundantQualifier
         _loggedInUsername = DataGridPrinter.StripDomainFromFullUsername(WindowsIdentity.GetCurrent.Name)
+' ReSharper restore RedundantQualifier
 
     End Sub
 #End Region
@@ -951,7 +959,7 @@ Public Class ColumnBound
         End Get
         Set(ByVal value As Integer)
             If value < 1 Then
-                Throw New ArgumentOutOfRangeException("Page", "Must be greater than zero")
+                Throw New ArgumentOutOfRangeException($"Page", $"Must be greater than zero")
             End If
             _page = value
         End Set
@@ -963,53 +971,79 @@ End Class
 #Region "ColumnBounds"
 '\\ Type safe collection of "ColumnBound" objects
 Public Class ColumnBounds
-    Inherits System.Collections.ArrayList
+    Inherits ArrayList
 
 #Region "Private properties"
-    Private _CurrentPage As Integer = 1
-    Private _RightExtents As Integer '\\ How far right does this column set reach?
+    ''' <summary>
+    ''' The current page
+    ''' </summary>
+    Private _currentPage As Integer = 1
+    ''' <summary>
+    ''' The right extents
+    ''' </summary>
+    Private _rightExtents As Integer '\\ How far right does this column set reach?
 #End Region
 
 #Region "ArrayList overrides"
-    Public Overloads Function Add(ByVal ColumnBound As ColumnBound) As Integer
-        If ColumnBound.Left + ColumnBound.Width > _RightExtents Then
-            _RightExtents = CInt(ColumnBound.Left) + CInt(ColumnBound.Width)
+    ''' <summary>
+    ''' Adds the specified column bound.
+    ''' </summary>
+    ''' <param name="columnBound">The column bound.</param>
+    ''' <returns>System.Int32.</returns>
+    Public Overloads Function Add(ByVal columnBound As ColumnBound) As Integer
+        If columnBound.Left + columnBound.Width > _rightExtents Then
+            _rightExtents = CInt(columnBound.Left) + CInt(columnBound.Width)
         End If
-        ColumnBound.Page = _CurrentPage
-        Return MyBase.Add(ColumnBound)
+        columnBound.Page = _currentPage
+        Return MyBase.Add(columnBound)
     End Function
-
+    ''' <summary>
+    ''' Removes all elements from the <see cref="T:System.Collections.ArrayList" />.
+    ''' </summary>
     Public Overloads Sub Clear()
-        _CurrentPage = 1
-        _RightExtents = 0
+        _currentPage = 1
+        _rightExtents = 0
         MyBase.Clear()
     End Sub
-
+    ''' <summary>
+    ''' Nexts the page.
+    ''' </summary>
     Public Sub NextPage()
-        _CurrentPage += 1
-        _RightExtents = 0
+        _currentPage += 1
+        _rightExtents = 0
     End Sub
-
+    ''' <summary>
+    ''' Gets the total pages.
+    ''' </summary>
+    ''' <value>The total pages.</value>
     Friend ReadOnly Property TotalPages() As Integer
         Get
-            Return _CurrentPage
+            Return _currentPage
         End Get
     End Property
-
-    Default Public Shadows Property Item(ByVal Index As Integer) As ColumnBound
+    ''' <summary>
+    ''' Gets or sets the element at the specified index.
+    ''' </summary>
+    ''' <param name="index">The index.</param>
+    ''' <value>The item.</value>
+    Default Public Shadows Property Item(ByVal index As Integer) As ColumnBound
         Get
-            Return CType(MyBase.Item(Index), ColumnBound)
+            Return CType(MyBase.Item(index), ColumnBound)
         End Get
-        Set(ByVal Value As ColumnBound)
-            MyBase.Item(Index) = Value
+        Set(ByVal value As ColumnBound)
+            MyBase.Item(index) = value
         End Set
     End Property
 #End Region
 
 #Region "Public interface"
+    ''' <summary>
+    ''' Gets the right extents.
+    ''' </summary>
+    ''' <value>The right extents.</value>
     Public ReadOnly Property RightExtents() As Integer
         Get
-            Return _RightExtents
+            Return _rightExtents
         End Get
     End Property
 #End Region

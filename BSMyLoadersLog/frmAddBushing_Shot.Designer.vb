@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmAddBushing_Shot
+Partial Class FrmAddBushingShot
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmAddBushing_Shot
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddBushing_Shot))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAddBushingShot))
         Me.cmbType = New System.Windows.Forms.ComboBox
         Me.chkKeepOpen = New System.Windows.Forms.CheckBox
         Me.btnCancel = New System.Windows.Forms.Button
@@ -161,7 +161,7 @@ Partial Class frmAddBushing_Shot
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmAddBushing_Shot"
+        Me.Name = "FrmAddBushingShot"
         Me.Text = "Add Charge Bar or Bushing"
         Me.ResumeLayout(False)
         Me.PerformLayout()

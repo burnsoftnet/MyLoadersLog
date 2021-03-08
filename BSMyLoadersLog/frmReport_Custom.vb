@@ -225,7 +225,7 @@ Public Class frmReport_Custom
         SaveFileDialog1.FileName = Replace(ReportName, " ", "_")
         If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
-        Call ExportCSV(MyDataTable, strFilePath)
+        Call ExportCsv(MyDataTable, strFilePath)
     End Sub
     Private Sub HTMLToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HTMLToolStripMenuItem.Click
         SaveFileDialog1.FilterIndex = 4
@@ -234,7 +234,7 @@ Public Class frmReport_Custom
         SaveFileDialog1.FileName = Replace(ReportName, " ", "_")
         If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
-        Call ExportHTML(MyDataTable, strFilePath)
+        Call ExportHtml(MyDataTable, strFilePath)
     End Sub
     Private Sub XMLToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles XMLToolStripMenuItem.Click
         SaveFileDialog1.FilterIndex = 3
@@ -243,7 +243,7 @@ Public Class frmReport_Custom
         SaveFileDialog1.FileName = Replace(ReportName, " ", "_")
         If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
-        Call ExportXML(MyDataTable, strFilePath)
+        Call ExportXml(MyDataTable, strFilePath)
     End Sub
 
     Private Sub frmReport_Custom_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize

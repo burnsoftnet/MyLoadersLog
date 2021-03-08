@@ -1,71 +1,115 @@
 Imports BSMyLoadersLog.LoadersClass
-Public Class frmAddBushing_Powder
+''' <summary>
+''' Class FrmAddBushingPowder.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
+Public Class FrmAddBushingPowder
+    ''' <summary>
+    ''' Preloads the data.
+    ''' </summary>
     Sub PreloadData()
         Try
-            Dim Objaf As New AutoFillCollections.ShotGun
-            txtManu.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Manufacturer
-            txtName.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Name
-            txtCharge.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_sCharge
-            txtPowderName.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Powder
+            Dim objaf As New AutoFillCollections.ShotGun
+            txtManu.AutoCompleteCustomSource = objaf.List_SG_Bushings_Powder_Manufacturer
+            txtName.AutoCompleteCustomSource = objaf.List_SG_Bushings_Powder_Name
+            txtCharge.AutoCompleteCustomSource = objaf.List_SG_Bushings_Powder_sCharge
+            txtPowderName.AutoCompleteCustomSource = objaf.List_SG_Bushings_Powder_Powder
         Catch ex As Exception
-            Call LogError(Me.Name, "PreloadData", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "PreloadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub frmAddChargeBushing_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the frmAddChargeBushing control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub frmAddChargeBushing_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
             Call PreloadData()
         Catch ex As Exception
-            Call LogError(Me.Name, "load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
+    ''' <summary>
+    ''' Clears the fields.
+    ''' </summary>
     Sub ClearFields()
         If chkKeepOpen.Checked Then
             Call PreloadData()
         Else
-            Me.Close()
+            Close()
         End If
     End Sub
+    ''' <summary>
+    ''' Saves the data.
+    ''' </summary>
     Sub SaveData()
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
+            Dim manu As String = FluffContent(txtManu.Text)
             Dim sName As String = FluffContent(txtName.Text)
             Dim sCharge As String = FluffContent(txtCharge.Text)
             Dim sType As String = cmbType.Text
-            Dim PowderName As String = FluffContent(txtPowderName.Text)
+            Dim powderName As String = FluffContent(txtPowderName.Text)
             
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(sName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(sCharge, "Charge Amount", Me.Text) Then Exit Sub
-            Dim SQL As String = "INSERT INTO List_SG_Bushing_Powder(Manufacturer,sName,sCharge,sType,PowderName) VALUES('" & _
-                                Manu & "','" & sName & "','" & sCharge & "','" & sType & "','" & PowderName & "')"
-            Dim ObjDb As New BSDatabase
-            ObjDb.ConnExec(SQL)
+            If Not IsRequired(manu, "Manufacturer", Text) Then Exit Sub
+            If Not IsRequired(sName, "Name", Text) Then Exit Sub
+            If Not IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
+            Dim sql As String = "INSERT INTO List_SG_Bushing_Powder(Manufacturer,sName,sCharge,sType,PowderName) VALUES('" & _
+                                manu & "','" & sName & "','" & sCharge & "','" & sType & "','" & powderName & "')"
+            Dim objDb As New BSDatabase
+            objDb.ConnExec(sql)
             Call ClearFields()
         Catch ex As Exception
-            Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
         Call SaveData()
     End Sub
-
-    Private Sub txtCharge_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCharge.Enter
+    ''' <summary>
+    ''' Handles the Enter event of the txtCharge control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub txtCharge_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtCharge.Enter
         txtCharge.SelectAll()
     End Sub
-
-    Private Sub txtManu_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtManu.Enter
+    ''' <summary>
+    ''' Handles the Enter event of the txtManu control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub txtManu_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtManu.Enter
         txtManu.SelectAll()
     End Sub
-
-    Private Sub txtName_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtName.Enter
+    ''' <summary>
+    ''' Handles the Enter event of the txtName control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub txtName_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtName.Enter
         txtName.SelectAll()
     End Sub
-
-    Private Sub txtPowderName_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPowderName.Enter
+    ''' <summary>
+    ''' Handles the Enter event of the txtPowderName control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub txtPowderName_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtPowderName.Enter
         txtPowderName.SelectAll()
     End Sub
 End Class

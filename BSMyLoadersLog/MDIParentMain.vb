@@ -1020,7 +1020,7 @@ Public Class MDIParentMain
     End Sub
 
     Private Sub PowderToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PowderToolStripMenuItem1.Click
-        Dim frmNew As New frmAddBushing_Powder
+        Dim frmNew As New FrmAddBushingPowder
         frmNew.MdiParent = Me
         frmNew.Show()
     End Sub
