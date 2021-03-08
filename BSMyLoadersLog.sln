@@ -1,11 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BSMyLoadersLog", "BSMyLoadersLog\BSMyLoadersLog.vbproj", "{C42D6261-6BCA-4B43-BB53-1459017FF0A3}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BSMLL_HotFixes", "BSLL_HotFixes\BSMLL_HotFixes.vbproj", "{D2D07FCF-5EC6-4274-92EB-96F9EA4D089D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BSMyLoadersLog_Setup", "BSMyLoadersLog_Setup\BSMyLoadersLog_Setup.vdproj", "{AA4DEB8A-5E4C-4C74-AE45-437CDD75ED54}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BSMyLoadersLog_Setup", "BSMyLoadersLog_Setup\BSMyLoadersLog_Setup.vdproj", "{00829D65-4254-4D61-9168-EB522E01A085}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,13 @@ Global
 		{D2D07FCF-5EC6-4274-92EB-96F9EA4D089D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D07FCF-5EC6-4274-92EB-96F9EA4D089D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D07FCF-5EC6-4274-92EB-96F9EA4D089D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA4DEB8A-5E4C-4C74-AE45-437CDD75ED54}.Debug|Any CPU.ActiveCfg = Debug
-		{AA4DEB8A-5E4C-4C74-AE45-437CDD75ED54}.Release|Any CPU.ActiveCfg = Release
+		{00829D65-4254-4D61-9168-EB522E01A085}.Debug|Any CPU.ActiveCfg = Debug
+		{00829D65-4254-4D61-9168-EB522E01A085}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95A36A9C-681C-4FD9-8B0F-2C855404B326}
 	EndGlobalSection
 EndGlobal
