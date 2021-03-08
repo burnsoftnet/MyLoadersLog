@@ -132,12 +132,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="BSRegistration.designer.vb">
-      <DependentUpon>BSRegistration.vb</DependentUpon>
-    </Compile>
-    <Compile Include="BSRegistration.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmAddBushing_Powder.Designer.vb">
       <DependentUpon>frmAddBushing_Powder.vb</DependentUpon>
     </Compile>
@@ -211,7 +205,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataGridPrinter.vb" />
-    <Compile Include="EnCrypt.vb" />
     <Compile Include="ExportModule.vb" />
     <Compile Include="frmAddBullets.Designer.vb">
       <DependentUpon>frmAddBullets.vb</DependentUpon>
@@ -785,7 +778,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Registration.vb" />
     <Compile Include="SplashScreen1.Designer.vb">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
     </Compile>
@@ -797,10 +789,6 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BSRegistration.resx">
-      <DependentUpon>BSRegistration.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddBushing_Powder.resx">
       <SubType>Designer</SubType>

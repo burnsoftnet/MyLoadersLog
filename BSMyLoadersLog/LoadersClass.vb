@@ -106,13 +106,13 @@ Namespace LoadersClass
         End Sub
 #End Region
         Public Sub SetSettingDetails()
-            Dim Obj As New Cyhper.RegistrationProcess
-            If Not SettingsExists() And Not Obj.InstalledBefore_Exists Then
+
+            If Not SettingsExists() Then
                 Dim MyReg As RegistryKey
                 Dim strValue As String = DefaultRegPath & "\Settings"
                 'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
                 MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-                Call Obj.SetRegKeys()
+
                 'MyReg = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
                 MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
                 MyReg.SetValue("Successful", Now)
@@ -140,7 +140,6 @@ Namespace LoadersClass
         End Function
         Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
             Dim NumberFormat As String
-            Dim Obj As New Cyhper.RegistrationProcess
             Dim UseProxy As Boolean
             Dim AutoUpdate As Boolean
             Dim strValue As String = DefaultRegPath & "\Settings"

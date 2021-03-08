@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Security.RegularEncryption.SHA
+
 Module GlobalVars
     Public OwnerID As String
     Public OwnerName As String
@@ -249,22 +251,22 @@ Module GlobalVars
                 Dim intUsePWD As Integer = CInt(RS("UseLock"))
                 If intUsePWD = 1 Then
                     If Not IsDBNull(RS("Password")) Then
-                        PWD = oEncrypt.DecryptSHA(RS("Password"))
+                        PWD = One.Decrypt(RS("Password"))
                     Else
                         PWD = ""
                     End If
                     If Not IsDBNull(RS("UserName")) Then
-                        UID = oEncrypt.DecryptSHA(RS("UserName"))
+                        UID = One.Decrypt(RS("UserName"))
                     Else
                         UID = "admin"
                     End If
                     If Not IsDBNull(RS("Password_Forgot_word")) And Len(RS("Password_Forgot_word")) > 0 Then
-                        FW = oEncrypt.DecryptSHA(RS("Password_Forgot_word"))
+                        FW = One.Decrypt(RS("Password_Forgot_word"))
                     Else
                         FW = "burnsoft"
                     End If
                     If Not IsDBNull(RS("Password_Forgot")) And Len(RS("Password_Forgot")) > 0 Then
-                        FP = oEncrypt.DecryptSHA(RS("Password_Forgot"))
+                        FP = One.Decrypt(RS("Password_Forgot"))
                     Else
                         FP = "The Company that made this App"
                     End If

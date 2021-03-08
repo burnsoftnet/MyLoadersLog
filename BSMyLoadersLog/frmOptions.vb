@@ -1,5 +1,5 @@
 Imports BSMyLoadersLog.LoadersClass
-Imports BSMyLoadersLog.oEncrypt
+Imports BurnSoft.Security.RegularEncryption.SHA
 Public Class frmOptions
     Dim RecID As Integer
     Function SaveData() As Integer
@@ -11,19 +11,19 @@ Public Class frmOptions
             Dim strState As String = FluffContent(txtState.Text)
             Dim strZip As String = FluffContent(txtZip.Text)
             Dim strPhone As String = FluffContent(txtPhone.Text)
-            Dim strLic As String = oEncrypt.EncryptSHA(FluffContent(txtLic.Text))
+            Dim strLic As String = One.Encrypt(FluffContent(txtLic.Text))
             Dim bRiflePistol As Boolean = chkRiflePistol.Checked
             Dim bShotGun As Boolean = chkShotGun.Checked
             Dim bSec As Boolean = chkSec.Checked
             Dim strUID As String = FluffContent(txtUID.Text)
-            Dim strPWD As String = oEncrypt.EncryptSHA(FluffContent(txtPWD.Text))
-            Dim strCPWD As String = oEncrypt.EncryptSHA(FluffContent(txtCPWD.Text))
+            Dim strPWD As String = One.Encrypt(FluffContent(txtPWD.Text))
+            Dim strCPWD As String = One.Encrypt(FluffContent(txtCPWD.Text))
             Dim strDefaultList As String = cmbDefaultList.Text
-            Dim strPhrase As String = oEncrypt.EncryptSHA(FluffContent(txtPhrase.Text))
-            Dim strWord As String = oEncrypt.EncryptSHA(FluffContent(txtWord.Text))
+            Dim strPhrase As String = One.Encrypt(FluffContent(txtPhrase.Text))
+            Dim strWord As String = One.Encrypt(FluffContent(txtWord.Text))
             Dim iUsePassword As Integer = 0
             If Len(strUID) = 0 Then strUID = "admin"
-            strUID = oEncrypt.EncryptSHA(FluffContent(strUID))
+            strUID = One.Encrypt(FluffContent(strUID))
             If Not IsRequired(strName, "Name", Me.Text) Then Return 1 : Exit Function
             If bSec Then
                 If Not IsRequired(txtUID.Text, "User Name", Me.Text) Then Return 1 : Exit Function
@@ -97,15 +97,15 @@ Public Class frmOptions
                 txtState.Text = Trim(RS("State"))
                 txtZip.Text = Trim(RS("ZipCode"))
                 txtPhone.Text = Trim(RS("Phone")) ' oEncrypt.DecryptSHA(RS("Phone"))
-                txtLic.Text = oEncrypt.DecryptSHA(RS("LIC"))
+                txtLic.Text = One.Decrypt(RS("LIC"))
                 intUsePass = CInt(RS("UseLock"))
                 If intUsePass = 1 Then
-                    txtPWD.Text = oEncrypt.DecryptSHA(RS("Password"))
+                    txtPWD.Text = One.Decrypt(RS("Password"))
                     txtCPWD.Text = txtPWD.Text
                     chkSec.Checked = True
-                    txtUID.Text = oEncrypt.DecryptSHA(RS("UserName"))
-                    txtPhrase.Text = oEncrypt.DecryptSHA(RS("Password_Forgot"))
-                    txtWord.Text = oEncrypt.DecryptSHA(RS("Password_Forgot_word"))
+                    txtUID.Text = One.Decrypt(RS("UserName"))
+                    txtPhrase.Text = One.Decrypt(RS("Password_Forgot"))
+                    txtWord.Text = One.Decrypt(RS("Password_Forgot_word"))
                 Else
                     chkSec.Checked = False
                 End If

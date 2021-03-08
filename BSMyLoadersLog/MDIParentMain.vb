@@ -34,7 +34,10 @@ Public Class MDIParentMain
             OwnerID = GetOwnerID()
             Call Obj.UpDateAppDetails()
             Call Obj.GetSettings(LastSucBackup, AlertOnBackUp, TrackHistoryDays, TrackHistory, DoAutoBackup, DoOriginalImage, UsePetLoads, cmbConfigSort.Text)
-            If ISPROD Then Call DoRegistrationProcessForApp()
+
+            ToolStripStatusLabel.Text = ""
+            ToolStripSeparator4.Visible = False
+
             If OwnerID = 0 Then
                 Dim frmNew As New frmOptions
                 frmNew.MdiParent = Me
@@ -271,60 +274,8 @@ Public Class MDIParentMain
             Call LogError(Me.Name, "DoHelp", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    ' Sub CheckForUpdates()
-    '    Try
-    '        DoAutoBackup = False
-    'Dim myProcess As New Process
-    '       myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_UPDATER
-    '        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-    '        myProcess.Start()
-    '        Me.Close()
-    '    Catch ex As Exception
-    '        Call LogError(Me.Name, "CheckForUpdates", Err.Number, ex.Message.ToString)
-    '    End Try
-    'End Sub
-    Private Sub DoRegistrationProcessForApp()
-        Try
-            Dim ObjReg As New RegistrationProcess
-            Dim IsRegistered As Boolean = False
-            Dim MyDaysLeft As String = ""
-            Dim Has2Expired As Boolean = False
-            Dim MyRegTo As String = ""
-            Dim MyregPath As String = ObjReg.DefaultRegPath & "\Settings"
-            Call ObjReg.StartRegistration(MyregPath, IsRegistered, MyDaysLeft, Has2Expired, MyRegTo)
-            If Not IsRegistered Then
-                If Not Has2Expired Then
-                    Select Case MyDaysLeft
-                        Case 0
-                            DaysLeftToTry = "This is your Last Day to register!"
-                            ToolStripStatusLabel.Text = "This is a shareware version that will expire today."
-                        Case 1
-                            DaysLeftToTry = "You have " & MyDaysLeft & " day left to register!"
-                            ToolStripStatusLabel.Text = "This is a shareware version that will work for " & MyDaysLeft & " more day."
-                        Case Else
-                            DaysLeftToTry = "You have " & MyDaysLeft & " days left to register!"
-                            ToolStripStatusLabel.Text = "This is a shareware version that will work for " & MyDaysLeft & " days."
-                    End Select
-                    ' DaysLeftToTry = "You have " & MyDaysLeft & " days left to register!"
-                    ' ToolStripStatusLabel.Text = "This is a shareware version that will work for " & MyDaysLeft & " days."
-                Else
-                    BSRegistration.MainFormUnloaded = True
-                    BSRegistration.StatusMessage = "This Application has Expired!"
-                    BSRegistration.Show()
-                    Me.Close()
-                End If
-            Else
-                ToolStripStatusLabel.Text = "Registered To: " & MyRegTo
-                RegisterToolStripMenuItem.Enabled = False
-                RegisterToolStripMenuItem.Visible = False
-                ToolStripSeparator4.Visible = False
-                PurchaseToolStripMenuItem.Visible = False
-            End If
-            If Not Has2Expired Then Call CheckBackup()
-        Catch ex As Exception
-            Call LogError(Me.Name, "DoRegistrationProcessForApp", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
+
+   
     Sub CheckBackup()
         Try
             Dim ObjR As New BSRegistry
@@ -588,11 +539,8 @@ Public Class MDIParentMain
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         Call DoBackup()
     End Sub
-    Private Sub RegisterToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegisterToolStripMenuItem.Click
-        BSRegistration.StatusMessage = ToolStripStatusLabel.Text
-        BSRegistration.Show()
-    End Sub
-    Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PurchaseToolStripMenuItem.Click
+
+    Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) 
         Dim myProcess As New Process
         myProcess.StartInfo.FileName = MENU_SHOP
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
