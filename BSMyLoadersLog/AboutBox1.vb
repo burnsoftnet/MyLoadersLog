@@ -1,28 +1,41 @@
 Imports BSMyLoadersLog.LoadersClass
+''' <summary>
+''' Class AboutBox1. This class cannot be inherited.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public NotInheritable Class AboutBox1
-
-    Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the AboutBox1 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
         ' Set the title of the form.
-        Dim ApplicationTitle As String
+        Dim applicationTitle As String
         If My.Application.Info.Title <> "" Then
-            ApplicationTitle = My.Application.Info.Title
+            applicationTitle = My.Application.Info.Title
         Else
-            ApplicationTitle = System.IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName)
+            applicationTitle = IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName)
         End If
-        Me.Text = String.Format("About {0}", ApplicationTitle)
+        Text = String.Format("About {0}", applicationTitle)
         ' Initialize all of the text displayed on the About Box.
         '    properties dialog (under the "Project" menu).
-        Me.LabelProductName.Text = My.Application.Info.ProductName
-        Dim ObjGF As New GlobalFunctions
-        'Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
-        Me.LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", ObjGF.DatabaseVersion)
-        Me.LabelCopyright.Text = My.Application.Info.Copyright
-        Me.LabelCompanyName.Text = My.Application.Info.CompanyName
-        Me.TextBoxDescription.Text = My.Application.Info.Description
+        LabelProductName.Text = My.Application.Info.ProductName
+        Dim objGf As New GlobalFunctions
+' ReSharper disable once LocalizableElement
+        LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", objGf.DatabaseVersion)
+        LabelCopyright.Text = My.Application.Info.Copyright
+        LabelCompanyName.Text = My.Application.Info.CompanyName
+        TextBoxDescription.Text = My.Application.Info.Description
     End Sub
-
-    Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
-        Me.Close()
+    ''' <summary>
+    ''' Handles the Click event of the OKButton control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles OKButton.Click
+        Close()
     End Sub
 
 End Class

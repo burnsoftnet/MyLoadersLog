@@ -1,7 +1,5 @@
 Imports System.Drawing.Printing
-Imports System.Drawing
 Imports System.Security.Principal
-Imports System.Reflection
 
 #Region "DataGridPrinter"
 '\\ --[DataGridPrinter]----------------------------------------------
@@ -10,11 +8,17 @@ Imports System.Reflection
 '\\ -----------------------------------------------------------------
 Public Class DataGridPrinter
 #Region "Private enumerated types"
+    ''' <summary>
+    ''' Enum CellTextHorizontalAlignment
+    ''' </summary>
     Public Enum CellTextHorizontalAlignment
         LeftAlign = 1
         CentreAlign = 2
         RightAlign = 3
     End Enum
+    ''' <summary>
+    ''' Enum CellTextVerticalAlignment
+    ''' </summary>
     Public Enum CellTextVerticalAlignment
         TopAlign = 1
         MiddleAlign = 2
@@ -23,20 +27,53 @@ Public Class DataGridPrinter
 #End Region
 #Region "Private properties"
     '\\ Printing the report related
-    Private WithEvents _GridPrintDocument As PrintDocument
-    Private _DataGrid As DataGrid
-    '\\ Print progress variables
-    Private _CurrentPrintGridLine As Integer
-    Private _CurrentPageDown As Integer
-    Private _CurrentPageAcross As Integer = 1
-    '\\ Fonts to use to do the printing...
-    Private _PrintFont As New Font(System.Drawing.FontFamily.GenericSansSerif, 9)
-    Private _HeaderFont As New Font(System.Drawing.FontFamily.GenericSansSerif, 12)
-    Private _FooterFont As New Font(System.Drawing.FontFamily.GenericSansSerif, 10)
-    Private _HeaderRectangle As Rectangle
-    Private _FooterRectangle As Rectangle
-    Private _PageContentRectangle As Rectangle
-    Private _Rowheight As Double
+    Private WithEvents _gridPrintDocument As PrintDocument
+    ''' <summary>
+    ''' The data grid
+    ''' </summary>
+    Private _dataGrid As DataGrid
+    '\\ Print progress variables    
+    ''' <summary>
+    ''' The current print grid line
+    ''' </summary>
+    Private _currentPrintGridLine As Integer
+    ''' <summary>
+    ''' The current page down
+    ''' </summary>
+    Private _currentPageDown As Integer
+    ''' <summary>
+    ''' The current page across
+    ''' </summary>
+    Private _currentPageAcross As Integer = 1
+    '\\ Fonts to use to do the printing...    
+    ''' <summary>
+    ''' The print font
+    ''' </summary>
+    Private _printFont As New Font(FontFamily.GenericSansSerif, 9)
+    ''' <summary>
+    ''' The header font
+    ''' </summary>
+    Private _headerFont As New Font(FontFamily.GenericSansSerif, 12)
+    ''' <summary>
+    ''' The footer font
+    ''' </summary>
+    Private _footerFont As New Font(FontFamily.GenericSansSerif, 10)
+    ''' <summary>
+    ''' The header rectangle
+    ''' </summary>
+    Private _headerRectangle As Rectangle
+    ''' <summary>
+    ''' The footer rectangle
+    ''' </summary>
+    Private _footerRectangle As Rectangle
+    ''' <summary>
+    ''' The page content rectangle
+    ''' </summary>
+    Private _pageContentRectangle As Rectangle
+    ''' <summary>
+    ''' The rowheight
+    ''' </summary>
+    Private _rowheight As Double
     '\\ Column widths related
     Private _PagesAcross As Integer = 1
     Private _ColumnBounds As New ColumnBounds
@@ -132,33 +169,33 @@ Public Class DataGridPrinter
 #Region "HeaderFont"
     Public Property HeaderFont() As Font
         Get
-            Return _HeaderFont
+            Return _headerFont
         End Get
         Set(ByVal Value As Font)
             '\\ Possible font size validation here..
-            _HeaderFont = Value
+            _headerFont = Value
         End Set
     End Property
 #End Region
 #Region "PrintFont"
     Public Property PrintFont() As Font
         Get
-            Return _PrintFont
+            Return _printFont
         End Get
         Set(ByVal Value As Font)
             '\\ Possible font size validation here
-            _PrintFont = Value
+            _printFont = Value
         End Set
     End Property
 #End Region
 #Region "FooterFont"
     Public Property FooterFont() As Font
         Get
-            Return _FooterFont
+            Return _footerFont
         End Get
         Set(ByVal Value As Font)
             '\\ Possible font size validation here
-            _FooterFont = Value
+            _footerFont = Value
         End Set
     End Property
 #End Region
@@ -259,7 +296,7 @@ Public Class DataGridPrinter
 #Region "PrintDocument"
     Public ReadOnly Property PrintDocument() As PrintDocument
         Get
-            Return _GridPrintDocument
+            Return _gridPrintDocument
         End Get
     End Property
 #End Region
@@ -267,7 +304,7 @@ Public Class DataGridPrinter
 #Region "DataGrid"
     Public WriteOnly Property DataGrid() As DataGrid
         Set(ByVal Value As DataGrid)
-            _DataGrid = Value
+            _dataGrid = Value
         End Set
     End Property
 #End Region
@@ -297,7 +334,7 @@ Public Class DataGridPrinter
 
 #Region "Print"
     Public Sub Print()
-        _GridPrintDocument.Print()
+        _gridPrintDocument.Print()
     End Sub
 #End Region
 #End Region
@@ -306,12 +343,12 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "_GridPrintDocument events"
-    Private Sub _GridPrintDocument_BeginPrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles _GridPrintDocument.BeginPrint
+    Private Sub _GridPrintDocument_BeginPrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles _gridPrintDocument.BeginPrint
 
         '\\ Initialise the current page and current grid line variables
-        _CurrentPrintGridLine = 1
-        _CurrentPageDown = 1
-        _CurrentPageAcross = 1
+        _currentPrintGridLine = 1
+        _currentPageDown = 1
+        _currentPageAcross = 1
 
         If _Textlayout Is Nothing Then
             _Textlayout = New System.Drawing.StringFormat
@@ -320,30 +357,30 @@ Public Class DataGridPrinter
 
     End Sub
 
-    Private Sub _GridPrintDocument_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles _GridPrintDocument.PrintPage
+    Private Sub _GridPrintDocument_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles _gridPrintDocument.PrintPage
 
-        If _CurrentPageDown = 1 And _CurrentPageAcross = 1 Then
+        If _currentPageDown = 1 And _currentPageAcross = 1 Then
             ' _HeaderRectangle -  The top 10% of the page
-            _HeaderRectangle = e.MarginBounds
-            _HeaderRectangle.Height = CInt(e.MarginBounds.Height * _HeaderHeightPercent * 0.01)
+            _headerRectangle = e.MarginBounds
+            _headerRectangle.Height = CInt(e.MarginBounds.Height * _HeaderHeightPercent * 0.01)
 
             ' _FooterRectangle - the bottom 10% of the page
-            _FooterRectangle = e.MarginBounds
-            _FooterRectangle.Height = CInt(e.MarginBounds.Height * _FooterHeightPercent * 0.01)
-            _FooterRectangle.Y += CInt(e.MarginBounds.Height * (1 - (0.01 * _FooterHeightPercent)))
+            _footerRectangle = e.MarginBounds
+            _footerRectangle.Height = CInt(e.MarginBounds.Height * _FooterHeightPercent * 0.01)
+            _footerRectangle.Y += CInt(e.MarginBounds.Height * (1 - (0.01 * _FooterHeightPercent)))
 
             ' _PageContentRectangle - The middle 80% of the page
-            _PageContentRectangle = e.MarginBounds
-            _PageContentRectangle.Y += CInt(_HeaderRectangle.Height + e.MarginBounds.Height * (_InterSectionSpacingPercent * 0.01))
-            _PageContentRectangle.Height = CInt(e.MarginBounds.Height * 0.8)
+            _pageContentRectangle = e.MarginBounds
+            _pageContentRectangle.Y += CInt(_headerRectangle.Height + e.MarginBounds.Height * (_InterSectionSpacingPercent * 0.01))
+            _pageContentRectangle.Height = CInt(e.MarginBounds.Height * 0.8)
 
-            _Rowheight = e.Graphics.MeasureString("a", _PrintFont).Height
+            _rowheight = e.Graphics.MeasureString("a", _printFont).Height
 
             '\\ Create the _ColumnBounds array
             Dim nColumn As Integer
             Dim TotalWidth As Double
 
-            If _DataGrid.DataSource Is Nothing Then
+            If _dataGrid.DataSource Is Nothing Then
                 '\\ Nothing in the grid to print
                 Exit Sub
             End If
@@ -351,7 +388,7 @@ Public Class DataGridPrinter
             Dim ColumnCount As Integer = GridColumnCount()
 
             For nColumn = 0 To ColumnCount - 1
-                Dim rcLastCell As Rectangle = _DataGrid.GetCellBounds(0, nColumn)
+                Dim rcLastCell As Rectangle = _dataGrid.GetCellBounds(0, nColumn)
                 If rcLastCell.Width > 0 Then
                     TotalWidth += rcLastCell.Width
                 End If
@@ -367,7 +404,7 @@ Public Class DataGridPrinter
                     NextColumn.Left = _ColumnBounds.RightExtents
                 End If
                 '\\ Set this column's width
-                Dim rcCell As Rectangle = _DataGrid.GetCellBounds(0, nColumn)
+                Dim rcCell As Rectangle = _dataGrid.GetCellBounds(0, nColumn)
                 If rcCell.Width > 0 Then
                     NextColumn.Width = (rcCell.Width / TotalWidth) * (e.MarginBounds.Width * PagesAcross)
                     If NextColumn.Width > e.MarginBounds.Width Then
@@ -391,26 +428,26 @@ Public Class DataGridPrinter
         '\\ Print as many grid lines as can fit
         Dim nextLine As Int32
         Call PrintGridHeaderLine(e)
-        Dim StartOfpage As Integer = _CurrentPrintGridLine
+        Dim StartOfpage As Integer = _currentPrintGridLine
         'For nextLine = _CurrentPrintGridLine To Min((_CurrentPrintGridLine + RowsPerPage(_PrintFont, e.Graphics)), CType(_DataGrid.DataSource, System.Data.DataTable).DefaultView.Count)
-        For nextLine = _CurrentPrintGridLine To Min((_CurrentPrintGridLine + RowsPerPage(_PrintFont, e.Graphics)), CType(_DataGrid.DataSource, System.Data.DataTable).DefaultView.Count)
+        For nextLine = _currentPrintGridLine To Min((_currentPrintGridLine + RowsPerPage(_printFont, e.Graphics)), CType(_dataGrid.DataSource, System.Data.DataTable).DefaultView.Count)
             Call PrintGridLine(e, nextLine)
         Next
-        _CurrentPrintGridLine = nextLine
+        _currentPrintGridLine = nextLine
 
         '\\ Print the document footer
         Call PrintFooter(e)
 
-        If _CurrentPageAcross = PagesAcross Then
-            _CurrentPageAcross = 1
-            _CurrentPageDown += 1
+        If _currentPageAcross = PagesAcross Then
+            _currentPageAcross = 1
+            _currentPageDown += 1
         Else
-            _CurrentPageAcross += 1
-            _CurrentPrintGridLine = StartOfpage
+            _currentPageAcross += 1
+            _currentPrintGridLine = StartOfpage
         End If
 
         '\\ If there are more lines to print, set the HasMorePages property to true
-        If _CurrentPrintGridLine < GridRowCount() Then
+        If _currentPrintGridLine < GridRowCount() Then
             e.HasMorePages = True
         End If
 
@@ -420,43 +457,43 @@ Public Class DataGridPrinter
 #Region "Private methods"
     Private Sub PrintHeader(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
 
-        If _HeaderRectangle.Height > 0 Then
-            e.Graphics.FillRectangle(_HeaderBrush, _HeaderRectangle)
-            e.Graphics.DrawRectangle(_HeaderPen, _HeaderRectangle)
-            Call DrawCellString(_HeaderText, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _HeaderRectangle, False, e.Graphics, _HeaderFont, _HeaderBrush)
+        If _headerRectangle.Height > 0 Then
+            e.Graphics.FillRectangle(_HeaderBrush, _headerRectangle)
+            e.Graphics.DrawRectangle(_HeaderPen, _headerRectangle)
+            Call DrawCellString(_HeaderText, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _headerRectangle, False, e.Graphics, _headerFont, _HeaderBrush)
         End If
 
     End Sub
 
     Private Sub PrintFooter(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
 
-        If _FooterRectangle.Height > 0 Then
-            e.Graphics.FillRectangle(_FooterBrush, _FooterRectangle)
-            e.Graphics.DrawRectangle(_FooterPen, _FooterRectangle)
-            Call DrawCellString("Printed by " & _LoggedInUsername, CellTextHorizontalAlignment.LeftAlign, CellTextVerticalAlignment.MiddleAlign, _FooterRectangle, False, e.Graphics, _PrintFont, Brushes.White)
-            Call DrawCellString(DateTime.Now.ToLongDateString, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _FooterRectangle, False, e.Graphics, _PrintFont, Brushes.White)
-            Call DrawCellString("Page " & (((_CurrentPageDown - 1) * PagesAcross) + _CurrentPageAcross).ToString, CellTextHorizontalAlignment.RightAlign, CellTextVerticalAlignment.MiddleAlign, _FooterRectangle, False, e.Graphics, _PrintFont, Brushes.White)
+        If _footerRectangle.Height > 0 Then
+            e.Graphics.FillRectangle(_FooterBrush, _footerRectangle)
+            e.Graphics.DrawRectangle(_FooterPen, _footerRectangle)
+            Call DrawCellString("Printed by " & _LoggedInUsername, CellTextHorizontalAlignment.LeftAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
+            Call DrawCellString(DateTime.Now.ToLongDateString, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
+            Call DrawCellString("Page " & (((_currentPageDown - 1) * PagesAcross) + _currentPageAcross).ToString, CellTextHorizontalAlignment.RightAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
         End If
 
     End Sub
 
     Private Sub PrintGridLine(ByVal e As System.Drawing.Printing.PrintPageEventArgs, ByVal RowNumber As Integer)
 
-        Dim RowFromTop As Integer = RowNumber + 1 - _CurrentPrintGridLine
-        Dim Top As Double = _PageContentRectangle.Top + (RowFromTop * ((_CellGutter * 2) + _Rowheight))
-        Dim Bottom As Double = Top + _Rowheight + (2 * _CellGutter)
+        Dim RowFromTop As Integer = RowNumber + 1 - _currentPrintGridLine
+        Dim Top As Double = _pageContentRectangle.Top + (RowFromTop * ((_CellGutter * 2) + _rowheight))
+        Dim Bottom As Double = Top + _rowheight + (2 * _CellGutter)
 
         Top = RoundTo(Top, 2)
         Bottom = RoundTo(Bottom, 2)
 
         Dim Items() As Object = Nothing
         Try
-            If TypeOf _DataGrid.DataSource Is DataTable Then
-                Items = CType(_DataGrid.DataSource, System.Data.DataTable).DefaultView.Item(RowNumber - 1).Row.ItemArray
-            ElseIf TypeOf _DataGrid.DataSource Is DataSet Then
-                Items = CType(_DataGrid.DataSource, System.Data.DataSet).Tables(_DataGrid.DataMember).DefaultView.Item(RowNumber - 1).Row.ItemArray
-            ElseIf TypeOf _DataGrid.DataSource Is DataView Then
-                Items = CType(_DataGrid.DataSource, System.Data.DataView).Table.DefaultView.Item(RowNumber - 1).Row.ItemArray
+            If TypeOf _dataGrid.DataSource Is DataTable Then
+                Items = CType(_dataGrid.DataSource, System.Data.DataTable).DefaultView.Item(RowNumber - 1).Row.ItemArray
+            ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
+                Items = CType(_dataGrid.DataSource, System.Data.DataSet).Tables(_dataGrid.DataMember).DefaultView.Item(RowNumber - 1).Row.ItemArray
+            ElseIf TypeOf _dataGrid.DataSource Is DataView Then
+                Items = CType(_dataGrid.DataSource, System.Data.DataView).Table.DefaultView.Item(RowNumber - 1).Row.ItemArray
             Else
                 'REVIEW : Get the content for the current row ....
             End If
@@ -469,7 +506,7 @@ Public Class DataGridPrinter
             End If
             Dim nColumn As Integer
             For nColumn = 0 To Items.Length - 1
-                If _ColumnBounds(nColumn).Page = _CurrentPageAcross Then
+                If _ColumnBounds(nColumn).Page = _currentPageAcross Then
                     Dim rcCell As New Rectangle(CInt(_ColumnBounds(nColumn).Left), CInt(Top), CInt(_ColumnBounds(nColumn).Width), CInt(Bottom - Top))
                     If rcCell.Width > 0 Then
                         Dim Columntext As String = ""
@@ -477,7 +514,7 @@ Public Class DataGridPrinter
                             Columntext = Convert.ToString(Items(MappedColumnToBaseColumn(nColumn)))
                         Catch
                         End Try
-                        Call DrawCellString(Columntext, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _PrintFont, RowBrush)
+                        Call DrawCellString(Columntext, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, RowBrush)
                     End If
                 End If
             Next
@@ -489,8 +526,8 @@ Public Class DataGridPrinter
 
     Private Sub PrintGridHeaderLine(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
 
-        Dim Top As Double = _PageContentRectangle.Top
-        Dim Bottom As Double = Top + _Rowheight + (2 * _CellGutter)
+        Dim Top As Double = _pageContentRectangle.Top
+        Dim Bottom As Double = Top + _rowheight + (2 * _CellGutter)
 
         Top = RoundTo(Top, 2)
         Bottom = RoundTo(Bottom, 2)
@@ -498,10 +535,10 @@ Public Class DataGridPrinter
         Dim nColumn As Integer
 
         For nColumn = 0 To GridColumnCount() - 1
-            If _ColumnBounds(nColumn).Page = _CurrentPageAcross Then
+            If _ColumnBounds(nColumn).Page = _currentPageAcross Then
                 Dim rcCell As New Rectangle(CInt(_ColumnBounds(nColumn).Left), CInt(Top), CInt(_ColumnBounds(nColumn).Width), CInt(Bottom - Top))
                 If rcCell.Width > 0 Then
-                    Call DrawCellString(GetColumnHeadingText(nColumn), CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _PrintFont, _ColumnHeaderBrush)
+                    Call DrawCellString(GetColumnHeadingText(nColumn), CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, _ColumnHeaderBrush)
                 End If
             End If
         Next
@@ -511,7 +548,7 @@ Public Class DataGridPrinter
 
     Private Function RowsPerPage(ByVal GridLineFont As Font, ByVal e As Graphics) As Integer
 
-        Return CInt((_PageContentRectangle.Height / ((_CellGutter * 2) + _Rowheight)) - 2)
+        Return CInt((_pageContentRectangle.Height / ((_CellGutter * 2) + _rowheight)) - 2)
 
     End Function
 
@@ -574,12 +611,12 @@ Public Class DataGridPrinter
     Private Function GridColumnCount() As Integer
 
         If _GridColumnCount = 0 Then
-            If TypeOf _DataGrid.DataSource Is DataTable Then
-                _GridColumnCount = CType(_DataGrid.DataSource, DataTable).Columns.Count
-            ElseIf TypeOf _DataGrid.DataSource Is DataSet Then
-                _GridColumnCount = CType(_DataGrid.DataSource, DataSet).Tables(_DataGrid.DataMember).Columns.Count
-            ElseIf TypeOf _DataGrid.DataSource Is DataView Then
-                _GridColumnCount = CType(_DataGrid.DataSource, DataView).Table.Columns.Count
+            If TypeOf _dataGrid.DataSource Is DataTable Then
+                _GridColumnCount = CType(_dataGrid.DataSource, DataTable).Columns.Count
+            ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
+                _GridColumnCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).Columns.Count
+            ElseIf TypeOf _dataGrid.DataSource Is DataView Then
+                _GridColumnCount = CType(_dataGrid.DataSource, DataView).Table.Columns.Count
             Else
                 'REVIEW : Get the column count....
             End If
@@ -591,12 +628,12 @@ Public Class DataGridPrinter
     Private Function GridRowCount() As Integer
 
         If _GridRowCount = 0 Then
-            If TypeOf _DataGrid.DataSource Is DataTable Then
-                _GridRowCount = CType(_DataGrid.DataSource, DataTable).DefaultView.Count
-            ElseIf TypeOf _DataGrid.DataSource Is DataSet Then
-                _GridRowCount = CType(_DataGrid.DataSource, DataSet).Tables(_DataGrid.DataMember).DefaultView.Count
-            ElseIf TypeOf _DataGrid.DataSource Is DataView Then
-                _GridRowCount = CType(_DataGrid.DataSource, DataView).Table.DefaultView.Count
+            If TypeOf _dataGrid.DataSource Is DataTable Then
+                _GridRowCount = CType(_dataGrid.DataSource, DataTable).DefaultView.Count
+            ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
+                _GridRowCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).DefaultView.Count
+            ElseIf TypeOf _dataGrid.DataSource Is DataView Then
+                _GridRowCount = CType(_dataGrid.DataSource, DataView).Table.DefaultView.Count
             Else
                 'REVIEW : Get the column count....
             End If
@@ -607,19 +644,19 @@ Public Class DataGridPrinter
 
     Private Function GetColumnHeadingText(ByVal Column As Integer) As String
         Dim sAns As String = ""
-        If _DataGrid.TableStyles.Count > 0 Then
+        If _dataGrid.TableStyles.Count > 0 Then
             'Return _DataGrid.TableStyles(_DataGrid.TableStyles.Count - 1).GridColumnStyles(Column).HeaderText
-            sAns = _DataGrid.TableStyles(_DataGrid.TableStyles.Count - 1).GridColumnStyles(Column).HeaderText
+            sAns = _dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(Column).HeaderText
         Else
-            If TypeOf _DataGrid.DataSource Is DataTable Then
+            If TypeOf _dataGrid.DataSource Is DataTable Then
                 'Return CType(_DataGrid.DataSource, DataTable).Columns(Column).Caption
-                sAns = CType(_DataGrid.DataSource, DataTable).Columns(Column).Caption
-            ElseIf TypeOf _DataGrid.DataSource Is DataSet Then
+                sAns = CType(_dataGrid.DataSource, DataTable).Columns(Column).Caption
+            ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
                 'Return CType(_DataGrid.DataSource, DataSet).Tables(0).Columns(Column).Caption
-                sAns = CType(_DataGrid.DataSource, DataSet).Tables(0).Columns(Column).Caption
-            ElseIf TypeOf _DataGrid.DataSource Is DataView Then
+                sAns = CType(_dataGrid.DataSource, DataSet).Tables(0).Columns(Column).Caption
+            ElseIf TypeOf _dataGrid.DataSource Is DataView Then
                 'Return CType(_DataGrid.DataSource, DataView).Table.Columns(Column).Caption
-                sAns = CType(_DataGrid.DataSource, DataView).Table.Columns(Column).Caption
+                sAns = CType(_dataGrid.DataSource, DataView).Table.Columns(Column).Caption
             End If
         End If
         Return sAns
@@ -627,11 +664,11 @@ Public Class DataGridPrinter
 
     Private Function MappedColumnToBaseColumn(ByVal MappedColumn As Integer) As Integer
 
-        If _DataGrid.TableStyles.Count <= 1 Then
+        If _dataGrid.TableStyles.Count <= 1 Then
             Return MappedColumn
         Else
             '\\ Need to map from the column in the default to the column in the active map..
-            Return _DataGrid.TableStyles(0).GridColumnStyles.IndexOf(_DataGrid.TableStyles(_DataGrid.TableStyles.Count - 1).GridColumnStyles(MappedColumn))
+            Return _dataGrid.TableStyles(0).GridColumnStyles.IndexOf(_dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(MappedColumn))
         End If
 
     End Function
@@ -642,8 +679,8 @@ Public Class DataGridPrinter
 
     Public Sub New(ByVal Grid As DataGrid)
         '\\ Initialise the bits we need to use later
-        _GridPrintDocument = New PrintDocument
-        _DataGrid = Grid
+        _gridPrintDocument = New PrintDocument
+        _dataGrid = Grid
 
         Dim LoggedInuser As New WindowsPrincipal(WindowsIdentity.GetCurrent())
 
