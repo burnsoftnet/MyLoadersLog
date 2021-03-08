@@ -74,226 +74,362 @@ Public Class DataGridPrinter
     ''' The rowheight
     ''' </summary>
     Private _rowheight As Double
-    '\\ Column widths related
-    Private _PagesAcross As Integer = 1
-    Private _ColumnBounds As New ColumnBounds
-    Private _Textlayout As System.Drawing.StringFormat
-    Private _FooterHeightPercent As Integer = 3
-    Private _HeaderHeightPercent As Integer = 7
-    Private _InterSectionSpacingPercent As Integer = 2
-    Private _CellGutter As Integer = 5
-    '\\ Pens to draw the sections with
-    Private _FooterPen As New Pen(Color.Green)
-    Private _HeaderPen As New Pen(Color.RoyalBlue)
-    Private _GridPen As New Pen(Color.Black)
-    '\\ Brushes to fill the sections with
-    Private _HeaderBrush As Brush = Brushes.White
-    Private _FooterBrush As Brush = Brushes.White
-    Private _ColumnHeaderBrush As Brush = Brushes.White
-    Private _OddRowBrush As Brush = Brushes.White
-    Private _EvenRowBrush As Brush = Brushes.White
-    Private _HeaderText As String
-    Private _LoggedInUsername As String
-    Private _GridRowCount As Integer
-    Private _GridColumnCount As Integer
+    '\\ Column widths related    
+    ''' <summary>
+    ''' The pages across
+    ''' </summary>
+    Private _pagesAcross As Integer = 1
+    ''' <summary>
+    ''' The column bounds
+    ''' </summary>
+    Private _columnBounds As New ColumnBounds
+    ''' <summary>
+    ''' The textlayout
+    ''' </summary>
+    Private _textlayout As StringFormat
+    ''' <summary>
+    ''' The footer height percent
+    ''' </summary>
+    Private _footerHeightPercent As Integer = 3
+    ''' <summary>
+    ''' The header height percent
+    ''' </summary>
+    Private _headerHeightPercent As Integer = 7
+    ''' <summary>
+    ''' The inter section spacing percent
+    ''' </summary>
+    Private _interSectionSpacingPercent As Integer = 2
+    ''' <summary>
+    ''' The cell gutter
+    ''' </summary>
+    Private _cellGutter As Integer = 5
+    '\\ Pens to draw the sections with    
+    ''' <summary>
+    ''' The footer pen
+    ''' </summary>
+    Private _footerPen As New Pen(Color.Green)
+    ''' <summary>
+    ''' The header pen
+    ''' </summary>
+    Private _headerPen As New Pen(Color.RoyalBlue)
+    ''' <summary>
+    ''' The grid pen
+    ''' </summary>
+    Private _gridPen As New Pen(Color.Black)
+    '\\ Brushes to fill the sections with    
+    ''' <summary>
+    ''' The header brush
+    ''' </summary>
+    Private _headerBrush As Brush = Brushes.White
+    ''' <summary>
+    ''' The footer brush
+    ''' </summary>
+    Private _footerBrush As Brush = Brushes.White
+    ''' <summary>
+    ''' The column header brush
+    ''' </summary>
+    Private _columnHeaderBrush As Brush = Brushes.White
+    ''' <summary>
+    ''' The odd row brush
+    ''' </summary>
+    Private _oddRowBrush As Brush = Brushes.White
+    ''' <summary>
+    ''' The even row brush
+    ''' </summary>
+    Private _evenRowBrush As Brush = Brushes.White
+    ''' <summary>
+    ''' The header text
+    ''' </summary>
+    Private _headerText As String
+    ''' <summary>
+    ''' The logged in username
+    ''' </summary>
+    Private _loggedInUsername As String
+    ''' <summary>
+    ''' The grid row count
+    ''' </summary>
+    Private _gridRowCount As Integer
+    ''' <summary>
+    ''' The grid column count
+    ''' </summary>
+    Private _gridColumnCount As Integer
 #End Region
 #Region "Public interface"
 #Region "Properties"
 #Region "PagesAcross"
+    ''' <summary>
+    ''' Gets or sets the pages across.
+    ''' </summary>
+    ''' <value>The pages across.</value>
+    ''' <exception cref="System.ArgumentOutOfRangeException">PagesAcross - Must be one or more pages across</exception>
     Public Property PagesAcross() As Integer
         Get
-            Return _PagesAcross
+            Return _pagesAcross
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 1 Then
+        Set(ByVal value As Integer)
+            If value < 1 Then
+' ReSharper disable once NotResolvedInText
+' ReSharper disable once LocalizableElement
                 Throw New ArgumentOutOfRangeException("PagesAcross", "Must be one or more pages across")
             End If
-            _PagesAcross = Value
+            _pagesAcross = value
         End Set
     End Property
 #End Region
 #Region "FooterHeightPercent"
+    ''' <summary>
+    ''' Gets or sets the footer height percent.
+    ''' </summary>
+    ''' <value>The footer height percent.</value>
+    ''' <exception cref="System.ArgumentException">FooterHeightPercent must be between 0 and 30</exception>
     Public Property FooterHeightPercent() As Integer
         Get
-            Return _FooterHeightPercent
+            Return _footerHeightPercent
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 0 OrElse Value >= 30 Then
+        Set(ByVal value As Integer)
+            If value < 0 OrElse value >= 30 Then
                 Throw New ArgumentException("FooterHeightPercent must be between 0 and 30")
             End If
-            _FooterHeightPercent = Value
+            _footerHeightPercent = value
         End Set
     End Property
 #End Region
 #Region "HeaderHeightPercent"
+    ''' <summary>
+    ''' Gets or sets the header height percent.
+    ''' </summary>
+    ''' <value>The header height percent.</value>
+    ''' <exception cref="System.ArgumentException">HeaderHeightPercent must be between 0 and 30</exception>
     Public Property HeaderHeightPercent() As Integer
         Get
-            Return _HeaderHeightPercent
+            Return _headerHeightPercent
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 0 OrElse Value >= 30 Then
+        Set(ByVal value As Integer)
+            If value < 0 OrElse value >= 30 Then
                 Throw New ArgumentException("HeaderHeightPercent must be between 0 and 30")
             End If
-            _HeaderHeightPercent = Value
+            _headerHeightPercent = value
         End Set
     End Property
 #End Region
 #Region "InterSectionSpacingPercent"
+    ''' <summary>
+    ''' Gets or sets the inter section spacing percent.
+    ''' </summary>
+    ''' <value>The inter section spacing percent.</value>
+    ''' <exception cref="System.ArgumentException">InterSectionSpacingPercent must be between 0 and 20</exception>
     Public Property InterSectionSpacingPercent() As Integer
         Get
-            Return _InterSectionSpacingPercent
+            Return _interSectionSpacingPercent
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 0 OrElse Value >= 20 Then
+        Set(ByVal value As Integer)
+            If value < 0 OrElse value >= 20 Then
                 Throw New ArgumentException("InterSectionSpacingPercent must be between 0 and 20")
             End If
-            _InterSectionSpacingPercent = Value
+            _interSectionSpacingPercent = value
         End Set
     End Property
 #End Region
 
 #Region "CellGutter"
+    ''' <summary>
+    ''' Gets or sets the cell gutter.
+    ''' </summary>
+    ''' <value>The cell gutter.</value>
+    ''' <exception cref="System.ArgumentException">CellGutter must be between 0 and 10</exception>
     Public Property CellGutter() As Integer
         Get
-            Return _CellGutter
+            Return _cellGutter
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 0 OrElse Value >= 10 Then
+        Set(ByVal value As Integer)
+            If value < 0 OrElse value >= 10 Then
                 Throw New ArgumentException("CellGutter must be between 0 and 10")
             End If
-            _CellGutter = Value
+            _cellGutter = value
         End Set
     End Property
 #End Region
 
 #Region "HeaderFont"
+    ''' <summary>
+    ''' Gets or sets the header font.
+    ''' </summary>
+    ''' <value>The header font.</value>
     Public Property HeaderFont() As Font
         Get
             Return _headerFont
         End Get
-        Set(ByVal Value As Font)
+        Set(ByVal value As Font)
             '\\ Possible font size validation here..
-            _headerFont = Value
+            _headerFont = value
         End Set
     End Property
 #End Region
 #Region "PrintFont"
+    ''' <summary>
+    ''' Gets or sets the print font.
+    ''' </summary>
+    ''' <value>The print font.</value>
     Public Property PrintFont() As Font
         Get
             Return _printFont
         End Get
-        Set(ByVal Value As Font)
+        Set(ByVal value As Font)
             '\\ Possible font size validation here
-            _printFont = Value
+            _printFont = value
         End Set
     End Property
 #End Region
 #Region "FooterFont"
+    ''' <summary>
+    ''' Gets or sets the footer font.
+    ''' </summary>
+    ''' <value>The footer font.</value>
     Public Property FooterFont() As Font
         Get
             Return _footerFont
         End Get
-        Set(ByVal Value As Font)
+        Set(ByVal value As Font)
             '\\ Possible font size validation here
-            _footerFont = Value
+            _footerFont = value
         End Set
     End Property
 #End Region
 
 #Region "HeaderText"
+    ''' <summary>
+    ''' Gets or sets the header text.
+    ''' </summary>
+    ''' <value>The header text.</value>
     Public Property HeaderText() As String
         Get
-            Return _HeaderText
+            Return _headerText
         End Get
-        Set(ByVal Value As String)
-            _HeaderText = Value
+        Set(ByVal value As String)
+            _headerText = value
         End Set
     End Property
 #End Region
 
 #Region "HeaderPen"
+    ''' <summary>
+    ''' Gets or sets the header pen.
+    ''' </summary>
+    ''' <value>The header pen.</value>
     Public Property HeaderPen() As Pen
         Get
-            Return _HeaderPen
+            Return _headerPen
         End Get
-        Set(ByVal Value As Pen)
-            _HeaderPen = Value
+        Set(ByVal value As Pen)
+            _headerPen = value
         End Set
     End Property
 #End Region
 #Region "FooterPen"
+    ''' <summary>
+    ''' Gets or sets the footer pen.
+    ''' </summary>
+    ''' <value>The footer pen.</value>
     Public Property FooterPen() As Pen
         Get
-            Return _FooterPen
+            Return _footerPen
         End Get
-        Set(ByVal Value As Pen)
-            _FooterPen = Value
+        Set(ByVal value As Pen)
+            _footerPen = value
         End Set
     End Property
 #End Region
 #Region "GridPen"
+    ''' <summary>
+    ''' Gets or sets the grid pen.
+    ''' </summary>
+    ''' <value>The grid pen.</value>
     Public Property GridPen() As Pen
         Get
-            Return _GridPen
+            Return _gridPen
         End Get
-        Set(ByVal Value As Pen)
-            _GridPen = Value
+        Set(ByVal value As Pen)
+            _gridPen = value
         End Set
     End Property
 #End Region
 
 #Region "HeaderBrush"
+    ''' <summary>
+    ''' Gets or sets the header brush.
+    ''' </summary>
+    ''' <value>The header brush.</value>
     Public Property HeaderBrush() As Brush
         Get
-            Return _HeaderBrush
+            Return _headerBrush
         End Get
-        Set(ByVal Value As Brush)
-            _HeaderBrush = Value
+        Set(ByVal value As Brush)
+            _headerBrush = value
         End Set
     End Property
 #End Region
 #Region "FooterBrush"
+    ''' <summary>
+    ''' Gets or sets the footer brush.
+    ''' </summary>
+    ''' <value>The footer brush.</value>
     Public Property FooterBrush() As Brush
         Get
-            Return _FooterBrush
+            Return _footerBrush
         End Get
-        Set(ByVal Value As Brush)
-            _FooterBrush = Value
+        Set(ByVal value As Brush)
+            _footerBrush = value
         End Set
     End Property
 #End Region
 #Region "ColumnHeaderBrush"
+    ''' <summary>
+    ''' Gets or sets the column header brush.
+    ''' </summary>
+    ''' <value>The column header brush.</value>
     Public Property ColumnHeaderBrush() As Brush
         Get
-            Return _ColumnHeaderBrush
+            Return _columnHeaderBrush
         End Get
-        Set(ByVal Value As Brush)
-            _ColumnHeaderBrush = Value
+        Set(ByVal value As Brush)
+            _columnHeaderBrush = value
         End Set
     End Property
 #End Region
 #Region "OddRowBrush"
+    ''' <summary>
+    ''' Gets or sets the odd row brush.
+    ''' </summary>
+    ''' <value>The odd row brush.</value>
     Public Property OddRowBrush() As Brush
         Get
-            Return _OddRowBrush
+            Return _oddRowBrush
         End Get
-        Set(ByVal Value As Brush)
-            _OddRowBrush = Value
+        Set(ByVal value As Brush)
+            _oddRowBrush = value
         End Set
     End Property
 #End Region
 #Region "EvenRowBrush"
+    ''' <summary>
+    ''' Gets or sets the even row brush.
+    ''' </summary>
+    ''' <value>The even row brush.</value>
     Public Property EvenRowBrush() As Brush
         Get
-            Return _EvenRowBrush
+            Return _evenRowBrush
         End Get
-        Set(ByVal Value As Brush)
-            _EvenRowBrush = Value
+        Set(ByVal value As Brush)
+            _evenRowBrush = value
         End Set
     End Property
 #End Region
 
 #Region "PrintDocument"
+    ''' <summary>
+    ''' Gets the print document.
+    ''' </summary>
+    ''' <value>The print document.</value>
     Public ReadOnly Property PrintDocument() As PrintDocument
         Get
             Return _gridPrintDocument
@@ -302,9 +438,13 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "DataGrid"
+    ''' <summary>
+    ''' Sets the data grid.
+    ''' </summary>
+    ''' <value>The data grid.</value>
     Public WriteOnly Property DataGrid() As DataGrid
-        Set(ByVal Value As DataGrid)
-            _dataGrid = Value
+        Set(ByVal value As DataGrid)
+            _dataGrid = value
         End Set
     End Property
 #End Region
@@ -319,13 +459,14 @@ Public Class DataGridPrinter
     '\\ e.g. "DEVELOPMENT\Duncan" -> "Duncan"
     '\\ (c) 2005 - Merrion Computing Ltd
     '\\ -------------------------------------------------------------------------------
-    Public Shared Function StripDomainFromFullUsername(ByVal FullUsername As String) As String
+    Public Shared Function StripDomainFromFullUsername(ByVal fullUsername As String) As String
 
-        If FullUsername.IndexOf("\") = -1 Then
-            Return FullUsername
+' ReSharper disable once VBStringIndexOfIsCultureSpecific.1
+        If fullUsername.IndexOf("\") = -1 Then
+            Return fullUsername
         Else
             Dim sep() As Char = {Char.Parse("\")}
-            Dim chaf() As String = FullUsername.Split(sep)
+            Dim chaf() As String = fullUsername.Split(sep)
             Return (chaf(chaf.Length - 1))
         End If
 
@@ -333,6 +474,9 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "Print"
+    ''' <summary>
+    ''' Prints this instance.
+    ''' </summary>
     Public Sub Print()
         _gridPrintDocument.Print()
     End Sub
@@ -343,82 +487,91 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "_GridPrintDocument events"
-    Private Sub _GridPrintDocument_BeginPrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles _gridPrintDocument.BeginPrint
+    ''' <summary>
+    ''' Handles the BeginPrint event of the _GridPrintDocument control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.Drawing.Printing.PrintEventArgs"/> instance containing the event data.</param>
+    Private Sub _GridPrintDocument_BeginPrint(ByVal sender As Object, ByVal e As PrintEventArgs) Handles _gridPrintDocument.BeginPrint
 
         '\\ Initialise the current page and current grid line variables
         _currentPrintGridLine = 1
         _currentPageDown = 1
         _currentPageAcross = 1
 
-        If _Textlayout Is Nothing Then
-            _Textlayout = New System.Drawing.StringFormat
-            _Textlayout.Trimming = StringTrimming.EllipsisCharacter
+        If _textlayout Is Nothing Then
+            _textlayout = New StringFormat
+            _textlayout.Trimming = StringTrimming.EllipsisCharacter
         End If
 
     End Sub
-
-    Private Sub _GridPrintDocument_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles _gridPrintDocument.PrintPage
+    ''' <summary>
+    ''' Handles the PrintPage event of the _GridPrintDocument control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.Drawing.Printing.PrintPageEventArgs"/> instance containing the event data.</param>
+    Private Sub _GridPrintDocument_PrintPage(ByVal sender As Object, ByVal e As PrintPageEventArgs) Handles _gridPrintDocument.PrintPage
 
         If _currentPageDown = 1 And _currentPageAcross = 1 Then
             ' _HeaderRectangle -  The top 10% of the page
             _headerRectangle = e.MarginBounds
-            _headerRectangle.Height = CInt(e.MarginBounds.Height * _HeaderHeightPercent * 0.01)
+            _headerRectangle.Height = CInt(e.MarginBounds.Height * _headerHeightPercent * 0.01)
 
             ' _FooterRectangle - the bottom 10% of the page
             _footerRectangle = e.MarginBounds
-            _footerRectangle.Height = CInt(e.MarginBounds.Height * _FooterHeightPercent * 0.01)
-            _footerRectangle.Y += CInt(e.MarginBounds.Height * (1 - (0.01 * _FooterHeightPercent)))
+            _footerRectangle.Height = CInt(e.MarginBounds.Height * _footerHeightPercent * 0.01)
+            _footerRectangle.Y += CInt(e.MarginBounds.Height * (1 - (0.01 * _footerHeightPercent)))
 
             ' _PageContentRectangle - The middle 80% of the page
             _pageContentRectangle = e.MarginBounds
-            _pageContentRectangle.Y += CInt(_headerRectangle.Height + e.MarginBounds.Height * (_InterSectionSpacingPercent * 0.01))
+            _pageContentRectangle.Y += CInt(_headerRectangle.Height + e.MarginBounds.Height * (_interSectionSpacingPercent * 0.01))
             _pageContentRectangle.Height = CInt(e.MarginBounds.Height * 0.8)
 
             _rowheight = e.Graphics.MeasureString("a", _printFont).Height
 
             '\\ Create the _ColumnBounds array
             Dim nColumn As Integer
-            Dim TotalWidth As Double
+            Dim totalWidth As Double
 
             If _dataGrid.DataSource Is Nothing Then
                 '\\ Nothing in the grid to print
                 Exit Sub
             End If
 
-            Dim ColumnCount As Integer = GridColumnCount()
+            Dim columnCount As Integer = GridColumnCount()
 
-            For nColumn = 0 To ColumnCount - 1
+            For nColumn = 0 To columnCount - 1
                 Dim rcLastCell As Rectangle = _dataGrid.GetCellBounds(0, nColumn)
                 If rcLastCell.Width > 0 Then
-                    TotalWidth += rcLastCell.Width
+                    totalWidth += rcLastCell.Width
                 End If
             Next
 
-            _ColumnBounds.Clear()
-            For nColumn = 0 To ColumnCount - 1
+            _columnBounds.Clear()
+            For nColumn = 0 To columnCount - 1
                 '\\ Calculate the column start point
-                Dim NextColumn As New ColumnBound
+                Dim nextColumn As New ColumnBound
                 If nColumn = 0 Then
-                    NextColumn.Left = e.MarginBounds.Left
+                    nextColumn.Left = e.MarginBounds.Left
                 Else
-                    NextColumn.Left = _ColumnBounds.RightExtents
+                    nextColumn.Left = _columnBounds.RightExtents
                 End If
                 '\\ Set this column's width
                 Dim rcCell As Rectangle = _dataGrid.GetCellBounds(0, nColumn)
                 If rcCell.Width > 0 Then
-                    NextColumn.Width = (rcCell.Width / TotalWidth) * (e.MarginBounds.Width * PagesAcross)
-                    If NextColumn.Width > e.MarginBounds.Width Then
-                        NextColumn.Width = e.MarginBounds.Width
+                    nextColumn.Width = (rcCell.Width / totalWidth) * (e.MarginBounds.Width * PagesAcross)
+                    If nextColumn.Width > e.MarginBounds.Width Then
+                        nextColumn.Width = e.MarginBounds.Width
                     End If
                 End If
-                If _ColumnBounds.RightExtents + NextColumn.Width > e.MarginBounds.Width Then
-                    _ColumnBounds.NextPage()
-                    NextColumn.Left = e.MarginBounds.Left
+                If _columnBounds.RightExtents + nextColumn.Width > e.MarginBounds.Width Then
+                    _columnBounds.NextPage()
+                    nextColumn.Left = e.MarginBounds.Left
                 End If
-                _ColumnBounds.Add(NextColumn)
+                _columnBounds.Add(nextColumn)
             Next
-            If _ColumnBounds.TotalPages > Me.PagesAcross Then
-                Me.PagesAcross = _ColumnBounds.TotalPages
+            If _columnBounds.TotalPages > PagesAcross Then
+                PagesAcross = _columnBounds.TotalPages
             End If
         End If
 
@@ -428,9 +581,9 @@ Public Class DataGridPrinter
         '\\ Print as many grid lines as can fit
         Dim nextLine As Int32
         Call PrintGridHeaderLine(e)
-        Dim StartOfpage As Integer = _currentPrintGridLine
+        Dim startOfpage As Integer = _currentPrintGridLine
         'For nextLine = _CurrentPrintGridLine To Min((_CurrentPrintGridLine + RowsPerPage(_PrintFont, e.Graphics)), CType(_DataGrid.DataSource, System.Data.DataTable).DefaultView.Count)
-        For nextLine = _currentPrintGridLine To Min((_currentPrintGridLine + RowsPerPage(_printFont, e.Graphics)), CType(_dataGrid.DataSource, System.Data.DataTable).DefaultView.Count)
+        For nextLine = _currentPrintGridLine To Min((_currentPrintGridLine + RowsPerPage(_printFont, e.Graphics)), CType(_dataGrid.DataSource, DataTable).DefaultView.Count)
             Call PrintGridLine(e, nextLine)
         Next
         _currentPrintGridLine = nextLine
@@ -443,7 +596,7 @@ Public Class DataGridPrinter
             _currentPageDown += 1
         Else
             _currentPageAcross += 1
-            _currentPrintGridLine = StartOfpage
+            _currentPrintGridLine = startOfpage
         End If
 
         '\\ If there are more lines to print, set the HasMorePages property to true
@@ -455,66 +608,77 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "Private methods"
-    Private Sub PrintHeader(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
+    ''' <summary>
+    ''' Prints the header.
+    ''' </summary>
+    ''' <param name="e">The <see cref="System.Drawing.Printing.PrintPageEventArgs"/> instance containing the event data.</param>
+    Private Sub PrintHeader(ByVal e As PrintPageEventArgs)
 
         If _headerRectangle.Height > 0 Then
-            e.Graphics.FillRectangle(_HeaderBrush, _headerRectangle)
-            e.Graphics.DrawRectangle(_HeaderPen, _headerRectangle)
-            Call DrawCellString(_HeaderText, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _headerRectangle, False, e.Graphics, _headerFont, _HeaderBrush)
+            e.Graphics.FillRectangle(_headerBrush, _headerRectangle)
+            e.Graphics.DrawRectangle(_headerPen, _headerRectangle)
+            Call DrawCellString(_headerText, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _headerRectangle, False, e.Graphics, _headerFont, _headerBrush)
         End If
 
     End Sub
-
-    Private Sub PrintFooter(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
+    ''' <summary>
+    ''' Prints the footer.
+    ''' </summary>
+    ''' <param name="e">The <see cref="System.Drawing.Printing.PrintPageEventArgs"/> instance containing the event data.</param>
+    Private Sub PrintFooter(ByVal e As PrintPageEventArgs)
 
         If _footerRectangle.Height > 0 Then
-            e.Graphics.FillRectangle(_FooterBrush, _footerRectangle)
-            e.Graphics.DrawRectangle(_FooterPen, _footerRectangle)
-            Call DrawCellString("Printed by " & _LoggedInUsername, CellTextHorizontalAlignment.LeftAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
+            e.Graphics.FillRectangle(_footerBrush, _footerRectangle)
+            e.Graphics.DrawRectangle(_footerPen, _footerRectangle)
+            Call DrawCellString("Printed by " & _loggedInUsername, CellTextHorizontalAlignment.LeftAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
             Call DrawCellString(DateTime.Now.ToLongDateString, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
             Call DrawCellString("Page " & (((_currentPageDown - 1) * PagesAcross) + _currentPageAcross).ToString, CellTextHorizontalAlignment.RightAlign, CellTextVerticalAlignment.MiddleAlign, _footerRectangle, False, e.Graphics, _printFont, Brushes.White)
         End If
 
     End Sub
+    ''' <summary>
+    ''' Prints the grid line.
+    ''' </summary>
+    ''' <param name="e">The <see cref="System.Drawing.Printing.PrintPageEventArgs"/> instance containing the event data.</param>
+    ''' <param name="rowNumber">The row number.</param>
+    Private Sub PrintGridLine(ByVal e As PrintPageEventArgs, ByVal rowNumber As Integer)
 
-    Private Sub PrintGridLine(ByVal e As System.Drawing.Printing.PrintPageEventArgs, ByVal RowNumber As Integer)
+        Dim rowFromTop As Integer = rowNumber + 1 - _currentPrintGridLine
+        Dim top As Double = _pageContentRectangle.Top + (rowFromTop * ((_cellGutter * 2) + _rowheight))
+        Dim bottom As Double = top + _rowheight + (2 * _cellGutter)
 
-        Dim RowFromTop As Integer = RowNumber + 1 - _currentPrintGridLine
-        Dim Top As Double = _pageContentRectangle.Top + (RowFromTop * ((_CellGutter * 2) + _rowheight))
-        Dim Bottom As Double = Top + _rowheight + (2 * _CellGutter)
+        top = RoundTo(top, 2)
+        bottom = RoundTo(bottom, 2)
 
-        Top = RoundTo(Top, 2)
-        Bottom = RoundTo(Bottom, 2)
-
-        Dim Items() As Object = Nothing
+        Dim items() As Object = Nothing
         Try
             If TypeOf _dataGrid.DataSource Is DataTable Then
-                Items = CType(_dataGrid.DataSource, System.Data.DataTable).DefaultView.Item(RowNumber - 1).Row.ItemArray
+                items = CType(_dataGrid.DataSource, DataTable).DefaultView.Item(rowNumber - 1).Row.ItemArray
             ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
-                Items = CType(_dataGrid.DataSource, System.Data.DataSet).Tables(_dataGrid.DataMember).DefaultView.Item(RowNumber - 1).Row.ItemArray
+                items = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).DefaultView.Item(rowNumber - 1).Row.ItemArray
             ElseIf TypeOf _dataGrid.DataSource Is DataView Then
-                Items = CType(_dataGrid.DataSource, System.Data.DataView).Table.DefaultView.Item(RowNumber - 1).Row.ItemArray
+                items = CType(_dataGrid.DataSource, DataView).Table.DefaultView.Item(rowNumber - 1).Row.ItemArray
             Else
                 'REVIEW : Get the content for the current row ....
             End If
 
-            Dim RowBrush As Brush
-            If ((RowNumber Mod 2) = 0) Then
-                RowBrush = _OddRowBrush
+            Dim rowBrush As Brush
+            If ((rowNumber Mod 2) = 0) Then
+                rowBrush = _oddRowBrush
             Else
-                RowBrush = _EvenRowBrush
+                rowBrush = _evenRowBrush
             End If
             Dim nColumn As Integer
-            For nColumn = 0 To Items.Length - 1
-                If _ColumnBounds(nColumn).Page = _currentPageAcross Then
-                    Dim rcCell As New Rectangle(CInt(_ColumnBounds(nColumn).Left), CInt(Top), CInt(_ColumnBounds(nColumn).Width), CInt(Bottom - Top))
+            For nColumn = 0 To items.Length - 1
+                If _columnBounds(nColumn).Page = _currentPageAcross Then
+                    Dim rcCell As New Rectangle(CInt(_columnBounds(nColumn).Left), CInt(top), CInt(_columnBounds(nColumn).Width), CInt(bottom - top))
                     If rcCell.Width > 0 Then
-                        Dim Columntext As String = ""
+                        Dim columntext As String = ""
                         Try
-                            Columntext = Convert.ToString(Items(MappedColumnToBaseColumn(nColumn)))
+                            columntext = Convert.ToString(items(MappedColumnToBaseColumn(nColumn)))
                         Catch
                         End Try
-                        Call DrawCellString(Columntext, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, RowBrush)
+                        Call DrawCellString(columntext, CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, rowBrush)
                     End If
                 End If
             Next
@@ -523,64 +687,83 @@ Public Class DataGridPrinter
         End Try
 
     End Sub
+    ''' <summary>
+    ''' Prints the grid header line.
+    ''' </summary>
+    ''' <param name="e">The <see cref="PrintPageEventArgs"/> instance containing the event data.</param>
+    Private Sub PrintGridHeaderLine(ByVal e As PrintPageEventArgs)
 
-    Private Sub PrintGridHeaderLine(ByVal e As System.Drawing.Printing.PrintPageEventArgs)
+        Dim top As Double = _pageContentRectangle.Top
+        Dim bottom As Double = top + _rowheight + (2 * _cellGutter)
 
-        Dim Top As Double = _pageContentRectangle.Top
-        Dim Bottom As Double = Top + _rowheight + (2 * _CellGutter)
-
-        Top = RoundTo(Top, 2)
-        Bottom = RoundTo(Bottom, 2)
+        top = RoundTo(top, 2)
+        bottom = RoundTo(bottom, 2)
 
         Dim nColumn As Integer
 
         For nColumn = 0 To GridColumnCount() - 1
-            If _ColumnBounds(nColumn).Page = _currentPageAcross Then
-                Dim rcCell As New Rectangle(CInt(_ColumnBounds(nColumn).Left), CInt(Top), CInt(_ColumnBounds(nColumn).Width), CInt(Bottom - Top))
+            If _columnBounds(nColumn).Page = _currentPageAcross Then
+                Dim rcCell As New Rectangle(CInt(_columnBounds(nColumn).Left), CInt(top), CInt(_columnBounds(nColumn).Width), CInt(bottom - top))
                 If rcCell.Width > 0 Then
-                    Call DrawCellString(GetColumnHeadingText(nColumn), CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, _ColumnHeaderBrush)
+                    Call DrawCellString(GetColumnHeadingText(nColumn), CellTextHorizontalAlignment.CentreAlign, CellTextVerticalAlignment.MiddleAlign, rcCell, True, e.Graphics, _printFont, _columnHeaderBrush)
                 End If
             End If
         Next
 
 
     End Sub
+    ''' <summary>
+    ''' Rowses the per page.
+    ''' </summary>
+    ''' <param name="gridLineFont">The grid line font.</param>
+    ''' <param name="e">The e.</param>
+    ''' <returns>System.Int32.</returns>
+' ReSharper disable once UnusedParameter.Local
+    Private Function RowsPerPage(ByVal gridLineFont As Font, ByVal e As Graphics) As Integer
 
-    Private Function RowsPerPage(ByVal GridLineFont As Font, ByVal e As Graphics) As Integer
-
-        Return CInt((_pageContentRectangle.Height / ((_CellGutter * 2) + _rowheight)) - 2)
+        Return CInt((_pageContentRectangle.Height / ((_cellGutter * 2) + _rowheight)) - 2)
 
     End Function
-
+    ''' <summary>
+    ''' Draws the cell string.
+    ''' </summary>
+    ''' <param name="s">The s.</param>
+    ''' <param name="horizontalAlignment">The horizontal alignment.</param>
+    ''' <param name="verticalAlignment">The vertical alignment.</param>
+    ''' <param name="boundingRect">The bounding rect.</param>
+    ''' <param name="drawRectangle">if set to <c>true</c> [draw rectangle].</param>
+    ''' <param name="target">The target.</param>
+    ''' <param name="printFont">The print font.</param>
+    ''' <param name="fillColour">The fill colour.</param>
     Public Sub DrawCellString(ByVal s As String, _
-                                    ByVal HorizontalAlignment As CellTextHorizontalAlignment, _
-                                    ByVal VerticalAlignment As CellTextVerticalAlignment, _
-                                    ByVal BoundingRect As Rectangle, _
-                                    ByVal DrawRectangle As Boolean, _
-                                    ByVal Target As Graphics, _
-                                    ByVal PrintFont As Font, _
-                                    ByVal FillColour As Brush)
+                                    ByVal horizontalAlignment As CellTextHorizontalAlignment, _
+                                    ByVal verticalAlignment As CellTextVerticalAlignment, _
+                                    ByVal boundingRect As Rectangle, _
+                                    ByVal drawRectangle As Boolean, _
+                                    ByVal target As Graphics, _
+                                    ByVal printFont As Font, _
+                                    ByVal fillColour As Brush)
 
 
         'Dim x As Single, y As Single
 
-        If DrawRectangle Then
-            Target.FillRectangle(FillColour, BoundingRect)
-            Target.DrawRectangle(_GridPen, BoundingRect)
+        If drawRectangle Then
+            target.FillRectangle(fillColour, boundingRect)
+            target.DrawRectangle(_gridPen, boundingRect)
         End If
 
         '\\ Set the text alignment
-        If HorizontalAlignment = CellTextHorizontalAlignment.LeftAlign Then
-            _Textlayout.Alignment = StringAlignment.Near
-        ElseIf HorizontalAlignment = CellTextHorizontalAlignment.RightAlign Then
-            _Textlayout.Alignment = StringAlignment.Far
+        If horizontalAlignment = CellTextHorizontalAlignment.LeftAlign Then
+            _textlayout.Alignment = StringAlignment.Near
+        ElseIf horizontalAlignment = CellTextHorizontalAlignment.RightAlign Then
+            _textlayout.Alignment = StringAlignment.Far
         Else
-            _Textlayout.Alignment = StringAlignment.Center
+            _textlayout.Alignment = StringAlignment.Center
         End If
 
-        Dim BoundingRectF As New RectangleF(BoundingRect.X + _CellGutter, BoundingRect.Y + _CellGutter, BoundingRect.Width - (2 * _CellGutter), BoundingRect.Height - (2 * _CellGutter))
+        Dim boundingRectF As New RectangleF(boundingRect.X + _cellGutter, boundingRect.Y + _cellGutter, boundingRect.Width - (2 * _cellGutter), boundingRect.Height - (2 * _cellGutter))
 
-        Target.DrawString(s, PrintFont, System.Drawing.Brushes.Black, BoundingRectF, _Textlayout)
+        target.DrawString(s, printFont, System.Drawing.Brushes.Black, boundingRectF, _textlayout)
 
     End Sub
 
@@ -610,65 +793,76 @@ Public Class DataGridPrinter
 
     Private Function GridColumnCount() As Integer
 
-        If _GridColumnCount = 0 Then
+        If _gridColumnCount = 0 Then
             If TypeOf _dataGrid.DataSource Is DataTable Then
-                _GridColumnCount = CType(_dataGrid.DataSource, DataTable).Columns.Count
+                _gridColumnCount = CType(_dataGrid.DataSource, DataTable).Columns.Count
             ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
-                _GridColumnCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).Columns.Count
+                _gridColumnCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).Columns.Count
             ElseIf TypeOf _dataGrid.DataSource Is DataView Then
-                _GridColumnCount = CType(_dataGrid.DataSource, DataView).Table.Columns.Count
+                _gridColumnCount = CType(_dataGrid.DataSource, DataView).Table.Columns.Count
             Else
                 'REVIEW : Get the column count....
             End If
         End If
-        Return _GridColumnCount
+        Return _gridColumnCount
 
     End Function
-
+    ''' <summary>
+    ''' Grids the row count.
+    ''' </summary>
+    ''' <returns>System.Int32.</returns>
     Private Function GridRowCount() As Integer
 
-        If _GridRowCount = 0 Then
+        If _gridRowCount = 0 Then
             If TypeOf _dataGrid.DataSource Is DataTable Then
-                _GridRowCount = CType(_dataGrid.DataSource, DataTable).DefaultView.Count
+                _gridRowCount = CType(_dataGrid.DataSource, DataTable).DefaultView.Count
             ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
-                _GridRowCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).DefaultView.Count
+                _gridRowCount = CType(_dataGrid.DataSource, DataSet).Tables(_dataGrid.DataMember).DefaultView.Count
             ElseIf TypeOf _dataGrid.DataSource Is DataView Then
-                _GridRowCount = CType(_dataGrid.DataSource, DataView).Table.DefaultView.Count
+                _gridRowCount = CType(_dataGrid.DataSource, DataView).Table.DefaultView.Count
             Else
                 'REVIEW : Get the column count....
             End If
         End If
-        Return _GridRowCount
+        Return _gridRowCount
 
     End Function
-
-    Private Function GetColumnHeadingText(ByVal Column As Integer) As String
+    ''' <summary>
+    ''' Gets the column heading text.
+    ''' </summary>
+    ''' <param name="column">The column.</param>
+    ''' <returns>System.String.</returns>
+    Private Function GetColumnHeadingText(ByVal column As Integer) As String
         Dim sAns As String = ""
         If _dataGrid.TableStyles.Count > 0 Then
             'Return _DataGrid.TableStyles(_DataGrid.TableStyles.Count - 1).GridColumnStyles(Column).HeaderText
-            sAns = _dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(Column).HeaderText
+            sAns = _dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(column).HeaderText
         Else
             If TypeOf _dataGrid.DataSource Is DataTable Then
                 'Return CType(_DataGrid.DataSource, DataTable).Columns(Column).Caption
-                sAns = CType(_dataGrid.DataSource, DataTable).Columns(Column).Caption
+                sAns = CType(_dataGrid.DataSource, DataTable).Columns(column).Caption
             ElseIf TypeOf _dataGrid.DataSource Is DataSet Then
                 'Return CType(_DataGrid.DataSource, DataSet).Tables(0).Columns(Column).Caption
-                sAns = CType(_dataGrid.DataSource, DataSet).Tables(0).Columns(Column).Caption
+                sAns = CType(_dataGrid.DataSource, DataSet).Tables(0).Columns(column).Caption
             ElseIf TypeOf _dataGrid.DataSource Is DataView Then
                 'Return CType(_DataGrid.DataSource, DataView).Table.Columns(Column).Caption
-                sAns = CType(_dataGrid.DataSource, DataView).Table.Columns(Column).Caption
+                sAns = CType(_dataGrid.DataSource, DataView).Table.Columns(column).Caption
             End If
         End If
         Return sAns
     End Function
-
-    Private Function MappedColumnToBaseColumn(ByVal MappedColumn As Integer) As Integer
+    ''' <summary>
+    ''' Mappeds the column to base column.
+    ''' </summary>
+    ''' <param name="mappedColumn">The mapped column.</param>
+    ''' <returns>System.Int32.</returns>
+    Private Function MappedColumnToBaseColumn(ByVal mappedColumn As Integer) As Integer
 
         If _dataGrid.TableStyles.Count <= 1 Then
-            Return MappedColumn
+            Return mappedColumn
         Else
             '\\ Need to map from the column in the default to the column in the active map..
-            Return _dataGrid.TableStyles(0).GridColumnStyles.IndexOf(_dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(MappedColumn))
+            Return _dataGrid.TableStyles(0).GridColumnStyles.IndexOf(_dataGrid.TableStyles(_dataGrid.TableStyles.Count - 1).GridColumnStyles(mappedColumn))
         End If
 
     End Function
@@ -676,15 +870,18 @@ Public Class DataGridPrinter
 #End Region
 
 #Region "Public constructors"
-
-    Public Sub New(ByVal Grid As DataGrid)
+    ''' <summary>
+    ''' Initializes a new instance of the <see cref="DataGridPrinter"/> class.
+    ''' </summary>
+    ''' <param name="grid">The grid.</param>
+    Public Sub New(ByVal grid As DataGrid)
         '\\ Initialise the bits we need to use later
         _gridPrintDocument = New PrintDocument
-        _dataGrid = Grid
+        _dataGrid = grid
 
-        Dim LoggedInuser As New WindowsPrincipal(WindowsIdentity.GetCurrent())
+        Dim loggedInuser As New WindowsPrincipal(WindowsIdentity.GetCurrent())
 
-        _LoggedInUsername = DataGridPrinter.StripDomainFromFullUsername(WindowsIdentity.GetCurrent.Name)
+        _loggedInUsername = DataGridPrinter.StripDomainFromFullUsername(WindowsIdentity.GetCurrent.Name)
 
     End Sub
 #End Region
@@ -696,45 +893,67 @@ End Class
 Public Class ColumnBound
 
 #Region "Private properties"
-    Private _Page As Integer = 1
-    Private _Left As Double
-    Private _Width As Double
+    ''' <summary>
+    ''' The page
+    ''' </summary>
+    Private _page As Integer = 1
+    ''' <summary>
+    ''' The left
+    ''' </summary>
+    Private _left As Double
+    ''' <summary>
+    ''' The width
+    ''' </summary>
+    Private _width As Double
 #End Region
 
 #Region "Public interface"
+    ''' <summary>
+    ''' Gets or sets the left.
+    ''' </summary>
+    ''' <value>The left.</value>
+    ''' <exception cref="System.ArgumentException">Left must be greater than zero</exception>
     Public Property Left() As Double
         Get
-            Return _Left
+            Return _left
         End Get
         Set(ByVal value As Double)
             If value < 0 Then
                 Throw New ArgumentException("Left must be greater than zero")
             End If
-            _Left = value
+            _left = value
         End Set
     End Property
-
+    ''' <summary>
+    ''' Gets or sets the width.
+    ''' </summary>
+    ''' <value>The width.</value>
+    ''' <exception cref="System.ArgumentException">Width must be greater than zero</exception>
     Public Property Width() As Double
         Get
-            Return _Width
+            Return _width
         End Get
-        Set(ByVal Value As Double)
-            If Value < 0 Then
+        Set(ByVal value As Double)
+            If value < 0 Then
                 Throw New ArgumentException("Width must be greater than zero")
             End If
-            _Width = Value
+            _width = value
         End Set
     End Property
-
+    ''' <summary>
+    ''' Gets or sets the page.
+    ''' </summary>
+    ''' <value>The page.</value>
+    ''' <exception cref="System.ArgumentOutOfRangeException">Page - Must be greater than zero</exception>
     Public Property Page() As Integer
         Get
-            Return _Page
+            Return _page
         End Get
-        Set(ByVal Value As Integer)
-            If Value < 1 Then
+        Set(ByVal value As Integer)
+            If value < 1 Then
                 Throw New ArgumentOutOfRangeException("Page", "Must be greater than zero")
             End If
-            _Page = Value
+            _page = value
         End Set
     End Property
 #End Region
