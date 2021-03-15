@@ -1,8 +1,19 @@
 Imports BSMyLoadersLog.LoadersClass
-
+''' <summary>
+''' Add Data sheet for Rifle or Pistol, aka metallic reloading data sheet
+''' </summary>
 Public Class FrmAddDataSheetRiflePistolsMan
+    ''' <summary>
+    ''' This is from a view
+    ''' </summary>
     Public FromView As Boolean
+    ''' <summary>
+    ''' Firearm Id
+    ''' </summary>
     Public Fid As Long
+    ''' <summary>
+    ''' Load the Auto Fill Fields
+    ''' </summary>
     Sub LoadAutoFill()
         Try
             Dim objAf As New AutoFillCollections
@@ -18,6 +29,9 @@ Public Class FrmAddDataSheetRiflePistolsMan
             Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Will the data table with durrent log information
+    ''' </summary>
     Sub LoadData()
         Try
             Loaders_Log_FirearmsTableAdapter.Fill(MLLDataSet.Loaders_Log_Firearms)
@@ -26,6 +40,9 @@ Public Class FrmAddDataSheetRiflePistolsMan
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Save the informamtion to the database
+    ''' </summary>
     Sub SaveData()
         Try
             Dim lngFid As Long = cmbFirearm.SelectedValue
@@ -65,15 +82,28 @@ Public Class FrmAddDataSheetRiflePistolsMan
             Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Manual Load view
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub frmAddDataSheet_RiflePistols_MAN_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Call LoadData()
         Call LoadAutoFill()
     End Sub
-
+    ''' <summary>
+    ''' Canel button
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
         Close()
     End Sub
-
+    ''' <summary>
+    ''' Add Button
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Call SaveData()
     End Sub
