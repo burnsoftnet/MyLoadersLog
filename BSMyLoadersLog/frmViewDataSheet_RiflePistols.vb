@@ -79,16 +79,16 @@ Public Class frmViewDataSheet_RiflePistols
         End If
     End Sub
     Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UseConfigurationToolStripMenuItem.Click
-        Dim frmNew As New frmAddDataSheet_RiflePistols_CFG
-        frmNew.FID = FID
+        Dim frmNew As New FrmAddDataSheetRiflePistolsCfg
+        frmNew.Fid = FID
         frmNew.MdiParent = Me.MdiParent
         frmNew.FromView = True
         frmNew.Show()
     End Sub
 
     Private Sub ManuallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ManuallyToolStripMenuItem.Click
-        Dim frmNew As New frmAddDataSheet_RiflePistols_MAN
-        frmNew.FID = FID
+        Dim frmNew As New FrmAddDataSheetRiflePistolsMan
+        frmNew.Fid = FID
         frmNew.MdiParent = Me.MdiParent
         frmNew.FromView = True
         frmNew.Show()

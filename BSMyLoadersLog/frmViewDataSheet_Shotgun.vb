@@ -106,8 +106,8 @@ Public Class frmViewDataSheet_Shotgun
     End Sub
 
     Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UseConfigurationToolStripMenuItem.Click
-        Dim frmNew As New frmAddDataSheet_ShotGun_CFG
-        frmNew.FID = FID
+        Dim frmNew As New FrmAddDataSheetShotGunCfg
+        frmNew.Fid = FID
         frmNew.MdiParent = Me.MdiParent
         frmNew.FromView = True
         frmNew.Show()

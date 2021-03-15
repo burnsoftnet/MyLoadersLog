@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmAddDataSheet_RiflePistols_CFG
+Partial Class FrmAddDataSheetRiflePistolsCfg
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class frmAddDataSheet_RiflePistols_CFG
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddDataSheet_RiflePistols_CFG))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAddDataSheetRiflePistolsCfg))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -296,7 +296,7 @@ Partial Class frmAddDataSheet_RiflePistols_CFG
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmAddDataSheet_RiflePistols_CFG"
+        Me.Name = "FrmAddDataSheetRiflePistolsCfg"
         Me.HelpProvider1.SetShowHelp(Me, True)
         Me.Text = "Add To Loaders Log using a Configuration"
         CType(Me.LoadersLogFirearmsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

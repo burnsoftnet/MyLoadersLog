@@ -751,7 +751,7 @@ Public Class MDIParentMain
         frmNew.Show()
     End Sub
     Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UseConfigurationToolStripMenuItem.Click
-        Dim frmNew As New frmAddDataSheet_RiflePistols_CFG
+        Dim frmNew As New FrmAddDataSheetRiflePistolsCfg
         frmNew.MdiParent = Me
         frmNew.Show()
     End Sub

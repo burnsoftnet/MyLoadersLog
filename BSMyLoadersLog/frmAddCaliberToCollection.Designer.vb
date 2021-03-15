@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmAddCaliberToCollection
+Partial Class FrmAddCaliberToCollection
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,7 @@ Partial Class frmAddCaliberToCollection
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddCaliberToCollection))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAddCaliberToCollection))
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCal = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -107,7 +107,7 @@ Partial Class frmAddCaliberToCollection
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmAddCaliberToCollection"
+        Me.Name = "FrmAddCaliberToCollection"
         Me.HelpProvider1.SetShowHelp(Me, True)
         Me.Text = "Add Caliber to List"
         Me.ResumeLayout(False)
