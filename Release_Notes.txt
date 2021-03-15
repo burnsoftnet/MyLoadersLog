@@ -1,5 +1,0 @@
-BSMyLoadersLog.exe 2.2.15.x
-	Movied Price to right justified, it was left on case.brass report.
-
-MML Database:
-	
