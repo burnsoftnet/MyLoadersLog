@@ -5,6 +5,8 @@ The My Loaders Log (MLL) was created to help keep track of my configurations and
 
 NOTE: Version 1 was released for Metallic reloading (Rifle & Pistols) only, the next version will include shotgun reloading. 
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSW8XEMQVH4BE)]
+
 # Release
 
 ## v2.5.0.0
