@@ -139,3 +139,5 @@ BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbproj.GenerateResource.cache
 BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbprojAssemblyReference.cache
 .vs/BSMyLoadersLog/v16/.suo
 .vs/BSMyLoadersLog/v16/.suo
+*.testlog
+.vs/BSMyLoadersLog/v16/.suo
