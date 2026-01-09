@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add Shell Hulls to Inventory
 
 You can store information about different types of Shell Hulls either to keep track of your own inventory or to list for reference.  To add Shell Hulls to the database just click on Add Item | Shell Hull  to access the Add Shell Hull Form.

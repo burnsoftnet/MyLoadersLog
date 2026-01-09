@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Getting Started Tips
 
 The My Loaders Log (MLL) application was designed to keep track of your reloading inventory and the configurations (materials used to make the ammunition that you use). Since this application keeps track of your materials (bullets, cases, primers, powder, hulls, wads, etc.. you will need to put in your current inventory of the materials that you have.  It is something that you do not have, just leave the qty and price at 0 or blank.  Leaving the price and qty blank will allow you to put in configurations from other reloading manuals which will allow you to store everything in once place and you can also search to compare information based on your configurations and what you have created.

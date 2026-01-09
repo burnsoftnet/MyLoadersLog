@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Reports - Shell/Hull Inventory
 
 You can print out and view the report of the List of Shell/Hulls that you have listed in your inventory just by clicking on Reports | Shell/Hull Inventory.

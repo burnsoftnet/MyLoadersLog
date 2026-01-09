@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Edit/Add/Delete Ammunition Types
 
 The ammunition types help match up bullets and configurations, in the My Loaders Log application, we just stuck with the 3 main basics, rifle, pistol and shotgun.  If you wanted to add more, change or delete what we currently have then you can do so just by clicking on Edit | Ammunition Types

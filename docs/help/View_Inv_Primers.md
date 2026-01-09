@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Primers List
 
 The Primer list will allow you to store a list of your reloading Primer.  It's simple method of tracking what you have and how much it costs.  You are also able to print out this list for your records.

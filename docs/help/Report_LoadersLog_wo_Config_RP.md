@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Reports - Loaders Log Without Configuration Name
 
 Unlike the other reports, the Loaders Log Report to print out or to save to file can only be done while [viewing the Loaders Log](View_LoadersLog_RP.md)

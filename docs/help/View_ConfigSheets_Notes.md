@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Configuration Sheets - Notes
 
 ![](images/View_Config_Notes.jpg)

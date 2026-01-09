@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add Bullets to Inventory
 
 You can store information about different types of bullets either to keep track of your own inventory or to list for reference.  To add bullets to the database just click on Add Item | Bullet  to access the Add bullet Form.

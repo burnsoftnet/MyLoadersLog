@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Configuration Sheets - History/Audit
 
 ![](images/View_Config_Audit.jpg)

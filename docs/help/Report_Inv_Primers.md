@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Reports - Primer Inventory
 
 You can print out and view the report of the List of Primers that you have listed in your inventory just by clicking on Reports | Primer Inventory.

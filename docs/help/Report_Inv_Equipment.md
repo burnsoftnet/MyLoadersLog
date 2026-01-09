@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Report - Reloading Equipment List
 
 You can print out and view the report of the Reloading Equipment that you have listed in your inventory just by clicking on Reports | Equipment Inventory.

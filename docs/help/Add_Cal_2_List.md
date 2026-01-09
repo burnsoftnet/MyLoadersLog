@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Adding Caliber to Side List
 
 ![](images/Add_Cal_2_List_SideMenu_Before.jpg)

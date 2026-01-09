@@ -1,7 +1,6 @@
 ---
-sort: 2
+layout: default
 ---
-
 # My Loader Log Help Home
 
 ![](images/mml_logo.jpg)
@@ -22,7 +21,3 @@ The My Loaders Log Application allows you to keep track of your reloading equipm
 
 **NOTE:  Shot-shell reloads, this program was suppose to also contain a section for shotgun reloading, but due to the lack of knowledge in shot-shell reloading we had to keep those sections hidden until we are able to gather more information about shot-shell reloading.  Hopefully in the next release we will have the shotgun section completed.**
 
-
-## Help Sections
-
-{% include list.liquid all=true %}

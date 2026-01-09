@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Ready to Use Ammunition
 
 The Ready to Use Ammunition section stores the ammunition that you have created from a configuration. You can use to to keep track of what you have made or if you are a user of the My Gun Collection Application, then you can export the ammunition list into the ammunition inventory section of the My Gun Collector application.

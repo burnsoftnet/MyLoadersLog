@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Equipment List
 
 The Equipment list will allow you to store a list of your reloading equipment.  A simple method of tracking what you have and how much it costs.  You are also able to print out this list for your records.

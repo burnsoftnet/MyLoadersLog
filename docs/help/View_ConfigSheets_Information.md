@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Configuration Sheets - Information
 
 ![](images/View_Config_Information.jpg)

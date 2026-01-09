@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Tools - Setting Options
 
 The options window will allow you to customize some things in the application.  To access the Options window, click on Tools | Options or click on the tools icon ( ![](images/ControlPanel_16_x_16.gif) ).

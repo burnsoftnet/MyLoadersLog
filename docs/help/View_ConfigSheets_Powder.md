@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Configuration Sheets - Powder
 
 ![](images/View_Config_Powder.jpg)

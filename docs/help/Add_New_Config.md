@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Adding a New Configuration
 
 The Configurations store what was put into making the ammunition that you are using or what you want to use.  The Configurations where designed to allow you to store your own personal configurations as well as store information from the reloading manuals.

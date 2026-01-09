@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Reports - Powder Inventory
 
 You can print out and view the report of the List of Powders that you have listed in your inventory just by clicking on Reports | Powder Inventory.

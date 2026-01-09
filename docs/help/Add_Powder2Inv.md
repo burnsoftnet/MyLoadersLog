@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add Powder To Inventory
 
 You can store information about different types of powders either to keep track of your own inventory or to list for reference.  To add powders to the database just click on Add Item | Powder  to access the Add Powder Form.

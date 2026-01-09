@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Edit Configuration - Rifle & Pistol
 
 To edit a configuration all you have to do is click on the Configuration Sheets tab in the main window, Click once on the configuration that you wish to edit, this will select the configuration.  Then Right Click on the configuration to bring up the following menu.

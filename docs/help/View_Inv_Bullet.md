@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Bullet List
 
 The Bullet list will allow you to store a list of your reloading Bullet.  It's simple method of tracking what you have and how much it costs.  You are also able to print out this list for your records.

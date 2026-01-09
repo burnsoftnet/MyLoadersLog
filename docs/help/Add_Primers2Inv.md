@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add Primers to Inventory
 
 You can store information about different types of primers either to keep track of your own inventory or to list for reference.  To add primers to the database just click on Add Item | Primer  to access the Add Primer Form.

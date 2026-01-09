@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Report - Ammunition Inventory
 
 The Ammunition Inventory Report will give you a list of the ammunition in your collection. It will display: the Manufacture, Name, Caliber, Grain, Jacket Type and Qty.   To Access this report, just click on Reports | Ammunition Inventory from the menu bar

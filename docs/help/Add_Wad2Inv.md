@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add WADs to Inventory
 
 You can store information about different types of WADs either to keep track of your own inventory or to list for reference.  To add WADs to the database just click on Add Item | WAD  to access the Add WAD Form.

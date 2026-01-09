@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add Cases to Inventory
 
 You can store information about different types of bullets either to keep track of your own inventory or to list for reference.  To add cases to the database just click on Add Item | Case  to access the Add Case Form.

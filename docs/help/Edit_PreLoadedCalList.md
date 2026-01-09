@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Edit Pre-Loaded Caliber Lists
 
 The My Loaders Log application comes pre loaded with a list of calibers already listed in the database.  This is mostly used as an auto suggest feature when you are adding a caliber to your list.

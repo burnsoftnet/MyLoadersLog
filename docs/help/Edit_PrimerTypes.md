@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Edit/Add/Delete Primer Types
 
 The My Loaders Log application comes with a list of know primer types (Small Pistol, Large Pistol, Small Rifle, etc).  If you wanted to edit, add or delete things from that listing, you can do so by clicking on Edit | Primer Type.

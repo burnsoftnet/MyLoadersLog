@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Firearm Inventory
 
 To view the firearms that you added or imported to the My Loaders Log application, just click on View | My Firearm Collections.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Copy Configuration
 
 If you have a new configuration that is the same as an existing configuration, but only 1 or more minor things changed( ie,. primer, case, bullet), then you can Copy the existing configuration so you wouldn't have to re-enter all the powder information.

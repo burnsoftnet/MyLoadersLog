@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Loaders Log - Rifle & Pistol
 
 Just like you use to with paper, you can keep a log of the loads that you have created for your firearms.  Logging the loads that I created was the reason why I came up with this application.  Of course one idea spawns into another and there is always room to grow with it.  The Loaders Log for this application will allow you to enter in data from your configurations, or even free hand entries are welcomed as well.  Instead of using a binder to keep track of all your loading logs, you can use this application to store that information. 

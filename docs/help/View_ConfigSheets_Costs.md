@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # View Configuration Sheets - Cost & Stats
 
 ![](images/View_Config_Cost_Stats.jpg)

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Report - Case/Brass Inventory
 
 You can print out and view the report of the List of Cases/Brass that you have listed in your inventory just by clicking on Reports | Case/Brass Inventory.

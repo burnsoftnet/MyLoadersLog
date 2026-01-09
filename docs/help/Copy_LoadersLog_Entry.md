@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Copy Loaders Log Entry
 
 From my experience, the loaders log can vary a lot or very little from the last test.   Of course re-writing everything again is always a hassle.  That is where the Copy function will come in handy!  Now you can copy an existing log entry and modify the little tweaks that you did for this new test.

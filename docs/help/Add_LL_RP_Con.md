@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Add to Loaders Log - Rifle & Pistol - Using Configuration
 
 The Loaders Log allow you to store the test that you have done on one of your firearms with a specific load that you created.  The My Loaders Log application was initially built to keep track of details of the Loader/Reloader’s Log in one central place, But also to store more information on what went into making that load.   By allowing you to store configuration of the loads that you have made, it made it quick and easy to add information to the loaders log just by selecting the configuration that you use, and fill out the Date tested, distance, no. of rounds, condition and length. By using your configuration, it will allow you to quickly fill out the loaders log.

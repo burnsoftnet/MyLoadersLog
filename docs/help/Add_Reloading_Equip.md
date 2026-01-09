@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Adding Reloading Equipment
 
 This is just an option but just in case, it's always helpful to have a list of your reloading equipment just in case.  To add your reloading equipment to the database just click on Add Item | Equipment to access the add form.

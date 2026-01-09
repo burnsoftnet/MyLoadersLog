@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Search - Rifle & Pistol Configurations
 
 The Search Rifle & Pistol Configuration section was created to allow you to search for specific things through all your configurations.  This is a very handy tool if you have a lot of personal configurations, Imports, or Configurations that you copied from a book.  It will allow you to look and filter through all the configuration and give you a list of all the data that was found.
