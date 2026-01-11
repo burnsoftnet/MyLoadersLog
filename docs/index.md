@@ -2,43 +2,122 @@
 layout: default
 ---
 
-# My Loaders Log
+Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-The My Loaders Log (MLL) application was created to help get rid of all the paper work of different logs in a binder and having to look through a collection of reloading manuals to just to find how much powder was used of a certain kind of powder for a certain kind of bullet. With reloading, once you find your groove, the entire process doesn’t take that long as compared to when you first started, why shouldn’t it be the same for looking up information? 
+[Link to another page](./another-page.html).
 
-The My Loaders Log (MLL) was created to help keep track of my configurations and the configurations from the reloading manuals that I use, along with the inventory my reloading equipment, primers, bullets, powder and cases that I had in stock or was out of. Since it will store all this information plus the configuration that you used to make a certain kind of ammunition, it will also tell you how many you can make and how much it costs to make based on your inventory. Even if you just wanted this to store your loaders log and not your inventory, it can do that as well. 
+There should be whitespace between paragraphs.
 
-NOTE: Version 1 was released for Metallic reloading (Rifle & Pistols) only, the next version will include shotgun reloading. 
+There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSW8XEMQVH4BE)]
+# Header 1
 
-## Images
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-![](images/bsmml0001.jpg)
+## Header 2
 
-![](images/bsmml0002.jpg)
+> This is a blockquote following a header.
+>
+> When something is important enough, you do it even if the odds are not in your favor.
 
-![](images/bsmml0003.jpg)
+### Header 3
 
-![](images/bsmml0004.jpg)
+```js
+// Javascript code with syntax highlighting.
+var fun = function lang(l) {
+  dateformat.i18n = require('./lang/' + l)
+  return true;
+}
+```
 
-![](images/bsmml0005.jpg)
+```ruby
+# Ruby code with syntax highlighting
+GitHubPages::Dependencies.gems.each do |gem, version|
+  s.add_dependency(gem, "= #{version}")
+end
+```
 
-![](images/bsmml0006.jpg)
+#### Header 4
 
-![](images/bsmml0007.jpg)
+*   This is an unordered list following a header.
+*   This is an unordered list following a header.
+*   This is an unordered list following a header.
 
-![](images/bsmml0008.jpg)
+##### Header 5
 
-![](images/bsmml0009.jpg)
+1.  This is an ordered list following a header.
+2.  This is an ordered list following a header.
+3.  This is an ordered list following a header.
 
-![](images/bsmml0010.jpg)
+###### Header 6
+
+| head1        | head two          | three |
+|:-------------|:------------------|:------|
+| ok           | good swedish fish | nice  |
+| out of stock | good and plenty   | nice  |
+| ok           | good `oreos`      | hmm   |
+| ok           | good `zoute` drop | yumm  |
+
+### There's a horizontal rule below this.
+
+* * *
+
+### Here is an unordered list:
+
+*   Item foo
+*   Item bar
+*   Item baz
+*   Item zip
+
+### And an ordered list:
+
+1.  Item one
+1.  Item two
+1.  Item three
+1.  Item four
+
+### And a nested list:
+
+- level 1 item
+  - level 2 item
+  - level 2 item
+    - level 3 item
+    - level 3 item
+- level 1 item
+  - level 2 item
+  - level 2 item
+  - level 2 item
+- level 1 item
+  - level 2 item
+  - level 2 item
+- level 1 item
+
+### Small image
+
+![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+
+### Large image
+
+![Branching](https://guides.github.com/activities/hello-world/branching.png)
 
 
-## Release
+### Definition lists can be used with HTML syntax.
 
-### v2.5.0.0
-- Released Free Version, no more need for Registration code or 30 day trials.
+<dl>
+<dt>Name</dt>
+<dd>Godzilla</dd>
+<dt>Born</dt>
+<dd>1952</dd>
+<dt>Birthplace</dt>
+<dd>Japan</dd>
+<dt>Color</dt>
+<dd>Green</dd>
+</dl>
 
-### v2.2.15
-- Moved Price to right justified, it was left on case.brass report.
+```
+Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+```
+
+```
+The final element.
+```
