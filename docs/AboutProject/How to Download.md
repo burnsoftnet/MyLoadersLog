@@ -1,6 +1,7 @@
 ---
-sort: 1
+layout: default
 ---
+
 # How to Download
 
 You can download the Download the Latests Release or Past Releases at [My Loaders Log Repo Release Page](https://github.com/burnsoftnet/MyLoadersLog/releases)
