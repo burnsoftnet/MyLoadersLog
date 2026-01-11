@@ -31,13 +31,12 @@ NOTE: Version 1 was released for Metallic reloading (Rifle & Pistols) only, the 
 ![](images/bsmml0010.jpg)
 
 
-# Release
+## Release
 
-## v2.5.0.0
+### v2.5.0.0
 - Released Free Version, no more need for Registration code or 30 day trials.
 
-## v2.2.15
+### v2.2.15
 - Moved Price to right justified, it was left on case.brass report.
 
-MML Database:
 	
