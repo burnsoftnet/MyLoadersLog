@@ -12,7 +12,7 @@
     <AssemblyName>BSMyLoadersLog</AssemblyName>
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>mml.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
