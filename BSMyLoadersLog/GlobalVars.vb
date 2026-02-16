@@ -30,28 +30,45 @@ Module GlobalVars
     Public LASTCONFIGEDVIEWED As Long
     Public APPLICATION_PATH As String
     Public APPLICATION_PATH_DATA As String
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_HELP_FILE = "my_loaders_log_help.chm"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_HOTFIX_FILE = "BSMLL_HotFixes.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_BACKUP = "DBBackup.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_RESTORE = "DBRestore.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_WIKI = "http://wiki.burnsoft.net/AllPages.aspx?Cat=My%20Loaders%20Log"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SHOP = "http://shopping.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_BUG = "http://bugreport.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SUPPORT = "http://support.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SITESEARCH = "http://www.burnsoft.net/Search_Site.aspx"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_LINKS = "http://wiki.burnsoft.net/Links_Firearm_reloading.ashx"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAINS_1LBS = 6999.99
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAINS_1GM = 15.4323
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAMS_1LBS = 453.592
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_OZ_1LBS = 16
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAMS_OZ = 28.35
     Public Const DATABASE_NAME = "MLL.mdb"
     Public Const USE_SHOTGUN As Boolean = True
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Enum WeightType
         Pounds
         Grams
         Grains
     End Enum
+    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     Public Function ConvToNum(ByVal strValue As String) As Double
         Dim dAns As Double = 0
         Try
@@ -94,6 +111,7 @@ Module GlobalVars
         End Try
         Return dAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     Public Function ConvertOZToDouble(ByVal sValue As String) As Double
         Dim dAns As Double = 0
         Try
