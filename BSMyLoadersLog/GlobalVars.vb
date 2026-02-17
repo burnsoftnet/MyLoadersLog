@@ -263,6 +263,7 @@ Module GlobalVars
             Global.System.Windows.Forms.Application.Exit()
         End If
     End Sub
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function LoginEnabled(ByRef PWD As String, ByRef UID As String, ByRef FW As String, ByRef FP As String) As Boolean
         Dim bAns As Boolean = False
         Try
@@ -322,6 +323,7 @@ Module GlobalVars
         End Try
         Return bAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function GetOwnerID() As Integer
         Dim iAns As Integer = 0
         Try
@@ -351,6 +353,7 @@ Module GlobalVars
         End Try
         Return iAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function GetLoadName() As String
         Dim sAns As String = "My Loaders Log"
         Try
@@ -375,6 +378,7 @@ Module GlobalVars
         End Try
         Return sAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoMetalic function")>
     Public Function CostOf1RndOfAmmo(ByVal dPrimer As Double, ByVal dCase As Double, _
                                         ByVal dBullet As Double, ByVal dPowder As Double, _
                                         ByVal midPowder As Double) As Double
@@ -383,6 +387,7 @@ Module GlobalVars
         dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet))
         Return Obj.ConvertToDollars(dAns)
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoShotGun function")>
     Public Function CostOf1RndOfAmmoSG(ByVal dPrimer As Double, ByVal dCase As Double, _
                                         ByVal dBullet As Double, ByVal dPowder As Double, _
                                         ByVal midPowder As Double, ByVal WAD As Double) As Double
