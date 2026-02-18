@@ -105,6 +105,7 @@ Namespace LoadersClass
             'BSAP.UpDateAppDetails()
         End Sub
 #End Region
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SetSettingDetails()
 
             If Not SettingsExists() Then
@@ -132,13 +133,17 @@ Namespace LoadersClass
                 MyReg.Close()
             End If
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetViewSettings(ByVal sKey As String, Optional ByVal sDefault As String = "") As String
             Dim sAns As String = ""
             Dim strValue As String = DefaultRegPath & "\Settings"
             sAns = GetRegSubKeyValue(strValue, sKey, sDefault)
             Return sAns
         End Function
-        Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, 
+                               ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, 
+                               ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
             Dim NumberFormat As String
             Dim UseProxy As Boolean
             Dim AutoUpdate As Boolean
@@ -165,6 +170,7 @@ Namespace LoadersClass
                 If MyErr = 13 Then Call SetSettingDetails()
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveViewSettings(ByVal sKey As String, ByVal sValue As String)
             Dim strValue As String = DefaultRegPath & "\Settings"
             Dim MyReg As RegistryKey
@@ -173,6 +179,7 @@ Namespace LoadersClass
             MyReg.SetValue(sKey, sValue)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
             Dim strValue As String = DefaultRegPath & "\Settings"
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -195,6 +202,7 @@ Namespace LoadersClass
             MyReg.SetValue("VIEW_CUPS", UseViewCUPS)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveLastWorkingDir(ByVal strPath As String)
             Dim MyReg As RegistryKey
             Dim strValue As String = DefaultRegPath & "\Settings"
