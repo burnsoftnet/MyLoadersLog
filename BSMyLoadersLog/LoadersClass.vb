@@ -993,6 +993,7 @@ Namespace LoadersClass
         Public Function GetAmmoTypeName_SG(ByVal TID As Long) As String
             Return GetName("SELECT Name from List_SG_ShotCharge_Loads where ID=" & TID, "Name")
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetCaliberID(ByVal sName As String, Optional ByVal AutoAdd As Boolean = False) As Long
             Dim lans As Long = 0
             lans = GetID("SELECT ID from List_Calibers where cal='" & sName & "'")
@@ -1004,6 +1005,7 @@ Namespace LoadersClass
             End If
             Return lans
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function TotalCost_Equipment() As String
             Dim sAns As String = "0.00"
             Try
