@@ -28,10 +28,12 @@ Namespace LoadersClass
                 _DefaultDBName = value
             End Set
         End Property
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub CreateSubKey(ByVal strValue As String)
             'Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
             Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function RegSubKeyExists(ByVal strValue As String) As Boolean
             Dim bAns As Boolean = False
             Try
@@ -48,6 +50,7 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetRegSubKeyValue(ByVal strKey As String, ByVal strValue As String, ByVal strDefault As String) As String
             Dim sAns As String = ""
             Dim strMsg As String = ""
@@ -74,6 +77,7 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function SettingsExists() As Boolean
             Dim bAns As Boolean = False
             Dim MyReg As RegistryKey
@@ -88,6 +92,7 @@ Namespace LoadersClass
             End If
             Return bAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub UpDateAppDetails()
             Dim strValue As String = DefaultRegPath
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -211,6 +216,7 @@ Namespace LoadersClass
             MyReg.SetValue("LastWorkingPath", strPath)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveConfigSort(ByVal ConfigSort As String)
             Dim strValue As String = DefaultRegPath & "\Settings"
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -220,6 +226,7 @@ Namespace LoadersClass
             MyReg.SetValue("ConfigSort", ConfigSort)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetLastWorkingDir() As String
             Dim sAns As String = ""
             Dim strValue As String = DefaultRegPath & "\Settings"
@@ -232,6 +239,7 @@ Namespace LoadersClass
         ''' <summary>
         ''' This function will generate the connection string needed to connect to the load access database
         ''' <summary>
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Function sConnect() As String
             Dim sAns As String = ""
             Dim Obj As New BSRegistry
@@ -241,6 +249,7 @@ Namespace LoadersClass
         ''' <summary>
         ''' This Sub will initialize the Conn ODBC Object with the connection string for database connection
         ''' </summary>
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub ConnectDB()
             Try
                 Conn = New OdbcConnection(sConnect)
@@ -251,6 +260,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub CloseDB()
             Try
                 Conn.Close()
@@ -261,6 +271,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub ConnExec(ByVal strSQL As String)
             Try
                 Call ConnectDB()
@@ -278,6 +289,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, "ConnExec.strSQL=" & strSQL)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Function GetData(ByVal SQL As String) As DataTable
             Dim Table As New DataTable
             Try
