@@ -416,6 +416,7 @@ Namespace LoadersClass
     End Class
     Public Class AutoFillCollections
         Public Class ShotGun
+            <Obsolete("NOT USED")>
             Private Function MainCollection(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
                 Dim iCol As New AutoCompleteStringCollection
                 Dim ArrList As New ArrayList
@@ -438,6 +439,7 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return iCol
             End Function
+            <Obsolete("Replaced by BurnSoft.Applications.MLL.AutoFill.General")>
             Private Function MainCollectionDistinct(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
                 Dim iCol As New AutoCompleteStringCollection
                 Dim ArrList As New ArrayList
@@ -460,99 +462,131 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return iCol
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function Config_Source_SG() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Source", "Config_List_Data_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function Config_LoadInOZ_SG() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("SW_t", "Config_List_Data_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_WAD() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("WAD", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sName", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_sCharge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.Powder")>
             Public Function List_SG_Bushings_Powder_Powder() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("name", "General_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sName", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_sCharge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Patterns() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("pd", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_ShotWt() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("shotwt", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_ShotSize() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("shotsize", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Case() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("case", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_PowderBushing() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("pbm", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Wad() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("wad", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Primer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("primer", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Name", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_DRAM() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("DRAM", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Gauge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Gauge", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Length() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Length", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Manu() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Name", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_mat() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("mat", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_ShotNo() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("ShotNo", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_weight() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("weight", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_CAL() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("CAL", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_ShotType_Details")
             End Function
