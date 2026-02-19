@@ -34,3 +34,40 @@ All located in the docs folder
 * Create the Release On Github with Change Log Details
 * Update the Github Pages Main README with the Change Log Information.
 * 
+
+## Backup and Restore Configs
+
+Since the Backup and Restore application where replaced with nuget packages, it is best that we store the config to update 
+accordinly when the package is updated
+
+### Backup Application Config
+
+```xml
+<appSettings>
+    <add key="AppName" value="DBBackup"/>
+    <add key="MainAppName" value="My Loaders Log"/>
+    <add key="DBName" value="MLL.mdb"/>
+    <add key="RegKey" value="Software\BurnSoft\BSMLL\"/>
+    <add key="CheckProcess" value="false"/>
+    <add key="LogFilename" value="dbbackup.err.log"/>
+    <add key="AppABV" value="MLL"/>
+</appSettings>
+
+```
+
+
+### Retore Application Config
+
+```xml
+<appSettings>
+    <add key="AppName" value="DBRestore"/>
+    <add key="MainAppName" value="My Loaders Log"/>
+    <add key="MainAppNameEXE" value="BSMyLoadersLog.exe"/>
+    <add key="DBName" value="MLL.mdb"/>
+    <add key="RegKey" value="Software\BurnSoft\BSMLL\"/>
+    <add key="CheckProcess" value="false"/>
+    <add key="LogFilename" value="dbrestore.err.log"/>
+    <add key="AppABV" value="MLL"/>
+</appSettings>
+
+```
