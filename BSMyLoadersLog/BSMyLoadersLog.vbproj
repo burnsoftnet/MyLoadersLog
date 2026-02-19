@@ -1234,12 +1234,6 @@
     <None Include="app.config" />
     <None Include="BurnSoft.Security.RegularEncryption.chm" />
     <None Include="BurnSoft.Universal.chm" />
-    <None Include="DBBackup.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DBRestore.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="MLLDataSet.xsc">
       <DependentUpon>MLLDataSet.xsd</DependentUpon>
     </None>
@@ -1272,12 +1266,6 @@
     </Content>
     <Content Include="BurnSoft.MsgBox.dll" />
     <Content Include="DataGridViewAutoFilter.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBBackup.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBRestore.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.png" />
