@@ -841,7 +841,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmReport_Configuration_Sheet_SG_Slug.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_Config_Shotgun_Slug.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Config_Shotgun_Slug.rdlc" />
     <EmbeddedResource Include="frmReport_Configuration_Sheet_SG.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmReport_Configuration_Sheet_SG.vb</DependentUpon>
@@ -1208,23 +1208,23 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_BulletInventory.rdlc" />
-    <EmbeddedResource Include="Report_CaseInventory.rdlc" />
-    <EmbeddedResource Include="Report_Config_RiflePistol.rdlc" />
-    <EmbeddedResource Include="Report_Config_Shotgun.rdlc" />
-    <EmbeddedResource Include="Report_DataSheet_RiflePistols.rdlc" />
-    <EmbeddedResource Include="Report_DataSheet_RiflePistolsWOC.rdlc" />
-    <EmbeddedResource Include="Report_DataSheet_Shotgun.rdlc" />
-    <EmbeddedResource Include="Report_DataSheet_ShotgunWC.rdlc" />
-    <EmbeddedResource Include="Report_HullInventory.rdlc" />
-    <EmbeddedResource Include="Report_List_Equipment.rdlc" />
-    <EmbeddedResource Include="Report_List_Firearms.rdlc" />
-    <EmbeddedResource Include="Report_List_WADS.rdlc" />
-    <EmbeddedResource Include="Report_Loaded_Ammunition.rdlc" />
-    <EmbeddedResource Include="Report_PowderInventory.rdlc" />
-    <EmbeddedResource Include="Report_PrimerInventory.rdlc" />
-    <EmbeddedResource Include="Report_ShotInventory.rdlc" />
-    <EmbeddedResource Include="Report_SlugInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_BulletInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_CaseInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Config_RiflePistol.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Config_Shotgun.rdlc" />
+    <EmbeddedResource Include="Reports\Report_DataSheet_RiflePistols.rdlc" />
+    <EmbeddedResource Include="Reports\Report_DataSheet_RiflePistolsWOC.rdlc" />
+    <EmbeddedResource Include="Reports\Report_DataSheet_Shotgun.rdlc" />
+    <EmbeddedResource Include="Reports\Report_DataSheet_ShotgunWC.rdlc" />
+    <EmbeddedResource Include="Reports\Report_HullInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_List_Equipment.rdlc" />
+    <EmbeddedResource Include="Reports\Report_List_Firearms.rdlc" />
+    <EmbeddedResource Include="Reports\Report_List_WADS.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Loaded_Ammunition.rdlc" />
+    <EmbeddedResource Include="Reports\Report_PowderInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_PrimerInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_ShotInventory.rdlc" />
+    <EmbeddedResource Include="Reports\Report_SlugInventory.rdlc" />
     <EmbeddedResource Include="SplashScreen1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SplashScreen1.vb</DependentUpon>
@@ -1317,9 +1317,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
