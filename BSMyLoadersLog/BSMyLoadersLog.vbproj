@@ -171,22 +171,22 @@
     <Compile Include="frmCopy_DataSheet_Copy_ShotGun.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditBushing_Powder.Designer.vb">
+    <Compile Include="Editing\frmEditBushing_Powder.Designer.vb">
       <DependentUpon>frmEditBushing_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditBushing_Powder.vb">
+    <Compile Include="Editing\frmEditBushing_Powder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditBushing_Shot.Designer.vb">
+    <Compile Include="Editing\frmEditBushing_Shot.Designer.vb">
       <DependentUpon>frmEditBushing_Shot.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditBushing_Shot.vb">
+    <Compile Include="Editing\frmEditBushing_Shot.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditDataSheet_ShotGun.Designer.vb">
+    <Compile Include="Editing\frmEditDataSheet_ShotGun.Designer.vb">
       <DependentUpon>frmEditDataSheet_ShotGun.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditDataSheet_ShotGun.vb">
+    <Compile Include="Editing\frmEditDataSheet_ShotGun.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Viewing\frmView_Bushings_Powder.Designer.vb">
@@ -383,106 +383,106 @@
     <Compile Include="frmDBCleanup.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditBullets.Designer.vb">
+    <Compile Include="Editing\frmEditBullets.Designer.vb">
       <DependentUpon>frmEditBullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditBullets.vb">
+    <Compile Include="Editing\frmEditBullets.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditConfig.Designer.vb">
+    <Compile Include="Editing\frmEditConfig.Designer.vb">
       <DependentUpon>frmEditConfig.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditConfig.vb">
+    <Compile Include="Editing\frmEditConfig.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditDataSheet_RiflePistols.Designer.vb">
+    <Compile Include="Editing\frmEditDataSheet_RiflePistols.Designer.vb">
       <DependentUpon>frmEditDataSheet_RiflePistols.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditDataSheet_RiflePistols.vb">
+    <Compile Include="Editing\frmEditDataSheet_RiflePistols.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditEquipment.Designer.vb">
+    <Compile Include="Editing\frmEditEquipment.Designer.vb">
       <DependentUpon>frmEditEquipment.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditEquipment.vb">
+    <Compile Include="Editing\frmEditEquipment.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditFirearm.Designer.vb">
+    <Compile Include="Editing\frmEditFirearm.Designer.vb">
       <DependentUpon>frmEditFirearm.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditFirearm.vb">
+    <Compile Include="Editing\frmEditFirearm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditGuages.Designer.vb">
+    <Compile Include="Editing\frmEditGuages.Designer.vb">
       <DependentUpon>frmEditGuages.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditGuages.vb">
+    <Compile Include="Editing\frmEditGuages.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditHulls.Designer.vb">
+    <Compile Include="Editing\frmEditHulls.Designer.vb">
       <DependentUpon>frmEditHulls.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditHulls.vb">
+    <Compile Include="Editing\frmEditHulls.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditPowder.Designer.vb">
+    <Compile Include="Editing\frmEditPowder.Designer.vb">
       <DependentUpon>frmEditPowder.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditPowder.vb">
+    <Compile Include="Editing\frmEditPowder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditPrimer.Designer.vb">
+    <Compile Include="Editing\frmEditPrimer.Designer.vb">
       <DependentUpon>frmEditPrimer.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditPrimer.vb">
+    <Compile Include="Editing\frmEditPrimer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditShells.Designer.vb">
+    <Compile Include="Editing\frmEditShells.Designer.vb">
       <DependentUpon>frmEditShells.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditShells.vb">
+    <Compile Include="Editing\frmEditShells.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditShot.Designer.vb">
+    <Compile Include="Editing\frmEditShot.Designer.vb">
       <DependentUpon>frmEditShot.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditShot.vb">
+    <Compile Include="Editing\frmEditShot.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditSlug.Designer.vb">
+    <Compile Include="Editing\frmEditSlug.Designer.vb">
       <DependentUpon>frmEditSlug.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditSlug.vb">
+    <Compile Include="Editing\frmEditSlug.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditWADS.Designer.vb">
+    <Compile Include="Editing\frmEditWADS.Designer.vb">
       <DependentUpon>frmEditWADS.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEditWADS.vb">
+    <Compile Include="Editing\frmEditWADS.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEdit_AmmunitionTypes.Designer.vb">
+    <Compile Include="Editing\frmEdit_AmmunitionTypes.Designer.vb">
       <DependentUpon>frmEdit_AmmunitionTypes.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEdit_AmmunitionTypes.vb">
+    <Compile Include="Editing\frmEdit_AmmunitionTypes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEdit_PrimerTypes.Designer.vb">
+    <Compile Include="Editing\frmEdit_PrimerTypes.Designer.vb">
       <DependentUpon>frmEdit_PrimerTypes.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEdit_PrimerTypes.vb">
+    <Compile Include="Editing\frmEdit_PrimerTypes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEdit_ShotWeight.Designer.vb">
+    <Compile Include="Editing\frmEdit_ShotWeight.Designer.vb">
       <DependentUpon>frmEdit_ShotWeight.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEdit_ShotWeight.vb">
+    <Compile Include="Editing\frmEdit_ShotWeight.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEdit_SuggestedUse.Designer.vb">
+    <Compile Include="Editing\frmEdit_SuggestedUse.Designer.vb">
       <DependentUpon>frmEdit_SuggestedUse.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmEdit_SuggestedUse.vb">
+    <Compile Include="Editing\frmEdit_SuggestedUse.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmExportFirearms.Designer.vb">
@@ -814,15 +814,15 @@
     <EmbeddedResource Include="frmCopy_DataSheet_Copy_ShotGun.resx">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditBushing_Powder.resx">
+    <EmbeddedResource Include="Editing\frmEditBushing_Powder.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditBushing_Powder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditBushing_Shot.resx">
+    <EmbeddedResource Include="Editing\frmEditBushing_Shot.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditBushing_Shot.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditDataSheet_ShotGun.resx">
+    <EmbeddedResource Include="Editing\frmEditDataSheet_ShotGun.resx">
       <DependentUpon>frmEditDataSheet_ShotGun.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Viewing\frmView_Bushings_Powder.resx">
@@ -962,71 +962,71 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmDBCleanup.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditBullets.resx">
+    <EmbeddedResource Include="Editing\frmEditBullets.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditBullets.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditConfig.resx">
+    <EmbeddedResource Include="Editing\frmEditConfig.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditConfig.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditDataSheet_RiflePistols.resx">
+    <EmbeddedResource Include="Editing\frmEditDataSheet_RiflePistols.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditDataSheet_RiflePistols.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditEquipment.resx">
+    <EmbeddedResource Include="Editing\frmEditEquipment.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditEquipment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditFirearm.resx">
+    <EmbeddedResource Include="Editing\frmEditFirearm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditFirearm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditGuages.resx">
+    <EmbeddedResource Include="Editing\frmEditGuages.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditGuages.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditHulls.resx">
+    <EmbeddedResource Include="Editing\frmEditHulls.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditHulls.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditPowder.resx">
+    <EmbeddedResource Include="Editing\frmEditPowder.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditPowder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditPrimer.resx">
+    <EmbeddedResource Include="Editing\frmEditPrimer.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditPrimer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditShells.resx">
+    <EmbeddedResource Include="Editing\frmEditShells.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditShells.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditShot.resx">
+    <EmbeddedResource Include="Editing\frmEditShot.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditShot.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditSlug.resx">
+    <EmbeddedResource Include="Editing\frmEditSlug.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditSlug.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditWADS.resx">
+    <EmbeddedResource Include="Editing\frmEditWADS.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEditWADS.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEdit_AmmunitionTypes.resx">
+    <EmbeddedResource Include="Editing\frmEdit_AmmunitionTypes.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit_AmmunitionTypes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEdit_PrimerTypes.resx">
+    <EmbeddedResource Include="Editing\frmEdit_PrimerTypes.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit_PrimerTypes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEdit_ShotWeight.resx">
+    <EmbeddedResource Include="Editing\frmEdit_ShotWeight.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit_ShotWeight.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEdit_SuggestedUse.resx">
+    <EmbeddedResource Include="Editing\frmEdit_SuggestedUse.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit_SuggestedUse.vb</DependentUpon>
     </EmbeddedResource>
