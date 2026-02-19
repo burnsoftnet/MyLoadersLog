@@ -209,10 +209,10 @@
     </Compile>
     <Compile Include="DataGridPrinter.vb" />
     <Compile Include="ExportModule.vb" />
-    <Compile Include="frmAddBullets.Designer.vb">
+    <Compile Include="Adding\frmAddBullets.Designer.vb">
       <DependentUpon>frmAddBullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAddBullets.vb">
+    <Compile Include="Adding\frmAddBullets.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAddCaliberToCollection.Designer.vb">
@@ -846,7 +846,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmReport_Configuration_Sheet_SG.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddBullets.resx">
+    <EmbeddedResource Include="Adding\frmAddBullets.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmAddBullets.vb</DependentUpon>
     </EmbeddedResource>
