@@ -30,28 +30,45 @@ Module GlobalVars
     Public LASTCONFIGEDVIEWED As Long
     Public APPLICATION_PATH As String
     Public APPLICATION_PATH_DATA As String
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_HELP_FILE = "my_loaders_log_help.chm"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_HOTFIX_FILE = "BSMLL_HotFixes.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_BACKUP = "DBBackup.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_RESTORE = "DBRestore.exe"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_WIKI = "http://wiki.burnsoft.net/AllPages.aspx?Cat=My%20Loaders%20Log"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SHOP = "http://shopping.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_BUG = "http://bugreport.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SUPPORT = "http://support.burnsoft.net"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_SITESEARCH = "http://www.burnsoft.net/Search_Site.aspx"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MENU_LINKS = "http://wiki.burnsoft.net/Links_Firearm_reloading.ashx"
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAINS_1LBS = 6999.99
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAINS_1GM = 15.4323
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAMS_1LBS = 453.592
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_OZ_1LBS = 16
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAMS_OZ = 28.35
     Public Const DATABASE_NAME = "MLL.mdb"
     Public Const USE_SHOTGUN As Boolean = True
+    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Enum WeightType
         Pounds
         Grams
         Grains
     End Enum
+    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     Public Function ConvToNum(ByVal strValue As String) As Double
         Dim dAns As Double = 0
         Try
@@ -94,6 +111,7 @@ Module GlobalVars
         End Try
         Return dAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     Public Function ConvertOZToDouble(ByVal sValue As String) As Double
         Dim dAns As Double = 0
         Try
@@ -147,6 +165,7 @@ Module GlobalVars
         End Try
         Return dAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function UnFluffContent(ByVal strContent As String) As String
         Dim sAns As String = ""
         sAns = Trim(Replace(strContent, "''", "'"))
@@ -155,6 +174,7 @@ Module GlobalVars
         End If
         Return sAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function FluffContent(ByVal strContent As String, Optional ByVal default_value As String = "   ") As String
         Dim sAns As String = ""
         sAns = Trim(Replace(strContent, "'", "''"))
@@ -163,6 +183,7 @@ Module GlobalVars
         End If
         Return sAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function FluffContent(ByVal strContent As String, ByVal lDefault As Double) As Double
         Dim sAns As Double = 0
         If Len(strContent) = 0 Then
@@ -172,6 +193,7 @@ Module GlobalVars
         End If
         Return sAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function IsRequired(ByVal strValue As String, ByVal strField As String, ByVal StrTitle As String) As Boolean
         Dim bAns As Boolean = False
         If Len(Trim(strValue)) = 0 Then
@@ -182,6 +204,7 @@ Module GlobalVars
         If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
         Return bAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function IsRequired(ByVal lValue As Long, ByVal lDefault As Long, ByVal strField As String, ByVal StrTitle As String) As Boolean
         Dim bAns As Boolean = False
         If lValue = lDefault Then
@@ -192,6 +215,7 @@ Module GlobalVars
         If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
         Return bAns
     End Function
+    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function IsRequired(ByVal lValue As Double, ByVal lDefault As Double, ByVal strField As String, ByVal StrTitle As String) As Boolean
         Dim bAns As Boolean = False
         If lValue = lDefault Then
@@ -202,6 +226,7 @@ Module GlobalVars
         If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
         Return bAns
     End Function
+    <Obsolete("This was replaced in the MLL Library Under Helpers.Converters")>
     Public Function ConvertWeight(ByVal Value As Double, ByVal ConvertTo As WeightType, ByVal ConvertFrom As WeightType) As Double
         Dim dAns As Double = 0
         Select Case ConvertTo
@@ -238,6 +263,7 @@ Module GlobalVars
             Global.System.Windows.Forms.Application.Exit()
         End If
     End Sub
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function LoginEnabled(ByRef PWD As String, ByRef UID As String, ByRef FW As String, ByRef FP As String) As Boolean
         Dim bAns As Boolean = False
         Try
@@ -297,6 +323,7 @@ Module GlobalVars
         End Try
         Return bAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function GetOwnerID() As Integer
         Dim iAns As Integer = 0
         Try
@@ -326,6 +353,7 @@ Module GlobalVars
         End Try
         Return iAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     Public Function GetLoadName() As String
         Dim sAns As String = "My Loaders Log"
         Try
@@ -350,6 +378,7 @@ Module GlobalVars
         End Try
         Return sAns
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoMetalic function")>
     Public Function CostOf1RndOfAmmo(ByVal dPrimer As Double, ByVal dCase As Double, _
                                         ByVal dBullet As Double, ByVal dPowder As Double, _
                                         ByVal midPowder As Double) As Double
@@ -358,6 +387,7 @@ Module GlobalVars
         dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet))
         Return Obj.ConvertToDollars(dAns)
     End Function
+    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoShotGun function")>
     Public Function CostOf1RndOfAmmoSG(ByVal dPrimer As Double, ByVal dCase As Double, _
                                         ByVal dBullet As Double, ByVal dPowder As Double, _
                                         ByVal midPowder As Double, ByVal WAD As Double) As Double

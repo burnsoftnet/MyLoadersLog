@@ -28,10 +28,12 @@ Namespace LoadersClass
                 _DefaultDBName = value
             End Set
         End Property
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub CreateSubKey(ByVal strValue As String)
             'Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
             Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function RegSubKeyExists(ByVal strValue As String) As Boolean
             Dim bAns As Boolean = False
             Try
@@ -48,6 +50,7 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetRegSubKeyValue(ByVal strKey As String, ByVal strValue As String, ByVal strDefault As String) As String
             Dim sAns As String = ""
             Dim strMsg As String = ""
@@ -74,6 +77,7 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function SettingsExists() As Boolean
             Dim bAns As Boolean = False
             Dim MyReg As RegistryKey
@@ -88,6 +92,7 @@ Namespace LoadersClass
             End If
             Return bAns
         End Function
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub UpDateAppDetails()
             Dim strValue As String = DefaultRegPath
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -105,6 +110,7 @@ Namespace LoadersClass
             'BSAP.UpDateAppDetails()
         End Sub
 #End Region
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SetSettingDetails()
 
             If Not SettingsExists() Then
@@ -132,13 +138,17 @@ Namespace LoadersClass
                 MyReg.Close()
             End If
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetViewSettings(ByVal sKey As String, Optional ByVal sDefault As String = "") As String
             Dim sAns As String = ""
             Dim strValue As String = DefaultRegPath & "\Settings"
             sAns = GetRegSubKeyValue(strValue, sKey, sDefault)
             Return sAns
         End Function
-        Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, 
+                               ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, 
+                               ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
             Dim NumberFormat As String
             Dim UseProxy As Boolean
             Dim AutoUpdate As Boolean
@@ -165,6 +175,7 @@ Namespace LoadersClass
                 If MyErr = 13 Then Call SetSettingDetails()
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveViewSettings(ByVal sKey As String, ByVal sValue As String)
             Dim strValue As String = DefaultRegPath & "\Settings"
             Dim MyReg As RegistryKey
@@ -173,6 +184,7 @@ Namespace LoadersClass
             MyReg.SetValue(sKey, sValue)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
             Dim strValue As String = DefaultRegPath & "\Settings"
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -195,6 +207,7 @@ Namespace LoadersClass
             MyReg.SetValue("VIEW_CUPS", UseViewCUPS)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveLastWorkingDir(ByVal strPath As String)
             Dim MyReg As RegistryKey
             Dim strValue As String = DefaultRegPath & "\Settings"
@@ -203,6 +216,7 @@ Namespace LoadersClass
             MyReg.SetValue("LastWorkingPath", strPath)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveConfigSort(ByVal ConfigSort As String)
             Dim strValue As String = DefaultRegPath & "\Settings"
             If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
@@ -212,6 +226,7 @@ Namespace LoadersClass
             MyReg.SetValue("ConfigSort", ConfigSort)
             MyReg.Close()
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetLastWorkingDir() As String
             Dim sAns As String = ""
             Dim strValue As String = DefaultRegPath & "\Settings"
@@ -224,6 +239,7 @@ Namespace LoadersClass
         ''' <summary>
         ''' This function will generate the connection string needed to connect to the load access database
         ''' <summary>
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Function sConnect() As String
             Dim sAns As String = ""
             Dim Obj As New BSRegistry
@@ -233,6 +249,7 @@ Namespace LoadersClass
         ''' <summary>
         ''' This Sub will initialize the Conn ODBC Object with the connection string for database connection
         ''' </summary>
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub ConnectDB()
             Try
                 Conn = New OdbcConnection(sConnect)
@@ -243,6 +260,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub CloseDB()
             Try
                 Conn.Close()
@@ -253,6 +271,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Sub ConnExec(ByVal strSQL As String)
             Try
                 Call ConnectDB()
@@ -270,6 +289,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, "ConnExec.strSQL=" & strSQL)
             End Try
         End Sub
+        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Function GetData(ByVal SQL As String) As DataTable
             Dim Table As New DataTable
             Try
@@ -288,87 +308,106 @@ Namespace LoadersClass
             Return Table
         End Function
     End Class
+    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
     Public Class BSFileSystem
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub LogFile(ByVal strPath As String, ByVal strMessage As String)
             Dim SendMessage As String = DateTime.Now & vbTab & strMessage
             Call AppendToFile(strPath, SendMessage)
             MDIParentMain.tsslErrorsFound.Visible = True
             MDIParentMain.tsslErrorsFound.Enabled = True
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub DeleteFile(ByVal strPath As String)
             If File.Exists(strPath) Then
                 File.Delete(strPath)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function FileExists(ByVal strPath As String)
             Return File.Exists(strPath)
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Private Sub CreateFile(ByVal strPath As String)
             If File.Exists(strPath) = False Then
                 Dim fs As New FileStream(strPath, FileMode.Append, FileAccess.Write, FileShare.Write)
                 fs.Close()
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Private Sub AppendToFile(ByVal strPath As String, ByVal strNewLine As String)
             If File.Exists(strPath) = False Then Call CreateFile(strPath)
             Dim sw As New StreamWriter(strPath, True, Encoding.ASCII)
             sw.WriteLine(strNewLine)
             sw.Close()
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub OutPutToFile(ByVal strPath As String, ByVal strNewLine As String)
             Call AppendToFile(strPath, strNewLine)
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub MoveFile(ByVal strFrom As String, ByVal strTo As String)
             If File.Exists(strFrom) Then
                 File.Move(strFrom, strTo)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub CopyFile(ByVal strFrom As String, ByVal strTo As String)
             If File.Exists(strFrom) Then
                 File.Copy(strFrom, strTo)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub CreateDirectory(ByVal strPath As String)
             If Directory.Exists(strPath) Then
                 Directory.CreateDirectory(strPath)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function DirectoryExists(ByVal strPath As String) As Boolean
             Return Directory.Exists(strPath)
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub DeleteDirectory(ByVal strPath As String)
             If Directory.Exists(strPath) Then
                 Directory.Delete(strPath)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub MoveDirectory(ByVal strFrom As String, ByVal strTo As String)
             If Directory.Exists(strFrom) Then
                 Directory.Move(strFrom, strTo)
             End If
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Sub RenameFile(ByVal strFrom As String, ByVal strTo As String)
             File.Move(strFrom, strTo)
         End Sub
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function GetPathOfFile(ByVal strFile As String) As String
             Dim sAns As String = ""
             sAns = Path.GetDirectoryName(strFile)
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function GetExtOfFile(ByVal strFile As String) As String
             Dim sAns As String = ""
             sAns = Path.GetExtension(strFile)
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function GetNameOfFile(ByVal strFile As String) As String
             Dim sAns As String = ""
             sAns = Path.GetFileName(strFile)
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function FileHasExtension(ByVal strFile As String) As Boolean
             Dim bAns As Boolean = False
             bAns = Path.HasExtension(strFile)
             Return bAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
         Public Function GetNameOfFileWOExt(ByVal strFile As String) As String
             Dim sAns As String = ""
             sAns = Path.GetFileNameWithoutExtension(strFile)
@@ -377,6 +416,7 @@ Namespace LoadersClass
     End Class
     Public Class AutoFillCollections
         Public Class ShotGun
+            <Obsolete("NOT USED")>
             Private Function MainCollection(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
                 Dim iCol As New AutoCompleteStringCollection
                 Dim ArrList As New ArrayList
@@ -399,6 +439,7 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return iCol
             End Function
+            <Obsolete("Replaced by BurnSoft.Applications.MLL.AutoFill.General")>
             Private Function MainCollectionDistinct(ByVal strColumn As String, ByVal strTable As String) As AutoCompleteStringCollection
                 Dim iCol As New AutoCompleteStringCollection
                 Dim ArrList As New ArrayList
@@ -421,99 +462,131 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return iCol
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function Config_Source_SG() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Source", "Config_List_Data_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function Config_LoadInOZ_SG() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("SW_t", "Config_List_Data_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_WAD() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("WAD", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_WAD_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_WAD")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sName", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Powder_sCharge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.Powder")>
             Public Function List_SG_Bushings_Powder_Powder() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("name", "General_Powder")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sName", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Bushings_Shot_sCharge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("sCharge", "List_SG_Bushing_Shot")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Patterns() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("pd", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_ShotWt() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("shotwt", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_ShotSize() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("shotsize", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Case() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("case", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_PowderBushing() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("pbm", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Wad() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("wad", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.ConfigShotgun")>
             Public Function List_SG_Log_SG_Primer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("primer", "Loaders_Log_SG")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Manufacturer() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Name", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_DRAM() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("DRAM", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Gauge() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Gauge", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Length() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Length", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_Case_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_Case")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Manu() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Manufacturer", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Name() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Name", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_mat() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("mat", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_ShotNo() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("ShotNo", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_weight() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("weight", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_CAL() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("CAL", "List_SG_ShotType_Details")
             End Function
+            <Obsolete("Replaced with BurnSoft.Applications.MLL.AutoFill.GeneralShotgun")>
             Public Function List_SG_SHOTSLUG_Details_Price() As AutoCompleteStringCollection
                 Return MainCollectionDistinct("Price", "List_SG_ShotType_Details")
             End Function
@@ -562,114 +635,150 @@ Namespace LoadersClass
             Call Obj.CloseDB()
             Return iCol
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Calibers.ShowAll")>
         Public Function General_Calibers() As AutoCompleteStringCollection
             Return MainCollection("Cal", "General_Calibers")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Primers")>
         Public Function General_Primer_Type_ManuFacturers() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "General_Primer")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Primers")>
         Public Function General_Primer_Type_Name() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Name", "General_Primer")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Primers")>
         Public Function General_Primer_Type_Price() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Price", "General_Primer")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Powder")>
         Public Function General_Powder_Manufacturer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "General_Powder")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Powder")>
         Public Function General_Powder_Name() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Name", "General_Powder")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Powder")>
         Public Function General_Powder_WeightInPounds() As AutoCompleteStringCollection
             Return MainCollectionDistinct("weightlbs", "General_Powder")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Powder")>
         Public Function General_Powder_Price() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Price", "General_Powder")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Manufacturer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Name() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Name", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Diameter() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Diameter", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Sec_Den() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Sec_Den", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Part_number() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Part_number", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Ballistic_Coefficient() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Ballistic_Coefficient", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Price() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Price", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
         Public Function List_Bullets_Weight() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Weight", "List_Bullets")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Cases")>
         Public Function List_Case_Manufacturer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "List_Case")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Cases")>
         Public Function List_Case_Name() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Name", "List_Case")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Cases")>
         Public Function List_Case_Trim_to_length() As AutoCompleteStringCollection
             Return MainCollectionDistinct("ttl", "List_Case")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Cases")>
         Public Function List_Case_Price() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Price", "List_Case")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Equipment")>
         Public Function General_Equipment_Manufacturer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "General_Equipment")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Equipment")>
         Public Function General_Equipment_Name() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Name", "General_Equipment")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Equipment")>
         Public Function General_Equipment_Use() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Use", "General_Equipment")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Equipment")>
         Public Function General_Equipment_Cost() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Cost", "General_Equipment")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function ConfigName() As AutoCompleteStringCollection
             Return MainCollectionDistinct("ConfigName", "Config_List_Name")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Config_Source_NSG() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Source", "Config_List_Data_NSG")
         End Function   
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_GroupSize() As AutoCompleteStringCollection
             Return MainCollectionDistinct("gs", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_Powder() As AutoCompleteStringCollection
             Return MainCollectionDistinct("pwm", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_Bullet() As AutoCompleteStringCollection
             Return MainCollectionDistinct("bullet", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_primer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("primer", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_case() As AutoCompleteStringCollection
             Return MainCollectionDistinct("case", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_conditions() As AutoCompleteStringCollection
             Return MainCollectionDistinct("conditions", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_tl() As AutoCompleteStringCollection
             Return MainCollectionDistinct("tl", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_notes() As AutoCompleteStringCollection
             Return MainCollectionDistinct("notes", "Loaders_Log_NSG")
         End Function
+        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.ConfigMetalic")>
         Public Function Loaders_Log_NSG_ConfigName() As AutoCompleteStringCollection
             Return MainCollectionDistinct("ConfigName", "Loaders_Log_NSG")
         End Function
       
     End Class
     Public Class GlobalFunctions
+        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function DatabaseVersion() As Double
             Dim dAns As Double = 0
             Try
@@ -696,6 +805,7 @@ Namespace LoadersClass
             End Try
             Return dAns
         End Function
+        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function ObjectExistsinDB(ByVal strObject As String, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
                 Dim bAns As Boolean = False
@@ -722,6 +832,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function ObjectExistsinDB(ByVal strObject As Integer, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
                 Dim bAns As Boolean = False
@@ -748,6 +859,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function GetID(ByVal SQL As String, Optional ByVal sField As String = "ID") As Long
             Try
                 Dim sAns As Long = 0
@@ -775,6 +887,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function GetName(ByVal SQL As String, ByVal strValue As String) As String
             Dim sAns As String = "N/A"
             Try
@@ -806,6 +919,7 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function CountFirearms() As Integer
             Dim iAns As Integer = 0
             Try
@@ -831,6 +945,7 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function CountReadyToUseAmmo() As Long
             Dim lAns As Long = 0
             Try
@@ -856,24 +971,29 @@ Namespace LoadersClass
             End Try
             Return lAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetTitle(ByVal lngID As Long) As String
             Dim sAns As String = ""
             sAns = GetName("SELECT * from Config_List_Name where ID=" & lngID, "ConfigName")
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetAmmoTypeID(ByVal sName) As Long
             Dim lAns As Long = 0
             lAns = GetID("SELECT ID from General_Ammunition_Type where FType='" & sName & "'")
             Return lAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetAmmoTypeIDSG(ByVal sName) As Long
             Dim lAns As Long = 0
             lAns = GetID("SELECT ID from List_SG_ShotCharge_Loads where Name='" & sName & "'")
             Return lAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetAmmoTypeName_SG(ByVal TID As Long) As String
             Return GetName("SELECT Name from List_SG_ShotCharge_Loads where ID=" & TID, "Name")
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetCaliberID(ByVal sName As String, Optional ByVal AutoAdd As Boolean = False) As Long
             Dim lans As Long = 0
             lans = GetID("SELECT ID from List_Calibers where cal='" & sName & "'")
@@ -885,6 +1005,7 @@ Namespace LoadersClass
             End If
             Return lans
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function TotalCost_Equipment() As String
             Dim sAns As String = "0.00"
             Try
@@ -909,6 +1030,7 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms.GetDetails function")>
         Public Sub GetFirearmDetails(ByVal FID As Long, Optional ByRef MGCID As Long = 0, _
                             Optional ByRef FullName As String = "", Optional ByRef Manu As String = "", _
                             Optional ByRef Model As String = "", Optional ByRef Cal As String = "", _
@@ -917,7 +1039,7 @@ Namespace LoadersClass
             Try
                 Dim Obj As New BSDatabase
                 Call Obj.ConnectDB()
-                Dim SQL As String = "Select * from Loaders_Log_Firearms where ID=" & FID
+                Dim SQL As String = "c" & FID
                 Dim CMD As New OdbcCommand(SQL, Obj.Conn)
                 Dim RS As OdbcDataReader
                 RS = CMD.ExecuteReader
@@ -942,6 +1064,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms")>
         Public Function GetFirearmID(ByVal Fullname As String) As Long
             Dim lAns As Long = 0
             Try
@@ -1917,6 +2040,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("This was replaced with the MLL Library Under Helpers.Converters")>
         Public Function ConvertToDollars(ByVal dValue As Double) As Double
             Dim dAns As Double = 0
             dAns = Math.Round(dValue, 2)

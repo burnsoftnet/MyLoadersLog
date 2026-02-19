@@ -1618,4 +1618,8 @@ Public Class MdiParentMain
             MsgBox("Error Log does not exist!")
         End If
     End Sub
+
+    Private Sub NewConfigurationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewConfigurationToolStripMenuItem.Click
+
+    End Sub
 End Class
