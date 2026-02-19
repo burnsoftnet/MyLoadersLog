@@ -24,7 +24,7 @@ Partial Class MdiParentMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIParentMain))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MdiParentMain))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -316,14 +316,14 @@ Partial Class MdiParentMain
         '
         Me.NewConfigurationToolStripMenuItem.Image = CType(resources.GetObject("NewConfigurationToolStripMenuItem.Image"),System.Drawing.Image)
         Me.NewConfigurationToolStripMenuItem.Name = "NewConfigurationToolStripMenuItem"
-        Me.NewConfigurationToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.NewConfigurationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NewConfigurationToolStripMenuItem.Text = "New Configuration"
         '
         'CaliberReloadToolStripMenuItem
         '
         Me.CaliberReloadToolStripMenuItem.Image = CType(resources.GetObject("CaliberReloadToolStripMenuItem.Image"),System.Drawing.Image)
         Me.CaliberReloadToolStripMenuItem.Name = "CaliberReloadToolStripMenuItem"
-        Me.CaliberReloadToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.CaliberReloadToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CaliberReloadToolStripMenuItem.Text = "Caliber to List"
         '
         'HandLoadersLogToolStripMenuItem
@@ -331,7 +331,7 @@ Partial Class MdiParentMain
         Me.HandLoadersLogToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RiflePistolToolStripMenuItem, Me.ShotgunToolStripMenuItem})
         Me.HandLoadersLogToolStripMenuItem.Image = CType(resources.GetObject("HandLoadersLogToolStripMenuItem.Image"),System.Drawing.Image)
         Me.HandLoadersLogToolStripMenuItem.Name = "HandLoadersLogToolStripMenuItem"
-        Me.HandLoadersLogToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.HandLoadersLogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.HandLoadersLogToolStripMenuItem.Text = "Loaders Log"
         '
         'RiflePistolToolStripMenuItem
@@ -377,91 +377,91 @@ Partial Class MdiParentMain
         'ToolStripSeparator11
         '
         Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(177, 6)
         '
         'AddFirearmToolStripMenuItem
         '
         Me.AddFirearmToolStripMenuItem.Image = CType(resources.GetObject("AddFirearmToolStripMenuItem.Image"),System.Drawing.Image)
         Me.AddFirearmToolStripMenuItem.Name = "AddFirearmToolStripMenuItem"
-        Me.AddFirearmToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.AddFirearmToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AddFirearmToolStripMenuItem.Text = "Add Firearm"
         '
         'EquipmentToolStripMenuItem
         '
         Me.EquipmentToolStripMenuItem.Image = CType(resources.GetObject("EquipmentToolStripMenuItem.Image"),System.Drawing.Image)
         Me.EquipmentToolStripMenuItem.Name = "EquipmentToolStripMenuItem"
-        Me.EquipmentToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.EquipmentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EquipmentToolStripMenuItem.Text = "Equipment"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(177, 6)
         '
         'PowderToolStripMenuItem
         '
         Me.PowderToolStripMenuItem.Image = CType(resources.GetObject("PowderToolStripMenuItem.Image"),System.Drawing.Image)
         Me.PowderToolStripMenuItem.Name = "PowderToolStripMenuItem"
-        Me.PowderToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.PowderToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PowderToolStripMenuItem.Text = "Powder"
         '
         'PrimerToolStripMenuItem
         '
         Me.PrimerToolStripMenuItem.Image = CType(resources.GetObject("PrimerToolStripMenuItem.Image"),System.Drawing.Image)
         Me.PrimerToolStripMenuItem.Name = "PrimerToolStripMenuItem"
-        Me.PrimerToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.PrimerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PrimerToolStripMenuItem.Text = "Primer"
         '
         'ToolStripSeparator10
         '
         Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
-        Me.ToolStripSeparator10.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(177, 6)
         '
         'BulletToolStripMenuItem
         '
         Me.BulletToolStripMenuItem.Image = CType(resources.GetObject("BulletToolStripMenuItem.Image"),System.Drawing.Image)
         Me.BulletToolStripMenuItem.Name = "BulletToolStripMenuItem"
-        Me.BulletToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.BulletToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BulletToolStripMenuItem.Text = "Bullet"
         '
         'CaseToolStripMenuItem
         '
         Me.CaseToolStripMenuItem.Image = CType(resources.GetObject("CaseToolStripMenuItem.Image"),System.Drawing.Image)
         Me.CaseToolStripMenuItem.Name = "CaseToolStripMenuItem"
-        Me.CaseToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.CaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CaseToolStripMenuItem.Text = "Case"
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(177, 6)
         '
         'WADToolStripMenuItem
         '
         Me.WADToolStripMenuItem.Image = CType(resources.GetObject("WADToolStripMenuItem.Image"),System.Drawing.Image)
         Me.WADToolStripMenuItem.Name = "WADToolStripMenuItem"
-        Me.WADToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.WADToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.WADToolStripMenuItem.Text = "WAD"
         '
         'ShellToolStripMenuItem
         '
         Me.ShellToolStripMenuItem.Image = CType(resources.GetObject("ShellToolStripMenuItem.Image"),System.Drawing.Image)
         Me.ShellToolStripMenuItem.Name = "ShellToolStripMenuItem"
-        Me.ShellToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ShellToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShellToolStripMenuItem.Text = "Shell Hulls"
         '
         'ShotToolStripMenuItem
         '
         Me.ShotToolStripMenuItem.Image = CType(resources.GetObject("ShotToolStripMenuItem.Image"),System.Drawing.Image)
         Me.ShotToolStripMenuItem.Name = "ShotToolStripMenuItem"
-        Me.ShotToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ShotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShotToolStripMenuItem.Text = "Shot"
         '
         'SlugsToolStripMenuItem
         '
         Me.SlugsToolStripMenuItem.Image = CType(resources.GetObject("SlugsToolStripMenuItem.Image"),System.Drawing.Image)
         Me.SlugsToolStripMenuItem.Name = "SlugsToolStripMenuItem"
-        Me.SlugsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.SlugsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SlugsToolStripMenuItem.Text = "Slugs"
         '
         'PowderBushingsToolStripMenuItem
@@ -469,7 +469,7 @@ Partial Class MdiParentMain
         Me.PowderBushingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PowderToolStripMenuItem1, Me.ShotToolStripMenuItem1})
         Me.PowderBushingsToolStripMenuItem.Image = CType(resources.GetObject("PowderBushingsToolStripMenuItem.Image"),System.Drawing.Image)
         Me.PowderBushingsToolStripMenuItem.Name = "PowderBushingsToolStripMenuItem"
-        Me.PowderBushingsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.PowderBushingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PowderBushingsToolStripMenuItem.Text = " Bar/Bushings"
         '
         'PowderToolStripMenuItem1
@@ -864,7 +864,7 @@ Partial Class MdiParentMain
         Me.ContentsToolStripMenuItem.Image = CType(resources.GetObject("ContentsToolStripMenuItem.Image"),System.Drawing.Image)
         Me.ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
         Me.ContentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1),System.Windows.Forms.Keys)
-        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ContentsToolStripMenuItem.Text = "&Contents"
         '
         'IndexToolStripMenuItem
@@ -872,7 +872,7 @@ Partial Class MdiParentMain
         Me.IndexToolStripMenuItem.Image = CType(resources.GetObject("IndexToolStripMenuItem.Image"),System.Drawing.Image)
         Me.IndexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black
         Me.IndexToolStripMenuItem.Name = "IndexToolStripMenuItem"
-        Me.IndexToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IndexToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.IndexToolStripMenuItem.Text = "&Index"
         '
         'SearchToolStripMenuItem
@@ -880,45 +880,45 @@ Partial Class MdiParentMain
         Me.SearchToolStripMenuItem.Image = CType(resources.GetObject("SearchToolStripMenuItem.Image"),System.Drawing.Image)
         Me.SearchToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.SearchToolStripMenuItem.Text = "&Search"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(165, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"),System.Drawing.Image)
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.AboutToolStripMenuItem.Text = "&About ..."
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(165, 6)
         '
         'TechnicalSupportToolStripMenuItem
         '
         Me.TechnicalSupportToolStripMenuItem.Image = CType(resources.GetObject("TechnicalSupportToolStripMenuItem.Image"),System.Drawing.Image)
         Me.TechnicalSupportToolStripMenuItem.Name = "TechnicalSupportToolStripMenuItem"
-        Me.TechnicalSupportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.TechnicalSupportToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.TechnicalSupportToolStripMenuItem.Text = "&Technical Support"
         '
         'ReportABugToolStripMenuItem
         '
         Me.ReportABugToolStripMenuItem.Image = CType(resources.GetObject("ReportABugToolStripMenuItem.Image"),System.Drawing.Image)
         Me.ReportABugToolStripMenuItem.Name = "ReportABugToolStripMenuItem"
-        Me.ReportABugToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ReportABugToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ReportABugToolStripMenuItem.Text = "Report a &Bug"
         '
         'KnowledgeBaseToolStripMenuItem
         '
         Me.KnowledgeBaseToolStripMenuItem.Image = CType(resources.GetObject("KnowledgeBaseToolStripMenuItem.Image"),System.Drawing.Image)
         Me.KnowledgeBaseToolStripMenuItem.Name = "KnowledgeBaseToolStripMenuItem"
-        Me.KnowledgeBaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.KnowledgeBaseToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.KnowledgeBaseToolStripMenuItem.Text = "&Knowledge Base"
         '
         'ToolStrip
@@ -1263,7 +1263,7 @@ Partial Class MdiParentMain
         '
         Me.HelpProvider1.HelpNamespace = "my_loaders_log_help.chm"
         '
-        'MDIParentMain
+        'MdiParentMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1278,7 +1278,7 @@ Partial Class MdiParentMain
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.IsMdiContainer = true
         Me.MainMenuStrip = Me.MenuStrip
-        Me.Name = "MDIParentMain"
+        Me.Name = "MdiParentMain"
         Me.HelpProvider1.SetShowHelp(Me, true)
         Me.Text = "My Loaders Log"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
