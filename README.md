@@ -13,6 +13,17 @@ If you wanted to work or play with this repo there are some additional notes in 
 
 ## Release
 
+### v3.0.x.x
+
+* Updated to use .NET Framework 4.8.1
+* Updated Remote Libraries
+* Updated Reports
+* REFACTOR - Moved the Forms the the appropriate related section to help mange the application
+* Updated Nuget Packages
+* FIXED - Report Viewing Issues
+* REFACTOR Backup application to use GitHub Nuget Package to keep things up to Date easier
+* REFACTOR Restore application to use GitHub Nuget Package to keep things up to Date easier
+
 ### v2.5.0.0
 - Released Free Version, no more need for Registration code or 30 day trials.
 
