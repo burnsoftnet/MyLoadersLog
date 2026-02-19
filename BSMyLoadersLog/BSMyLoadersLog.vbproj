@@ -214,7 +214,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataGridPrinter.vb" />
-    <Compile Include="ExportModule.vb" />
+    <Compile Include="ImportExport\ExportModule.vb" />
     <Compile Include="Adding\frmAddBullets.Designer.vb">
       <DependentUpon>frmAddBullets.vb</DependentUpon>
     </Compile>
@@ -491,10 +491,10 @@
     <Compile Include="Editing\frmEdit_SuggestedUse.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExportFirearms.Designer.vb">
+    <Compile Include="ImportExport\frmExportFirearms.Designer.vb">
       <DependentUpon>frmExportFirearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmExportFirearms.vb">
+    <Compile Include="ImportExport\frmExportFirearms.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmForgotPassword.Designer.vb">
@@ -503,16 +503,16 @@
     <Compile Include="frmForgotPassword.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImportConfiguration.Designer.vb">
+    <Compile Include="ImportExport\frmImportConfiguration.Designer.vb">
       <DependentUpon>frmImportConfiguration.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmImportConfiguration.vb">
+    <Compile Include="ImportExport\frmImportConfiguration.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImportFirearms.Designer.vb">
+    <Compile Include="ImportExport\frmImportFirearms.Designer.vb">
       <DependentUpon>frmImportFirearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmImportFirearms.vb">
+    <Compile Include="ImportExport\frmImportFirearms.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLoadMakeReady_Details.Designer.vb">
@@ -1036,7 +1036,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit_SuggestedUse.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExportFirearms.resx">
+    <EmbeddedResource Include="ImportExport\frmExportFirearms.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmExportFirearms.vb</DependentUpon>
     </EmbeddedResource>
@@ -1044,11 +1044,11 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmForgotPassword.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImportConfiguration.resx">
+    <EmbeddedResource Include="ImportExport\frmImportConfiguration.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmImportConfiguration.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImportFirearms.resx">
+    <EmbeddedResource Include="ImportExport\frmImportFirearms.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmImportFirearms.vb</DependentUpon>
     </EmbeddedResource>
