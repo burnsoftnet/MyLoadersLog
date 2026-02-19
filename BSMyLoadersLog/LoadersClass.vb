@@ -1030,6 +1030,7 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
+        <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms.GetDetails function")>
         Public Sub GetFirearmDetails(ByVal FID As Long, Optional ByRef MGCID As Long = 0, _
                             Optional ByRef FullName As String = "", Optional ByRef Manu As String = "", _
                             Optional ByRef Model As String = "", Optional ByRef Cal As String = "", _
@@ -1038,7 +1039,7 @@ Namespace LoadersClass
             Try
                 Dim Obj As New BSDatabase
                 Call Obj.ConnectDB()
-                Dim SQL As String = "Select * from Loaders_Log_Firearms where ID=" & FID
+                Dim SQL As String = "c" & FID
                 Dim CMD As New OdbcCommand(SQL, Obj.Conn)
                 Dim RS As OdbcDataReader
                 RS = CMD.ExecuteReader
@@ -1063,6 +1064,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms")>
         Public Function GetFirearmID(ByVal Fullname As String) As Long
             Dim lAns As Long = 0
             Try
