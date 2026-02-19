@@ -3,7 +3,7 @@ Public Class frmView_List_Bullets
     Const RegViewName As String = "View_Bullets"
     Public Sub LoadData()
         Try
-            Select Case LCase(ToolStripComboBox1.SelectedItem.ToString)
+            Select Case LCase(ToolStripComboBox1.Text)
                 Case LCase("All")
                     Me.List_Bullets_DetailsTableAdapter.FillByAllManu(Me.MLLDataSet.List_Bullets_Details)
                 Case LCase("Instock")
