@@ -3,6 +3,14 @@ Imports System.Data.Odbc
 Imports BurnSoft.Security.RegularEncryption.SHA
 
 Module GlobalVars
+    ''' <summary>
+    ''' The database path
+    ''' </summary>
+    Public DatabasePath as String
+    ''' <summary>
+    ''' The debug mode
+    ''' </summary>
+    Public DebugMode As Boolean
     Public OwnerID As String
     Public OwnerName As String
     Public OwnerLoadName As String
@@ -28,8 +36,8 @@ Module GlobalVars
     Public VIEW_CUPS As Boolean
     Public VIEW_FPS As Boolean
     Public LASTCONFIGEDVIEWED As Long
-    Public APPLICATION_PATH As String
-    Public APPLICATION_PATH_DATA As String
+    Public ApplicationPath As String
+    Public ApplicationPathData As String
     <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
     Public Const MY_HELP_FILE = "my_loaders_log_help.chm"
     <Obsolete("Moved to BurnSoft.Applications.MLL.Global.GeneralSettings")>
@@ -60,7 +68,7 @@ Module GlobalVars
     Public Const WEIGHT_OZ_1LBS = 16
     <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Const WEIGHT_GRAMS_OZ = 28.35
-    Public Const DATABASE_NAME = "MLL.mdb"
+    Public Const DatabaseName = "MLL.mdb"
     Public Const USE_SHOTGUN As Boolean = True
     <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
     Public Enum WeightType

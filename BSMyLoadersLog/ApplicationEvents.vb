@@ -1,3 +1,4 @@
+Imports System.Configuration
 Imports BSMyLoadersLog.LoadersClass
 
 ' ReSharper disable once CheckNamespace
@@ -20,17 +21,25 @@ Namespace My
         Protected Overrides Function OnInitialize(ByVal commandLineArgs As ObjectModel.ReadOnlyCollection(Of String)) As Boolean
             Dim objf As New BSFileSystem
             Try
+                Dim debugMsg As String = ""
+                Dim nl As String = vbCrLf
+                DebugMode = ConfigurationManager.AppSettings("DEBUG_MODE")
                 Dim appDataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\BurnSoft\MLL"
                 Dim appdatapathExists As Boolean = objf.DirectoryExists(appDataPath)
-                APPLICATION_PATH = Windows.Forms.Application.StartupPath
-                APPLICATION_PATH_DATA = APPLICATION_PATH
+                ApplicationPath = Windows.Forms.Application.StartupPath
+                ApplicationPathData = ApplicationPath
                 If appdatapathExists Then
-                    If objf.FileExists(appDataPath & "\" & DATABASE_NAME) Then
-                        APPLICATION_PATH_DATA = appDataPath
+                    If objf.FileExists(appDataPath & "\" & DatabaseName) Then
+                        ApplicationPathData = appDataPath
                     End If
                 End If
-                AppDomain.CurrentDomain.SetData("DataDirectory", APPLICATION_PATH_DATA)
-                MyLogFile = APPLICATION_PATH_DATA & "\err.log"
+                DatabasePath = ApplicationPathData & "\" & DatabaseName
+                AppDomain.CurrentDomain.SetData("DataDirectory", ApplicationPathData)
+                debugMsg &= nl & "Application Data Path=" & ApplicationPathData
+                debugMsg &= nl & "Application Path=" & ApplicationPath
+                debugMsg &= nl & "OS Version=" & Environment.OSVersion.Version.Major
+                
+                MyLogFile = ApplicationPathData & "\err.log"
                 Return MyBase.OnInitialize(commandLineArgs)
             Catch ex As Exception
 ' ReSharper disable once ConvertToConstant.Local

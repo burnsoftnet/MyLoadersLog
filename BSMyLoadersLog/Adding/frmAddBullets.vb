@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.AutoFill
 ''' <summary>
 ''' Class FrmAddBullets.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -18,6 +19,10 @@ Public Class FrmAddBullets
     ''' The bullet id
     ''' </summary>
     Public Bid As Long
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Private errOut as String
     ''' <summary>
     ''' Loads the data.
     ''' </summary>
@@ -98,15 +103,22 @@ Public Class FrmAddBullets
     ''' </summary>
     Sub AutoFill()
         Try
-            Dim objAf As New AutoFillCollections
-            txtManu.AutoCompleteCustomSource = objAf.List_Bullets_Manufacturer
-            txtName.AutoCompleteCustomSource = objAf.List_Bullets_Name
-            txtDia.AutoCompleteCustomSource = objAf.List_Bullets_Diameter
-            txtWei.AutoCompleteCustomSource = objAf.List_Bullets_Weight
-            txtSecDia.AutoCompleteCustomSource = objAf.List_Bullets_Sec_Den
-            txtPartNo.AutoCompleteCustomSource = objAf.List_Bullets_Part_number
-            txtBC.AutoCompleteCustomSource = objAf.List_Bullets_Ballistic_Coefficient
-            txtPrice.AutoCompleteCustomSource = objAf.List_Bullets_Price
+            txtManu.AutoCompleteCustomSource = Bullets.Manufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = Bullets.Name(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtDia.AutoCompleteCustomSource = Bullets.Diameter(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtWei.AutoCompleteCustomSource = Bullets.Weight(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtSecDia.AutoCompleteCustomSource = Bullets.SectionalDensity(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPartNo.AutoCompleteCustomSource = Bullets.PartNumber(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtBC.AutoCompleteCustomSource = Bullets.BallisticCoefficient(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPrice.AutoCompleteCustomSource = Bullets.Price(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Name, "AutoFill", Err.Number, ex.Message.ToString)
         End Try

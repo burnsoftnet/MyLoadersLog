@@ -6,6 +6,10 @@ Imports BSMyLoadersLog.LoadersClass
 ''' <seealso cref="System.Windows.Forms.Form" />
 Public NotInheritable Class AboutBox1
     ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut As String
+    ''' <summary>
     ''' Handles the Load event of the AboutBox1 control.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
@@ -22,9 +26,8 @@ Public NotInheritable Class AboutBox1
         ' Initialize all of the text displayed on the About Box.
         '    properties dialog (under the "Project" menu).
         LabelProductName.Text = My.Application.Info.ProductName
-        Dim objGf As New GlobalFunctions
-' ReSharper disable once LocalizableElement
-        LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", objGf.DatabaseVersion)
+        Dim dbVersion As Long = BurnSoft.Applications.MLL.Database.GetDatabaseVersion(DatabasePath, errOut)
+        LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", dbVersion)
         LabelCopyright.Text = My.Application.Info.Copyright
         LabelCompanyName.Text = My.Application.Info.CompanyName
         TextBoxDescription.Text = My.Application.Info.Description

@@ -22,7 +22,7 @@ Namespace LoadersClass
         End Property
         Public Property DefaultDBName() As String
             Get
-                Return DATABASE_NAME
+                Return DatabaseName
             End Get
             Set(ByVal value As String)
                 _DefaultDBName = value
@@ -102,9 +102,9 @@ Namespace LoadersClass
             MyReg.SetValue("Version", Application.ProductVersion)
             MyReg.SetValue("AppName", Application.ProductName)
             MyReg.SetValue("AppEXE", Application.ExecutablePath())
-            MyReg.SetValue("Path", APPLICATION_PATH)
+            MyReg.SetValue("Path", ApplicationPath)
             MyReg.SetValue("LogPath", MyLogFile)
-            MyReg.SetValue("DataBase", APPLICATION_PATH_DATA & "\" & DefaultDBName)
+            MyReg.SetValue("DataBase", ApplicationPathData & "\" & DefaultDBName)
             MyReg.Close()
             'Dim BSAP As New BSAppConfig
             'BSAP.UpDateAppDetails()
@@ -243,7 +243,7 @@ Namespace LoadersClass
         Public Function sConnect() As String
             Dim sAns As String = ""
             Dim Obj As New BSRegistry
-            sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & APPLICATION_PATH_DATA & "\" & Obj.DefaultDBName & ";Pwd=wtf.m@t3"
+            sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & ApplicationPathData & "\" & Obj.DefaultDBName & ";Pwd=wtf.m@t3"
             Return sAns
         End Function
         ''' <summary>
@@ -667,38 +667,38 @@ Namespace LoadersClass
         Public Function General_Powder_Price() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Price", "General_Powder")
         End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Manufacturer() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Manufacturer", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Name() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Name", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Diameter() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Diameter", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Sec_Den() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Sec_Den", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Part_number() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Part_number", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Ballistic_Coefficient() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Ballistic_Coefficient", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Price() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Price", "List_Bullets")
-        End Function
-        <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
-        Public Function List_Bullets_Weight() As AutoCompleteStringCollection
-            Return MainCollectionDistinct("Weight", "List_Bullets")
-        End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Manufacturer() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Manufacturer", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Name() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Name", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Diameter() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Diameter", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Sec_Den() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Sec_Den", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Part_number() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Part_number", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Ballistic_Coefficient() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Ballistic_Coefficient", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Price() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Price", "List_Bullets")
+        'End Function
+        '<Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Bullets")>
+        'Public Function List_Bullets_Weight() As AutoCompleteStringCollection
+        '    Return MainCollectionDistinct("Weight", "List_Bullets")
+        'End Function
         <Obsolete("Replaced witht he BurnSoft.Application.NLL.AutoFill.Cases")>
         Public Function List_Case_Manufacturer() As AutoCompleteStringCollection
             Return MainCollectionDistinct("Manufacturer", "List_Case")
@@ -778,33 +778,33 @@ Namespace LoadersClass
       
     End Class
     Public Class GlobalFunctions
-        <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
-        Public Function DatabaseVersion() As Double
-            Dim dAns As Double = 0
-            Try
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT top 1 dbver from DB_Version order by ID Desc"
-                Call Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                If RS.HasRows Then
-                    While RS.Read()
-                        dAns = CDbl(RS("dbver"))
-                    End While
-                Else
-                    dAns = 0
-                End If
-                RS.Close()
-                RS = Nothing
-                Obj.CloseDB()
-                Obj = Nothing
-            Catch ex As Exception
-                Call LogError("LoadersClass.GlobablFunctions", "DatabaseVersion", Err.Number, ex.Message.ToString)
-                dAns = 0
-            End Try
-            Return dAns
-        End Function
+        '<Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
+        'Public Function DatabaseVersion() As Double
+        '    Dim dAns As Double = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Dim SQL As String = "SELECT top 1 dbver from DB_Version order by ID Desc"
+        '        Call Obj.ConnectDB()
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        If RS.HasRows Then
+        '            While RS.Read()
+        '                dAns = CDbl(RS("dbver"))
+        '            End While
+        '        Else
+        '            dAns = 0
+        '        End If
+        '        RS.Close()
+        '        RS = Nothing
+        '        Obj.CloseDB()
+        '        Obj = Nothing
+        '    Catch ex As Exception
+        '        Call LogError("LoadersClass.GlobablFunctions", "DatabaseVersion", Err.Number, ex.Message.ToString)
+        '        dAns = 0
+        '    End Try
+        '    Return dAns
+        'End Function
         <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
         Public Function ObjectExistsinDB(ByVal strObject As String, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
@@ -2182,7 +2182,7 @@ Namespace LoadersClass
         Private _DefaultUserConfig As System.Configuration.ConfigurationUserLevel
         Public Property DefaultDBName() As String
             Get
-                Return DATABASE_NAME
+                Return DatabaseName
             End Get
             Set(ByVal value As String)
                 _DefaultDBName = value
@@ -2238,9 +2238,9 @@ Namespace LoadersClass
             Dim sversion As String = GetAppSetting("Version")
             Call UpdateAppSetting("AppName", Application.ProductName)
             Call UpdateAppSetting("AppEXE", Application.ExecutablePath())
-            Call UpdateAppSetting("Path", APPLICATION_PATH)
+            Call UpdateAppSetting("Path", ApplicationPath)
             Call UpdateAppSetting("LogPath", MyLogFile)
-            Call UpdateAppSetting("DataBase", APPLICATION_PATH_DATA & "\" & DefaultDBName)
+            Call UpdateAppSetting("DataBase", ApplicationPathData & "\" & DefaultDBName)
         End Sub
     End Class
     Public Class ViewSizeSettings
