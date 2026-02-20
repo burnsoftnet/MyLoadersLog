@@ -21,7 +21,7 @@ Public Class frmView_List_Bullets
     End Sub
     Private Sub frmView_List_Bullets_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Dim ObjR As New BSRegistry
-        Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
+        Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.Text)
     End Sub
     Private Sub frmView_List_Bullets_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
         If Me.Height <> 0 Then

@@ -1,6 +1,10 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Universal
+Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
+
 ''' <summary>
 ''' Class FrmAddBullets.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -130,38 +134,43 @@ Public Class FrmAddBullets
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strDia As String = FluffContent(txtDia.Text)
-            Dim strWei As String = FluffContent(txtWei.Text)
-            Dim strSecDia As String = FluffContent(txtSecDia.Text)
-            Dim strPartNo As String = FluffContent(txtPartNo.Text)
-            Dim strBc As String = FluffContent(txtBC.Text)
+            Dim o As BSOtherObjects = New BSOtherObjects()
+            Dim strManu As String = txtManu.Text
+            Dim strName As String = txtName.Text
+            Dim strDia As String = txtDia.Text
+            Dim strWei As String = txtWei.Text
+            Dim strSecDia As String = txtSecDia.Text
+            Dim strPartNo As String = txtPartNo.Text
+            Dim strBc As String = txtBC.Text
             Dim intBt As Integer = cmbBT.SelectedValue
             Dim cal As Integer = cmbCalList.SelectedValue
             Dim strQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dbPrice As Double = o.FC(txtPrice.Text, 0)
 
-            If Not IsRequired(strManu, "Manufacturers", Text) Then Exit Sub
-            If Not IsRequired(strManu, "Name", Text) Then Exit Sub
-            If Not IsRequired(strDia, "Diameter", Text) Then Exit Sub
-            If Not IsRequired(strWei, "Weight", Text) Then Exit Sub
-            If Not IsRequired(strSecDia, "Sectional Density", Text) Then Exit Sub
-            If Not IsRequired(strBc, "Ballistic Coefficient", Text) Then Exit Sub
-            If Not IsRequired(intBt, "Caliber", Text) Then Exit Sub
-            Dim estCostPerItem As Double = 0
-' ReSharper disable CompareOfFloatsByEqualityOperator
-            If dbPrice <> 0 Then
-' ReSharper restore CompareOfFloatsByEqualityOperator
-                estCostPerItem = (dbPrice / strQty)
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturers", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strDia, "Diameter", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strWei, "Weight", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strSecDia, "Sectional Density", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strBc, "Ballistic Coefficient", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(intBt, "Caliber", Text) Then Exit Sub
+'            Dim estCostPerItem As Double = 0
+'' ReSharper disable CompareOfFloatsByEqualityOperator
+'            If dbPrice <> 0 Then
+'' ReSharper restore CompareOfFloatsByEqualityOperator
+'                estCostPerItem = (dbPrice / strQty)
+'            End If
+'            Dim obj As New BSDatabase
+'            Dim sql As String = "INSERT INTO List_Bullets(Manufacturer,Name,Diameter," & _
+'                "Weight,Sec_Den,Part_number,Ballistic_Coefficient,Bullet_Type,Qty,Price,CID,eppb) VALUES" & _
+'                "('" & strManu & "','" & strName & "','" & strDia & "','" & strWei & "','" & _
+'                strSecDia & "','" & strPartNo & "','" & strBc & "'," & intBt & "," & strQty & _
+'                "," & dbPrice & "," & cal & "," & estCostPerItem & ")"
+'            obj.ConnExec(sql)
+            If Not BulletsInventory.Add(DatabasePath, strManu, strName, strDia, strWei, 
+                                    strSecDia, strPartNo, strBc, intBt, strQty, dbPrice, cal, errOut) Then
+                Throw new Exception(errOut)
             End If
-            Dim obj As New BSDatabase
-            Dim sql As String = "INSERT INTO List_Bullets(Manufacturer,Name,Diameter," & _
-                "Weight,Sec_Den,Part_number,Ballistic_Coefficient,Bullet_Type,Qty,Price,CID,eppb) VALUES" & _
-                "('" & strManu & "','" & strName & "','" & strDia & "','" & strWei & "','" & _
-                strSecDia & "','" & strPartNo & "','" & strBc & "'," & intBt & "," & strQty & _
-                "," & dbPrice & "," & cal & "," & estCostPerItem & ")"
-            obj.ConnExec(sql)
             If FromView Then Call frmView_List_Bullets.LoadData()
             Close()
         Catch ex As Exception
