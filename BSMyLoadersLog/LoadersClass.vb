@@ -1705,6 +1705,7 @@ Namespace LoadersClass
         '''  Get the Powder weight in grains by passing the Powder ID from the General_Powder Table
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replace by new Library in the PowderInventory.GetQtyPerPowder function")>
         Function GetQTYPerPowder(ByVal lngPID As Long) As Double
             Dim dAns As Double = 0
             Try
@@ -1730,6 +1731,7 @@ Namespace LoadersClass
         '''  Get the Price Per Powder from the General_Powder Table by Passing the powder ID
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library with PowderInventory.GetPricePerPowder function.")>
         Function GetPricePerPowder(ByVal lngPID As Long) As Double
             Dim dAns As Double = 0
             Try
@@ -1755,6 +1757,7 @@ Namespace LoadersClass
         '''  Get the Ammunition Type from the General_Ammunition_Type table by passing the ID
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("This was replace by the new library using the AmmuntionType.GetAmmoType function")>
         Function GetAmmoType(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1779,6 +1782,7 @@ Namespace LoadersClass
         ''' Get the Primer Type String Value from the General_Primer_Type table by passing the Primer ID
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced by the library using the PrimerInventory.GetPrimerType function")>
         Function GetPrimerType(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1803,6 +1807,9 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        ''' <>
+        <Obsolete("Replaced by new library under CaliberInventory.GetName function")>
+            
         Function GetCaliber(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
@@ -1827,6 +1834,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library with BulletsInventory.GetDetails")>
         Public Sub LoadBulletInfo(ByVal lngBID As Long, Optional ByRef Manufacturer As String = "", _
                     Optional ByRef Name As String = "", Optional ByRef Diameter As String = "", _
                     Optional ByRef Weight As String = "", Optional ByRef SectionalDensity As String = "", _
@@ -1864,6 +1872,7 @@ Namespace LoadersClass
         '''  Primer Type, Estimated Price Per Primer and current Quantity.
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library with PrimerInventory.GetDetails function")>
         Public Sub LoadPrimerInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                     Optional ByRef Name As String = "", Optional ByRef Primer_Type As String = "", _
                     Optional ByRef ePPP As Double = 0, Optional ByRef lQty As Long = 0)
@@ -1892,6 +1901,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new Library with the  CaseInventory.GetDetails function.")>
         Public Sub LoadCaseInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
                                 Optional ByRef Name As String = "", Optional ByRef Trim2length As String = "", _
                                 Optional ByRef TimesUsed As String = "0", Optional ByRef lQty As Long = 0, _
