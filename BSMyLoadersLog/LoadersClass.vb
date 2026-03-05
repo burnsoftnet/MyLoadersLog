@@ -1248,9 +1248,11 @@ Namespace LoadersClass
             Return bAns
         End Function
     End Class
+    <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog")>
     Public Class BSMGC
         Private _RegPath As String
         Public Conn As OdbcConnection
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Property DefaultRegPath() As String
             Get
                 Return "Software\\BurnSoft\\BSMGC"
@@ -1259,6 +1261,7 @@ Namespace LoadersClass
                 _RegPath = value
             End Set
         End Property
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function MyGunCollectionIsInstalled() As Boolean
             Dim bAns As Boolean = False
             Dim MyReg As RegistryKey
@@ -1273,11 +1276,13 @@ Namespace LoadersClass
             Return bAns
             Return bAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function sConnect() As String
             Dim sAns As String = ""
             sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & MGCPath & ";Pwd=14un0t2n0"
             Return sAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Sub ConnectDB()
             Try
                 Conn = New OdbcConnection(sConnect)
@@ -1288,6 +1293,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Sub CloseDB()
             Try
                 Conn.Close()
@@ -1298,6 +1304,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Sub ConnExec(ByVal strSQL As String)
             Try
                 Call ConnectDB()
@@ -1314,6 +1321,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
         Public Function GetMGCPath() As String
             Dim sAns As String = ""
             Dim MyReg As RegistryKey
@@ -1326,6 +1334,7 @@ Namespace LoadersClass
             MyReg.Close()
             Return sAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
         Public Function GetMGCEXEPath() As String
             Dim sAns As String = ""
             Dim MyReg As RegistryKey
@@ -1338,6 +1347,7 @@ Namespace LoadersClass
             MyReg.Close()
             Return sAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function CountFirearms() As Integer
             Dim iAns As Integer = 0
             Call ConnectDB()
@@ -1354,6 +1364,7 @@ Namespace LoadersClass
             Call CloseDB()
             Return ians
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function ObjectExistsinDB(ByVal strObject As String, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
                 Dim bAns As Boolean = False
@@ -1377,6 +1388,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetID(ByVal SQL As String) As Long
             Try
                 Dim sAns As Long = 0
@@ -1401,6 +1413,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Private Function GetName(ByVal SQL As String, ByVal strValue As String) As String
             Dim sAns As String = "N/A"
             Call ConnectDB()
@@ -1423,6 +1436,7 @@ Namespace LoadersClass
             Call CloseDB()
             Return sAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetManufacturersID(ByVal strValue As String) As Long
             Dim SQL As String = "SELECT ID from Gun_Manufacturer where Brand='" & strValue & "'"
             Dim iAns As Long = GetID(SQL)
@@ -1432,11 +1446,13 @@ Namespace LoadersClass
             End If
             Return iAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetManufacturersName(ByVal strValue As String) As String
             Dim SQL As String = "SELECT Brand from Gun_Manufacturer where ID=" & strValue
             Dim sAns As String = GetName(SQL, "Brand")
             Return sAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetModelID(ByVal strValue As String, ByVal StrValueID As Long) As Long
             Dim SQL As String = "SELECT ID from Gun_Model where Model='" & strValue & "' and GMID=" & StrValueID
             Dim iAns As Long = GetID(SQL)
@@ -1446,6 +1462,7 @@ Namespace LoadersClass
             End If
             Return iAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetNationalityID(ByVal strValue As String)
             Dim SQL As String = "SELECT ID from Gun_Nationality where Country='" & strValue & "'"
             Dim iAns As Long = GetID(SQL)
@@ -1455,6 +1472,7 @@ Namespace LoadersClass
             End If
             Return iAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetGripID(ByVal strValue As String) As Long
             Dim SQL As String = "SELECT ID from Gun_GripType where grip='" & strValue & "'"
             Dim iAns As Long = GetID(SQL)
@@ -1464,6 +1482,7 @@ Namespace LoadersClass
             End If
             Return iAns
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetGunShopID(ByVal strValue As String) As Long
             Try
                 Dim SQL As String = "SELECT ID from Gun_Shop_Details where Name='" & strValue & "'"
@@ -1480,6 +1499,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetLastFirearmID() As Long
             Try
                 Dim SQL As String = "SELECT Top 1 ID from Gun_Collection order by ID DESC" '"SELECT MAX(ID) as ID from Gun_Collection"
@@ -1491,6 +1511,7 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Sub UpdateGunType(ByVal strType As String)
             Try
                 If Not ObjectExistsinDB(strType, "Type", "Gun_Type") Then
@@ -1503,9 +1524,11 @@ Namespace LoadersClass
                 ObjFS.LogFile(MyLogFile, sMessage)
             End Try
         End Sub
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function CaliberExists(ByVal strCaliber As String) As Boolean
             Return ObjectExistsinDB(strCaliber, "Cal", "Gun_Cal")
         End Function
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Sub AddFirearmToMGC(ByVal FullName As String, ByVal Manu As String, ByVal Model As String, ByVal Cal As String, ByVal Barrel As String, ByVal SerialNo As String, ByVal GType As String, Optional ByRef MGCID As Long = 0)
             Dim lngManID As Long = GetManufacturersID(Manu)
             Dim lngModelID As Long = GetModelID(Model, lngManID)
@@ -1531,6 +1554,7 @@ Namespace LoadersClass
             Call ConnExec(SQL)
             If Not CaliberExists(Cal) Then ConnExec("INSERT INTO Gun_Cal (Cal) VALUES('" & Cal & "')")
         End Sub
+        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function AmmoIsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
        ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
             Dim bAns As Boolean = False
