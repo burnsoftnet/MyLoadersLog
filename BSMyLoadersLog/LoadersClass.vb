@@ -1809,7 +1809,6 @@ Namespace LoadersClass
         ''' <returns></returns>
         ''' <>
         <Obsolete("Replaced by new library under CaliberInventory.GetName function")>
-            
         Function GetCaliber(ByVal lngID As Long) As String
             Dim sAns As String = "N/A"
             Try
