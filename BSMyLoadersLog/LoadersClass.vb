@@ -1593,6 +1593,7 @@ Namespace LoadersClass
         ''' Just pass the Configuration ID to this function
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library under ConfigListDataPowder.GetDefaultPowderId")>
         Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1622,6 +1623,7 @@ Namespace LoadersClass
         ''' Just pass the configuration ID to this function
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library under ConfigListDataPowderShotGun.GetDefaultPowderId")>
         Function GetPrefSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1649,6 +1651,7 @@ Namespace LoadersClass
         ''' Get the preffered Powder ID and Measurement by passing the Configuration ID For Pistol/Rifle Configs
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library under ConfigListDataPowder.GetDefaultPowderId")>
         Function GetPrefNSGPowderIDID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
@@ -1675,6 +1678,7 @@ Namespace LoadersClass
         ''' Get the preffered Powder ID and Measurement by passing the Conifuration ID for Shotgun Configs
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced in new library under ConfigListDataPowderShotGun.GetDefaultPowderId")>
         Function GetPrefSGPowderIDID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0) As Long
             Dim iAns As Integer = 0
             Try
