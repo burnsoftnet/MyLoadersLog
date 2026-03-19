@@ -4,14 +4,28 @@ Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Namespace Adding
-
+    ''' <summary>
+    ''' Class FrmAddDataSheetRiflePistolsCfg.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmAddDataSheetRiflePistolsCfg
+        ''' <summary>
+        ''' From view
+        ''' </summary>
         Public FromView As Boolean
+        ''' <summary>
+        ''' The fid
+        ''' </summary>
         Public Fid As Long
         ''' <summary>
         ''' The error out
         ''' </summary>
         Private errOut as String
+        ''' <summary>
+        ''' Loads the automatic fill.
+        ''' </summary>
+        ''' <exception cref="System.Exception"></exception>
         Sub LoadAutoFill()
             Try
                 ' TODO: #20 CLEAN UP CODE
@@ -30,6 +44,9 @@ Namespace Adding
                 Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Saves the data.
+        ''' </summary>
         Sub SaveData()
             Try
                 Dim lngFid As Long = cmbFirearm.SelectedValue
@@ -97,6 +114,11 @@ Namespace Adding
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Load event of the frmAddDataSheet_RiflePistols_CFG control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmAddDataSheet_RiflePistols_CFG_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 'Replaced to narrow down none shotgun vs shotgun
@@ -109,12 +131,25 @@ Namespace Adding
                 Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the btnCancel control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the btnAdd control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Call SaveData()
         End Sub
+        ''' <summary>
+        ''' Updates the configuration list.
+        ''' </summary>
         Sub UpdateConfigList()
             Dim objGf As New GlobalFunctions
             Dim lngFid As Long = cmbFirearm.SelectedValue
@@ -123,10 +158,19 @@ Namespace Adding
             Dim calId As Long = objGf.GetCaliberID(strCal)
             ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
         End Sub
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged event of the cmbFirearm control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub cmbFirearm_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cmbFirearm.SelectedIndexChanged
             Call UpdateConfigList()
         End Sub
-
+        ''' <summary>
+        ''' Handles the TextChanged event of the txtGroup control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub txtGroup_TextChanged(sender As Object, e As EventArgs) Handles txtGroup.TextChanged
 
         End Sub
