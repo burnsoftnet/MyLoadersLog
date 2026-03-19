@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Viewing
 Public Class frmEditPrimer
     Public PID As Long
     Sub LoadData()

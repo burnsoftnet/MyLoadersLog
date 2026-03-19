@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Viewing
 Public Class frmEditShells
     Public SID As Long
     Public FromView As Boolean
@@ -71,7 +72,7 @@ Public Class frmEditShells
                     "Qty=" & intQty & ",Price=" & dbPrice & ",CID=" & LngCalID & _
                     " where id=" & SID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Shells.LoadData()
+            If FromView Then Call FrmViewListShells.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

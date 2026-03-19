@@ -5,6 +5,7 @@ Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Universal
+Imports BSMyLoadersLog.Viewing
 
 Namespace Adding
 

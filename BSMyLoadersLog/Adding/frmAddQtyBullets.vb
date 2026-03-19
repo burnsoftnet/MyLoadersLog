@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmAddQtyBullets
     Public BID As Long
     Public FromView As Boolean

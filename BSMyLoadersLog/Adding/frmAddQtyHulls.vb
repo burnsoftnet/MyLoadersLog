@@ -1,5 +1,7 @@
 ﻿Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmAddQtyHulls
     Public SID As Long
     Public FromView As Boolean
@@ -81,7 +83,7 @@ Public Class frmAddQtyHulls
     Private Sub btnUpdate_Click(sender As System.Object, e As System.EventArgs) Handles btnUpdate.Click
         Try
             Call SaveData()
-            If FromView Then Call frmView_List_Shells.LoadData()
+            If FromView Then Call FrmViewListShells.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)

@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmAddPrimer
     Public FromView As Boolean
     Sub LoadData()

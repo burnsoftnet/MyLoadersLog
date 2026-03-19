@@ -77,67 +77,67 @@ Namespace LoadersClass
             End Try
             Return sAns
         End Function
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Function SettingsExists() As Boolean
-            Dim bAns As Boolean = False
-            Dim MyReg As RegistryKey
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            On Error Resume Next
-            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            If MyReg Is Nothing Then
-                bAns = False
-            Else
-                bAns = True
-            End If
-            Return bAns
-        End Function
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub UpDateAppDetails()
-            Dim strValue As String = DefaultRegPath
-            If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
-            Dim MyReg As RegistryKey
-            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            MyReg.SetValue("Version", Application.ProductVersion)
-            MyReg.SetValue("AppName", Application.ProductName)
-            MyReg.SetValue("AppEXE", Application.ExecutablePath())
-            MyReg.SetValue("Path", ApplicationPath)
-            MyReg.SetValue("LogPath", MyLogFile)
-            MyReg.SetValue("DataBase", ApplicationPathData & "\" & DefaultDBName)
-            MyReg.Close()
-            'Dim BSAP As New BSAppConfig
-            'BSAP.UpDateAppDetails()
-        End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Function SettingsExists() As Boolean
+        '    Dim bAns As Boolean = False
+        '    Dim MyReg As RegistryKey
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    On Error Resume Next
+        '    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    If MyReg Is Nothing Then
+        '        bAns = False
+        '    Else
+        '        bAns = True
+        '    End If
+        '    Return bAns
+        'End Function
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub UpDateAppDetails()
+        '    Dim strValue As String = DefaultRegPath
+        '    If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
+        '    Dim MyReg As RegistryKey
+        '    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    MyReg.SetValue("Version", Application.ProductVersion)
+        '    MyReg.SetValue("AppName", Application.ProductName)
+        '    MyReg.SetValue("AppEXE", Application.ExecutablePath())
+        '    MyReg.SetValue("Path", ApplicationPath)
+        '    MyReg.SetValue("LogPath", MyLogFile)
+        '    MyReg.SetValue("DataBase", ApplicationPathData & "\" & DefaultDBName)
+        '    MyReg.Close()
+        '    'Dim BSAP As New BSAppConfig
+        '    'BSAP.UpDateAppDetails()
+        'End Sub
 #End Region
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub SetSettingDetails()
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub SetSettingDetails()
 
-            If Not SettingsExists() Then
-                Dim MyReg As RegistryKey
-                Dim strValue As String = DefaultRegPath & "\Settings"
-                'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-                MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    If Not SettingsExists() Then
+        '        Dim MyReg As RegistryKey
+        '        Dim strValue As String = DefaultRegPath & "\Settings"
+        '        'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '        MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
 
-                'MyReg = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
-                MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
-                MyReg.SetValue("Successful", Now)
-                MyReg.SetValue("SetHistListtb", "")
-                MyReg.SetValue("SetHistListdt", "")
-                MyReg.SetValue("AlertOnBackUp", True)
-                MyReg.SetValue("LastPath", "C:\")
-                MyReg.SetValue("LastFile", DefaultDBName)
-                MyReg.SetValue("BackupOnExit", False)
-                MyReg.SetValue("UseOrgImage", True)
-                MyReg.SetValue("LOADERTYPE_SHOTGUN", False)
-                MyReg.SetValue("LOADERTYPE_NONSHOTGUN", True)
-                MyReg.SetValue("DefaultList", "Caliber List")
-                MyReg.SetValue("IndvReports", True)
-                MyReg.SetValue("VIEW_FPS", True)
-                MyReg.SetValue("VIEW_CUPS", True)
-                MyReg.Close()
-            End If
-        End Sub
+        '        'MyReg = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
+        '        MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
+        '        MyReg.SetValue("Successful", Now)
+        '        MyReg.SetValue("SetHistListtb", "")
+        '        MyReg.SetValue("SetHistListdt", "")
+        '        MyReg.SetValue("AlertOnBackUp", True)
+        '        MyReg.SetValue("LastPath", "C:\")
+        '        MyReg.SetValue("LastFile", DefaultDBName)
+        '        MyReg.SetValue("BackupOnExit", False)
+        '        MyReg.SetValue("UseOrgImage", True)
+        '        MyReg.SetValue("LOADERTYPE_SHOTGUN", False)
+        '        MyReg.SetValue("LOADERTYPE_NONSHOTGUN", True)
+        '        MyReg.SetValue("DefaultList", "Caliber List")
+        '        MyReg.SetValue("IndvReports", True)
+        '        MyReg.SetValue("VIEW_FPS", True)
+        '        MyReg.SetValue("VIEW_CUPS", True)
+        '        MyReg.Close()
+        '    End If
+        'End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Function GetViewSettings(ByVal sKey As String, Optional ByVal sDefault As String = "") As String
             Dim sAns As String = ""
@@ -145,36 +145,36 @@ Namespace LoadersClass
             sAns = GetRegSubKeyValue(strValue, sKey, sDefault)
             Return sAns
         End Function
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, 
-                               ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, 
-                               ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
-            Dim NumberFormat As String
-            Dim UseProxy As Boolean
-            Dim AutoUpdate As Boolean
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            Try
-                TrackHistoryDays = CInt(GetRegSubKeyValue(strValue, "TrackHistoryDays", 15))
-                TrackHistory = CBool(GetRegSubKeyValue(strValue, "TrackHistory", "False"))
-                NumberFormat = GetRegSubKeyValue(strValue, "NumberFormat", "0000")
-                AutoUpdate = CBool(GetRegSubKeyValue(strValue, "AutoUpdate", "False"))
-                UseProxy = CBool(GetRegSubKeyValue(strValue, "UseProxy", "False"))
-                LastSucBackup = GetRegSubKeyValue(strValue, "Successful", Now)
-                AlertOnBackUp = CBool(GetRegSubKeyValue(strValue, "AlertOnBackUp", "True"))
-                AutoBackup = CBool(GetRegSubKeyValue(strValue, "BackupOnExit", "False"))
-                UOIMG = CBool(GetRegSubKeyValue(strValue, "UseOrgImage", "True"))
-                LOADERTYPE_SHOTGUN = CBool(GetRegSubKeyValue(strValue, "LOADERTYPE_SHOTGUN", "False"))
-                LOADERTYPE_NONSHOTGUN = CBool(GetRegSubKeyValue(strValue, "LOADERTYPE_NONSHOTGUN", "True"))
-                VIEW_FPS = CBool(GetRegSubKeyValue(strValue, "VIEW_FPS", "True"))
-                VIEW_CUPS = CBool(GetRegSubKeyValue(strValue, "VIEW_CUPS", "True"))
-                DEFAULTLIST = GetRegSubKeyValue(strValue, "DefaultList", "Caliber List")
-                UseIPer = CBool(GetRegSubKeyValue(strValue, "IndvReports", "True"))
-                ConfigSort = GetRegSubKeyValue(strValue, "ConfigSort", "All")
-            Catch ex As Exception
-                Dim MyErr As Long = Err.Number
-                If MyErr = 13 Then Call SetSettingDetails()
-            End Try
-        End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, 
+        '                       ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, 
+        '                       ByRef UseIPer As Boolean, Optional ByRef ConfigSort As String = "All")
+        '    Dim NumberFormat As String
+        '    Dim UseProxy As Boolean
+        '    Dim AutoUpdate As Boolean
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    Try
+        '        TrackHistoryDays = CInt(GetRegSubKeyValue(strValue, "TrackHistoryDays", 15))
+        '        TrackHistory = CBool(GetRegSubKeyValue(strValue, "TrackHistory", "False"))
+        '        NumberFormat = GetRegSubKeyValue(strValue, "NumberFormat", "0000")
+        '        AutoUpdate = CBool(GetRegSubKeyValue(strValue, "AutoUpdate", "False"))
+        '        UseProxy = CBool(GetRegSubKeyValue(strValue, "UseProxy", "False"))
+        '        LastSucBackup = GetRegSubKeyValue(strValue, "Successful", Now)
+        '        AlertOnBackUp = CBool(GetRegSubKeyValue(strValue, "AlertOnBackUp", "True"))
+        '        AutoBackup = CBool(GetRegSubKeyValue(strValue, "BackupOnExit", "False"))
+        '        UOIMG = CBool(GetRegSubKeyValue(strValue, "UseOrgImage", "True"))
+        '        LOADERTYPE_SHOTGUN = CBool(GetRegSubKeyValue(strValue, "LOADERTYPE_SHOTGUN", "False"))
+        '        LOADERTYPE_NONSHOTGUN = CBool(GetRegSubKeyValue(strValue, "LOADERTYPE_NONSHOTGUN", "True"))
+        '        VIEW_FPS = CBool(GetRegSubKeyValue(strValue, "VIEW_FPS", "True"))
+        '        VIEW_CUPS = CBool(GetRegSubKeyValue(strValue, "VIEW_CUPS", "True"))
+        '        DEFAULTLIST = GetRegSubKeyValue(strValue, "DefaultList", "Caliber List")
+        '        UseIPer = CBool(GetRegSubKeyValue(strValue, "IndvReports", "True"))
+        '        ConfigSort = GetRegSubKeyValue(strValue, "ConfigSort", "All")
+        '    Catch ex As Exception
+        '        Dim MyErr As Long = Err.Number
+        '        If MyErr = 13 Then Call SetSettingDetails()
+        '    End Try
+        'End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveViewSettings(ByVal sKey As String, ByVal sValue As String)
             Dim strValue As String = DefaultRegPath & "\Settings"

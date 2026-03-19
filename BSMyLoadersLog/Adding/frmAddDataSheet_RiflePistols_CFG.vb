@@ -56,8 +56,8 @@ Namespace Adding
                 Dim strFireArm As String = cmbFirearm.Text
                 Dim strDateTested As String = dtpTested.Value
                 Dim strGroup As String = GeneralHelpers.FluffContent(txtGroup.Text)
-                Dim lngNumShots As Long = nudShots.Value
-                Dim lngYards As Long = nudYards.Value
+                Dim lngNumShots As Integer = nudShots.Value
+                Dim lngYards As Integer = nudYards.Value
                 Dim configId As Long = cmbConfig.SelectedValue
                 Dim configName As String = cmbConfig.Text
                 Dim strCond As String = GeneralHelpers.FluffContent(txtCon.Text)
@@ -101,15 +101,29 @@ Namespace Adding
                 Else
                     caseStatus = "(USED)"
                 End If
-                sql = "INSERT INTO Loaders_Log_NSG (fid,dt,yds,gs,ns,pwm,bullet," & _
-                      "primer,case,conditions,tl,notes,ConfigName,FirearmName,Caliber,BarrelLen)" & _
-                      " VALUES (" & lngFid & ",'" & strDateTested & "'," & lngYards & _
-                      ",'" & strGroup & "'," & lngNumShots & ",'" & GeneralHelpers.FluffContent(powName & " - " & powWei & _
-                                                                                                " - " & powManu) & "','" & GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")" & _
-                      "','" & priManu & " " & priName & "','" & caseManu & " " & caseName & " " & _
-                      caseStatus & "','" & strCond & "','" & strLen & "','" & strNotes & "','" & _
-                      configName & "','" & strFireArm & "','" & caliber & "','" & strBarLen & "')"
-                obj.ConnExec(sql)
+                Dim powderDetails as String = GeneralHelpers.FluffContent(powName & " - " & powWei & " - " & powManu)
+                Dim bulletDetails As String = GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")"
+                Dim primerDetails As String = priManu & " " & priName
+                Dim caseDetails As String = caseManu & " " & caseName & " " & caseStatus
+
+                If Not LoadersLogMetallic.Add(DatabasePath, firearmId := lngFid, dateCreated := strDateTested, 
+                                              yards := lngYards, groupSize := strGroup, numberOfShots := lngNumShots, 
+                                              powderDetails := powderDetails, bulletDetails := bulletDetails, 
+                                              primerDetails := primerDetails, caseDetails := caseDetails, 
+                                              condition := strCond, oal := strLen, notes := strNotes, 
+                                              configName := configName, FirearmName := strFireArm, 
+                                              caliber := caliber, BarrelLenght := strBarLen, errOut) Then Throw New Exception(errOut)
+
+
+                'sql = "INSERT INTO Loaders_Log_NSG (fid,dt,yds,gs,ns,pwm,bullet," & _
+                '      "primer,case,conditions,tl,notes,ConfigName,FirearmName,Caliber,BarrelLen)" & _
+                '      " VALUES (" & lngFid & ",'" & strDateTested & "'," & lngYards & _
+                '      ",'" & strGroup & "'," & lngNumShots & ",'" & GeneralHelpers.FluffContent(powName & " - " & powWei & _
+                '      " - " & powManu) & "','" & GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")" & _
+                '      "','" & priManu & " " & priName & "','" & caseManu & " " & caseName & " " & _
+                '      caseStatus & "','" & strCond & "','" & strLen & "','" & strNotes & "','" & _
+                '      configName & "','" & strFireArm & "','" & caliber & "','" & strBarLen & "')"
+                'obj.ConnExec(sql)
                 MsgBox("Information was saved to the Loaders Log!")
                 If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
                 Close()
@@ -165,7 +179,7 @@ Namespace Adding
                 For Each o As FirearmCollection In values
                     strCal = o.Caliber
                 Next
-                ' Dim calId As Long = objGf.GetCaliberID(strCal)
+                'Dim calId As Long = objGf.GetCaliberID(strCal)
                 Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, errOut)
                 if errOut.Length > 0 Then Throw New Exception(errOut)
                 ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)

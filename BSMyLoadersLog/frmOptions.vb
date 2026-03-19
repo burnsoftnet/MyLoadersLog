@@ -1,7 +1,13 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Global
+Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Security.RegularEncryption.SHA
 Public Class FrmOptions
     Dim _recId As Integer
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Private errOut as String
     Function SaveData() As Integer
         Try
             Dim strLoadName As String = FluffContent(txtLoadName.Text)
@@ -69,8 +75,22 @@ Public Class FrmOptions
         End Try
     End Function
     Sub GetRegData()
-        Dim objR As New BSRegistry
-        Call objR.GetSettings(lblLastSuc.Text, chkAOBU.Checked, nudDays.Value, chkBAKCleanup.Checked, chkBackupOnExit.Checked, chkDoOriginalImage.Checked, chkIPer.Checked)
+        'Dim objR As New BSRegistry
+        'Call objR.GetSettings(lblLastSuc.Text, chkAOBU.Checked, nudDays.Value, chkBAKCleanup.Checked, 
+        '                      chkBackupOnExit.Checked, chkDoOriginalImage.Checked, chkIPer.Checked)
+        
+        Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(errOut)
+        If errOut.Length > 0 Then Throw New Exception(errOut)
+        For Each o As RegistrySettings In regSettings
+            lblLastSuc.Text = o.LastSucBackup
+            chkAOBU.Checked = o.AlertOnBackUp
+            nudDays.Value = o.TrackHistoryDays
+            chkBAKCleanup.Checked = o.TrackHistory
+            chkBackupOnExit.Checked = o.AutoBackup
+            chkDoOriginalImage.Checked = o.UseOrgImage
+            chkIPer.Checked = o.IndvReports
+        Next
+
         chkShotGun.Checked = LOADERTYPE_SHOTGUN
         chkRiflePistol.Checked = LOADERTYPE_NONSHOTGUN
         cmbDefaultList.Text = DEFAULTLIST

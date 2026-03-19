@@ -4,13 +4,21 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports BurnSoft.MsgBox
 Imports BSMyLoadersLog.Adding
+Imports BurnSoft.Applications.MLL.Global
+Imports BurnSoft.Applications.MLL.PeopleAndPlaces
+Imports BurnSoft.Applications.MLL.Types
+Imports BSMyLoadersLog.Viewing
+
 ''' <summary>
 ''' Class MdiParentMain.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
 ''' </summary>
 ''' <seealso cref="System.Windows.Forms.Form" />
 Public Class MdiParentMain
-
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Private errOut as String
 #Region "Form Subs"
     ''' <summary>
     ''' Handles the Disposed event of the MDIParentMain control.
@@ -45,9 +53,31 @@ Public Class MdiParentMain
                 Close()
             End If
             Dim obj As New BSRegistry
-            OwnerID = GetOwnerID()
-            Call obj.UpDateAppDetails()
-            Call obj.GetSettings(LastSucBackup, AlertOnBackUp, TrackHistoryDays, TrackHistory, DoAutoBackup, DoOriginalImage, UsePetLoads, cmbConfigSort.Text)
+            'OwnerID = GetOwnerID()
+            OwnerID = OwnerInformation.GetOwnerID(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+           
+            'Call obj.UpDateAppDetails()
+            If Not MyRegistry.UpdateAppDetails(Application.ProductVersion, Application.ProductName, 
+                                        Application.ExecutablePath(), ApplicationPath, 
+                                        MyLogFile, DatabasePath, ApplicationPathData, 
+                                               errOut) Then Throw New Exception(errOut)
+
+            Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            For Each o As RegistrySettings In regSettings
+                LastSucBackup = o.LastSucBackup
+                AlertOnBackUp = o.AlertOnBackUp
+                TrackHistoryDays = o.TrackHistoryDays
+                TrackHistory = o.TrackHistory
+                DoAutoBackup = o.AutoBackup
+                DoOriginalImage = o.UseOrgImage
+                UseIndividualReports = o.IndvReports
+                cmbConfigSort.Text = o.ConfigSort
+            Next
+            
+            'Call obj.GetSettings(LastSucBackup, AlertOnBackUp, TrackHistoryDays, TrackHistory, DoAutoBackup, DoOriginalImage,
+            '                     UseIndividualReports, cmbConfigSort.Text)
 
             ToolStripStatusLabel.Text = ""
             ToolStripSeparator4.Visible = False
@@ -192,8 +222,16 @@ Public Class MdiParentMain
     ''' Initializes the reg values.
     ''' </summary>
     Private Sub InitRegValues()
-        Dim objr As New BSRegistry
-        Call objr.UpDateAppDetails()
+        'Dim objr As New BSRegistry
+        'Call objr.UpDateAppDetails()
+        Try
+            If Not MyRegistry.UpdateAppDetails(Application.ProductVersion, Application.ProductName, 
+                                               Application.ExecutablePath(), ApplicationPath, 
+                                               MyLogFile, DatabasePath, ApplicationPathData, 
+                                               errOut) Then Throw New Exception(errOut)
+        Catch ex As Exception
+            Call LogError(Name, "InitRegValues", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Initializes the type of the loader.
@@ -899,8 +937,8 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaseToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaseToolStripMenuItem1.Click
         Cursor = Cursors.WaitCursor
-        frmView_List_Shells.MdiParent = Me
-        frmView_List_Shells.Show()
+        FrmViewListShells.MdiParent = Me
+        FrmViewListShells.Show()
         Cursor = Cursors.Arrow
     End Sub
     ''' <summary>

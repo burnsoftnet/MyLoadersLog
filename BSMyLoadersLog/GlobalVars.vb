@@ -23,7 +23,7 @@ Module GlobalVars
     Public MyLogFile As String
     Public DoAutoBackup As Boolean
     Public DoOriginalImage As Boolean
-    Public UsePetLoads As Boolean
+    Public UseIndividualReports As Boolean
     Public PersonalMark As Boolean
     Public LOADERTYPE_SHOTGUN As Boolean
     Public LOADERTYPE_NONSHOTGUN As Boolean

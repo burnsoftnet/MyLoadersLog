@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmAddShells
     Public FromView As Boolean
     Sub AutoFill()
@@ -44,7 +46,7 @@ Public Class frmAddShells
                 "IsNew,Qty,Price,CID, ePPC,TimesUsed) VALUES('" & strManu & "','" & strName & "','" & strTrim & _
                 "'," & intNew & "," & intQty & "," & dbPrice & "," & LngCalID & "," & EstCostPerItem & "," & intUsed & ")"
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Shells.LoadData()
+            If FromView Then Call FrmViewListShells.LoadData()
             Me.Close()
         Catch ex As Exception
             Dim ObjFS As New BSFileSystem

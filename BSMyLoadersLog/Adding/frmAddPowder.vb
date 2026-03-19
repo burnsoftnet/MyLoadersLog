@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmAddPowder
     Public FromView As Boolean
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
