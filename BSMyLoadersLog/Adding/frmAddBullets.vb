@@ -174,6 +174,7 @@ Public Class FrmAddBullets
             If Not GeneralHelpers.IsRequired(strSecDia, "Sectional Density", Text) Then Exit Sub
             If Not GeneralHelpers.IsRequired(strBc, "Ballistic Coefficient", Text) Then Exit Sub
             If Not GeneralHelpers.IsRequired(intBt, "Caliber", Text) Then Exit Sub
+            ' TODO: #20 CLEAN UP CODE
 '            Dim estCostPerItem As Double = 0
 '' ReSharper disable CompareOfFloatsByEqualityOperator
 '            If dbPrice <> 0 Then
