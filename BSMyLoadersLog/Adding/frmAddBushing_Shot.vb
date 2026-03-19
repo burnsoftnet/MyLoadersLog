@@ -78,10 +78,7 @@ Public Class FrmAddBushingShot
             If Not GeneralHelpers.IsRequired(manu, "Manufacturer", Text) Then Exit Sub
             If Not GeneralHelpers.IsRequired(sName, "Name", Text) Then Exit Sub
             If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
-            Dim sql As String = "INSERT INTO List_SG_Bushing_Shot(Manufacturer,sName,sCharge,sType) VALUES('" & _
-                                manu & "','" & sName & "','" & sCharge & "','" & sType & "')"
-            Dim objDb As New BSDatabase
-            objDb.ConnExec(sql)
+            If Not ShotgunShotInventory.Add(DatabasePath, manu, sName, sCharge, sType, errOut) Then Throw New Exception(errOut)
             Call ClearFields()
         Catch ex As Exception
             Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
