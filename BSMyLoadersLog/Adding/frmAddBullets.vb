@@ -87,7 +87,7 @@ Public Class FrmAddBullets
                 txtSecDia.Text = o.SectionDensity
                 txtPartNo.Text = o.PartNumber
                 txtBC.Text = o.BallisticCoeffcient
-                cmbBT.SelectedValue = o.BullerType
+                cmbBT.SelectedValue = o.BulletType
                 cmbBT.Update()
                 cmbCalList.SelectedValue = o.CaliberId
                 cmbCalList.Update()
