@@ -138,13 +138,13 @@ Namespace LoadersClass
         '        MyReg.Close()
         '    End If
         'End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Function GetViewSettings(ByVal sKey As String, Optional ByVal sDefault As String = "") As String
-            Dim sAns As String = ""
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            sAns = GetRegSubKeyValue(strValue, sKey, sDefault)
-            Return sAns
-        End Function
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Function GetViewSettings(ByVal sKey As String, Optional ByVal sDefault As String = "") As String
+        '    Dim sAns As String = ""
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    sAns = GetRegSubKeyValue(strValue, sKey, sDefault)
+        '    Return sAns
+        'End Function
         '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         'Public Sub GetSettings(ByRef LastSucBackup As String, ByRef AlertOnBackUp As Boolean, ByRef TrackHistoryDays As Integer, 
         '                       ByRef TrackHistory As Boolean, ByRef AutoBackup As Boolean, ByRef UOIMG As Boolean, 
@@ -175,15 +175,15 @@ Namespace LoadersClass
         '        If MyErr = 13 Then Call SetSettingDetails()
         '    End Try
         'End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub SaveViewSettings(ByVal sKey As String, ByVal sValue As String)
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            Dim MyReg As RegistryKey
-            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            MyReg.SetValue(sKey, sValue)
-            MyReg.Close()
-        End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub SaveViewSettings(ByVal sKey As String, ByVal sValue As String)
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    Dim MyReg As RegistryKey
+        '    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    MyReg.SetValue(sKey, sValue)
+        '    MyReg.Close()
+        'End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
             Dim strValue As String = DefaultRegPath & "\Settings"

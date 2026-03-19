@@ -1,5 +1,11 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Global
+
 Public Class frmView_List_Slug
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Private errOut as String
     Const RegViewName As String = "View_Slug"
 #Region "Subs and Functions"
     Public Sub LoadData()
@@ -40,13 +46,32 @@ Public Class frmView_List_Slug
 #End Region
 #Region "Form & DataGRid Subs"
     Private Sub frmView_List_Slug_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        Dim ObjR As New BSRegistry
-        Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
+        'Dim ObjR As New BSRegistry
+        'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
+        Try
+            'Dim ObjR As New BSRegistry
+            'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
+            If Not MyRegistry.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString, 
+                                               errOut) Then Throw New Exception(errOut)
+        Catch ex As Exception
+            Dim strProcedure As String = "frmView_List_Slug_FormClosing"
+            Call LogError(Me.Name, strProcedure, Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     Private Sub frmView_List_Slug_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim ObjR As New BSRegistry
-        ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
-        Call LoadData()
+        'Dim ObjR As New BSRegistry
+        'ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
+        'Call LoadData()
+        Try
+            ToolStripComboBox1.Text = MyRegistry.GetViewSettings(RegViewName, errOut, "All")
+            if errOut.Length > 0 Then Throw New Exception(errOut)
+            'Dim ObjR As New BSRegistry
+            'ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
+            Call LoadData()
+        Catch ex As Exception
+            Dim strProcedure As String = "frmView_List_Slug_Load"
+            Call LogError(Me.Name, strProcedure, Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles DataGridView1.BindingContextChanged
         If DataGridView1.DataSource Is Nothing Then
