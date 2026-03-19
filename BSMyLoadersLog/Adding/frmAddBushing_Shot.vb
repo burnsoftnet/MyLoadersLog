@@ -56,6 +56,7 @@ Public Class FrmAddBushingShot
     ''' </summary>
     Sub SaveData()
         Try
+            ' TODO: #20 CLEAN UP CODE
             'Dim manu As String = FluffContent(txtManu.Text, "  ")
             'Dim sName As String = FluffContent(txtName.Text, "  ")
             'Dim sCharge As String = FluffContent(txtCharge.Text, "  ")
