@@ -1,12 +1,22 @@
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
-
+''' <summary>
+''' Class FrmAddCaliberToCollection.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class FrmAddCaliberToCollection
     ''' <summary>
     ''' The error out
     ''' </summary>
     Private errOut as String
+    ''' <summary>
+    ''' Handles the Load event of the frmAddCaliberToCollection control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
     Private Sub frmAddCaliberToCollection_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
             ' TODO: #20 CLEAN UP CODE
@@ -21,11 +31,20 @@ Public Class FrmAddCaliberToCollection
             Call LogError(Name, "frmAddCaliberToCollection_Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
         Close()
     End Sub
-
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
     Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
             ' TODO: #20 CLEAN UP CODE
