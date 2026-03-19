@@ -4,6 +4,7 @@ Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Universal
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
+Imports BurnSoft.Applications.MLL.Types
 
 ''' <summary>
 ''' Class FrmAddBullets.
@@ -32,49 +33,68 @@ Public Class FrmAddBullets
     ''' </summary>
     Sub LoadData()
         Try
-            Dim sql As String = "SELECT * from List_Bullets where ID=" & Bid
-            Dim obj As New BSDatabase
-            Dim objIm As New InventoryMath
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            Dim iQty As Integer = 0
-            Dim eppo As Double = 0
-' ReSharper disable RedundantAssignment
-            Dim dPrice As Double = 0
-' ReSharper restore RedundantAssignment
-            While rs.Read
-                If Not IsDBNull(rs("Manufacturer")) Then txtManu.Text = UnFluffContent(rs("Manufacturer"))
-                If Not IsDBNull(rs("Name")) Then txtName.Text = UnFluffContent(rs("Name"))
-                If Not IsDBNull(rs("Diameter")) Then txtDia.Text = UnFluffContent(rs("Diameter"))
-                If Not IsDBNull(rs("Weight")) Then txtWei.Text = UnFluffContent(rs("Weight"))
-                If Not IsDBNull(rs("Sec_Den")) Then txtSecDia.Text = UnFluffContent(rs("Sec_Den"))
-                If Not IsDBNull(rs("Part_number")) Then txtPartNo.Text = UnFluffContent(rs("Part_number"))
-                If Not IsDBNull(rs("Ballistic_Coefficient")) Then txtBC.Text = UnFluffContent(rs("Ballistic_Coefficient"))
-                If Not IsDBNull(rs("Bullet_Type")) Then
-                    cmbBT.SelectedValue = rs("Bullet_Type")
-                    cmbBT.Update()
-                End If
-                If Not IsDBNull(rs("CID")) Then
-                    cmbCalList.SelectedValue = rs("CID")
-                    cmbCalList.Update()
-                End If
-' ReSharper disable RedundantAssignment
-                If Not IsDBNull(rs("Price")) Then dPrice = rs("Price")
-' ReSharper restore RedundantAssignment
-                If Not IsDBNull(rs("Qty")) Then iQty = rs("Qty")
-                If Not IsDBNull(rs("ePPB")) Then eppo = rs("ePPB")
-                dPrice = eppo * iQty
-                nudQty.Value = iQty
-                txtPrice.Text = objIm.ConvertToDollars(dPrice)
-            End While
-            rs.Close()
-            ' ReSharper disable RedundantAssignment
-            rs = Nothing
-            cmd = Nothing
-' ReSharper restore RedundantAssignment
-            obj.CloseDB()
+            ' TODO: #20 CLEAN UP CODE
+'            Dim sql As String = "SELECT * from List_Bullets where ID=" & Bid
+'            Dim obj As New BSDatabase
+'            Dim objIm As New InventoryMath
+'            Call obj.ConnectDB()
+'            Dim cmd As New OdbcCommand(sql, obj.Conn)
+'            Dim rs As OdbcDataReader
+'            rs = cmd.ExecuteReader
+'            Dim iQty As Integer = 0
+'            Dim eppo As Double = 0
+'' ReSharper disable RedundantAssignment
+'            Dim dPrice As Double = 0
+'' ReSharper restore RedundantAssignment
+'            While rs.Read
+'                If Not IsDBNull(rs("Manufacturer")) Then txtManu.Text = UnFluffContent(rs("Manufacturer"))
+'                If Not IsDBNull(rs("Name")) Then txtName.Text = UnFluffContent(rs("Name"))
+'                If Not IsDBNull(rs("Diameter")) Then txtDia.Text = UnFluffContent(rs("Diameter"))
+'                If Not IsDBNull(rs("Weight")) Then txtWei.Text = UnFluffContent(rs("Weight"))
+'                If Not IsDBNull(rs("Sec_Den")) Then txtSecDia.Text = UnFluffContent(rs("Sec_Den"))
+'                If Not IsDBNull(rs("Part_number")) Then txtPartNo.Text = UnFluffContent(rs("Part_number"))
+'                If Not IsDBNull(rs("Ballistic_Coefficient")) Then txtBC.Text = UnFluffContent(rs("Ballistic_Coefficient"))
+'                If Not IsDBNull(rs("Bullet_Type")) Then
+'                    cmbBT.SelectedValue = rs("Bullet_Type")
+'                    cmbBT.Update()
+'                End If
+'                If Not IsDBNull(rs("CID")) Then
+'                    cmbCalList.SelectedValue = rs("CID")
+'                    cmbCalList.Update()
+'                End If
+'' ReSharper disable RedundantAssignment
+'                If Not IsDBNull(rs("Price")) Then dPrice = rs("Price")
+'' ReSharper restore RedundantAssignment
+'                If Not IsDBNull(rs("Qty")) Then iQty = rs("Qty")
+'                If Not IsDBNull(rs("ePPB")) Then eppo = rs("ePPB")
+'                dPrice = eppo * iQty
+'                nudQty.Value = iQty
+'                txtPrice.Text = objIm.ConvertToDollars(dPrice)
+'            End While
+'            rs.Close()
+'            ' ReSharper disable RedundantAssignment
+'            rs = Nothing
+'            cmd = Nothing
+'' ReSharper restore RedundantAssignment
+'            obj.CloseDB()
+            Dim values As List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, Bid, errOut)
+            if errOut.Length > 0 Then Throw New Exception(errOut)
+            For Each o As BulletListings In values
+                txtManu.Text = o.Manufacturer
+                txtName.Text = o.Name
+                txtDia.Text = o.Diameter
+                txtWei.Text = o.Weight
+                txtSecDia.Text = o.SectionDensity
+                txtPartNo.Text = o.PartNumber
+                txtBC.Text = o.BallisticCoeffcient
+                cmbBT.SelectedValue = o.BullerType
+                cmbBT.Update()
+                cmbCalList.SelectedValue = o.CaliberId
+                cmbCalList.Update()
+                nudQty.Value = o.Qty
+                Dim newValue = Converters.ConvertToDollars(o.EsitmatedPricePerBullet * o.Qty)
+                txtPrice.Text = newValue
+            Next
         Catch ex As Exception
             Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
