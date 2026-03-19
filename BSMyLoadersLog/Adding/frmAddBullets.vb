@@ -157,13 +157,13 @@ Namespace Adding
         Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim o As BSOtherObjects = New BSOtherObjects()
-                Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text, "  ")
-                Dim strName As String = GeneralHelpers.FluffContent(txtName.Text, "  ")
-                Dim strDia As String = GeneralHelpers.FluffContent(txtDia.Text, "  ")
-                Dim strWei As String = GeneralHelpers.FluffContent(txtWei.Text, "  ")
-                Dim strSecDia As String = GeneralHelpers.FluffContent(txtSecDia.Text, "  ")
-                Dim strPartNo As String = GeneralHelpers.FluffContent(txtPartNo.Text, "  ")
-                Dim strBc As String = GeneralHelpers.FluffContent(txtBC.Text, "  ")
+                Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+                Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+                Dim strDia As String = GeneralHelpers.FluffContent(txtDia.Text)
+                Dim strWei As String = GeneralHelpers.FluffContent(txtWei.Text)
+                Dim strSecDia As String = GeneralHelpers.FluffContent(txtSecDia.Text)
+                Dim strPartNo As String = GeneralHelpers.FluffContent(txtPartNo.Text)
+                Dim strBc As String = GeneralHelpers.FluffContent(txtBC.Text)
                 Dim intBt As Integer = cmbBT.SelectedValue
                 Dim cal As Integer = cmbCalList.SelectedValue
                 Dim strQty As Integer = nudQty.Value

@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Adding
+
 Public Class frmViewDataSheet_RiflePistols
     Public FID As Long
     Public FirearmName As String
