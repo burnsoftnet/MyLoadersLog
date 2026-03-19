@@ -1,4 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Applications.MLL.Helpers
+
 ''' <summary>
 ''' Class frmAddBushing_Shot.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -6,14 +9,26 @@ Imports BSMyLoadersLog.LoadersClass
 ''' <seealso cref="System.Windows.Forms.Form" />
 Public Class FrmAddBushingShot
     ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Private errOut as String
+    ''' <summary>
     ''' Pres the load data.
     ''' </summary>
     Sub PreLoadData()
         Try
-            Dim objAf As New AutoFillCollections.ShotGun
-            txtCharge.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_sCharge
-            txtManu.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Manufacturer
-            txtName.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Name
+            ' TODO: #20 CLEAN UP CODE
+            'Dim objAf As New AutoFillCollections.ShotGun
+            'txtCharge.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_sCharge
+            'txtManu.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Manufacturer
+            'txtName.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Name
+            'Dim objAf As New AutoFillCollections.ShotGun
+            txtCharge.AutoCompleteCustomSource = ConfigShotgun.BushingShotCharge(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtManu.AutoCompleteCustomSource = ConfigShotgun.BushingShotManufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = ConfigShotgun.BushingShotName(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Name, "PreLoadData", Err.Number, ex.Message.ToString)
         End Try
@@ -41,14 +56,28 @@ Public Class FrmAddBushingShot
     ''' </summary>
     Sub SaveData()
         Try
-            Dim manu As String = FluffContent(txtManu.Text)
-            Dim sName As String = FluffContent(txtName.Text)
-            Dim sCharge As String = FluffContent(txtCharge.Text)
+            'Dim manu As String = FluffContent(txtManu.Text, "  ")
+            'Dim sName As String = FluffContent(txtName.Text, "  ")
+            'Dim sCharge As String = FluffContent(txtCharge.Text, "  ")
+            'Dim sType As String = cmbType.Text
+
+            'If Not IsRequired(manu, "Manufacturer", Text) Then Exit Sub
+            'If Not IsRequired(sName, "Name", Text) Then Exit Sub
+            'If Not IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
+            'Dim sql As String = "INSERT INTO List_SG_Bushing_Shot(Manufacturer,sName,sCharge,sType) VALUES('" & _
+            '                    manu & "','" & sName & "','" & sCharge & "','" & sType & "')"
+            'Dim objDb As New BSDatabase
+            'objDb.ConnExec(sql)
+            'Call ClearFields()
+
+            Dim manu As String = GeneralHelpers.FluffContent(txtManu.Text, "  ")
+            Dim sName As String = GeneralHelpers.FluffContent(txtName.Text, "  ")
+            Dim sCharge As String = GeneralHelpers.FluffContent(txtCharge.Text, "  ")
             Dim sType As String = cmbType.Text
 
-            If Not IsRequired(manu, "Manufacturer", Text) Then Exit Sub
-            If Not IsRequired(sName, "Name", Text) Then Exit Sub
-            If Not IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(manu, "Manufacturer", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sName, "Name", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
             Dim sql As String = "INSERT INTO List_SG_Bushing_Shot(Manufacturer,sName,sCharge,sType) VALUES('" & _
                                 manu & "','" & sName & "','" & sCharge & "','" & sType & "')"
             Dim objDb As New BSDatabase
