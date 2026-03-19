@@ -1,7 +1,10 @@
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.LoadersLog
+Imports BurnSoft.Applications.MLL.Types
 
 Namespace Adding
     ''' <summary>
@@ -151,12 +154,24 @@ Namespace Adding
         ''' Updates the configuration list.
         ''' </summary>
         Sub UpdateConfigList()
-            Dim objGf As New GlobalFunctions
-            Dim lngFid As Long = cmbFirearm.SelectedValue
-            Dim strCal As String = ""
-            Call objGf.GetFirearmDetails(lngFid, 0, "", "", "", strCal)
-            Dim calId As Long = objGf.GetCaliberID(strCal)
-            ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
+            Try
+                ' TODO: #20 CLEAN UP CODE
+                Dim objGf As New GlobalFunctions
+                Dim lngFid As Integer = cmbFirearm.SelectedValue
+                Dim strCal As String = ""
+                'Call objGf.GetFirearmDetails(lngFid, 0, "", "", "", strCal)
+                Dim values As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, lngFid, errOut)
+                if errOut.Length > 0 Then Throw New Exception(errOut)
+                For Each o As FirearmCollection In values
+                    strCal = o.Caliber
+                Next
+                ' Dim calId As Long = objGf.GetCaliberID(strCal)
+                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, errOut)
+                if errOut.Length > 0 Then Throw New Exception(errOut)
+                ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
+            Catch ex As Exception
+                Call LogError(Name, "UpdateConfigList", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the SelectedIndexChanged event of the cmbFirearm control.
