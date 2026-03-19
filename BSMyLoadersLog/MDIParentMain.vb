@@ -3,6 +3,7 @@ Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports System.IO
 Imports BurnSoft.MsgBox
+Imports BSMyLoadersLog.Adding
 ''' <summary>
 ''' Class MdiParentMain.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -52,7 +53,7 @@ Public Class MdiParentMain
             ToolStripSeparator4.Visible = False
 
             If OwnerID = 0 Then
-                Dim frmNew As New frmOptions
+                Dim frmNew As New FrmOptions
                 frmNew.MdiParent = Me
                 frmNew.Show()
             End If
@@ -463,8 +464,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub SaveToolStripButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SaveToolStripButton.Click
-        frmOptions.MdiParent = Me
-        frmOptions.Show()
+        FrmOptions.MdiParent = Me
+        FrmOptions.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the HelpToolStripButton control.
@@ -480,8 +481,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnAddCal2List_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddCal2List.Click
-        frmAddCaliberToCollection.MdiParent = Me
-        frmAddCaliberToCollection.Show()
+        FrmAddCaliberToCollection.MdiParent = Me
+        FrmAddCaliberToCollection.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the btnAddConfig control.
@@ -733,8 +734,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub OptionsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OptionsToolStripMenuItem.Click
-        frmOptions.MdiParent = Me
-        frmOptions.Show()
+        FrmOptions.MdiParent = Me
+        FrmOptions.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the SaveToolStripMenuItem control.
@@ -749,7 +750,7 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-    Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) 
+    Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim myProcess As New Process
         myProcess.StartInfo.FileName = MENU_SHOP
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
@@ -839,8 +840,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub BulletToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletToolStripMenuItem.Click
-        frmAddBullets.MdiParent = Me
-        frmAddBullets.Show()
+        FrmAddBullets.MdiParent = Me
+        FrmAddBullets.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CaseToolStripMenuItem control.
@@ -1176,8 +1177,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaliberReloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaliberReloadToolStripMenuItem.Click
-        frmAddCaliberToCollection.MdiParent = Me
-        frmAddCaliberToCollection.Show()
+        FrmAddCaliberToCollection.MdiParent = Me
+        FrmAddCaliberToCollection.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PreLoadedCaliberListToolStripMenuItem control.

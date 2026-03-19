@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Public Class frmView_Bushings_Powder
     Sub LoadData()
