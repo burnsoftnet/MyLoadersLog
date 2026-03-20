@@ -5,12 +5,25 @@ Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Security.RegularEncryption.SHA
+''' <summary>
+''' Class FrmOptions Options or settings window code
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class FrmOptions
+    ''' <summary>
+    ''' The record identifier
+    ''' </summary>
     Dim _recId As Integer
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Private errOut as String
+    Private _errOut as String
+    ''' <summary>
+    ''' Saves the data.
+    ''' </summary>
+    ''' <returns>System.Int32.</returns>
+    ''' <exception cref="System.Exception"></exception>
     Function SaveData() As Integer
         Try
             Dim strLoadName As String = GeneralHelpers.FluffContent(txtLoadName.Text)
@@ -30,20 +43,20 @@ Public Class FrmOptions
             Dim strDefaultList As String = cmbDefaultList.Text
             Dim strPhrase As String = One.Encrypt(GeneralHelpers.FluffContent(txtPhrase.Text))
             Dim strWord As String = One.Encrypt(GeneralHelpers.FluffContent(txtWord.Text))
-            Dim iUsePassword As Integer = 0
+            'Dim iUsePassword As Integer = 0
             If Len(strUid) = 0 Then strUid = "admin"
             strUid = One.Encrypt(GeneralHelpers.FluffContent(strUid))
 ' ReSharper disable once VbUnreachableCode
-            If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Return 1 : Exit Function
+            If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Return 1 ': Exit Function
             If bSec Then
-                If Not GeneralHelpers.IsRequired(txtUID.Text, "User Name", Text) Then Return 1 : Exit Function
-                If Not GeneralHelpers.IsRequired(txtPWD.Text, "Password", Text) Then Return 1 : Exit Function
-                If Not GeneralHelpers.IsRequired(txtPhrase.Text, "Forgot Phrase", Text) Then Return 1 : Exit Function
-                If Not GeneralHelpers.IsRequired(txtWord.Text, "Forgot Key Word", Text) Then Return 1 : Exit Function
+                If Not GeneralHelpers.IsRequired(txtUID.Text, "User Name", Text) Then Return 1 ': Exit Function
+                If Not GeneralHelpers.IsRequired(txtPWD.Text, "Password", Text) Then Return 1 ': Exit Function
+                If Not GeneralHelpers.IsRequired(txtPhrase.Text, "Forgot Phrase", Text) Then Return 1 ': Exit Function
+                If Not GeneralHelpers.IsRequired(txtWord.Text, "Forgot Key Word", Text) Then Return 1 ': Exit Function
                 If InStr(strPwd, strCpwd, CompareMethod.Text) = 0 Then
                     MsgBox("Passwords do not match!", MsgBoxStyle.Critical, Text)
                     Return 1
-                    Exit Function
+                    'Exit Function
                 End If
             End If
             'If bSec Then iUsePassword = 1
@@ -54,7 +67,7 @@ Public Class FrmOptions
                 If Not  OwnerInformation.Add(DatabasePath, strName, strLoadName, strAddress, 
                                              strCity, strState, strZip, strPhone, strLic, bSec, 
                                              strUid, strPwd, strPhrase, strWord, 
-                                             errOut) Then Throw New Exception(errOut)
+                                             _errOut) Then Throw New Exception(_errOut)
                 'sql = "INSERT INTO Personal_Information(Load_Name,Name,Address," & _
                 '            "City,State,ZipCode,Phone,Lic,UseLock,UserName,Password,Password_Forgot," & _
                 '            "Password_Forgot_word) VALUES('" & strLoadName & "','" & _
@@ -69,7 +82,7 @@ Public Class FrmOptions
                 If Not OwnerInformation.Update(DatabasePath, OwnerID, strName, strLoadName, strAddress, 
                                                strCity, strState, strZip, strPhone, strLic, bSec, 
                                                strUid, strPwd, strPhrase, strWord, 
-                                               errOut) Then Throw New Exception(errOut)
+                                               _errOut) Then Throw New Exception(_errOut)
             End If
             'obj.ConnExec(sql)
             'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value, 
@@ -81,6 +94,8 @@ Public Class FrmOptions
                 UseOrgImage := chkDoOriginalImage.Checked, LOADERTYPE_SHOTGUN := bShotGun, 
                 LOADERTYPE_NONSHOTGUN := bRiflePistol, DefaultList := strDefaultList, IndvReports := chkIPer.Checked, 
                 VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked)
+            If Not MyRegistry.SaveSettings(mySettings, _errOut) Then Throw New Exception(_errOut)
+
             LOADERTYPE_SHOTGUN = bShotGun
             OwnerLoadName = Replace(strLoadName, "''", "'")
             LOADERTYPE_NONSHOTGUN = bRiflePistol
@@ -93,13 +108,17 @@ Public Class FrmOptions
             Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
         End Try
     End Function
+    ''' <summary>
+    ''' Gets the reg data.
+    ''' </summary>
+    ''' <exception cref="System.Exception"></exception>
     Sub GetRegData()
         'Dim objR As New BSRegistry
         'Call objR.GetSettings(lblLastSuc.Text, chkAOBU.Checked, nudDays.Value, chkBAKCleanup.Checked, 
         '                      chkBackupOnExit.Checked, chkDoOriginalImage.Checked, chkIPer.Checked)
         
-        Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(errOut)
-        If errOut.Length > 0 Then Throw New Exception(errOut)
+        Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(_errOut)
+        If _errOut.Length > 0 Then Throw New Exception(_errOut)
         For Each o As RegistrySettings In regSettings
             lblLastSuc.Text = o.LastSucBackup
             chkAOBU.Checked = o.AlertOnBackUp
@@ -116,6 +135,10 @@ Public Class FrmOptions
         chkViewFPS.Checked = VIEW_FPS
         chkViewCUPS.Checked = VIEW_CUPS
     End Sub
+    ''' <summary>
+    ''' Gets the database data.
+    ''' </summary>
+    ''' <exception cref="System.Exception"></exception>
     Sub GetDbData()
         Try
             'Dim obj As New BSDatabase
@@ -157,8 +180,8 @@ Public Class FrmOptions
             'cmd = Nothing
             'rs = Nothing
             'obj.CloseDB()
-            Dim value As List(Of PersonalInformation) = OwnerInformation.GetAllData(DatabasePath, errOut)
-            If errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim value As List(Of PersonalInformation) = OwnerInformation.GetAllData(DatabasePath, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             if value.Count > 0 Then
                 For Each o As PersonalInformation In value
                     _recId = o.Id
@@ -189,24 +212,50 @@ Public Class FrmOptions
             Call LogError(Name, "GetDBData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Loads the data.
+    ''' </summary>
     Sub LoadData()
         Call GetRegData()
         Call GetDbData()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnSave control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnSave.Click
         Call SaveData()
         Close()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnApply control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnApply_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnApply.Click
         Call SaveData()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnExit control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnExit.Click
         Close()
     End Sub
+    ''' <summary>
+    ''' Handles the Load event of the frmOptions control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub frmOptions_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
         Call LoadData()
         chkShotGun.Enabled = USE_SHOTGUN
     End Sub
+    ''' <summary>
+    ''' Sets the security.
+    ''' </summary>
     Sub SetSecurity()
         txtPWD.Enabled = chkSec.Checked
         txtCPWD.Enabled = chkSec.Checked
@@ -214,6 +263,11 @@ Public Class FrmOptions
         txtPhrase.Enabled = chkSec.Checked
         txtWord.Enabled = chkSec.Checked
     End Sub
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkSec control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub chkSec_CheckedChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles chkSec.CheckedChanged
         Call SetSecurity()
     End Sub
