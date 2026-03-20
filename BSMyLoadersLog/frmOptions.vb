@@ -1,5 +1,8 @@
-Imports BSMyLoadersLog.LoadersClass
+'TODO #20 Clean Up Code
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
+Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Security.RegularEncryption.SHA
 Public Class FrmOptions
@@ -10,58 +13,74 @@ Public Class FrmOptions
     Private errOut as String
     Function SaveData() As Integer
         Try
-            Dim strLoadName As String = FluffContent(txtLoadName.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strAddress As String = FluffContent(txtAddress.Text)
-            Dim strCity As String = FluffContent(txtCity.Text)
-            Dim strState As String = FluffContent(txtState.Text)
-            Dim strZip As String = FluffContent(txtZip.Text)
-            Dim strPhone As String = FluffContent(txtPhone.Text)
-            Dim strLic As String = One.Encrypt(FluffContent(txtLic.Text))
+            Dim strLoadName As String = GeneralHelpers.FluffContent(txtLoadName.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strAddress As String = GeneralHelpers.FluffContent(txtAddress.Text)
+            Dim strCity As String = GeneralHelpers.FluffContent(txtCity.Text)
+            Dim strState As String = GeneralHelpers.FluffContent(txtState.Text)
+            Dim strZip As String = GeneralHelpers.FluffContent(txtZip.Text)
+            Dim strPhone As String = GeneralHelpers.FluffContent(txtPhone.Text)
+            Dim strLic As String = One.Encrypt(GeneralHelpers.FluffContent(txtLic.Text))
             Dim bRiflePistol As Boolean = chkRiflePistol.Checked
             Dim bShotGun As Boolean = chkShotGun.Checked
             Dim bSec As Boolean = chkSec.Checked
-            Dim strUid As String = FluffContent(txtUID.Text)
-            Dim strPwd As String = One.Encrypt(FluffContent(txtPWD.Text))
-            Dim strCpwd As String = One.Encrypt(FluffContent(txtCPWD.Text))
+            Dim strUid As String = GeneralHelpers.FluffContent(txtUID.Text)
+            Dim strPwd As String = One.Encrypt(GeneralHelpers.FluffContent(txtPWD.Text))
+            Dim strCpwd As String = One.Encrypt(GeneralHelpers.FluffContent(txtCPWD.Text))
             Dim strDefaultList As String = cmbDefaultList.Text
-            Dim strPhrase As String = One.Encrypt(FluffContent(txtPhrase.Text))
-            Dim strWord As String = One.Encrypt(FluffContent(txtWord.Text))
+            Dim strPhrase As String = One.Encrypt(GeneralHelpers.FluffContent(txtPhrase.Text))
+            Dim strWord As String = One.Encrypt(GeneralHelpers.FluffContent(txtWord.Text))
             Dim iUsePassword As Integer = 0
             If Len(strUid) = 0 Then strUid = "admin"
-            strUid = One.Encrypt(FluffContent(strUid))
+            strUid = One.Encrypt(GeneralHelpers.FluffContent(strUid))
 ' ReSharper disable once VbUnreachableCode
-            If Not IsRequired(strName, "Name", Text) Then Return 1 : Exit Function
+            If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Return 1 : Exit Function
             If bSec Then
-                If Not IsRequired(txtUID.Text, "User Name", Text) Then Return 1 : Exit Function
-                If Not IsRequired(txtPWD.Text, "Password", Text) Then Return 1 : Exit Function
-                If Not IsRequired(txtPhrase.Text, "Forgot Phrase", Text) Then Return 1 : Exit Function
-                If Not IsRequired(txtWord.Text, "Forgot Key Word", Text) Then Return 1 : Exit Function
+                If Not GeneralHelpers.IsRequired(txtUID.Text, "User Name", Text) Then Return 1 : Exit Function
+                If Not GeneralHelpers.IsRequired(txtPWD.Text, "Password", Text) Then Return 1 : Exit Function
+                If Not GeneralHelpers.IsRequired(txtPhrase.Text, "Forgot Phrase", Text) Then Return 1 : Exit Function
+                If Not GeneralHelpers.IsRequired(txtWord.Text, "Forgot Key Word", Text) Then Return 1 : Exit Function
                 If InStr(strPwd, strCpwd, CompareMethod.Text) = 0 Then
                     MsgBox("Passwords do not match!", MsgBoxStyle.Critical, Text)
                     Return 1
                     Exit Function
                 End If
             End If
-            If bSec Then iUsePassword = 1
-            Dim sql As String = ""
-            Dim obj As New BSDatabase
-            Dim objR As New BSRegistry
+            'If bSec Then iUsePassword = 1
+            'Dim sql As String = ""
+            'Dim obj As New BSDatabase
+            'Dim objR As New BSRegistry
             If OwnerID = 0 Then
-                sql = "INSERT INTO Personal_Information(Load_Name,Name,Address," & _
-                            "City,State,ZipCode,Phone,Lic,UseLock,UserName,Password,Password_Forgot," & _
-                            "Password_Forgot_word) VALUES('" & strLoadName & "','" & _
-                            strName & "','" & strAddress & "','" & strCity & "','" & strState & "','" & strZip & "','" & _
-                            strPhone & "','" & strLic & "'," & iUsePassword & ",'" & strUid & "','" & strPwd & "','" & _
-                            strPhrase & "','" & strWord & "')"
+                If Not  OwnerInformation.Add(DatabasePath, strName, strLoadName, strAddress, 
+                                             strCity, strState, strZip, strPhone, strLic, bSec, 
+                                             strUid, strPwd, strPhrase, strWord, 
+                                             errOut) Then Throw New Exception(errOut)
+                'sql = "INSERT INTO Personal_Information(Load_Name,Name,Address," & _
+                '            "City,State,ZipCode,Phone,Lic,UseLock,UserName,Password,Password_Forgot," & _
+                '            "Password_Forgot_word) VALUES('" & strLoadName & "','" & _
+                '            strName & "','" & strAddress & "','" & strCity & "','" & strState & "','" & strZip & "','" & _
+                '            strPhone & "','" & strLic & "'," & iUsePassword & ",'" & strUid & "','" & strPwd & "','" & _
+                '            strPhrase & "','" & strWord & "')"
             Else
-                sql = "UPDATE Personal_Information set Load_Name='" & strLoadName & "',Name='" & strName & "',Address='" & strAddress & "'" & _
-                        ",City='" & strCity & "',State='" & strState & "',ZipCode='" & strZip & "', Phone='" & strPhone & "',Lic='" & strLic & _
-                        "',UseLock=" & iUsePassword & ",UserName='" & strUid & "',Password='" & strPwd & "'," & _
-                        "Password_forgot='" & strPhrase & "',Password_Forgot_word='" & strWord & "' where ID=" & OwnerID
+                'sql = "UPDATE Personal_Information set Load_Name='" & strLoadName & "',Name='" & strName & "',Address='" & strAddress & "'" & _
+                '        ",City='" & strCity & "',State='" & strState & "',ZipCode='" & strZip & "', Phone='" & strPhone & "',Lic='" & strLic & _
+                '        "',UseLock=" & iUsePassword & ",UserName='" & strUid & "',Password='" & strPwd & "'," & _
+                '        "Password_forgot='" & strPhrase & "',Password_Forgot_word='" & strWord & "' where ID=" & OwnerID
+                If Not OwnerInformation.Update(DatabasePath, OwnerID, strName, strLoadName, strAddress, 
+                                               strCity, strState, strZip, strPhone, strLic, bSec, 
+                                               strUid, strPwd, strPhrase, strWord, 
+                                               errOut) Then Throw New Exception(errOut)
             End If
-            obj.ConnExec(sql)
-            objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value, False, False, chkAOBU.Checked, chkBackupOnExit.Checked, chkDoOriginalImage.Checked, bShotGun, bRiflePistol, strDefaultList, chkIPer.Checked, chkViewFPS.Checked, chkViewCUPS.Checked)
+            'obj.ConnExec(sql)
+            'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value, 
+            '                  False, False, chkAOBU.Checked, chkBackupOnExit.Checked,
+            '                  chkDoOriginalImage.Checked, bShotGun, bRiflePistol, 
+            '                  strDefaultList, chkIPer.Checked, chkViewFPS.Checked, chkViewCUPS.Checked)
+            Dim mySettings As List(Of RegistrySettings) = MyRegistry.BuildRegistry(
+                AlertOnBackUp := chkAOBU.Checked, BackupOnExit := chkBackupOnExit.Checked, 
+                UseOrgImage := chkDoOriginalImage.Checked, LOADERTYPE_SHOTGUN := bShotGun, 
+                LOADERTYPE_NONSHOTGUN := bRiflePistol, DefaultList := strDefaultList, IndvReports := chkIPer.Checked, 
+                VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked)
             LOADERTYPE_SHOTGUN = bShotGun
             OwnerLoadName = Replace(strLoadName, "''", "'")
             LOADERTYPE_NONSHOTGUN = bRiflePistol
@@ -99,45 +118,73 @@ Public Class FrmOptions
     End Sub
     Sub GetDbData()
         Try
-            Dim obj As New BSDatabase
-            Dim intUsePass As Integer
-            Call obj.ConnectDB()
-            Dim sql As String = "SELECT TOP 1 * from Personal_Information"
-            Dim cmd As New Odbc.OdbcCommand(sql, obj.Conn)
-            Dim rs As Odbc.OdbcDataReader
-            rs = cmd.ExecuteReader
-            If rs.HasRows Then
-                rs.Read()
-                _recId = CInt(rs("ID"))
-                OwnerID = _recId
-                txtLoadName.Text = Trim(rs("load_name"))
-                txtName.Text = Trim(rs("name")) 'oEncrypt.DecryptSHA(RS("name"))
-                txtAddress.Text = Trim(rs("address"))
-                txtCity.Text = Trim(rs("City"))
-                txtState.Text = Trim(rs("State"))
-                txtZip.Text = Trim(rs("ZipCode"))
-                txtPhone.Text = Trim(rs("Phone")) ' oEncrypt.DecryptSHA(RS("Phone"))
-                txtLic.Text = One.Decrypt(rs("LIC"))
-                intUsePass = CInt(rs("UseLock"))
-                If intUsePass = 1 Then
-                    txtPWD.Text = One.Decrypt(rs("Password"))
-                    txtCPWD.Text = txtPWD.Text
-                    chkSec.Checked = True
-                    txtUID.Text = One.Decrypt(rs("UserName"))
-                    txtPhrase.Text = One.Decrypt(rs("Password_Forgot"))
-                    txtWord.Text = One.Decrypt(rs("Password_Forgot_word"))
-                Else
-                    chkSec.Checked = False
-                End If
+            'Dim obj As New BSDatabase
+            'Dim intUsePass As Integer
+            'Call obj.ConnectDB()
+            'Dim sql As String = "SELECT TOP 1 * from Personal_Information"
+            'Dim cmd As New Odbc.OdbcCommand(sql, obj.Conn)
+            'Dim rs As Odbc.OdbcDataReader
+            'rs = cmd.ExecuteReader
+            'If rs.HasRows Then
+            '    rs.Read()
+            '    _recId = CInt(rs("ID"))
+            '    OwnerID = _recId
+            '    txtLoadName.Text = Trim(rs("load_name"))
+            '    txtName.Text = Trim(rs("name")) 'oEncrypt.DecryptSHA(RS("name"))
+            '    txtAddress.Text = Trim(rs("address"))
+            '    txtCity.Text = Trim(rs("City"))
+            '    txtState.Text = Trim(rs("State"))
+            '    txtZip.Text = Trim(rs("ZipCode"))
+            '    txtPhone.Text = Trim(rs("Phone")) ' oEncrypt.DecryptSHA(RS("Phone"))
+            '    txtLic.Text = One.Decrypt(rs("LIC"))
+            '    intUsePass = CInt(rs("UseLock"))
+            '    If intUsePass = 1 Then
+            '        txtPWD.Text = One.Decrypt(rs("Password"))
+            '        txtCPWD.Text = txtPWD.Text
+            '        chkSec.Checked = True
+            '        txtUID.Text = One.Decrypt(rs("UserName"))
+            '        txtPhrase.Text = One.Decrypt(rs("Password_Forgot"))
+            '        txtWord.Text = One.Decrypt(rs("Password_Forgot_word"))
+            '    Else
+            '        chkSec.Checked = False
+            '    End If
+            'Else
+            '    chkSec.Checked = False
+            '    _recId = 0
+            'End If
+            'Call SetSecurity()
+            'rs.Close()
+            'cmd = Nothing
+            'rs = Nothing
+            'obj.CloseDB()
+            Dim value As List(Of PersonalInformation) = OwnerInformation.GetAllData(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            if value.Count > 0 Then
+                For Each o As PersonalInformation In value
+                    _recId = o.Id
+                    OwnerID = _recId
+                    txtLoadName.Text = Trim(o.LoadName)
+                    txtName.Text = Trim(o.Name) 'oEncrypt.DecryptSHA(RS("name"))
+                    txtAddress.Text = Trim(o.Address)
+                    txtCity.Text = Trim(o.City)
+                    txtState.Text = Trim(o.State)
+                    txtZip.Text = Trim(o.ZipCode)
+                    txtPhone.Text = Trim(o.Phone) ' oEncrypt.DecryptSHA(RS("Phone"))
+                    txtLic.Text = One.Decrypt(o.License)
+                    chkSec.Checked = o.UseLock
+                    If o.UseLock Then
+                        txtPWD.Text = One.Decrypt(o.Password)
+                        txtCPWD.Text = txtPWD.Text
+                        txtUID.Text = One.Decrypt(o.UserName)
+                        txtPhrase.Text = One.Decrypt(o.ForgetPhrase)
+                        txtWord.Text = One.Decrypt(o.Forgot)
+                    End If
+                Next
             Else
                 chkSec.Checked = False
                 _recId = 0
             End If
             Call SetSecurity()
-            rs.Close()
-            cmd = Nothing
-            rs = Nothing
-            obj.CloseDB()
         Catch ex As Exception
             Call LogError(Name, "GetDBData", Err.Number, ex.Message.ToString)
         End Try
