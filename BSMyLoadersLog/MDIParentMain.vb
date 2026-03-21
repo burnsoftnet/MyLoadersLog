@@ -173,8 +173,9 @@ Public Class MdiParentMain
             End Select
             lstConfigSheets.Refresh()
             If LASTCONFIGEDVIEWED > 0 Then lstConfigSheets.SelectedValue = LASTCONFIGEDVIEWED
-            Dim objR As New BSRegistry
-            objR.SaveConfigSort(selectedView)
+            'Dim objR As New BSRegistry
+            'objR.SaveConfigSort(selectedView)
+            If Not MyRegistry.SaveConfigSort(selectedView, errOut) Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Name, "RefreshConfigData", Err.Number, ex.Message.ToString)
         End Try
