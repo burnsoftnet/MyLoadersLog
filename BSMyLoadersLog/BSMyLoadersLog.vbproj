@@ -72,8 +72,8 @@
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BurnSoft.Applications.MLL, Version=3.0.3.57, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BurnSoft.Applications.MLL.3.0.3.57-beta\lib\net481\BurnSoft.Applications.MLL.dll</HintPath>
+    <Reference Include="BurnSoft.Applications.MLL, Version=3.0.3.58, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BurnSoft.Applications.MLL.3.0.3.58-beta\lib\net481\BurnSoft.Applications.MLL.dll</HintPath>
     </Reference>
     <Reference Include="BurnSoft.MsgBox, Version=3.5.4848.17749, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -140,633 +140,425 @@
     <Compile Include="AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
-    <Compile Include="AboutBox1.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="AboutBox1.vb" />
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Adding\frmAddBushing_Powder.Designer.vb">
       <DependentUpon>frmAddBushing_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddBushing_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddBushing_Powder.vb" />
     <Compile Include="Adding\frmAddBushing_Shot.Designer.vb">
       <DependentUpon>frmAddBushing_Shot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddBushing_Shot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddBushing_Shot.vb" />
     <Compile Include="Adding\frmAddDataSheet_ShotGun_CFG.Designer.vb">
       <DependentUpon>frmAddDataSheet_ShotGun_CFG.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddDataSheet_ShotGun_CFG.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddDataSheet_ShotGun_CFG.vb" />
     <Compile Include="Adding\frmAddDataSheet_ShotGun_MAN.Designer.vb">
       <DependentUpon>frmAddDataSheet_ShotGun_MAN.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddDataSheet_ShotGun_MAN.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddDataSheet_ShotGun_MAN.vb" />
     <Compile Include="Adding\frmAddQtyHulls.Designer.vb">
       <DependentUpon>frmAddQtyHulls.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyHulls.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyHulls.vb" />
     <Compile Include="frmCopy_DataSheet_Copy_ShotGun.Designer.vb">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.vb" />
     <Compile Include="Editing\frmEditBushing_Powder.Designer.vb">
       <DependentUpon>frmEditBushing_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditBushing_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditBushing_Powder.vb" />
     <Compile Include="Editing\frmEditBushing_Shot.Designer.vb">
       <DependentUpon>frmEditBushing_Shot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditBushing_Shot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditBushing_Shot.vb" />
     <Compile Include="Editing\frmEditDataSheet_ShotGun.Designer.vb">
       <DependentUpon>frmEditDataSheet_ShotGun.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditDataSheet_ShotGun.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditDataSheet_ShotGun.vb" />
     <Compile Include="Viewing\frmView_Bushings_Powder.Designer.vb">
       <DependentUpon>frmView_Bushings_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_Bushings_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_Bushings_Powder.vb" />
     <Compile Include="Viewing\frmView_Bushings_Shot.Designer.vb">
       <DependentUpon>frmView_Bushings_Shot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_Bushings_Shot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_Bushings_Shot.vb" />
     <Compile Include="Viewing\frmView_List_ConfigurationsByCal_SG.Designer.vb">
       <DependentUpon>frmView_List_ConfigurationsByCal_SG.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_ConfigurationsByCal_SG.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_ConfigurationsByCal_SG.vb" />
     <Compile Include="DataGridPrinter.vb" />
     <Compile Include="ImportExport\ExportModule.vb" />
     <Compile Include="Adding\frmAddBullets.Designer.vb">
       <DependentUpon>frmAddBullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddBullets.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddBullets.vb" />
     <Compile Include="Adding\frmAddCaliberToCollection.Designer.vb">
       <DependentUpon>frmAddCaliberToCollection.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddCaliberToCollection.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddCaliberToCollection.vb" />
     <Compile Include="Adding\frmAddDataSheet_RiflePistols_CFG.Designer.vb">
       <DependentUpon>frmAddDataSheet_RiflePistols_CFG.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddDataSheet_RiflePistols_CFG.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddDataSheet_RiflePistols_CFG.vb" />
     <Compile Include="Adding\frmAddDataSheet_RiflePistols_MAN.Designer.vb">
       <DependentUpon>frmAddDataSheet_RiflePistols_MAN.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddDataSheet_RiflePistols_MAN.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddDataSheet_RiflePistols_MAN.vb" />
     <Compile Include="Adding\frmAddEquipment.Designer.vb">
       <DependentUpon>frmAddEquipment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddEquipment.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddEquipment.vb" />
     <Compile Include="Adding\frmAddFirearm.Designer.vb">
       <DependentUpon>frmAddFirearm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddFirearm.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddFirearm.vb" />
     <Compile Include="Adding\frmAddPowder.Designer.vb">
       <DependentUpon>frmAddPowder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddPowder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddPowder.vb" />
     <Compile Include="Adding\frmAddPrimer.Designer.vb">
       <DependentUpon>frmAddPrimer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddPrimer.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddPrimer.vb" />
     <Compile Include="Adding\frmAddQtyBullets.Designer.vb">
       <DependentUpon>frmAddQtyBullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyBullets.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyBullets.vb" />
     <Compile Include="Adding\frmAddQtyPowder.Designer.vb">
       <DependentUpon>frmAddQtyPowder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyPowder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyPowder.vb" />
     <Compile Include="Adding\frmAddQtyPrimers.Designer.vb">
       <DependentUpon>frmAddQtyPrimers.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyPrimers.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyPrimers.vb" />
     <Compile Include="Adding\frmAddQtyShellcase.Designer.vb">
       <DependentUpon>frmAddQtyShellcase.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyShellcase.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyShellcase.vb" />
     <Compile Include="Adding\frmAddQtyShot.Designer.vb">
       <DependentUpon>frmAddQtyShot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyShot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyShot.vb" />
     <Compile Include="Adding\frmAddQtySlug.Designer.vb">
       <DependentUpon>frmAddQtySlug.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtySlug.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtySlug.vb" />
     <Compile Include="Adding\frmAddQtyWAD.Designer.vb">
       <DependentUpon>frmAddQtyWAD.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddQtyWAD.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddQtyWAD.vb" />
     <Compile Include="Adding\frmAddShell.Designer.vb">
       <DependentUpon>frmAddShell.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddShell.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddShell.vb" />
     <Compile Include="Adding\frmAddShells.Designer.vb">
       <DependentUpon>frmAddShells.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddShells.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddShells.vb" />
     <Compile Include="Adding\frmAddShot.Designer.vb">
       <DependentUpon>frmAddShot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddShot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddShot.vb" />
     <Compile Include="Adding\frmAddSlugs.Designer.vb">
       <DependentUpon>frmAddSlugs.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddSlugs.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddSlugs.vb" />
     <Compile Include="Adding\frmAddWad.Designer.vb">
       <DependentUpon>frmAddWad.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmAddWad.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmAddWad.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_Powder.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_Powder.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_RP_1.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_RP_1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_RP_1.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_RP_1.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_SG_1.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_SG_1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_SG_1.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_SG_1.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_SG_2.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_SG_2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_SG_2.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_SG_2.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_SG_3.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_SG_3.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_SG_3.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_SG_3.vb" />
     <Compile Include="Adding\frmConfig_Add_Wizard_SG_Powder.Designer.vb">
       <DependentUpon>frmConfig_Add_Wizard_SG_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Adding\frmConfig_Add_Wizard_SG_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adding\frmConfig_Add_Wizard_SG_Powder.vb" />
     <Compile Include="frmCopy_DataSheet_RiflePistol.Designer.vb">
       <DependentUpon>frmCopy_DataSheet_RiflePistol.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_RiflePistol.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmCopy_DataSheet_RiflePistol.vb" />
     <Compile Include="frmDBCleanup.Designer.vb">
       <DependentUpon>frmDBCleanup.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDBCleanup.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmDBCleanup.vb" />
     <Compile Include="Editing\frmEditBullets.Designer.vb">
       <DependentUpon>frmEditBullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditBullets.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditBullets.vb" />
     <Compile Include="Editing\frmEditConfig.Designer.vb">
       <DependentUpon>frmEditConfig.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditConfig.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditConfig.vb" />
     <Compile Include="Editing\frmEditDataSheet_RiflePistols.Designer.vb">
       <DependentUpon>frmEditDataSheet_RiflePistols.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditDataSheet_RiflePistols.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditDataSheet_RiflePistols.vb" />
     <Compile Include="Editing\frmEditEquipment.Designer.vb">
       <DependentUpon>frmEditEquipment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditEquipment.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditEquipment.vb" />
     <Compile Include="Editing\frmEditFirearm.Designer.vb">
       <DependentUpon>frmEditFirearm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditFirearm.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditFirearm.vb" />
     <Compile Include="Editing\frmEditGuages.Designer.vb">
       <DependentUpon>frmEditGuages.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditGuages.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditGuages.vb" />
     <Compile Include="Editing\frmEditHulls.Designer.vb">
       <DependentUpon>frmEditHulls.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditHulls.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditHulls.vb" />
     <Compile Include="Editing\frmEditPowder.Designer.vb">
       <DependentUpon>frmEditPowder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditPowder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditPowder.vb" />
     <Compile Include="Editing\frmEditPrimer.Designer.vb">
       <DependentUpon>frmEditPrimer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditPrimer.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditPrimer.vb" />
     <Compile Include="Editing\frmEditShells.Designer.vb">
       <DependentUpon>frmEditShells.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditShells.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditShells.vb" />
     <Compile Include="Editing\frmEditShot.Designer.vb">
       <DependentUpon>frmEditShot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditShot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditShot.vb" />
     <Compile Include="Editing\frmEditSlug.Designer.vb">
       <DependentUpon>frmEditSlug.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditSlug.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditSlug.vb" />
     <Compile Include="Editing\frmEditWADS.Designer.vb">
       <DependentUpon>frmEditWADS.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEditWADS.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEditWADS.vb" />
     <Compile Include="Editing\frmEdit_AmmunitionTypes.Designer.vb">
       <DependentUpon>frmEdit_AmmunitionTypes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEdit_AmmunitionTypes.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEdit_AmmunitionTypes.vb" />
     <Compile Include="Editing\frmEdit_PrimerTypes.Designer.vb">
       <DependentUpon>frmEdit_PrimerTypes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEdit_PrimerTypes.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEdit_PrimerTypes.vb" />
     <Compile Include="Editing\frmEdit_ShotWeight.Designer.vb">
       <DependentUpon>frmEdit_ShotWeight.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEdit_ShotWeight.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEdit_ShotWeight.vb" />
     <Compile Include="Editing\frmEdit_SuggestedUse.Designer.vb">
       <DependentUpon>frmEdit_SuggestedUse.vb</DependentUpon>
     </Compile>
-    <Compile Include="Editing\frmEdit_SuggestedUse.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Editing\frmEdit_SuggestedUse.vb" />
     <Compile Include="ImportExport\frmExportFirearms.Designer.vb">
       <DependentUpon>frmExportFirearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="ImportExport\frmExportFirearms.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ImportExport\frmExportFirearms.vb" />
     <Compile Include="frmForgotPassword.Designer.vb">
       <DependentUpon>frmForgotPassword.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmForgotPassword.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmForgotPassword.vb" />
     <Compile Include="ImportExport\frmImportConfiguration.Designer.vb">
       <DependentUpon>frmImportConfiguration.vb</DependentUpon>
     </Compile>
-    <Compile Include="ImportExport\frmImportConfiguration.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ImportExport\frmImportConfiguration.vb" />
     <Compile Include="ImportExport\frmImportFirearms.Designer.vb">
       <DependentUpon>frmImportFirearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="ImportExport\frmImportFirearms.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ImportExport\frmImportFirearms.vb" />
     <Compile Include="frmLoadMakeReady_Details.Designer.vb">
       <DependentUpon>frmLoadMakeReady_Details.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLoadMakeReady_Details.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmLoadMakeReady_Details.vb" />
     <Compile Include="frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmLogin.vb" />
     <Compile Include="frmOptions.Designer.vb">
       <DependentUpon>frmOptions.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmOptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmOptions.vb" />
     <Compile Include="ViewReports\frmReport_BulletInventory.Designer.vb">
       <DependentUpon>frmReport_BulletInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_BulletInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_BulletInventory.vb" />
     <Compile Include="ViewReports\frmReport_CaseInventory.Designer.vb">
       <DependentUpon>frmReport_CaseInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_CaseInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_CaseInventory.vb" />
     <Compile Include="ViewReports\frmReport_Configuration_Sheet .Designer.vb">
       <DependentUpon>frmReport_Configuration_Sheet .vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_Configuration_Sheet .vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_Configuration_Sheet .vb" />
     <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG.Designer.vb">
       <DependentUpon>frmReport_Configuration_Sheet_SG.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG.vb" />
     <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG_Slug.Designer.vb">
       <DependentUpon>frmReport_Configuration_Sheet_SG_Slug.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG_Slug.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_Configuration_Sheet_SG_Slug.vb" />
     <Compile Include="ViewReports\frmReport_Custom.Designer.vb">
       <DependentUpon>frmReport_Custom.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_Custom.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_Custom.vb" />
     <Compile Include="ViewReports\frmReport_DataLoader_RiflePistol.Designer.vb">
       <DependentUpon>frmReport_DataLoader_RiflePistol.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_DataLoader_RiflePistol.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_DataLoader_RiflePistol.vb" />
     <Compile Include="ViewReports\frmReport_DataLoader_RiflePistolWOC.Designer.vb">
       <DependentUpon>frmReport_DataLoader_RiflePistolWOC.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_DataLoader_RiflePistolWOC.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_DataLoader_RiflePistolWOC.vb" />
     <Compile Include="ViewReports\frmReport_DataLoader_Shotgun.Designer.vb">
       <DependentUpon>frmReport_DataLoader_Shotgun.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_DataLoader_Shotgun.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_DataLoader_Shotgun.vb" />
     <Compile Include="ViewReports\frmReport_DataLoader_ShotgunWOC.Designer.vb">
       <DependentUpon>frmReport_DataLoader_ShotgunWOC.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_DataLoader_ShotgunWOC.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_DataLoader_ShotgunWOC.vb" />
     <Compile Include="ViewReports\frmReport_HullInventory.Designer.vb">
       <DependentUpon>frmReport_HullInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_HullInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_HullInventory.vb" />
     <Compile Include="ViewReports\frmReport_List_Equipment.Designer.vb">
       <DependentUpon>frmReport_List_Equipment.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_List_Equipment.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_List_Equipment.vb" />
     <Compile Include="ViewReports\frmReport_List_Firearms.Designer.vb">
       <DependentUpon>frmReport_List_Firearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_List_Firearms.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_List_Firearms.vb" />
     <Compile Include="ViewReports\frmReport_Loaded_Ammunition.Designer.vb">
       <DependentUpon>frmReport_Loaded_Ammunition.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_Loaded_Ammunition.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_Loaded_Ammunition.vb" />
     <Compile Include="ViewReports\frmReport_PowderInventory.Designer.vb">
       <DependentUpon>frmReport_PowderInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_PowderInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_PowderInventory.vb" />
     <Compile Include="ViewReports\frmReport_PrimerInventory.Designer.vb">
       <DependentUpon>frmReport_PrimerInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_PrimerInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_PrimerInventory.vb" />
     <Compile Include="ViewReports\frmReport_ShotInventory.Designer.vb">
       <DependentUpon>frmReport_ShotInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_ShotInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_ShotInventory.vb" />
     <Compile Include="ViewReports\frmReport_SlugInventory.Designer.vb">
       <DependentUpon>frmReport_SlugInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_SlugInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_SlugInventory.vb" />
     <Compile Include="ViewReports\frmReport_WADInventory.Designer.vb">
       <DependentUpon>frmReport_WADInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReports\frmReport_WADInventory.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ViewReports\frmReport_WADInventory.vb" />
     <Compile Include="frmSearchConfig_RiflePistol.Designer.vb">
       <DependentUpon>frmSearchConfig_RiflePistol.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSearchConfig_RiflePistol.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmSearchConfig_RiflePistol.vb" />
     <Compile Include="Viewing\frmViewDataSheet_RiflePistols.Designer.vb">
       <DependentUpon>frmViewDataSheet_RiflePistols.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmViewDataSheet_RiflePistols.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmViewDataSheet_RiflePistols.vb" />
     <Compile Include="Viewing\frmViewDataSheet_Shotgun.Designer.vb">
       <DependentUpon>frmViewDataSheet_Shotgun.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmViewDataSheet_Shotgun.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmViewDataSheet_Shotgun.vb" />
     <Compile Include="Viewing\frmView_Configuration_Shotgun_Sheet.Designer.vb">
       <DependentUpon>frmView_Configuration_Shotgun_Sheet.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_Configuration_Shotgun_Sheet.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_Configuration_Shotgun_Sheet.vb" />
     <Compile Include="Viewing\frmView_List_Shot.Designer.vb">
       <DependentUpon>frmView_List_Shot.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Shot.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Shot.vb" />
     <Compile Include="Viewing\frmView_Configuration_Sheet.Designer.vb">
       <DependentUpon>frmView_Configuration_Sheet.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_Configuration_Sheet.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_Configuration_Sheet.vb" />
     <Compile Include="Viewing\frmView_General_Calibers.Designer.vb">
       <DependentUpon>frmView_General_Calibers.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_General_Calibers.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_General_Calibers.vb" />
     <Compile Include="Viewing\frmView_List_Bullets.Designer.vb">
       <DependentUpon>frmView_List_Bullets.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Bullets.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Bullets.vb" />
     <Compile Include="Viewing\frmView_List_ConfigurationsByCal.Designer.vb">
       <DependentUpon>frmView_List_ConfigurationsByCal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_ConfigurationsByCal.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_ConfigurationsByCal.vb" />
     <Compile Include="Viewing\frmView_List_Equipment.Designer.vb">
       <DependentUpon>frmView_List_Equipment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Equipment.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Equipment.vb" />
     <Compile Include="Viewing\frmView_List_Firearms.Designer.vb">
       <DependentUpon>frmView_List_Firearms.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Firearms.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Firearms.vb" />
     <Compile Include="Viewing\frmView_List_Powder.Designer.vb">
       <DependentUpon>frmView_List_Powder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Powder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Powder.vb" />
     <Compile Include="Viewing\frmView_List_Primer.Designer.vb">
       <DependentUpon>frmView_List_Primer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Primer.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Primer.vb" />
     <Compile Include="Viewing\frmView_List_ShellHulls.Designer.vb">
       <DependentUpon>frmView_List_ShellHulls.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_ShellHulls.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_ShellHulls.vb" />
     <Compile Include="Viewing\frmView_List_Shells.Designer.vb">
       <DependentUpon>frmView_List_Shells.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Shells.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Shells.vb" />
     <Compile Include="Viewing\frmView_List_Slug.Designer.vb">
       <DependentUpon>frmView_List_Slug.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_Slug.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_Slug.vb" />
     <Compile Include="Viewing\frmView_List_WADS.Designer.vb">
       <DependentUpon>frmView_List_WADS.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_List_WADS.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_List_WADS.vb" />
     <Compile Include="Viewing\frmView_Loaded_Ammunition.Designer.vb">
       <DependentUpon>frmView_Loaded_Ammunition.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewing\frmView_Loaded_Ammunition.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Viewing\frmView_Loaded_Ammunition.vb" />
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="GlobalVars.vb" />
     <Compile Include="LoadersClass.vb" />
     <Compile Include="MDIParentMain.Designer.vb">
       <DependentUpon>MDIParentMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="MDIParentMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MDIParentMain.vb" />
     <Compile Include="MLLDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -794,9 +586,7 @@
     <Compile Include="SplashScreen1.Designer.vb">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
     </Compile>
-    <Compile Include="SplashScreen1.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="SplashScreen1.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutBox1.resx">
