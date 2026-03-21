@@ -12,14 +12,14 @@ Namespace LoadersClass
         Private _RegPath As String
         Private _DefaultDBName As String
 #Region "Registry General Functions and Subs"
-        Public Property DefaultRegPath() As String
-            Get
-                Return "Software\\BurnSoft\\BSMLL"
-            End Get
-            Set(ByVal value As String)
-                _RegPath = value
-            End Set
-        End Property
+        'Public Property DefaultRegPath() As String
+        '    Get
+        '        Return "Software\\BurnSoft\\BSMLL"
+        '    End Get
+        '    Set(ByVal value As String)
+        '        _RegPath = value
+        '    End Set
+        'End Property
         Public Property DefaultDBName() As String
             Get
                 Return DatabaseName
@@ -28,55 +28,55 @@ Namespace LoadersClass
                 _DefaultDBName = value
             End Set
         End Property
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub CreateSubKey(ByVal strValue As String)
-            'Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
-            Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
-        End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Function RegSubKeyExists(ByVal strValue As String) As Boolean
-            Dim bAns As Boolean = False
-            Try
-                Dim MyReg As RegistryKey
-                'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-                MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-                If MyReg Is Nothing Then
-                    bAns = False
-                Else
-                    bAns = True
-                End If
-            Catch ex As Exception
-                bAns = False
-            End Try
-            Return bAns
-        End Function
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Function GetRegSubKeyValue(ByVal strKey As String, ByVal strValue As String, ByVal strDefault As String) As String
-            Dim sAns As String = ""
-            Dim strMsg As String = ""
-            Dim MyReg As RegistryKey
-            Try
-                If RegSubKeyExists(strKey) Then
-                    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strKey, True)
-                    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strKey, True)
-                    If Len(MyReg.GetValue(strValue)) > 0 Then
-                        sAns = MyReg.GetValue(strValue)
-                    Else
-                        MyReg.SetValue(strValue, strDefault)
-                        sAns = strDefault
-                    End If
-                Else
-                    Call CreateSubKey(strKey)
-                    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strKey, True)
-                    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strKey, True)
-                    MyReg.SetValue(strValue, strDefault)
-                    sAns = strDefault
-                End If
-            Catch ex As Exception
-                sAns = strDefault
-            End Try
-            Return sAns
-        End Function
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub CreateSubKey(ByVal strValue As String)
+        '    'Microsoft.Win32.Registry.LocalMachine.CreateSubKey(strValue)
+        '    Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
+        'End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Function RegSubKeyExists(ByVal strValue As String) As Boolean
+        '    Dim bAns As Boolean = False
+        '    Try
+        '        Dim MyReg As RegistryKey
+        '        'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '        MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '        If MyReg Is Nothing Then
+        '            bAns = False
+        '        Else
+        '            bAns = True
+        '        End If
+        '    Catch ex As Exception
+        '        bAns = False
+        '    End Try
+        '    Return bAns
+        'End Function
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Function GetRegSubKeyValue(ByVal strKey As String, ByVal strValue As String, ByVal strDefault As String) As String
+        '    Dim sAns As String = ""
+        '    Dim strMsg As String = ""
+        '    Dim MyReg As RegistryKey
+        '    Try
+        '        If RegSubKeyExists(strKey) Then
+        '            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strKey, True)
+        '            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strKey, True)
+        '            If Len(MyReg.GetValue(strValue)) > 0 Then
+        '                sAns = MyReg.GetValue(strValue)
+        '            Else
+        '                MyReg.SetValue(strValue, strDefault)
+        '                sAns = strDefault
+        '            End If
+        '        Else
+        '            Call CreateSubKey(strKey)
+        '            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strKey, True)
+        '            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strKey, True)
+        '            MyReg.SetValue(strValue, strDefault)
+        '            sAns = strDefault
+        '        End If
+        '    Catch ex As Exception
+        '        sAns = strDefault
+        '    End Try
+        '    Return sAns
+        'End Function
         '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
         'Public Function SettingsExists() As Boolean
         '    Dim bAns As Boolean = False
@@ -184,55 +184,55 @@ Namespace LoadersClass
         '    MyReg.SetValue(sKey, sValue)
         '    MyReg.Close()
         'End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
-            Dim MyReg As RegistryKey
-            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            MyReg.SetValue("TrackHistoryDays", TrackHistoryDays)
-            MyReg.SetValue("TrackHistory", TrackHistory)
-            MyReg.SetValue("NumberFormat", NumberFormat)
-            MyReg.SetValue("AutoUpdate", AutoUpdate)
-            MyReg.SetValue("UseProxy", UseProxy)
-            MyReg.SetValue("AlertOnBackUp", AlertOnBackUp)
-            MyReg.SetValue("BackupOnExit", AutoBackup)
-            MyReg.SetValue("UseOrgImage", UOIMG)
-            MyReg.SetValue("LOADERTYPE_SHOTGUN", UseSHOTGUN)
-            MyReg.SetValue("LOADERTYPE_NONSHOTGUN", UseNONSHOTGUN)
-            MyReg.SetValue("DefaultList", UseDEFAULTLIST)
-            MyReg.SetValue("IndvReports", UseIPer)
-            MyReg.SetValue("VIEW_FPS", UseViewFPS)
-            MyReg.SetValue("VIEW_CUPS", UseViewCUPS)
-            MyReg.Close()
-        End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub SaveLastWorkingDir(ByVal strPath As String)
-            Dim MyReg As RegistryKey
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue, RegistryKeyPermissionCheck.Default)
-            MyReg.SetValue("LastWorkingPath", strPath)
-            MyReg.Close()
-        End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Sub SaveConfigSort(ByVal ConfigSort As String)
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
-            Dim MyReg As RegistryKey
-            'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            MyReg.SetValue("ConfigSort", ConfigSort)
-            MyReg.Close()
-        End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        Public Function GetLastWorkingDir() As String
-            Dim sAns As String = ""
-            Dim strValue As String = DefaultRegPath & "\Settings"
-            sAns = GetRegSubKeyValue(strValue, "LastWorkingPath", "C:\")
-            Return sAns
-        End Function
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
+        '    Dim MyReg As RegistryKey
+        '    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    MyReg.SetValue("TrackHistoryDays", TrackHistoryDays)
+        '    MyReg.SetValue("TrackHistory", TrackHistory)
+        '    MyReg.SetValue("NumberFormat", NumberFormat)
+        '    MyReg.SetValue("AutoUpdate", AutoUpdate)
+        '    MyReg.SetValue("UseProxy", UseProxy)
+        '    MyReg.SetValue("AlertOnBackUp", AlertOnBackUp)
+        '    MyReg.SetValue("BackupOnExit", AutoBackup)
+        '    MyReg.SetValue("UseOrgImage", UOIMG)
+        '    MyReg.SetValue("LOADERTYPE_SHOTGUN", UseSHOTGUN)
+        '    MyReg.SetValue("LOADERTYPE_NONSHOTGUN", UseNONSHOTGUN)
+        '    MyReg.SetValue("DefaultList", UseDEFAULTLIST)
+        '    MyReg.SetValue("IndvReports", UseIPer)
+        '    MyReg.SetValue("VIEW_FPS", UseViewFPS)
+        '    MyReg.SetValue("VIEW_CUPS", UseViewCUPS)
+        '    MyReg.Close()
+        'End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub SaveLastWorkingDir(ByVal strPath As String)
+        '    Dim MyReg As RegistryKey
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue, RegistryKeyPermissionCheck.Default)
+        '    MyReg.SetValue("LastWorkingPath", strPath)
+        '    MyReg.Close()
+        'End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Sub SaveConfigSort(ByVal ConfigSort As String)
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
+        '    Dim MyReg As RegistryKey
+        '    'MyReg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(strValue, True)
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    MyReg.SetValue("ConfigSort", ConfigSort)
+        '    MyReg.Close()
+        'End Sub
+        '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
+        'Public Function GetLastWorkingDir() As String
+        '    Dim sAns As String = ""
+        '    Dim strValue As String = DefaultRegPath & "\Settings"
+        '    sAns = GetRegSubKeyValue(strValue, "LastWorkingPath", "C:\")
+        '    Return sAns
+        'End Function
     End Class
     Public Class BSDatabase
         Public Conn As OdbcConnection
