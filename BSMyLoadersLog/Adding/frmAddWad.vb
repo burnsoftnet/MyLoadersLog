@@ -1,5 +1,11 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddWad
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Sub AutoLoad()
         Try
             Dim ObjAF As New AutoFillCollections.ShotGun
@@ -13,17 +19,17 @@ Public Class frmAddWad
     
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtWAD.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtWAD.Text)
             Dim intQty As Integer = nudQty.Value
-            Dim dPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim sLoad As String = FluffContent(txtLoad.Text, "0")
-            Dim dLoad As Double = ConvertOZToDouble(sLoad)
+            Dim dPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
+            Dim sLoad As String = GeneralHelpers.FluffContent(txtLoad.Text, "0")
+            Dim dLoad As Double = Converters.ConvertOZToDouble(sLoad, errOut)
             Dim GName As String = cmdGauge.Text
             Dim GID As Integer = cmdGauge.SelectedValue
             Dim eppw As Double = 0
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
             If dPrice <> 0 Then
                 eppw = (dPrice / intQty)
             End If

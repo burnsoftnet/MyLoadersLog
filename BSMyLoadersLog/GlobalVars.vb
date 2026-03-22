@@ -76,49 +76,49 @@ Module GlobalVars
         Grams
         Grains
     End Enum
-    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
-    Public Function ConvToNum(ByVal strValue As String) As Double
-        Dim dAns As Double = 0
-        Try
-            Dim intChar As Integer = Len(strValue)
-            Dim i As Integer = 0
-            Dim CurValue As String = ""
-            Dim NewValue As String = ""
-            Dim LastValue As String = ""
-            Dim NeedDiv As Boolean = False
-            For i = 1 To intChar
-                CurValue = Mid(strValue, i, 1)
-                If CurValue = " " Then Exit For
-                If IsNumeric(CurValue) Then
-                    If Len(LastValue) <> 0 Then
-                        LastValue = Mid(NewValue, Len(NewValue), 1)
-                    Else
-                        LastValue = CurValue
-                    End If
-                    If Not NeedDiv Then
-                        NewValue &= CurValue
-                    Else
-                        NewValue = CInt(CurValue) / CInt(LastValue)
-                    End If
-                    NeedDiv = False
-                Else
-                    Select Case CurValue
-                        Case "."
-                            NewValue &= CurValue
-                            NeedDiv = False
-                        Case "/"
-                            NeedDiv = True
-                    End Select
-                End If
-            Next
-            dAns = CDbl(NewValue)
-        Catch ex As Exception
-            Dim strform As String = "GlobalVars"
-            Dim strProcedure As String = "ConvertToNum"
-            Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
-        End Try
-        Return dAns
-    End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
+    'Public Function ConvToNum(ByVal strValue As String) As Double
+    '    Dim dAns As Double = 0
+    '    Try
+    '        Dim intChar As Integer = Len(strValue)
+    '        Dim i As Integer = 0
+    '        Dim CurValue As String = ""
+    '        Dim NewValue As String = ""
+    '        Dim LastValue As String = ""
+    '        Dim NeedDiv As Boolean = False
+    '        For i = 1 To intChar
+    '            CurValue = Mid(strValue, i, 1)
+    '            If CurValue = " " Then Exit For
+    '            If IsNumeric(CurValue) Then
+    '                If Len(LastValue) <> 0 Then
+    '                    LastValue = Mid(NewValue, Len(NewValue), 1)
+    '                Else
+    '                    LastValue = CurValue
+    '                End If
+    '                If Not NeedDiv Then
+    '                    NewValue &= CurValue
+    '                Else
+    '                    NewValue = CInt(CurValue) / CInt(LastValue)
+    '                End If
+    '                NeedDiv = False
+    '            Else
+    '                Select Case CurValue
+    '                    Case "."
+    '                        NewValue &= CurValue
+    '                        NeedDiv = False
+    '                    Case "/"
+    '                        NeedDiv = True
+    '                End Select
+    '            End If
+    '        Next
+    '        dAns = CDbl(NewValue)
+    '    Catch ex As Exception
+    '        Dim strform As String = "GlobalVars"
+    '        Dim strProcedure As String = "ConvertToNum"
+    '        Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
+    '    End Try
+    '    Return dAns
+    'End Function
     <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     Public Function ConvertOZToDouble(ByVal sValue As String) As Double
         Dim dAns As Double = 0
