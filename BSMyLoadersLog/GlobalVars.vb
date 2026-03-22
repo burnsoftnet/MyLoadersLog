@@ -260,108 +260,108 @@ Module GlobalVars
     '    End Select
     '    Return FormatNumber(dAns, 6)
     'End Function
-    Sub CheckforHotFix()
-        Dim Objf As New BSFileSystem
-        If Objf.FileExists(Application.StartupPath & "\hotfix.ini") Then
-            Dim myProcess As New Process
-            Dim RunThiSApp As String = Application.StartupPath & "\BSMLL_HotFixes.exe"
-            myProcess.StartInfo.FileName = RunThiSApp
-            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-            DoAutoBackup = False
-            myProcess.Start()
-            Global.System.Windows.Forms.Application.Exit()
-        End If
-    End Sub
-    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
-    Public Function LoginEnabled(ByRef PWD As String, ByRef UID As String, ByRef FW As String, ByRef FP As String) As Boolean
-        Dim bAns As Boolean = False
-        Try
-            Dim Obj As New BSDatabase
-            Obj.ConnectDB()
-            Dim SQL = "SELECT UseLock,Password,UserName,Password_Forgot_word,Password_Forgot from Personal_Information"
-            Dim CMD As New Odbc.OdbcCommand(SQL, Obj.Conn)
-            Dim RS As Odbc.OdbcDataReader
-            RS = CMD.ExecuteReader
-            If RS.HasRows Then
-                Dim intUsePWD As Integer = CInt(RS("UseLock"))
-                If intUsePWD = 1 Then
-                    If Not IsDBNull(RS("Password")) Then
-                        PWD = One.Decrypt(RS("Password"))
-                    Else
-                        PWD = ""
-                    End If
-                    If Not IsDBNull(RS("UserName")) Then
-                        UID = One.Decrypt(RS("UserName"))
-                    Else
-                        UID = "admin"
-                    End If
-                    If Not IsDBNull(RS("Password_Forgot_word")) And Len(RS("Password_Forgot_word")) > 0 Then
-                        FW = One.Decrypt(RS("Password_Forgot_word"))
-                    Else
-                        FW = "burnsoft"
-                    End If
-                    If Not IsDBNull(RS("Password_Forgot")) And Len(RS("Password_Forgot")) > 0 Then
-                        FP = One.Decrypt(RS("Password_Forgot"))
-                    Else
-                        FP = "The Company that made this App"
-                    End If
-                    bAns = True
-                Else
-                    bAns = False
-                    PWD = ""
-                    UID = "admin"
-                    FP = "The Company that made this App"
-                    FW = "burnsoft"
-                End If
-            Else
-                bAns = False
-                PWD = ""
-                UID = "admin"
-                FP = "The Company that made this App"
-                FW = "burnsoft"
-            End If
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            Obj.CloseDB()
-            Obj = Nothing
-        Catch ex As Exception
-            Dim strform As String = "GlobalVars"
-            Dim strProcedure As String = "LoginEnabled"
-            Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
-        End Try
-        Return bAns
-    End Function
-    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
-    Public Function GetOwnerID() As Integer
-        Dim iAns As Integer = 0
-        Try
-            Dim Obj As New BSDatabase
-            Obj.ConnectDB()
-            Dim SQL As String = "SELECT Top 1 ID,Name from Personal_Information"
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            If RS.HasRows Then
-                While (RS.Read)
-                    iAns = RS("ID")
-                    OwnerName = RS("Name")
-                End While
-            Else
-                iAns = 0
-                OwnerName = "Trial User"
-            End If
-            RS.Close()
-            RS = Nothing
-            Obj.CloseDB()
-            Obj = Nothing
-        Catch ex As Exception
-            Dim strform As String = "GlobalVars"
-            Dim strProcedure As String = "GetOwnerID"
-            Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
-        End Try
-        Return iAns
-    End Function
+    'Sub CheckforHotFix()
+    '    Dim Objf As New BSFileSystem
+    '    If Objf.FileExists(Application.StartupPath & "\hotfix.ini") Then
+    '        Dim myProcess As New Process
+    '        Dim RunThiSApp As String = Application.StartupPath & "\BSMLL_HotFixes.exe"
+    '        myProcess.StartInfo.FileName = RunThiSApp
+    '        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+    '        DoAutoBackup = False
+    '        myProcess.Start()
+    '        Global.System.Windows.Forms.Application.Exit()
+    '    End If
+    'End Sub
+    '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
+    'Public Function LoginEnabled(ByRef PWD As String, ByRef UID As String, ByRef FW As String, ByRef FP As String) As Boolean
+    '    Dim bAns As Boolean = False
+    '    Try
+    '        Dim Obj As New BSDatabase
+    '        Obj.ConnectDB()
+    '        Dim SQL = "SELECT UseLock,Password,UserName,Password_Forgot_word,Password_Forgot from Personal_Information"
+    '        Dim CMD As New Odbc.OdbcCommand(SQL, Obj.Conn)
+    '        Dim RS As Odbc.OdbcDataReader
+    '        RS = CMD.ExecuteReader
+    '        If RS.HasRows Then
+    '            Dim intUsePWD As Integer = CInt(RS("UseLock"))
+    '            If intUsePWD = 1 Then
+    '                If Not IsDBNull(RS("Password")) Then
+    '                    PWD = One.Decrypt(RS("Password"))
+    '                Else
+    '                    PWD = ""
+    '                End If
+    '                If Not IsDBNull(RS("UserName")) Then
+    '                    UID = One.Decrypt(RS("UserName"))
+    '                Else
+    '                    UID = "admin"
+    '                End If
+    '                If Not IsDBNull(RS("Password_Forgot_word")) And Len(RS("Password_Forgot_word")) > 0 Then
+    '                    FW = One.Decrypt(RS("Password_Forgot_word"))
+    '                Else
+    '                    FW = "burnsoft"
+    '                End If
+    '                If Not IsDBNull(RS("Password_Forgot")) And Len(RS("Password_Forgot")) > 0 Then
+    '                    FP = One.Decrypt(RS("Password_Forgot"))
+    '                Else
+    '                    FP = "The Company that made this App"
+    '                End If
+    '                bAns = True
+    '            Else
+    '                bAns = False
+    '                PWD = ""
+    '                UID = "admin"
+    '                FP = "The Company that made this App"
+    '                FW = "burnsoft"
+    '            End If
+    '        Else
+    '            bAns = False
+    '            PWD = ""
+    '            UID = "admin"
+    '            FP = "The Company that made this App"
+    '            FW = "burnsoft"
+    '        End If
+    '        RS.Close()
+    '        RS = Nothing
+    '        CMD = Nothing
+    '        Obj.CloseDB()
+    '        Obj = Nothing
+    '    Catch ex As Exception
+    '        Dim strform As String = "GlobalVars"
+    '        Dim strProcedure As String = "LoginEnabled"
+    '        Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
+    '    End Try
+    '    Return bAns
+    'End Function
+    '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
+    'Public Function GetOwnerID() As Integer
+    '    Dim iAns As Integer = 0
+    '    Try
+    '        Dim Obj As New BSDatabase
+    '        Obj.ConnectDB()
+    '        Dim SQL As String = "SELECT Top 1 ID,Name from Personal_Information"
+    '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+    '        Dim RS As OdbcDataReader
+    '        RS = CMD.ExecuteReader
+    '        If RS.HasRows Then
+    '            While (RS.Read)
+    '                iAns = RS("ID")
+    '                OwnerName = RS("Name")
+    '            End While
+    '        Else
+    '            iAns = 0
+    '            OwnerName = "Trial User"
+    '        End If
+    '        RS.Close()
+    '        RS = Nothing
+    '        Obj.CloseDB()
+    '        Obj = Nothing
+    '    Catch ex As Exception
+    '        Dim strform As String = "GlobalVars"
+    '        Dim strProcedure As String = "GetOwnerID"
+    '        Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
+    '    End Try
+    '    Return iAns
+    'End Function
     '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
     'Public Function GetLoadName() As String
     '    Dim sAns As String = "My Loaders Log"

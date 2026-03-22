@@ -49,7 +49,22 @@ Public Class MdiParentMain
             LASTCONFIGEDVIEWED = 0
             'MyLogFile = Application.StartupPath & "\err.log"
             Call CheckforHotFix()
-            If LoginEnabled(UseMyPWD, UseMyUID, UseMyForgotWord, UseMyForgotPhrase) And Not IsLoggedIN Then
+            'If LoginEnabled(UseMyPWD, UseMyUID, UseMyForgotWord, UseMyForgotPhrase) And Not IsLoggedIN Then
+            '    frmLogin.Show()
+            '    Close()
+            'End If
+            Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim requiredLogin as Boolean = False
+            For Each o As LoginInformationOnly In loginInfo
+                requiredLogin = o.UseLock
+                UseMyPWD = o.Password
+                UseMyUID = o.UserName
+                UseMyForgotWord = o.Forgot
+                UseMyForgotPhrase = o.ForgetPhrase
+            Next
+
+            If requiredLogin And Not IsLoggedIN Then
                 frmLogin.Show()
                 Close()
             End If
