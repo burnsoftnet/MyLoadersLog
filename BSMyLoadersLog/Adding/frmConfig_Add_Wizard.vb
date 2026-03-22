@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmConfig_Add_Wizard
     Private Sub frmConfig_Add_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
@@ -25,13 +27,13 @@ Public Class frmConfig_Add_Wizard
 
     Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
         Try
-            Dim strConfigName As String = FluffContent(txtConfigID.Text)
+            Dim strConfigName As String = GeneralHelpers.FluffContent(txtConfigID.Text)
             Dim bRP As Boolean = chkRP.Checked
             Dim bSG As Boolean = chkShotgun.Checked
             Dim lngCal As Long = cmbCal.SelectedValue
             Dim LoadType As Integer = 0
             If bSG Then LoadType = 1
-            If Not IsRequired(strConfigName, "Configuration ID", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strConfigName, "Configuration ID", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
             Dim ObjG As New GlobalFunctions
             Dim SQL As String = ""

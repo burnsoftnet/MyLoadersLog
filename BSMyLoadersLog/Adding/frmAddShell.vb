@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddShell
     Sub AutoLoad()
         Try
@@ -14,19 +16,19 @@ Public Class frmAddShell
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
             Dim GID As Long = cmbGauge.SelectedValue
             Dim strGAName As String = cmbGauge.Text
-            Dim strLen As String = FluffContent(txtLen.Text)
-            Dim sDRAM As String = FluffContent(txtDRAM.Text)
+            Dim strLen As String = GeneralHelpers.FluffContent(txtLen.Text)
+            Dim sDRAM As String = GeneralHelpers.FluffContent(txtDRAM.Text)
             Dim iQty As Long = nudQty.Value
             Dim epps As Double = 0
-            Dim dPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strLen, "Length", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strLen, "Length", Me.Text) Then Exit Sub
             If dPrice <> 0 Then
                 epps = (dPrice / iQty)
             End If

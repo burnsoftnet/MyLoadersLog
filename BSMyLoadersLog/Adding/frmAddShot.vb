@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddShot
     Public FromView As Boolean
     Sub AutoFill()
@@ -24,12 +26,12 @@ Public Class frmAddShot
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
-            Dim Name As String = FluffContent(txtName.Text)
-            Dim Mat As String = FluffContent(txtMat.Text, "LEAD")
-            Dim ShotNo As String = FluffContent(txtShotNo.Text, "0")
-            Dim Weight As String = FluffContent(txtPounds.Text, "0")
-            Dim Cost As Double = FluffContent(txtPrice.Text, 0.0)
+            Dim Manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim Name As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim Mat As String = GeneralHelpers.FluffContent(txtMat.Text, "LEAD")
+            Dim ShotNo As String = GeneralHelpers.FluffContent(txtShotNo.Text, "0")
+            Dim Weight As String = GeneralHelpers.FluffContent(txtPounds.Text, "0")
+            Dim Cost As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0.0)
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
             Dim ounces As Double = WEIGHT_OZ_1LBS * CDbl(Weight)
@@ -37,8 +39,8 @@ Public Class frmAddShot
             Dim epps As Double = 0
             If Cost > 0 Then epps = Cost / grams
 
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(Name, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Name, "Name", Me.Text) Then Exit Sub
 
             SQL = "INSERT INTO List_SG_ShotType_Details(Manufacturer,Name,mat,ShotNo,weight,Price,ounces,grams,epps,IsSlug) VALUES('" & _
                     Manu & "','" & Name & "','" & Mat & "','" & ShotNo & "','" & Weight & "'," & Cost & "," & ounces & _

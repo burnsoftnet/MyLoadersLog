@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmConfig_Add_Wizard_Powder
     Public ConfigName As String
     Public ConfigID As Long
@@ -37,15 +39,15 @@ Public Class frmConfig_Add_Wizard_Powder
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
             Dim lngPowderID As Long = cmbPowder.SelectedValue
-            Dim LMin As Double = FluffContent(txtLMin.Text, 0)
-            Dim LMid As Double = FluffContent(txtLMid.Text, 0)
-            Dim LMax As Double = FluffContent(txtLMax.Text, 0)
-            Dim MVMin As Double = FluffContent(txtMVMin.Text, 0)
-            Dim MVMid As Double = FluffContent(txtMVMid.Text, 0)
-            Dim MVMax As Double = FluffContent(txtMVMax.Text, 0)
-            Dim CUPSMin As Double = FluffContent(txtCUPSMin.Text, 0)
-            Dim CUPSMid As Double = FluffContent(txtCUPSMid.Text, 0)
-            Dim CUPSMax As Double = FluffContent(txtCUPSMax.Text, 0)
+            Dim LMin As Double = GeneralHelpers.FluffContent(txtLMin.Text, 0)
+            Dim LMid As Double = GeneralHelpers.FluffContent(txtLMid.Text, 0)
+            Dim LMax As Double = GeneralHelpers.FluffContent(txtLMax.Text, 0)
+            Dim MVMin As Double = GeneralHelpers.FluffContent(txtMVMin.Text, 0)
+            Dim MVMid As Double = GeneralHelpers.FluffContent(txtMVMid.Text, 0)
+            Dim MVMax As Double = GeneralHelpers.FluffContent(txtMVMax.Text, 0)
+            Dim CUPSMin As Double = GeneralHelpers.FluffContent(txtCUPSMin.Text, 0)
+            Dim CUPSMid As Double = GeneralHelpers.FluffContent(txtCUPSMid.Text, 0)
+            Dim CUPSMax As Double = GeneralHelpers.FluffContent(txtCUPSMax.Text, 0)
             Dim intPerf As Integer = 0
             If Not HasPerfPowder(ConfigID) Then intPerf = 1
             If Not IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
