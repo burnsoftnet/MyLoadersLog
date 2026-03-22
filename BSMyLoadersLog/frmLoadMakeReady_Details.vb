@@ -156,7 +156,7 @@ Public Class frmLoadMakeReady_Details
         Dim lnmr As Long = 0
         Dim dPowPerB As Double = 0
         If Not IsShotGun Then
-            dC1RA = CostOf1RndOfAmmo(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+            dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
             lnmr = INSTOCK_BULLET
             If lnmr < INSTOCK_CASE Then
                 lnmr = INSTOCK_BULLET
@@ -172,7 +172,7 @@ Public Class frmLoadMakeReady_Details
             Else
                 COST_BULLET = COST_SLUG
             End If
-            dC1RA = CostOf1RndOfAmmoSG(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
+            dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
 
             If IsSlug Then
                 lnmr = INSTOCK_SLUG

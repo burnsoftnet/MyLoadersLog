@@ -56,7 +56,7 @@ Public Class frmView_Configuration_Sheet
             txtCOPMid.Text = Obj.ConvertToDollars((COST_POWDER * MID_POWDER))
             'Cost Seems higher txtC1RA
             'dC1RA = ((COST_POWDER * MID_POWDER) + COST_CASE + COST_PRIMER + COST_BULLET)
-            dC1RA = CostOf1RndOfAmmo(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+            dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
             txtC1RA.Text = dC1RA
             txtCBIS.Text = INSTOCK_BULLET
             txtCPriIS.Text = INSTOCK_PRIMER

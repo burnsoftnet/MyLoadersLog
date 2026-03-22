@@ -71,12 +71,12 @@ Module GlobalVars
     Public Const WEIGHT_GRAMS_OZ = 28.35
     Public Const DatabaseName = "MLL.mdb"
     Public Const USE_SHOTGUN As Boolean = True
-    <Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
-    Public Enum WeightType
-        Pounds
-        Grams
-        Grains
-    End Enum
+    '<Obsolete("Moved to BurnSoft.Applications.MLL.Global.WeightValues")>
+    'Public Enum WeightType
+    '    Pounds
+    '    Grams
+    '    Grains
+    'End Enum
     '<Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
     'Public Function ConvToNum(ByVal strValue As String) As Double
     '    Dim dAns As Double = 0
@@ -387,26 +387,26 @@ Module GlobalVars
     '    End Try
     '    Return sAns
     'End Function
-    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoMetalic function")>
-    Public Function CostOf1RndOfAmmo(ByVal dPrimer As Double, ByVal dCase As Double, _
-                                        ByVal dBullet As Double, ByVal dPowder As Double, _
-                                        ByVal midPowder As Double) As Double
-        Dim dAns As Double = 0
-        Dim Obj As New InventoryMath
-        dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet))
-        Return Obj.ConvertToDollars(dAns)
-    End Function
-    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoShotGun function")>
-    Public Function CostOf1RndOfAmmoSG(ByVal dPrimer As Double, ByVal dCase As Double, _
-                                        ByVal dBullet As Double, ByVal dPowder As Double, _
-                                        ByVal midPowder As Double, ByVal WAD As Double) As Double
-        Dim dAns As Double = 0
-        Dim Obj As New InventoryMath
-        dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet) + Obj.ConvertToDollars(WAD))
-        Return Obj.ConvertToDollars(dAns)
-    End Function
+    '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoMetalic function")>
+    'Public Function CostOf1RndOfAmmo(ByVal dPrimer As Double, ByVal dCase As Double, _
+    '                                    ByVal dBullet As Double, ByVal dPowder As Double, _
+    '                                    ByVal midPowder As Double) As Double
+    '    Dim dAns As Double = 0
+    '    Dim Obj As New InventoryMath
+    '    dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet))
+    '    Return Obj.ConvertToDollars(dAns)
+    'End Function
+    '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoShotGun function")>
+    'Public Function CostOf1RndOfAmmoSG(ByVal dPrimer As Double, ByVal dCase As Double, _
+    '                                    ByVal dBullet As Double, ByVal dPowder As Double, _
+    '                                    ByVal midPowder As Double, ByVal WAD As Double) As Double
+    '    Dim dAns As Double = 0
+    '    Dim Obj As New InventoryMath
+    '    dAns = ((Obj.ConvertToDollars(dPowder * midPowder)) + Obj.ConvertToDollars(dCase) + Obj.ConvertToDollars(dPrimer) + Obj.ConvertToDollars(dBullet) + Obj.ConvertToDollars(WAD))
+    '    Return Obj.ConvertToDollars(dAns)
+    'End Function
     Public Sub LogError(ByVal sForm As String, ByVal sProcedure As String, ByVal iErrNo As Long, ByVal sErrorDesc As String)
-        Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        Dim ObjFS As New BurnSoft.Universal.FileIO
         Dim sMessage As String = sForm & "." & sProcedure & "::" & iErrNo & "::" & sErrorDesc
         ObjFS.LogFile(MyLogFile, sMessage)
     End Sub

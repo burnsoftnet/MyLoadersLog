@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddPowder
@@ -24,7 +25,8 @@ Public Class frmAddPowder
             Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
             Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
             Dim dbWei As Double = GeneralHelpers.FluffContent(CDbl(txtwei.Text), 0)
-            Dim dbWeiGrn As Double =Converters.ConvertWeight(dbWei, WeightType.Grains, WeightType.Pounds, errOut)
+            Dim dbWeiGrn As Double =Converters.ConvertWeight(dbWei, WeightValues.WeightType.Grains, 
+                                                             WeightValues.WeightType.Pounds, errOut)
             Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
             Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
             If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub

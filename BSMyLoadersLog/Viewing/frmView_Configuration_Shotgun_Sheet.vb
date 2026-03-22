@@ -134,7 +134,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             txtCPC.Text = Obj.ConvertToDollars(COST_CASE)
             txtCOPMid.Text = Obj.ConvertToDollars((COST_POWDER * MID_POWDER))
             txtCPW.Text = Obj.ConvertToDollars(COST_WAD)
-            dC1RA = CostOf1RndOfAmmoSG(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
+            dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
             txtC1RA.Text = dC1RA
             txtCNWIS.Text = INSTOCK_WAD
             txtCPriIS.Text = INSTOCK_PRIMER
