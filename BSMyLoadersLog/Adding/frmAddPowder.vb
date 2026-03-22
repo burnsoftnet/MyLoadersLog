@@ -6,13 +6,32 @@ Imports BurnSoft.Applications.MLL.Inventory
 'Imports BSMyLoadersLog.LoadersClass
 
 Namespace Adding
-
+    ''' <summary>
+    ''' Class FrmAddPowder.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmAddPowder
-        Dim errOut As String
+        ''' <summary>
+        ''' The error out
+        ''' </summary>
+        Dim _errOut As String
+        ''' <summary>
+        ''' From view
+        ''' </summary>
         Public FromView As Boolean
+        ''' <summary>
+        ''' Handles the Click event of the btnCancel control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
+        ''' <summary>
+        ''' Automatics the fill.
+        ''' </summary>
+        ''' <exception cref="System.Exception"></exception>
         Sub AutoFill()
             Try
                 'TODO: #20 Clean Up Code
@@ -22,18 +41,24 @@ Namespace Adding
                 'txtPrice.AutoCompleteCustomSource = ObjAF.General_Powder_Price
                 'txtwei.AutoCompleteCustomSource = ObjAF.General_Powder_WeightInPounds
                 'Dim ObjAF As New AutoFillCollections
-                txtManu.AutoCompleteCustomSource = Powder.Manufacturer(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtName.AutoCompleteCustomSource = Powder.Name(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtPrice.AutoCompleteCustomSource = Powder.Price(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtwei.AutoCompleteCustomSource = Powder.Weightlbs(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                txtManu.AutoCompleteCustomSource = Powder.Manufacturer(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtName.AutoCompleteCustomSource = Powder.Name(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtPrice.AutoCompleteCustomSource = Powder.Price(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtwei.AutoCompleteCustomSource = Powder.Weightlbs(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the btnAdd control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        ''' <exception cref="System.Exception"></exception>
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
@@ -47,7 +72,7 @@ Namespace Adding
                 If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Exit Sub
                 
                 If Not PowderInventory.Add(DatabasePath, strManu, strName, dbWei, 
-                                           dbPrice, strNotes, errOut) Then Throw New Exception(errOut)
+                                           dbPrice, strNotes, _errOut) Then Throw New Exception(_errOut)
                 'TODO: #20 Clean Up Code
                 'Dim EstCostPerItem As Double = 0
                 'If dbPrice <> 0 Then
@@ -65,7 +90,11 @@ Namespace Adding
                 Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Load event of the frmAddPowder control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmAddPowder_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Call AutoFill()
         End Sub
