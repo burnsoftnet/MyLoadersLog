@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Public Class frmView_List_Firearms
     Public Sub LoadData()
@@ -19,9 +20,9 @@ Public Class frmView_List_Firearms
     End Sub
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-        frmAddFirearm.MdiParent = Me.MdiParent
-        frmAddFirearm.FromView = True
-        frmAddFirearm.Show()
+        FrmAddFirearm.MdiParent = Me.MdiParent
+        FrmAddFirearm.FromView = True
+        FrmAddFirearm.Show()
     End Sub
 
     Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
@@ -54,9 +55,9 @@ Public Class frmView_List_Firearms
     End Sub
 
     Private Sub AddToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddToolStripMenuItem.Click
-        frmAddFirearm.MdiParent = Me.MdiParent
-        frmAddFirearm.FromView = True
-        frmAddFirearm.Show()
+        FrmAddFirearm.MdiParent = Me.MdiParent
+        FrmAddFirearm.FromView = True
+        FrmAddFirearm.Show()
     End Sub
 
     Private Sub EditToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditToolStripMenuItem.Click
