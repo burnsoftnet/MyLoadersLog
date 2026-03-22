@@ -119,60 +119,60 @@ Module GlobalVars
     '    End Try
     '    Return dAns
     'End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
-    Public Function ConvertOZToDouble(ByVal sValue As String) As Double
-        Dim dAns As Double = 0
-        Try
-            Dim char_count As Integer = Len(sValue)
-            Dim i As Integer = 0
-            Dim CurValue As String = ""
-            Dim NewValue As String = ""
-            Dim LastValue As String = ""
-            Dim EndValue As String = "0"
-            Dim NeedDiv As Boolean = False
-            Dim isFraction As Boolean = False
-            Dim IsDec As Boolean = False
-            For i = 1 To char_count
-                CurValue = Mid(sValue, i, 1)
-                isFraction = False
-                If IsNumeric(CurValue) Then
-                    If Not NeedDiv Then
-                        NewValue = CurValue
-                        IsDec = False
-                    Else
-                        NewValue = CInt(LastValue) / CInt(CurValue)
-                        IsDec = True
-                    End If
-                    NeedDiv = False
-                    LastValue = CurValue
-                Else
-                    Select Case CurValue
-                        Case "."
-                            NewValue &= CurValue
-                            NeedDiv = False
-                        Case "/"
-                            NeedDiv = True
-                        Case Else
-                            NewValue = ""
-                    End Select
-                End If
-                If Mid(sValue, i + 1, 1) = "/" Then isFraction = True
-                If Not isFraction And Not NeedDiv Then
-                    If Not IsDec Then
-                        EndValue &= NewValue
-                    Else
-                        EndValue = CDbl(EndValue) + CDbl(NewValue)
-                    End If
-                End If
-            Next
-            dAns = CDbl(EndValue)
-        Catch ex As Exception
-            Dim strform As String = "GlobalVars"
-            Dim strProcedure As String = "ConvertOZToDouble"
-            Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
-        End Try
-        Return dAns
-    End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.Converters")>
+    'Public Function ConvertOZToDouble(ByVal sValue As String) As Double
+    '    Dim dAns As Double = 0
+    '    Try
+    '        Dim char_count As Integer = Len(sValue)
+    '        Dim i As Integer = 0
+    '        Dim CurValue As String = ""
+    '        Dim NewValue As String = ""
+    '        Dim LastValue As String = ""
+    '        Dim EndValue As String = "0"
+    '        Dim NeedDiv As Boolean = False
+    '        Dim isFraction As Boolean = False
+    '        Dim IsDec As Boolean = False
+    '        For i = 1 To char_count
+    '            CurValue = Mid(sValue, i, 1)
+    '            isFraction = False
+    '            If IsNumeric(CurValue) Then
+    '                If Not NeedDiv Then
+    '                    NewValue = CurValue
+    '                    IsDec = False
+    '                Else
+    '                    NewValue = CInt(LastValue) / CInt(CurValue)
+    '                    IsDec = True
+    '                End If
+    '                NeedDiv = False
+    '                LastValue = CurValue
+    '            Else
+    '                Select Case CurValue
+    '                    Case "."
+    '                        NewValue &= CurValue
+    '                        NeedDiv = False
+    '                    Case "/"
+    '                        NeedDiv = True
+    '                    Case Else
+    '                        NewValue = ""
+    '                End Select
+    '            End If
+    '            If Mid(sValue, i + 1, 1) = "/" Then isFraction = True
+    '            If Not isFraction And Not NeedDiv Then
+    '                If Not IsDec Then
+    '                    EndValue &= NewValue
+    '                Else
+    '                    EndValue = CDbl(EndValue) + CDbl(NewValue)
+    '                End If
+    '            End If
+    '        Next
+    '        dAns = CDbl(EndValue)
+    '    Catch ex As Exception
+    '        Dim strform As String = "GlobalVars"
+    '        Dim strProcedure As String = "ConvertOZToDouble"
+    '        Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
+    '    End Try
+    '    Return dAns
+    'End Function
     <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
     Public Function UnFluffContent(ByVal strContent As String) As String
         Dim sAns As String = ""
@@ -361,31 +361,31 @@ Module GlobalVars
         End Try
         Return iAns
     End Function
-    <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
-    Public Function GetLoadName() As String
-        Dim sAns As String = "My Loaders Log"
-        Try
-            If Len(OwnerLoadName) > 0 Then sAns = OwnerLoadName
-            Dim Obj As New BSDatabase
-            Dim SQL As String = "SELECT Load_Name from Personal_Information where ID=" & OwnerID
-            Call Obj.ConnectDB()
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            While RS.Read
-                sAns = RS("Load_Name")
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            Obj.CloseDB()
-        Catch ex As Exception
-            Dim strform As String = "GlobalVars"
-            Dim strProcedure As String = "GetLoadName"
-            Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
-        End Try
-        Return sAns
-    End Function
+    '<Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation function")>
+    'Public Function GetLoadName() As String
+    '    Dim sAns As String = "My Loaders Log"
+    '    Try
+    '        If Len(OwnerLoadName) > 0 Then sAns = OwnerLoadName
+    '        Dim Obj As New BSDatabase
+    '        Dim SQL As String = "SELECT Load_Name from Personal_Information where ID=" & OwnerID
+    '        Call Obj.ConnectDB()
+    '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+    '        Dim RS As OdbcDataReader
+    '        RS = CMD.ExecuteReader
+    '        While RS.Read
+    '            sAns = RS("Load_Name")
+    '        End While
+    '        RS.Close()
+    '        RS = Nothing
+    '        CMD = Nothing
+    '        Obj.CloseDB()
+    '    Catch ex As Exception
+    '        Dim strform As String = "GlobalVars"
+    '        Dim strProcedure As String = "GetLoadName"
+    '        Call LogError(strform, strProcedure, Err.Number, ex.Message.ToString)
+    '    End Try
+    '    Return sAns
+    'End Function
     <Obsolete("This was replaced by the BurnSoft.Applications.MLL.PeopleAndPlaces.OwnerInformation.CostOfRoundsOfAmmoMetalic function")>
     Public Function CostOf1RndOfAmmo(ByVal dPrimer As Double, ByVal dCase As Double, _
                                         ByVal dBullet As Double, ByVal dPowder As Double, _

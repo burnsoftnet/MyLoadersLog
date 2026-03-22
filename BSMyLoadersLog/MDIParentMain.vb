@@ -103,7 +103,8 @@ Public Class MdiParentMain
                 ShotWeightToolStripMenuItem.Visible = False
 
             End If
-            OwnerLoadName = Replace(GetLoadName(), "''", "'")
+            'OwnerLoadName = Replace(GetLoadName(), "''", "'")
+            OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, errOut), "''", "'")
             If OwnerLoadName <> "My Loaders Log" Then Text = OwnerLoadName & " Loaders Log"
             Call RefreshData()
             Call InitForm()
