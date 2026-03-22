@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Xml
 Imports System.Data
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Universal
 
 Public Class frmView_Configuration_Sheet
     Public ConfigID As Long
@@ -153,9 +154,12 @@ Public Class frmView_Configuration_Sheet
             sAns &= XML_GeneratePowderList()
             sAns &= "</Inventory>" & NL
             sAns = Replace(sAns, "&", "&amp;")
-            Dim ObjFS As New BSFileSystem
+            'Dim ObjFS As New BSFileSystem
+            'ObjFS.DeleteFile(strPath)
+            'ObjFS.OutPutToFile(strPath, sAns)
+            Dim ObjFS As New FileIO
             ObjFS.DeleteFile(strPath)
-            ObjFS.OutPutToFile(strPath, sAns)
+            ObjFS.AppendToFile(strPath, sAns)
             MsgBox("Config was exported to " & Chr(10) & strPath)
         Catch ex As Exception
             Call LogError(Me.Name, "XML_Generate", Err.Number, ex.Message.ToString)

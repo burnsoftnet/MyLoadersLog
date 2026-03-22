@@ -9,6 +9,7 @@ Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Universal
 
 ''' <summary>
 ''' Class MdiParentMain.
@@ -68,7 +69,7 @@ Public Class MdiParentMain
                 frmLogin.Show()
                 Close()
             End If
-            Dim obj As New BSRegistry
+            Dim obj As New LoadersClass.BSRegistry
             'OwnerID = GetOwnerID()
             OwnerId = OwnerInformation.GetOwnerID(DatabasePath, errOut)
             If errOut.Length > 0 Then Throw New Exception(errOut)
@@ -125,7 +126,7 @@ Public Class MdiParentMain
             Call RefreshData()
             Call InitForm()
             Call InitLoaderType()
-            Dim objFs As New BSFileSystem
+            Dim objFs As New FileIO
             If objFs.FileExists(MyHotfixFile) Then ReRunHotfixUpdatesToolStripMenuItem.Enabled = True
         Catch ex As Exception
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
@@ -361,7 +362,7 @@ Public Class MdiParentMain
     ''' Checkfors the hot fix.
     ''' </summary>
     Sub CheckforHotFix()
-        Dim objf As New BSFileSystem
+        Dim objf As New FileIO
         If objf.FileExists(Application.StartupPath & "\hotfix.ini") Then
             Dim myProcess As New Process
             Dim runThiSApp As String = Application.StartupPath & "\" & MyHotfixFile
@@ -388,7 +389,7 @@ Public Class MdiParentMain
     ''' </summary>
     Sub CheckBackup()
         Try
-            Dim objR As New BSRegistry
+            Dim objR As New LoadersClass.BSRegistry
             If Not AlertOnBackUp Then Exit Sub
             Dim myLastDateDiff As Long = DateDiff(DateInterval.Day, CDate(LastSucBackup), DateTime.Now)
             Dim obj As New MsgClass

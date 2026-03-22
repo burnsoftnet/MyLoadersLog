@@ -8,6 +8,7 @@ Imports System.Windows.Forms
 Imports Microsoft.Win32
 Imports System.Configuration
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Universal
 
 Namespace LoadersClass
     Public Class BSRegistry
@@ -320,112 +321,112 @@ Namespace LoadersClass
             Return Table
         End Function
     End Class
-    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-    Public Class BSFileSystem
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub LogFile(ByVal strPath As String, ByVal strMessage As String)
-            Dim SendMessage As String = DateTime.Now & vbTab & strMessage
-            Call AppendToFile(strPath, SendMessage)
-            MDIParentMain.tsslErrorsFound.Visible = True
-            MDIParentMain.tsslErrorsFound.Enabled = True
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub DeleteFile(ByVal strPath As String)
-            If File.Exists(strPath) Then
-                File.Delete(strPath)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function FileExists(ByVal strPath As String)
-            Return File.Exists(strPath)
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Private Sub CreateFile(ByVal strPath As String)
-            If File.Exists(strPath) = False Then
-                Dim fs As New FileStream(strPath, FileMode.Append, FileAccess.Write, FileShare.Write)
-                fs.Close()
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Private Sub AppendToFile(ByVal strPath As String, ByVal strNewLine As String)
-            If File.Exists(strPath) = False Then Call CreateFile(strPath)
-            Dim sw As New StreamWriter(strPath, True, Encoding.ASCII)
-            sw.WriteLine(strNewLine)
-            sw.Close()
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub OutPutToFile(ByVal strPath As String, ByVal strNewLine As String)
-            Call AppendToFile(strPath, strNewLine)
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub MoveFile(ByVal strFrom As String, ByVal strTo As String)
-            If File.Exists(strFrom) Then
-                File.Move(strFrom, strTo)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub CopyFile(ByVal strFrom As String, ByVal strTo As String)
-            If File.Exists(strFrom) Then
-                File.Copy(strFrom, strTo)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub CreateDirectory(ByVal strPath As String)
-            If Directory.Exists(strPath) Then
-                Directory.CreateDirectory(strPath)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function DirectoryExists(ByVal strPath As String) As Boolean
-            Return Directory.Exists(strPath)
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub DeleteDirectory(ByVal strPath As String)
-            If Directory.Exists(strPath) Then
-                Directory.Delete(strPath)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub MoveDirectory(ByVal strFrom As String, ByVal strTo As String)
-            If Directory.Exists(strFrom) Then
-                Directory.Move(strFrom, strTo)
-            End If
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Sub RenameFile(ByVal strFrom As String, ByVal strTo As String)
-            File.Move(strFrom, strTo)
-        End Sub
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function GetPathOfFile(ByVal strFile As String) As String
-            Dim sAns As String = ""
-            sAns = Path.GetDirectoryName(strFile)
-            Return sAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function GetExtOfFile(ByVal strFile As String) As String
-            Dim sAns As String = ""
-            sAns = Path.GetExtension(strFile)
-            Return sAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function GetNameOfFile(ByVal strFile As String) As String
-            Dim sAns As String = ""
-            sAns = Path.GetFileName(strFile)
-            Return sAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function FileHasExtension(ByVal strFile As String) As Boolean
-            Dim bAns As Boolean = False
-            bAns = Path.HasExtension(strFile)
-            Return bAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
-        Public Function GetNameOfFileWOExt(ByVal strFile As String) As String
-            Dim sAns As String = ""
-            sAns = Path.GetFileNameWithoutExtension(strFile)
-            Return sAns
-        End Function
-    End Class
+    '<Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    'Public Class BSFileSystem
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub LogFile(ByVal strPath As String, ByVal strMessage As String)
+    '        Dim SendMessage As String = DateTime.Now & vbTab & strMessage
+    '        Call AppendToFile(strPath, SendMessage)
+    '        MDIParentMain.tsslErrorsFound.Visible = True
+    '        MDIParentMain.tsslErrorsFound.Enabled = True
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub DeleteFile(ByVal strPath As String)
+    '        If File.Exists(strPath) Then
+    '            File.Delete(strPath)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function FileExists(ByVal strPath As String)
+    '        Return File.Exists(strPath)
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Private Sub CreateFile(ByVal strPath As String)
+    '        If File.Exists(strPath) = False Then
+    '            Dim fs As New FileStream(strPath, FileMode.Append, FileAccess.Write, FileShare.Write)
+    '            fs.Close()
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Private Sub AppendToFile(ByVal strPath As String, ByVal strNewLine As String)
+    '        If File.Exists(strPath) = False Then Call CreateFile(strPath)
+    '        Dim sw As New StreamWriter(strPath, True, Encoding.ASCII)
+    '        sw.WriteLine(strNewLine)
+    '        sw.Close()
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub OutPutToFile(ByVal strPath As String, ByVal strNewLine As String)
+    '        Call AppendToFile(strPath, strNewLine)
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub MoveFile(ByVal strFrom As String, ByVal strTo As String)
+    '        If File.Exists(strFrom) Then
+    '            File.Move(strFrom, strTo)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub CopyFile(ByVal strFrom As String, ByVal strTo As String)
+    '        If File.Exists(strFrom) Then
+    '            File.Copy(strFrom, strTo)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub CreateDirectory(ByVal strPath As String)
+    '        If Directory.Exists(strPath) Then
+    '            Directory.CreateDirectory(strPath)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function DirectoryExists(ByVal strPath As String) As Boolean
+    '        Return Directory.Exists(strPath)
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub DeleteDirectory(ByVal strPath As String)
+    '        If Directory.Exists(strPath) Then
+    '            Directory.Delete(strPath)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub MoveDirectory(ByVal strFrom As String, ByVal strTo As String)
+    '        If Directory.Exists(strFrom) Then
+    '            Directory.Move(strFrom, strTo)
+    '        End If
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Sub RenameFile(ByVal strFrom As String, ByVal strTo As String)
+    '        File.Move(strFrom, strTo)
+    '    End Sub
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function GetPathOfFile(ByVal strFile As String) As String
+    '        Dim sAns As String = ""
+    '        sAns = Path.GetDirectoryName(strFile)
+    '        Return sAns
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function GetExtOfFile(ByVal strFile As String) As String
+    '        Dim sAns As String = ""
+    '        sAns = Path.GetExtension(strFile)
+    '        Return sAns
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function GetNameOfFile(ByVal strFile As String) As String
+    '        Dim sAns As String = ""
+    '        sAns = Path.GetFileName(strFile)
+    '        Return sAns
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function FileHasExtension(ByVal strFile As String) As Boolean
+    '        Dim bAns As Boolean = False
+    '        bAns = Path.HasExtension(strFile)
+    '        Return bAns
+    '    End Function
+    '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
+    '    Public Function GetNameOfFileWOExt(ByVal strFile As String) As String
+    '        Dim sAns As String = ""
+    '        sAns = Path.GetFileNameWithoutExtension(strFile)
+    '        Return sAns
+    '    End Function
+    'End Class
     Public Class AutoFillCollections
         Public Class ShotGun
             <Obsolete("NOT USED")>
@@ -1633,15 +1634,15 @@ Namespace LoadersClass
         End Function
     End Class
     Public Class InventoryMath
-        ''' <summary>
-        ''' This is a the local Private Sub for Logging Errors in the Error Log
-        ''' </summary>
-        Private Sub LogError(ByVal sProcedure As String, ByVal iErrNo As Long, ByVal sErrorDesc As String)
-            Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-            Dim sForm As String = "LoadersClass.InventoryMath"
-            Dim sMessage As String = sForm & "." & sProcedure & "::" & iErrNo & "::" & sErrorDesc
-            ObjFS.LogFile(MyLogFile, sMessage)
-        End Sub
+        '''' <summary>
+        '''' This is a the local Private Sub for Logging Errors in the Error Log
+        '''' </summary>
+        'Private Sub LogError(ByVal sProcedure As String, ByVal iErrNo As Long, ByVal sErrorDesc As String)
+        '    Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '    Dim sForm As String = "LoadersClass.InventoryMath"
+        '    Dim sMessage As String = sForm & "." & sProcedure & "::" & iErrNo & "::" & sErrorDesc
+        '    ObjFS.LogFile(MyLogFile, sMessage)
+        'End Sub
         ''' <summary>
         ''' Gets the Powder ID ( PID ) from Config_List_Powder_Data_NSG Table for Non-Shotguns
         ''' and returns the ID alonf with the Default Powder Load ( byref DefaultPowderLoad ) value.
@@ -1668,7 +1669,8 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPrefNSGPowderID", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPrefNSGPowderID", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return iAns
         End Function
@@ -1698,7 +1700,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPrefNSGPowderID", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPrefNSGPowderID", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPrefNSGPowderID", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return iAns
         End Function
@@ -1725,7 +1729,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPrefNSGPowderIDID", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPrefNSGPowderIDID", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPrefNSGPowderIDID", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return iAns
         End Function
@@ -1752,7 +1758,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPrefSGPowderIDID", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPrefSGPowderIDID", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPrefSGPowderIDID", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return iAns
         End Function
@@ -1778,7 +1786,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetQTYPerPowder", Err.Number, ex.Message.ToString())
+                'Call LogError("GetQTYPerPowder", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetQTYPerPowder", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return dAns
         End Function
@@ -1804,7 +1814,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPricePerPowder", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPricePerPowder", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPricePerPowder", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return dAns
         End Function
@@ -1829,7 +1841,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("GetAmmoType", Err.Number, ex.Message.ToString())
+                'Call LogError("GetAmmoType", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetAmmoType", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return sAns
         End Function
@@ -1854,7 +1868,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("GetPrimerType", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPrimerType", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPrimerType", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return sAns
         End Function
@@ -1880,7 +1896,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("GetCaliber", Err.Number, ex.Message.ToString())
+                'Call LogError("GetCaliber", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetCaliber", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return sAns
         End Function
@@ -1918,7 +1936,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadBulletInfo", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadBulletInfo", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadBulletInfo", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -1948,7 +1968,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadPrimerInfo", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadPrimerInfo", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadPrimerInfo", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -1980,7 +2002,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadCaseInfo", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadCaseInfo", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadCaseInfo", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2013,7 +2037,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadHullInfo", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadHullInfo", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadHullInfo", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2044,7 +2070,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadWADInfo", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadWADInfo", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadWADInfo", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2097,7 +2125,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadSG_ShotType_Details", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadSG_ShotType_Details", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadSG_ShotType_Details", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2125,7 +2155,9 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Call LogError("LoadConfig", Err.Number, ex.Message.ToString())
+                'Call LogError("LoadConfig", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "LoadConfig", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2160,7 +2192,9 @@ Namespace LoadersClass
                 SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
                 Obj.ConnExec(SQL)
             Catch ex As Exception
-                Call LogError("ARUNSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+                'Call LogError("ARUNSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "ARUNSG_UpdateInventoryQty", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2203,7 +2237,9 @@ Namespace LoadersClass
                 SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
                 Obj.ConnExec(SQL)
             Catch ex As Exception
-                Call LogError("ARUSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+                'Call LogError("ARUSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "ARUSG_UpdateInventoryQty", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
         ''' <summary>
@@ -2232,7 +2268,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("IsAlreadyListed", Err.Number, ex.Message.ToString())
+                'Call LogError("IsAlreadyListed", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "IsAlreadyListed", 
+                              Err.Number, ex.Message.ToString())
             End Try
             Return bAns
         End Function
@@ -2265,7 +2303,9 @@ Namespace LoadersClass
                 CMD = Nothing
                 Obj.CloseDB()
             Catch ex As Exception
-                Call LogError("GetPowderDetails", Err.Number, ex.Message.ToString())
+                'Call LogError("GetPowderDetails", Err.Number, ex.Message.ToString())
+                Call LogError("LoadersClass.InventoryMath", "GetPowderDetails", 
+                              Err.Number, ex.Message.ToString())
             End Try
         End Sub
     End Class
@@ -2479,9 +2519,9 @@ Namespace LoadersClass
                 Obj = Nothing
                 sAns &= "</Inventory>" & NL
                 sAns = Replace(sAns, "&", "&amp;")
-                Dim ObjFS As New BSFileSystem
+                Dim ObjFS As New FileIO
                 ObjFS.DeleteFile(strPath)
-                ObjFS.OutPutToFile(strPath, sAns)
+                ObjFS.AppendToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
                 Call LogError("LoadersClass.Inventory_Export_Import",
@@ -2550,9 +2590,9 @@ Namespace LoadersClass
                 Obj = Nothing
                 sAns &= "</Inventory>" & NL
                 sAns = Replace(sAns, "&", "&amp;")
-                Dim ObjFS As New BSFileSystem
+                Dim ObjFS As New FileIO
                 ObjFS.DeleteFile(strPath)
-                ObjFS.OutPutToFile(strPath, sAns)
+                ObjFS.AppendToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
                 Call LogError("LoadersClass.Inventory_Export_Import", 
@@ -2616,9 +2656,9 @@ Namespace LoadersClass
                 Obj = Nothing
                 sAns &= "</Inventory>" & NL
                 sAns = Replace(sAns, "&", "&amp;")
-                Dim ObjFS As New BSFileSystem
+                Dim ObjFS As New FileIO
                 ObjFS.DeleteFile(strPath)
-                ObjFS.OutPutToFile(strPath, sAns)
+                ObjFS.AppendToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
                 Call LogError("LoadersClass.Inventory_Export_Import", 
