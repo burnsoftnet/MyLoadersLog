@@ -78,7 +78,7 @@ Namespace Adding
                 Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
                 Dim intPriType As Integer = cmbPriType.SelectedValue
                 Dim intQty As Integer = nudQty.Value
-                Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
+                Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
 
                 If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", 
                                                  Text) Then Exit Sub
