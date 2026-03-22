@@ -1,4 +1,3 @@
-Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
@@ -20,12 +19,6 @@ Namespace Adding
         ''' </summary>
         Sub PreLoadData()
             Try
-                ' TODO: #20 CLEAN UP CODE
-                'Dim objAf As New AutoFillCollections.ShotGun
-                'txtCharge.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_sCharge
-                'txtManu.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Manufacturer
-                'txtName.AutoCompleteCustomSource = objAf.List_SG_Bushings_Shot_Name
-                'Dim objAf As New AutoFillCollections.ShotGun
                 txtCharge.AutoCompleteCustomSource = ConfigShotgun.BushingShotCharge(DatabasePath, errOut)
                 If errOut.Length > 0 Then Throw New Exception(errOut)
                 txtManu.AutoCompleteCustomSource = ConfigShotgun.BushingShotManufacturer(DatabasePath, errOut)
@@ -59,30 +52,19 @@ Namespace Adding
         ''' </summary>
         Sub SaveData()
             Try
-                ' TODO: #20 CLEAN UP CODE
-                'Dim manu As String = FluffContent(txtManu.Text, "  ")
-                'Dim sName As String = FluffContent(txtName.Text, "  ")
-                'Dim sCharge As String = FluffContent(txtCharge.Text, "  ")
-                'Dim sType As String = cmbType.Text
-
-                'If Not IsRequired(manu, "Manufacturer", Text) Then Exit Sub
-                'If Not IsRequired(sName, "Name", Text) Then Exit Sub
-                'If Not IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
-                'Dim sql As String = "INSERT INTO List_SG_Bushing_Shot(Manufacturer,sName,sCharge,sType) VALUES('" & _
-                '                    manu & "','" & sName & "','" & sCharge & "','" & sType & "')"
-                'Dim objDb As New BSDatabase
-                'objDb.ConnExec(sql)
-                'Call ClearFields()
-
-                Dim manu As String = GeneralHelpers.FluffContent(txtManu.Text, "  ")
-                Dim sName As String = GeneralHelpers.FluffContent(txtName.Text, "  ")
-                Dim sCharge As String = GeneralHelpers.FluffContent(txtCharge.Text, "  ")
+                Dim manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+                Dim sName As String = GeneralHelpers.FluffContent(txtName.Text)
+                Dim sCharge As String = GeneralHelpers.FluffContent(txtCharge.Text)
                 Dim sType As String = cmbType.Text
 
-                If Not GeneralHelpers.IsRequired(manu, "Manufacturer", Text) Then Exit Sub
-                If Not GeneralHelpers.IsRequired(sName, "Name", Text) Then Exit Sub
-                If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", Text) Then Exit Sub
-                If Not ShotgunShotInventory.Add(DatabasePath, manu, sName, sCharge, sType, errOut) Then Throw New Exception(errOut)
+                If Not GeneralHelpers.IsRequired(manu, "Manufacturer", 
+                                                 Text) Then Exit Sub
+                If Not GeneralHelpers.IsRequired(sName, "Name", 
+                                                 Text) Then Exit Sub
+                If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", 
+                                                 Text) Then Exit Sub
+                If Not ShotgunShotInventory.Add(DatabasePath, manu, sName, sCharge, 
+                                                sType, errOut) Then Throw New Exception(errOut)
                 Call ClearFields()
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
