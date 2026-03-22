@@ -201,14 +201,14 @@ Public Class FrmOptions
                     txtState.Text = Trim(o.State)
                     txtZip.Text = Trim(o.ZipCode)
                     txtPhone.Text = Trim(o.Phone) ' oEncrypt.DecryptSHA(RS("Phone"))
-                    txtLic.Text = One.Decrypt(o.License)
+                    txtLic.Text = o.License
                     chkSec.Checked = o.UseLock
                     If o.UseLock Then
                         txtPWD.Text = One.Decrypt(o.Password)
                         txtCPWD.Text = txtPWD.Text
-                        txtUID.Text = One.Decrypt(o.UserName)
-                        txtPhrase.Text = One.Decrypt(o.ForgetPhrase)
-                        txtWord.Text = One.Decrypt(o.Forgot)
+                        txtUID.Text = o.UserName
+                        txtPhrase.Text = o.ForgetPhrase
+                        txtWord.Text = o.Forgot
                     End If
                 Next
             Else
