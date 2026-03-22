@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 
@@ -5,7 +6,7 @@ Public Class frmView_List_Equipment
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut as String
+    Dim errOut As String
     ''' <summary>
     ''' Handles the Resize event of the frmView_List_Equipment control.
     ''' </summary>
