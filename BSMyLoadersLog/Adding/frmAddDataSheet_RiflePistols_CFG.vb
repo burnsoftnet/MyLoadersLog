@@ -24,25 +24,19 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private errOut as String
+        Private _errOut as String
         ''' <summary>
         ''' Loads the automatic fill.
         ''' </summary>
         ''' <exception cref="System.Exception"></exception>
         Sub LoadAutoFill()
             Try
-                ' TODO: #20 CLEAN UP CODE
-                'Dim objAf As New AutoFillCollections
-                'txtGroup.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_GroupSize
-                'txtCon.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_conditions
-                'txtLen.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_tl
-                Dim objAf As New AutoFillCollections
-                txtGroup.AutoCompleteCustomSource = ConfigMetalic.GroupSize(DatabasePath, errOut)
-                if errOut.Length > 0 Then Throw New Exception(errOut)
-                txtCon.AutoCompleteCustomSource = ConfigMetalic.Conditions(DatabasePath, errOut)
-                if errOut.Length > 0 Then Throw New Exception(errOut)
-                txtLen.AutoCompleteCustomSource = ConfigMetalic.TotalLenght(DatabasePath, errOut)
-                if errOut.Length > 0 Then Throw New Exception(errOut)
+                txtGroup.AutoCompleteCustomSource = ConfigMetalic.GroupSize(DatabasePath, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtCon.AutoCompleteCustomSource = ConfigMetalic.Conditions(DatabasePath, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtLen.AutoCompleteCustomSource = ConfigMetalic.TotalLenght(DatabasePath, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
             End Try
@@ -112,18 +106,10 @@ Namespace Adding
                                               primerDetails := primerDetails, caseDetails := caseDetails, 
                                               condition := strCond, oal := strLen, notes := strNotes, 
                                               configName := configName, FirearmName := strFireArm, 
-                                              caliber := caliber, BarrelLenght := strBarLen, errOut) Then Throw New Exception(errOut)
+                                              caliber := caliber, BarrelLenght := strBarLen, _errOut) Then
+                    Throw New Exception(_errOut)
+                End If
 
-
-                'sql = "INSERT INTO Loaders_Log_NSG (fid,dt,yds,gs,ns,pwm,bullet," & _
-                '      "primer,case,conditions,tl,notes,ConfigName,FirearmName,Caliber,BarrelLen)" & _
-                '      " VALUES (" & lngFid & ",'" & strDateTested & "'," & lngYards & _
-                '      ",'" & strGroup & "'," & lngNumShots & ",'" & GeneralHelpers.FluffContent(powName & " - " & powWei & _
-                '      " - " & powManu) & "','" & GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")" & _
-                '      "','" & priManu & " " & priName & "','" & caseManu & " " & caseName & " " & _
-                '      caseStatus & "','" & strCond & "','" & strLen & "','" & strNotes & "','" & _
-                '      configName & "','" & strFireArm & "','" & caliber & "','" & strBarLen & "')"
-                'obj.ConnExec(sql)
                 MsgBox("Information was saved to the Loaders Log!")
                 If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
                 Close()
@@ -138,8 +124,6 @@ Namespace Adding
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmAddDataSheet_RiflePistols_CFG_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
-                'Replaced to narrow down none shotgun vs shotgun
-                'Loaders_Log_FirearmsTableAdapter.FillByFullName(MLLDataSet.Loaders_Log_Firearms)
                 Loaders_Log_FirearmsTableAdapter.FillByFullNameNoneShotgun(MLLDataSet.Loaders_Log_Firearms)
                 cmbFirearm.SelectedValue = Fid
                 Call UpdateConfigList()
@@ -169,22 +153,19 @@ Namespace Adding
         ''' </summary>
         Sub UpdateConfigList()
             Try
-                ' TODO: #20 CLEAN UP CODE
-                Dim objGf As New GlobalFunctions
                 Dim lngFid As Integer = cmbFirearm.SelectedValue
                 Dim strCal As String = ""
-                'Call objGf.GetFirearmDetails(lngFid, 0, "", "", "", strCal)
-                Dim values As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, lngFid, errOut)
-                if errOut.Length > 0 Then Throw New Exception(errOut)
+                Dim values As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, lngFid, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In values
                     strCal = o.Caliber
                 Next
-                'Dim calId As Long = objGf.GetCaliberID(strCal)
-                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, errOut)
-                if errOut.Length > 0 Then Throw New Exception(errOut)
+                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
             Catch ex As Exception
-                Call LogError(Name, "UpdateConfigList", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "UpdateConfigList", Err.Number, 
+                              ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
