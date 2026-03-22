@@ -50,7 +50,7 @@ Namespace Adding
                 txtwei.AutoCompleteCustomSource = Powder.Weightlbs(DatabasePath, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
-                Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "AutoFill", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -87,7 +87,7 @@ Namespace Adding
                 If FromView Then Call frmView_List_Powder.LoadData()
                 Close()
             Catch ex As Exception
-                Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
