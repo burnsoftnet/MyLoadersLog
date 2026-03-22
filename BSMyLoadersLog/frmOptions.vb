@@ -59,6 +59,7 @@ Public Class FrmOptions
                     'Exit Function
                 End If
             End If
+            'TODO: #20 Clean up Code
             'If bSec Then iUsePassword = 1
             'Dim sql As String = ""
             'Dim obj As New BSDatabase
@@ -125,9 +126,14 @@ Public Class FrmOptions
             chkAOBU.Checked = o.AlertOnBackUp
             nudDays.Value = o.TrackHistoryDays
             chkBAKCleanup.Checked = o.TrackHistory
-            chkBackupOnExit.Checked = o.AutoBackup
+            chkBackupOnExit.Checked = o.BackupOnExit
             chkDoOriginalImage.Checked = o.UseOrgImage
             chkIPer.Checked = o.IndvReports
+            LoadertypeShotgun = o.LoaderTypeShotGun
+            LoadertypeNonshotgun = o.LoaderTypeMetalic
+            Defaultlist = o.DefaultList
+            ViewFps = o.ViewFps
+            ViewCups = o.ViewCups
         Next
 
         chkShotGun.Checked = LoadertypeShotgun
@@ -142,6 +148,7 @@ Public Class FrmOptions
     ''' <exception cref="System.Exception"></exception>
     Sub GetDbData()
         Try
+            'TODO: #20 Clean up Code
             'Dim obj As New BSDatabase
             'Dim intUsePass As Integer
             'Call obj.ConnectDB()
