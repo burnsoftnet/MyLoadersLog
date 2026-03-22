@@ -1,5 +1,5 @@
 Imports BSMyLoadersLog.LoadersClass
-Imports BSMyLoadersLog.ExportModule
+Imports BSMyLoadersLog.ImportExport.ExportModule
 Public Class frmReport_Custom
     Public SQL As String
     Private GridPrinter As DataGridPrinter

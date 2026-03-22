@@ -19,7 +19,8 @@ Namespace My
         ''' <returns>A <see cref="T:System.Boolean" /> indicating if application startup should continue.</returns>
 ' ReSharper disable once ParameterHidesMember
         Protected Overrides Function OnInitialize(ByVal commandLineArgs As ObjectModel.ReadOnlyCollection(Of String)) As Boolean
-            Dim objf As New BSFileSystem
+           '' Dim objf As New BSFileSystem
+            Dim objf As New BurnSoft.Universal.FileIO
             Try
                 Dim debugMsg As String = ""
                 Dim nl As String = vbCrLf

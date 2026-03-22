@@ -12,9 +12,10 @@ Public Class frmAddShells
             txtTTL.AutoCompleteCustomSource = ObjAf.List_Case_Trim_to_length
             txtPrice.AutoCompleteCustomSource = ObjAf.List_Case_Price
         Catch ex As Exception
-            Dim ObjFS As New BSFileSystem
-            Dim sMessage As String = "frmAddShells.AutoFill" & "::" & Err.Number & "::" & ex.Message.ToString()
-            ObjFS.LogFile(MyLogFile, sMessage)
+            'Dim ObjFS As New BSFileSystem
+            'Dim sMessage As String = "frmAddShells.AutoFill" & "::" & Err.Number & "::" & ex.Message.ToString()
+            'ObjFS.LogFile(MyLogFile, sMessage)
+            Call LogError(Name, "AutoFill", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     Private Sub frmAddShells_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -50,9 +51,10 @@ Public Class frmAddShells
             If FromView Then Call FrmViewListShells.LoadData()
             Me.Close()
         Catch ex As Exception
-            Dim ObjFS As New BSFileSystem
-            Dim sMessage As String = "frmAddShells.btnAdd.Click" & "::" & Err.Number & "::" & ex.Message.ToString()
-            ObjFS.LogFile(MyLogFile, sMessage)
+            'Dim ObjFS As New BSFileSystem
+            'Dim sMessage As String = "frmAddShells.btnAdd.Click" & "::" & Err.Number & "::" & ex.Message.ToString()
+            'ObjFS.LogFile(MyLogFile, sMessage)
+            Call LogError(Name, "btnAdd_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 End Class
