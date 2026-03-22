@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmView_Loaded_Ammunition
     Sub LoadData()
         Try
@@ -38,12 +40,12 @@ Public Class frmView_Loaded_Ammunition
             While RS.Read
                 cQty = RS("Qty")
                 MID = RS("ID")
-                strManu = FluffContent(RS("Manufacturer"))
-                strName = FluffContent(RS("Name"))
-                strCaliber = FluffContent(RS("Cal"))
-                strGrains = FluffContent(RS("Grain"))
-                strJacket = FluffContent(RS("Jacket"))
-                sVelocity = FluffContent(RS("Vel"))
+                strManu = GeneralHelpers.FluffContent(RS("Manufacturer"))
+                strName = GeneralHelpers.FluffContent(RS("Name"))
+                strCaliber = GeneralHelpers.FluffContent(RS("Cal"))
+                strGrains = GeneralHelpers.FluffContent(RS("Grain"))
+                strJacket = GeneralHelpers.FluffContent(RS("Jacket"))
+                sVelocity = GeneralHelpers.FluffContent(RS("Vel"))
                 dcal = RS("dcal")
                 If ObjMGC.AmmoIsAlreadyListed(strManu, strName, strCaliber, _
                         strGrains, strJacket, iQty, AID) Then

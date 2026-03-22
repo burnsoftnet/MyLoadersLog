@@ -174,92 +174,92 @@ Module GlobalVars
     '    End Try
     '    Return dAns
     'End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function UnFluffContent(ByVal strContent As String) As String
-        Dim sAns As String = ""
-        sAns = Trim(Replace(strContent, "''", "'"))
-        If Len(sAns) = 0 Then
-            sAns = ""
-        End If
-        Return sAns
-    End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function FluffContent(ByVal strContent As String, Optional ByVal default_value As String = "   ") As String
-        Dim sAns As String = ""
-        sAns = Trim(Replace(strContent, "'", "''"))
-        If Len(sAns) = 0 Then
-            sAns = default_value
-        End If
-        Return sAns
-    End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function FluffContent(ByVal strContent As String, ByVal lDefault As Double) As Double
-        Dim sAns As Double = 0
-        If Len(strContent) = 0 Then
-            sAns = lDefault
-        Else
-            sAns = CDbl(strContent)
-        End If
-        Return sAns
-    End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function IsRequired(ByVal strValue As String, ByVal strField As String, ByVal StrTitle As String) As Boolean
-        Dim bAns As Boolean = False
-        If Len(Trim(strValue)) = 0 Then
-            bAns = False
-        Else
-            bAns = True
-        End If
-        If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
-        Return bAns
-    End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function IsRequired(ByVal lValue As Long, ByVal lDefault As Long, ByVal strField As String, ByVal StrTitle As String) As Boolean
-        Dim bAns As Boolean = False
-        If lValue = lDefault Then
-            bAns = False
-        Else
-            bAns = True
-        End If
-        If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
-        Return bAns
-    End Function
-    <Obsolete("This was Replace in the MLL Library Under Helpers.General")>
-    Public Function IsRequired(ByVal lValue As Double, ByVal lDefault As Double, ByVal strField As String, ByVal StrTitle As String) As Boolean
-        Dim bAns As Boolean = False
-        If lValue = lDefault Then
-            bAns = False
-        Else
-            bAns = True
-        End If
-        If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
-        Return bAns
-    End Function
-    <Obsolete("This was replaced in the MLL Library Under Helpers.Converters")>
-    Public Function ConvertWeight(ByVal Value As Double, ByVal ConvertTo As WeightType, ByVal ConvertFrom As WeightType) As Double
-        Dim dAns As Double = 0
-        Select Case ConvertTo
-            Case WeightType.Pounds
-                If ConvertFrom = WeightType.Grains Then
-                    dAns = Value / WEIGHT_GRAINS_1LBS
-                ElseIf ConvertFrom = WeightType.Grams Then
-                    dAns = Value / WEIGHT_GRAMS_1LBS
-                End If
-            Case WeightType.Grams
-                If ConvertFrom = WeightType.Pounds Then
-                    dAns = Value * WEIGHT_GRAMS_1LBS
-                ElseIf ConvertFrom = WeightType.Grains Then
-                    dAns = Value / WEIGHT_GRAINS_1GM
-                End If
-            Case WeightType.Grains
-                If ConvertFrom = WeightType.Pounds Then
-                    dAns = Value * WEIGHT_GRAINS_1LBS
-                ElseIf ConvertFrom = WeightType.Grams Then
-                    dAns = Value * WEIGHT_GRAINS_1GM
-                End If
-        End Select
-        Return FormatNumber(dAns, 6)
-    End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function UnFluffContent(ByVal strContent As String) As String
+    '    Dim sAns As String = ""
+    '    sAns = Trim(Replace(strContent, "''", "'"))
+    '    If Len(sAns) = 0 Then
+    '        sAns = ""
+    '    End If
+    '    Return sAns
+    'End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function FluffContent(ByVal strContent As String, Optional ByVal default_value As String = "   ") As String
+    '    Dim sAns As String = ""
+    '    sAns = Trim(Replace(strContent, "'", "''"))
+    '    If Len(sAns) = 0 Then
+    '        sAns = default_value
+    '    End If
+    '    Return sAns
+    'End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function FluffContent(ByVal strContent As String, ByVal lDefault As Double) As Double
+    '    Dim sAns As Double = 0
+    '    If Len(strContent) = 0 Then
+    '        sAns = lDefault
+    '    Else
+    '        sAns = CDbl(strContent)
+    '    End If
+    '    Return sAns
+    'End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function IsRequired(ByVal strValue As String, ByVal strField As String, ByVal StrTitle As String) As Boolean
+    '    Dim bAns As Boolean = False
+    '    If Len(Trim(strValue)) = 0 Then
+    '        bAns = False
+    '    Else
+    '        bAns = True
+    '    End If
+    '    If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
+    '    Return bAns
+    'End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function IsRequired(ByVal lValue As Long, ByVal lDefault As Long, ByVal strField As String, ByVal StrTitle As String) As Boolean
+    '    Dim bAns As Boolean = False
+    '    If lValue = lDefault Then
+    '        bAns = False
+    '    Else
+    '        bAns = True
+    '    End If
+    '    If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
+    '    Return bAns
+    'End Function
+    '<Obsolete("This was Replace in the MLL Library Under Helpers.General")>
+    'Public Function IsRequired(ByVal lValue As Double, ByVal lDefault As Double, ByVal strField As String, ByVal StrTitle As String) As Boolean
+    '    Dim bAns As Boolean = False
+    '    If lValue = lDefault Then
+    '        bAns = False
+    '    Else
+    '        bAns = True
+    '    End If
+    '    If bAns = False Then MsgBox("Please put in a value for " & strField & "!", MsgBoxStyle.Critical, StrTitle)
+    '    Return bAns
+    'End Function
+    '<Obsolete("This was replaced in the MLL Library Under Helpers.Converters")>
+    'Public Function ConvertWeight(ByVal Value As Double, ByVal ConvertTo As WeightType, ByVal ConvertFrom As WeightType) As Double
+    '    Dim dAns As Double = 0
+    '    Select Case ConvertTo
+    '        Case WeightType.Pounds
+    '            If ConvertFrom = WeightType.Grains Then
+    '                dAns = Value / WEIGHT_GRAINS_1LBS
+    '            ElseIf ConvertFrom = WeightType.Grams Then
+    '                dAns = Value / WEIGHT_GRAMS_1LBS
+    '            End If
+    '        Case WeightType.Grams
+    '            If ConvertFrom = WeightType.Pounds Then
+    '                dAns = Value * WEIGHT_GRAMS_1LBS
+    '            ElseIf ConvertFrom = WeightType.Grains Then
+    '                dAns = Value / WEIGHT_GRAINS_1GM
+    '            End If
+    '        Case WeightType.Grains
+    '            If ConvertFrom = WeightType.Pounds Then
+    '                dAns = Value * WEIGHT_GRAINS_1LBS
+    '            ElseIf ConvertFrom = WeightType.Grams Then
+    '                dAns = Value * WEIGHT_GRAINS_1GM
+    '            End If
+    '    End Select
+    '    Return FormatNumber(dAns, 6)
+    'End Function
     Sub CheckforHotFix()
         Dim Objf As New BSFileSystem
         If Objf.FileExists(Application.StartupPath & "\hotfix.ini") Then

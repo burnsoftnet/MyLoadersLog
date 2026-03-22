@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmConfig_Add_Wizard_RP_1
     Public CalID As Long
     Public ConfigName As String
@@ -50,7 +52,7 @@ Public Class frmConfig_Add_Wizard_RP_1
             Dim bOther As Boolean = chkBook.Checked
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
-            Dim strSource As String = FluffContent(txtLoad.Text)
+            Dim strSource As String = GeneralHelpers.FluffContent(txtLoad.Text)
             If bOther Then
                 SQL = "UPDATE Config_List_Name set IsPersonal=0 where id=" & ConfigID
                 Obj.ConnExec(SQL)

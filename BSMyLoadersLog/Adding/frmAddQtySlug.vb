@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddQtySlug
     Public SID As Long
     Public FromView As Boolean
@@ -42,15 +44,15 @@ Public Class frmAddQtySlug
     End Sub
     Public Sub SaveData()
         Try
-            Dim CQty As Long = CLng(FluffContent(txtCQty.Text, 0))
-            Dim CPrice As Double = CDbl(FluffContent(txtCPrice.Text, 0))
-            Dim CPPI As Double = CDbl(FluffContent(txtCPPI.Text, 0))
-            Dim UQty As Long = CLng(FluffContent(txtUQty.Text, 0))
-            Dim UPrice As Double = CDbl(FluffContent(txtUPrice.Text, 0))
+            Dim CQty As Long = CLng(GeneralHelpers.FluffContent(txtCQty.Text, 0))
+            Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
+            Dim CPPI As Double = CDbl(GeneralHelpers.FluffContent(txtCPPI.Text, 0))
+            Dim UQty As Long = CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0))
+            Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
             Dim UPPI As Double = PricePerItem(UQty, UPrice)
             txtUPPI.Text = UPPI
-            If Not IsRequired(UQty, "Update Qty", Me.Text) Then Exit Sub
-            If Not IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(UQty, "Update Qty", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
 
             Dim NQty As Long = CQty + UQty
             Dim NPrice As Double = (CQty * CPPI) + UPrice

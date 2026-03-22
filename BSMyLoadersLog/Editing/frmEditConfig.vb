@@ -257,7 +257,7 @@ Public Class frmEditConfig
             Dim CUPSMid As Double = GeneralHelpers.FluffContent(cDbl(txtCUPSMid.Text), 0)
             Dim CUPSMax As Double = GeneralHelpers.FluffContent(cDbl(txtCUPSMax.Text), 0)
             Dim intPerf As Integer = 0
-            If Not IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
             If chkPrefPowder.Checked Then
                 intPerf = 1
@@ -280,7 +280,7 @@ Public Class frmEditConfig
             Dim FPS As Double = GeneralHelpers.FluffContent(cDbl(txtFPS.Text), 0)
             Dim PSI As Double = GeneralHelpers.FluffContent(cDbl(txtPSI.Text), 0)
             Dim intPerf As Integer = 0
-            If Not IsRequired(dCharge, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(dCharge, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
             If chkDefaultPowderSG.Checked Then
                 intPerf = 1

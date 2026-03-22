@@ -50,7 +50,7 @@ Public Class frmConfig_Add_Wizard_Powder
             Dim CUPSMax As Double = GeneralHelpers.FluffContent(txtCUPSMax.Text, 0)
             Dim intPerf As Integer = 0
             If Not HasPerfPowder(ConfigID) Then intPerf = 1
-            If Not IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
             Dim SQL As String = "INSERT INTO Config_List_Powder_Data_NSG(CLNID,PID," & _
                                     "Load_Min,Load_Mid,Load_Max,FPS_Min,FPS_MID,FPS_Max," & _

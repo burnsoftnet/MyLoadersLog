@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditBushing_Powder
     Public CID As Long
     Sub LoadData()
@@ -45,14 +47,14 @@ Public Class frmEditBushing_Powder
     End Sub
     Sub SaveData()
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
-            Dim sName As String = FluffContent(txtName.Text)
-            Dim sCharge As String = FluffContent(txtCharge.Text)
-            Dim PowderName As String = FluffContent(txtPowderName.Text)
+            Dim Manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim sName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim sCharge As String = GeneralHelpers.FluffContent(txtCharge.Text)
+            Dim PowderName As String = GeneralHelpers.FluffContent(txtPowderName.Text)
             Dim sType As String = cmbType.Text
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(sName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(sCharge, "Charge Amount", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", Me.Text) Then Exit Sub
             Dim SQL As String = "UPDATE List_SG_Bushing_Powder set Manufacturer='" & Manu & "',sName='" & _
                                sName & "',sCharge='" & sCharge & "',PowderName='" & PowderName & _
                                "',sType='" & sType & "', sync_lastupdate=Now() where ID=" & CID

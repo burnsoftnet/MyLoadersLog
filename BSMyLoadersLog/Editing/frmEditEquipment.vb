@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditEquipment
     Public EID As Long
     Public FromView As Boolean
@@ -12,11 +14,11 @@ Public Class frmEditEquipment
             Dim RS As OdbcDataReader
             RS = CMD.ExecuteReader
             While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("Use")) Then txtUse.Text = UnFluffContent(RS("Use"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("Use")) Then txtUse.Text = GeneralHelpers.UnFluffContent(RS("Use"))
                 If Not IsDBNull(RS("Cost")) Then txtPrice.Text = RS("Cost")
-                If Not IsDBNull(RS("Notes")) Then txtNotes.Text = UnFluffContent(RS("Notes"))
+                If Not IsDBNull(RS("Notes")) Then txtNotes.Text = GeneralHelpers.UnFluffContent(RS("Notes"))
             End While
             RS.Close()
             RS = Nothing
@@ -28,16 +30,16 @@ Public Class frmEditEquipment
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strUse As String = FluffContent(txtUse.Text)
-            Dim strPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strUse As String = GeneralHelpers.FluffContent(txtUse.Text)
+            Dim strPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strUse, "Use", Me.Text) Then Exit Sub
-            If Not IsRequired(strPrice, 0, "Price", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strUse, "Use", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strPrice, 0, "Price", Me.Text) Then Exit Sub
 
             Dim Obj As New BSDatabase
             Dim SQL As String = "UPDATE General_Equipment set Manufacturer='" & strManu & "', Name='" & strName & "', " & _

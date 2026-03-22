@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmCopy_DataSheet_RiflePistol
     Public CFGID As Long
     Public FromView As Boolean
@@ -44,18 +46,18 @@ Public Class frmCopy_DataSheet_RiflePistol
             Dim lngFID As Long = cmbFirearm.SelectedValue
             Dim strFireArm As String = cmbFirearm.Text
             Dim strDateTested As String = dtpTested.Value
-            Dim strGroup As String = FluffContent(txtGroup.Text)
+            Dim strGroup As String = GeneralHelpers.FluffContent(txtGroup.Text)
             Dim lngNumShots As Long = nudShots.Value
             Dim lngYards As Long = nudYards.Value
-            Dim strPowName As String = FluffContent(txtPowName.Text)
-            Dim strPowWei As String = FluffContent(txtPowWei.Text)
-            Dim strPowManu As String = FluffContent(txtPowManu.Text)
-            Dim strBullet As String = FluffContent(txtBullet.Text)
-            Dim strPrimer As String = FluffContent(txtPrimer.Text)
-            Dim strCase As String = FluffContent(txtCase.Text)
-            Dim strCond As String = FluffContent(txtCon.Text)
-            Dim strLen As String = FluffContent(txtLen.Text)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strPowName As String = GeneralHelpers.FluffContent(txtPowName.Text)
+            Dim strPowWei As String = GeneralHelpers.FluffContent(txtPowWei.Text)
+            Dim strPowManu As String = GeneralHelpers.FluffContent(txtPowManu.Text)
+            Dim strBullet As String = GeneralHelpers.FluffContent(txtBullet.Text)
+            Dim strPrimer As String = GeneralHelpers.FluffContent(txtPrimer.Text)
+            Dim strCase As String = GeneralHelpers.FluffContent(txtCase.Text)
+            Dim strCond As String = GeneralHelpers.FluffContent(txtCon.Text)
+            Dim strLen As String = GeneralHelpers.FluffContent(txtLen.Text)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
             Dim ConfigName As String = "N/A"
             Dim strBarLen As String = ""
             Dim Caliber As String = ""

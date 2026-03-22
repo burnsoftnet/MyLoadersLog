@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditFirearm
     Public FID As Long
     Public FromView As Boolean
@@ -13,12 +15,12 @@ Public Class frmEditFirearm
             Dim RS As OdbcDataReader
             RS = CMD.ExecuteReader
             While RS.Read
-                If Not IsDBNull(RS("Manu")) Then txtManu.Text = UnFluffContent(RS("Manu"))
-                If Not IsDBNull(RS("Model")) Then txtModel.Text = UnFluffContent(RS("Model"))
-                If Not IsDBNull(RS("SerialNo")) Then txtSerial.Text = UnFluffContent(RS("SerialNo"))
-                If Not IsDBNull(RS("Cal")) Then txtCal.Text = UnFluffContent(RS("Cal"))
-                If Not IsDBNull(RS("Barrel")) Then txtBarrel.Text = UnFluffContent(RS("Barrel"))
-                If Not IsDBNull(RS("GType")) Then txtType.Text = UnFluffContent(RS("GType"))
+                If Not IsDBNull(RS("Manu")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manu"))
+                If Not IsDBNull(RS("Model")) Then txtModel.Text = GeneralHelpers.UnFluffContent(RS("Model"))
+                If Not IsDBNull(RS("SerialNo")) Then txtSerial.Text = GeneralHelpers.UnFluffContent(RS("SerialNo"))
+                If Not IsDBNull(RS("Cal")) Then txtCal.Text = GeneralHelpers.UnFluffContent(RS("Cal"))
+                If Not IsDBNull(RS("Barrel")) Then txtBarrel.Text = GeneralHelpers.UnFluffContent(RS("Barrel"))
+                If Not IsDBNull(RS("GType")) Then txtType.Text = GeneralHelpers.UnFluffContent(RS("GType"))
                 If Not IsDBNull(RS("exclude")) Then iExclude = RS("exclude")
                 If iExclude = 1 Then chkExlude.Checked = True
             End While
@@ -31,21 +33,21 @@ Public Class frmEditFirearm
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strModel As String = FluffContent(txtModel.Text)
-            Dim strSerial As String = FluffContent(txtSerial.Text)
-            Dim strCal As String = FluffContent(txtCal.Text)
-            Dim strBarrel As String = FluffContent(txtBarrel.Text)
-            Dim strType As String = FluffContent(txtType.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strModel As String = GeneralHelpers.FluffContent(txtModel.Text)
+            Dim strSerial As String = GeneralHelpers.FluffContent(txtSerial.Text)
+            Dim strCal As String = GeneralHelpers.FluffContent(txtCal.Text)
+            Dim strBarrel As String = GeneralHelpers.FluffContent(txtBarrel.Text)
+            Dim strType As String = GeneralHelpers.FluffContent(txtType.Text)
             Dim MGCID As Integer = 0
             Dim iExclude As Integer = 0
             If chkExlude.Checked Then iExclude = 1
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strModel, "model", Me.Text) Then Exit Sub
-            If Not IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
-            If Not IsRequired(strCal, "Caliber", Me.Text) Then Exit Sub
-            If Not IsRequired(strType, "Type", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strModel, "model", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strCal, "Caliber", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strType, "Type", Me.Text) Then Exit Sub
 
             Dim strFullName As String = strManu & " " & strModel
             Dim Obj As New BSDatabase

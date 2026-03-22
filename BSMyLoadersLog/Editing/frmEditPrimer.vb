@@ -1,6 +1,8 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditPrimer
     Public PID As Long
     Sub LoadData()
@@ -15,8 +17,8 @@ Public Class frmEditPrimer
             Dim eppo As Double = 0
             Dim dPrice As Double = 0
             While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
                 If Not IsDBNull(RS("Primer_Type")) Then
                     cmbPriType.SelectedValue = RS("Primer_Type")
                     cmbPriType.Update()
@@ -39,14 +41,14 @@ Public Class frmEditPrimer
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
             Dim intPriType As Integer = cmbPriType.SelectedValue
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And intQty > 0 Then
                 EstCostPerItem = (dbPrice / intQty)

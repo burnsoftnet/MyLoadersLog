@@ -1,9 +1,11 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddQtyPowder
+    Dim errOut as String
     Public PID As Long
     Public FromView As Boolean
     Function PricePerItem(ByVal lValue As Long, ByVal dPrice As Double, ByVal sType As String) As Double
@@ -69,10 +71,12 @@ Public Class frmAddQtyPowder
 
             If LCase(sType) = "grains (grs)" Then
                 UGrains = CDbl(UQty)
-                UPounds = CDbl(ConvertWeight(UQty, WeightType.Pounds, WeightType.Grains))
+                UPounds = CDbl(Converters.ConvertWeight(UQty, WeightValues.WeightType.Pounds, 
+                                                        WeightValues.WeightType.Grains, errOut))
             Else
                 UPounds = CDbl(UQty)
-                UGrains = ConvertWeight(UQty, WeightType.Grains, WeightType.Pounds)
+                UGrains = Converters.ConvertWeight(UQty, WeightValues.WeightType.Grains,
+                                        WeightValues.WeightType.Pounds, errOut)
             End If
 
             Dim NGrains As Double = CGrains + UGrains

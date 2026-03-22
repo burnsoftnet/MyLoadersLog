@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditSlug
     Public FromView As Boolean
     Public SID As Long
@@ -29,19 +31,19 @@ Public Class frmEditSlug
     End Sub
     Sub SaveData()
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
-            Dim Name As String = FluffContent(txtName.Text)
-            Dim CAL As String = FluffContent(txtCal.Text)
+            Dim Manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim Name As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim CAL As String = GeneralHelpers.FluffContent(txtCal.Text)
             Dim Qty As Integer = nudQty.Value
-            Dim Weight As String = FluffContent(txtPounds.Text)
-            Dim Cost As Double = FluffContent(txtPrice.Text, 0.0)
+            Dim Weight As String = GeneralHelpers.FluffContent(txtPounds.Text)
+            Dim Cost As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0.0)
             Dim epps As Double = 0
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
 
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(Name, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(CAL, "Caliber", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Name, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(CAL, "Caliber", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If Cost <> 0 Then
                 EstCostPerItem = (Cost / Qty)

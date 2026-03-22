@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditHulls
     Public SID As Integer
     Public FromView As Boolean
@@ -33,13 +35,13 @@ Public Class frmEditHulls
                     cmbGauge.SelectedValue = RS("GID")
                     cmbGauge.Update()
                 End If
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("Length")) Then txtLen.Text = UnFluffContent(RS("Length"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("Length")) Then txtLen.Text = GeneralHelpers.UnFluffContent(RS("Length"))
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
                 If Not IsDBNull(RS("epps")) Then eppo = RS("epps")
-                If Not IsDBNull(RS("DRAM")) Then txtDRAM.Text = UnFluffContent(RS("DRAM"))
+                If Not IsDBNull(RS("DRAM")) Then txtDRAM.Text = GeneralHelpers.UnFluffContent(RS("DRAM"))
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
                 Dim ObjIM As New InventoryMath
@@ -55,17 +57,17 @@ Public Class frmEditHulls
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strlen As String = FluffContent(txtLen.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strlen As String = GeneralHelpers.FluffContent(txtLen.Text)
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim sDRAM As String = FluffContent(txtDRAM.Text)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
+            Dim sDRAM As String = GeneralHelpers.FluffContent(txtDRAM.Text)
             Dim LngGAID As Long = cmbGauge.SelectedValue
             Dim sGauge As String = cmbGauge.Text
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strlen, "Length", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strlen, "Length", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And intQty > 0 Then
                 EstCostPerItem = (dbPrice / intQty)

@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmImportFirearms
     Dim iCount As Integer
     Private Sub frmImportFirearms_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -33,7 +35,7 @@ Public Class frmImportFirearms
                 i = i + 1
                 Me.Refresh()
                 SQL = "INSERT INTO Loaders_Log_Firearms(MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType,exclude) VALUES(" & _
-                        RS("ID") & ",'" & FluffContent(RS("FullName")) & "','" & FluffContent(RS("brand")) & "','" & FluffContent(RS("modelname")) & "','" & _
+                        RS("ID") & ",'" & GeneralHelpers.FluffContent(RS("FullName")) & "','" & GeneralHelpers.FluffContent(RS("brand")) & "','" & GeneralHelpers.FluffContent(RS("modelname")) & "','" & _
                         RS("caliber") & "','" & RS("barrellength") & "','" & RS("serialnumber") & "','" & RS("type") & "',0)"
                 If Not ObjG.ObjectExistsinDB(CInt(RS("ID")), "MGCID", "Loaders_Log_Firearms") Then ObjL.ConnExec(SQL)
                 ProgressBar1.Value = i

@@ -3,6 +3,8 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmView_Configuration_Shotgun_Sheet
     Public ConfigID As Long
     Public ConfigName As String
@@ -361,14 +363,14 @@ Public Class frmView_Configuration_Shotgun_Sheet
             isFav = False
             Call UpdateFav(0)
         End If
-        Call MDIParentMain.RefreshConfigData()
+        Call MdiParentMain.RefreshConfigData()
     End Sub
     Private Sub rbstatus1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus1.CheckedChanged
         If rbstatus1.Checked Then
             rbstatus2.Checked = False
             isActive = True
             Call UpdateActivity(1)
-            Call MDIParentMain.RefreshConfigData()
+            Call MdiParentMain.RefreshConfigData()
         End If
     End Sub
     Private Sub rbstatus2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus2.CheckedChanged
@@ -376,7 +378,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             rbstatus1.Checked = False
             isActive = False
             Call UpdateActivity(0)
-            Call MDIParentMain.RefreshConfigData()
+            Call MdiParentMain.RefreshConfigData()
         End If
     End Sub
     Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
@@ -421,7 +423,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
         txtNotes.ReadOnly = True
         Try
             Dim Obj As New BSDatabase
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
             Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
             Obj.ConnExec(SQL)
         Catch ex As Exception

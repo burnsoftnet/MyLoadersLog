@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditDataSheet_RiflePistols
     Public CFGID As Long
     Public FromView As Boolean
@@ -15,16 +17,16 @@ Public Class frmEditDataSheet_RiflePistols
             While RS.Read
                 cmbFirearm.SelectedValue = RS("fid")
                 dtpTested.Value = RS("dt")
-                txtGroup.Text = UnFluffContent(RS("gs"))
+                txtGroup.Text = GeneralHelpers.UnFluffContent(RS("gs"))
                 nudShots.Value = RS("ns")
                 nudYards.Value = RS("yds")
-                txtPowwtMFG.Text = UnFluffContent(RS("pwm"))
-                txtBullet.Text = UnFluffContent(RS("bullet"))
-                txtPrimer.Text = UnFluffContent(RS("primer"))
-                txtCase.Text = UnFluffContent(RS("case"))
-                txtCon.Text = UnFluffContent(RS("conditions"))
-                txtLen.Text = UnFluffContent(RS("tl"))
-                txtNotes.Text = UnFluffContent(RS("notes"))
+                txtPowwtMFG.Text = GeneralHelpers.UnFluffContent(RS("pwm"))
+                txtBullet.Text = GeneralHelpers.UnFluffContent(RS("bullet"))
+                txtPrimer.Text = GeneralHelpers.UnFluffContent(RS("primer"))
+                txtCase.Text = GeneralHelpers.UnFluffContent(RS("case"))
+                txtCon.Text = GeneralHelpers.UnFluffContent(RS("conditions"))
+                txtLen.Text = GeneralHelpers.UnFluffContent(RS("tl"))
+                txtNotes.Text = GeneralHelpers.UnFluffContent(RS("notes"))
             End While
             RS.Close()
             RS = Nothing
@@ -39,16 +41,16 @@ Public Class frmEditDataSheet_RiflePistols
             Dim lngFID As Long = cmbFirearm.SelectedValue
             Dim strFireArm As String = cmbFirearm.Text
             Dim strDateTested As String = dtpTested.Value
-            Dim strGroup As String = FluffContent(txtGroup.Text)
+            Dim strGroup As String = GeneralHelpers.FluffContent(txtGroup.Text)
             Dim lngNumShots As Long = nudShots.Value
             Dim lngYards As Long = nudYards.Value
-            Dim strPowName As String = FluffContent(txtPowwtMFG.Text)
-            Dim strBullet As String = FluffContent(txtBullet.Text)
-            Dim strPrimer As String = FluffContent(txtPrimer.Text)
-            Dim strCase As String = FluffContent(txtCase.Text)
-            Dim strCond As String = FluffContent(txtCon.Text)
-            Dim strLen As String = FluffContent(txtLen.Text)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strPowName As String = GeneralHelpers.FluffContent(txtPowwtMFG.Text)
+            Dim strBullet As String = GeneralHelpers.FluffContent(txtBullet.Text)
+            Dim strPrimer As String = GeneralHelpers.FluffContent(txtPrimer.Text)
+            Dim strCase As String = GeneralHelpers.FluffContent(txtCase.Text)
+            Dim strCond As String = GeneralHelpers.FluffContent(txtCon.Text)
+            Dim strLen As String = GeneralHelpers.FluffContent(txtLen.Text)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
             Dim ConfigName As String = "N/A"
             Dim strBarLen As String = ""
             Dim Caliber As String = ""

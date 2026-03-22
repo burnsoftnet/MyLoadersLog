@@ -24,7 +24,7 @@ Public Class frmEditWADS
             Dim GID As Integer
             While RS.Read
                 If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("WAD")) Then txtWAD.Text =GeneralHelpers. UnFluffContent(RS("WAD"))
+                If Not IsDBNull(RS("WAD")) Then txtWAD.Text =GeneralHelpers.UnFluffContent(RS("WAD"))
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
                 If Not IsDBNull(RS("eppw")) Then eppo = RS("eppw")

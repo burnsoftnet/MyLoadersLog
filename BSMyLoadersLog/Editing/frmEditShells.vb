@@ -1,6 +1,8 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditShells
     Public SID As Long
     Public FromView As Boolean
@@ -28,9 +30,9 @@ Public Class frmEditShells
                     chkNew.Checked = False
                     TimesUsed = 0
                 End If
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("ttl")) Then txtTTL.Text = UnFluffContent(RS("ttl"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("ttl")) Then txtTTL.Text = GeneralHelpers.UnFluffContent(RS("ttl"))
                 If Not IsDBNull(RS("TimesUsed")) Then nudUsed.Value = RS("TimesUsed")
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
@@ -50,17 +52,17 @@ Public Class frmEditShells
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strTrim As Double = FluffContent(txtTTL.Text, 0)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strTrim As Double = GeneralHelpers.FluffContent(txtTTL.Text, 0)
             Dim intNew As Integer = 0
             Dim intUsed As Integer = nudUsed.Value
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
             Dim LngCalID As Long = cmbCal.SelectedValue
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strTrim, "Trim to Lenght", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strTrim, "Trim to Lenght", Me.Text) Then Exit Sub
             If chkNew.Checked Then intNew = 1
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And intQty > 0 Then

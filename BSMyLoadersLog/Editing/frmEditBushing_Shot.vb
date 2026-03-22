@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditBushing_Shot
     Public CID As Long
     Sub LoadData()
@@ -50,14 +52,14 @@ Public Class frmEditBushing_Shot
     End Sub
     Sub SaveData()
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
-            Dim sName As String = FluffContent(txtName.Text)
-            Dim sCharge As String = FluffContent(txtCharge.Text)
+            Dim Manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim sName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim sCharge As String = GeneralHelpers.FluffContent(txtCharge.Text)
             Dim sType As String = cmbType.Text
 
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(sName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(sCharge, "Charge Amount", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", Me.Text) Then Exit Sub
             Dim SQL As String = "UPDATE List_SG_Bushing_Shot set Manufacturer='" & Manu & "',sName='" & sName & "',sCharge='" & sCharge & "',sType='" & sType & "' where ID=" & CID
             Dim ObjDb As New BSDatabase
             ObjDb.ConnExec(SQL)

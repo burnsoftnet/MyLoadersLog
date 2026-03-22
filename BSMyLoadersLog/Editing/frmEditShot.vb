@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditShot
     Public BID As Long
     Public FromView As Boolean
@@ -29,12 +31,12 @@ Public Class frmEditShot
     End Sub
     Sub SaveData()
         Try
-            Dim Manu As String = FluffContent(txtManu.Text)
-            Dim Name As String = FluffContent(txtName.Text)
-            Dim Mat As String = FluffContent(txtMat.Text)
-            Dim ShotNo As String = FluffContent(txtShotNo.Text, "0")
-            Dim Weight As String = FluffContent(txtPounds.Text, "0")
-            Dim Cost As Double = FluffContent(txtPrice.Text, 0.0)
+            Dim Manu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim Name As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim Mat As String = GeneralHelpers.FluffContent(txtMat.Text)
+            Dim ShotNo As String = GeneralHelpers.FluffContent(txtShotNo.Text, "0")
+            Dim Weight As String = GeneralHelpers.FluffContent(txtPounds.Text, "0")
+            Dim Cost As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0.0)
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
             Dim ounces As Double = WEIGHT_OZ_1LBS * CDbl(Weight)
@@ -42,8 +44,8 @@ Public Class frmEditShot
             Dim epps As Double = 0
             If Cost > 0 Then epps = Cost / grams
 
-            If Not IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(Name, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Manu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(Name, "Name", Me.Text) Then Exit Sub
 
             SQL = "UPDATE List_SG_ShotType_Details set Manufacturer='" & Manu & "',Name='" & Name & _
                     "',mat='" & Mat & "',ShotNo='" & ShotNo & "',weight='" & Weight & "',Price=" & _

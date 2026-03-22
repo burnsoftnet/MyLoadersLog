@@ -1,6 +1,8 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditBullets
     Public BID As Long
     Public FromView As Boolean
@@ -19,13 +21,13 @@ Public Class frmEditBullets
             Dim eppo As Double = 0
             Dim dPrice As Double = 0
             While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("Diameter")) Then txtDia.Text = UnFluffContent(RS("Diameter"))
-                If Not IsDBNull(RS("Weight")) Then txtWei.Text = UnFluffContent(RS("Weight"))
-                If Not IsDBNull(RS("Sec_Den")) Then txtSecDia.Text = UnFluffContent(RS("Sec_Den"))
-                If Not IsDBNull(RS("Part_number")) Then txtPartNo.Text = UnFluffContent(RS("Part_number"))
-                If Not IsDBNull(RS("Ballistic_Coefficient")) Then txtBC.Text = UnFluffContent(RS("Ballistic_Coefficient"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("Diameter")) Then txtDia.Text = GeneralHelpers.UnFluffContent(RS("Diameter"))
+                If Not IsDBNull(RS("Weight")) Then txtWei.Text = GeneralHelpers.UnFluffContent(RS("Weight"))
+                If Not IsDBNull(RS("Sec_Den")) Then txtSecDia.Text = GeneralHelpers.UnFluffContent(RS("Sec_Den"))
+                If Not IsDBNull(RS("Part_number")) Then txtPartNo.Text = GeneralHelpers.UnFluffContent(RS("Part_number"))
+                If Not IsDBNull(RS("Ballistic_Coefficient")) Then txtBC.Text = GeneralHelpers.UnFluffContent(RS("Ballistic_Coefficient"))
                 If Not IsDBNull(RS("Bullet_Type")) Then
                     cmbBT.SelectedValue = RS("Bullet_Type")
                     cmbBT.Update()
@@ -51,25 +53,25 @@ Public Class frmEditBullets
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strDia As String = FluffContent(txtDia.Text)
-            Dim strWei As String = FluffContent(txtWei.Text)
-            Dim strSecDia As String = FluffContent(txtSecDia.Text)
-            Dim strPartNo As String = FluffContent(txtPartNo.Text)
-            Dim strBC As String = FluffContent(txtBC.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strDia As String = GeneralHelpers.FluffContent(txtDia.Text)
+            Dim strWei As String = GeneralHelpers.FluffContent(txtWei.Text)
+            Dim strSecDia As String = GeneralHelpers.FluffContent(txtSecDia.Text)
+            Dim strPartNo As String = GeneralHelpers.FluffContent(txtPartNo.Text)
+            Dim strBC As String = GeneralHelpers.FluffContent(txtBC.Text)
             Dim intBT As Integer = cmbBT.SelectedValue
             Dim ICal As Integer = cmbCalList.SelectedValue
             Dim strQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
 
-            If Not IsRequired(strManu, "Manufacturers", Me.Text) Then Exit Sub
-            If Not IsRequired(strManu, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strDia, "Diameter", Me.Text) Then Exit Sub
-            If Not IsRequired(strWei, "Weight", Me.Text) Then Exit Sub
-            If Not IsRequired(strSecDia, "Sectional Density", Me.Text) Then Exit Sub
-            If Not IsRequired(strBC, "Ballistic Coefficient", Me.Text) Then Exit Sub
-            If Not IsRequired(intBT, "Caliber", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturers", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strDia, "Diameter", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strWei, "Weight", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strSecDia, "Sectional Density", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strBC, "Ballistic Coefficient", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(intBT, "Caliber", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And strQty > 0 Then
                 EstCostPerItem = (dbPrice / strQty)

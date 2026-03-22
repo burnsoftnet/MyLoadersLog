@@ -3,6 +3,8 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmImportConfiguration
     Private Sub btnOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.Click
         OpenFileDialog1.FilterIndex = 1
@@ -183,7 +185,7 @@ Public Class frmImportConfiguration
                 SQL = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,WAD" & _
                     ",SCL,Source,GID,IsPersonal,LTID,SW,SW_t) VALUES(" & ConfigID & "," & CalID & "," & GID & "," & PrimerID & _
                     "," & CaseID & "," & WADID & "," & BulletID & ",'" & _
-                    FluffContent(Refferance) & "'," & GID & "," & iPersonal & "," & LTID & _
+                    GeneralHelpers.FluffContent(Refferance) & "'," & GID & "," & iPersonal & "," & LTID & _
                     "," & PrefShot_D & ",'" & PrefShot_T & "')"
                 Obj.ConnExec(SQL)
                 ProgressBar1.Value = I
@@ -219,7 +221,7 @@ Public Class frmImportConfiguration
             ConfigName = ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("ConfigName")))
             IsPersonal = ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("IsPersonal")))
             IsShotGun = CBool(ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("IsShotGun"))))
-            Notes = FluffContent(ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("Notes"))))
+            Notes = GeneralHelpers.FluffContent(ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("Notes"))))
             AmmoType = ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("AmmoType")))
             Caliber = ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("Caliber")))
             Refferance = ObjGF.FormatFromXML(GetXMLNode(elemlist(i).Item("Refferance")))
@@ -297,7 +299,7 @@ Public Class frmImportConfiguration
             Dia = GetXMLNode(elemlist(i).Item("Diameter"))
             Wei = GetXMLNode(elemlist(i).Item("Weight"))
             SecDen = GetXMLNode(elemlist(i).Item("Sec_Den"))
-            PartNo = FluffContent(GetXMLNode(elemlist(i).Item("Part_number")))
+            PartNo = GeneralHelpers.FluffContent(GetXMLNode(elemlist(i).Item("Part_number")))
             BC = GetXMLNode(elemlist(i).Item("Ballistic_Coefficient"))
             BtName = GetXMLNode(elemlist(i).Item("Bullet_Type"))
             BTID = ObjGF.GetID("Select * from General_Ammunition_Type where FType='" & BtName & "'")

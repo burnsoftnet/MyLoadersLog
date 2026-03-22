@@ -8,6 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
 
 ''' <summary>
 ''' Class MdiParentMain.
@@ -1035,7 +1036,7 @@ Public Class MdiParentMain
         Dim objG As New GlobalFunctions
         configName = objG.GetTitle(configId)
         Dim sMsg As String = "Renaming " & configName & " to:"
-        Dim strNewName As String = Trim(FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
+        Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
         If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
             Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
             Dim obj As New BSDatabase
@@ -1065,7 +1066,7 @@ Public Class MdiParentMain
         configName = objG.GetTitle(configId)
         Dim isShotGun As Boolean = False
         Dim sMsg As String = "What do you wish to call this new configuration?"
-        Dim strNewName As String = Trim(FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
+        Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
         If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
             Dim sql As String = "SELECT * from Config_List_Name where ID=" & configId
             Dim obj As New BSDatabase
@@ -1076,7 +1077,7 @@ Public Class MdiParentMain
             While rs.Read()
                 If rs("IsShotGun") = 1 Then isShotGun = True
                 Dim strNotes As String = " "
-                If Not IsDBNull(rs("notes")) Then strNotes = FluffContent(rs("Notes"))
+                If Not IsDBNull(rs("notes")) Then strNotes = GeneralHelpers.FluffContent(rs("Notes"))
                 sql = "INSERT INTO Config_List_Name(ConfigName,IsPersonal,IsShotGun,Notes,IsActive,IsFav) VALUES('" & _
                         strNewName & "'," & rs("IsPersonal") & "," & rs("IsShotGun") & ",'" & _
                         strNotes & "'," & rs("IsActive") & "," & rs("IsFav") & ")"

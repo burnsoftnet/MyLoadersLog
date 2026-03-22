@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddQtyShot
     Public BID As Long
     Public FromView As Boolean
@@ -51,10 +53,10 @@ Public Class frmAddQtyShot
         Try
             '93.8 pellets per oz
             'BPI Nickel Plated Lead Shot #2 11 lb Box
-            Dim CQty As Long = CLng(FluffContent(txtCQty.Text, 0))
-            Dim CPrice As Double = CDbl(FluffContent(txtCPrice.Text, 0))
-            Dim UQty As Long = CDbl(FluffContent(txtUQty.Text, 0))
-            Dim UPrice As Double = CDbl(FluffContent(txtUPrice.Text, 0))
+            Dim CQty As Long = CLng(GeneralHelpers.FluffContent(txtCQty.Text, 0))
+            Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
+            Dim UQty As Long = CDbl(GeneralHelpers.FluffContent(txtUQty.Text, 0))
+            Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
             Dim NQty As Long = CQty + UQty

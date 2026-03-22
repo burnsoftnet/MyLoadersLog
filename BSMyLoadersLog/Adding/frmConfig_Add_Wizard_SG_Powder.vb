@@ -1,6 +1,8 @@
 Imports System.Data
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmConfig_Add_Wizard_SG_Powder
     Public ConfigName As String
     Public CalID As Long
@@ -13,16 +15,16 @@ Public Class frmConfig_Add_Wizard_SG_Powder
     End Sub
     Sub SaveData()
         Try
-            Dim dCharge As Double = FluffContent(txtCharge.Text, 0)
+            Dim dCharge As Double = GeneralHelpers.FluffContent(txtCharge.Text, 0)
             Dim PID As Long = cmbPowder.SelectedValue
-            Dim dFPS As Double = FluffContent(txtFPS.Text, 0)
-            Dim dPIS As Double = FluffContent(txtPSI.Text, 0)
+            Dim dFPS As Double = GeneralHelpers.FluffContent(txtFPS.Text, 0)
+            Dim dPIS As Double = GeneralHelpers.FluffContent(txtPSI.Text, 0)
             Dim SQL As String = ""
             Dim iPref As Long = 0
             Dim Obj As New BSDatabase
             If Not HasPerfPowder(ConfigID) Then iPref = 1
 
-            If Not IsRequired(dCharge, 0, "Load Charge", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(dCharge, 0, "Load Charge", Me.Text) Then Exit Sub
             SQL = "INSERT INTO Config_List_Powder_Data_SG (CLNID,PID,Load_Mid," & _
                     "FPS_MID,PSI_Mid,IsPref) VALUES(" & ConfigID & "," & PID & _
                     "," & dCharge & "," & dFPS & "," & dPIS & "," & iPref & ")"

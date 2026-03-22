@@ -1,6 +1,8 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditPowder
     Public PID As Long
     Public FromView As Boolean
@@ -16,9 +18,9 @@ Public Class frmEditPowder
             Dim eppo As Double = 0
             Dim dPrice As Double = 0
             While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("Name")) Then txtName.Text = UnFluffContent(RS("Name"))
-                If Not IsDBNull(RS("Notes")) Then txtNotes.Text = UnFluffContent(RS("Notes"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("Name")) Then txtName.Text = GeneralHelpers.UnFluffContent(RS("Name"))
+                If Not IsDBNull(RS("Notes")) Then txtNotes.Text = GeneralHelpers.UnFluffContent(RS("Notes"))
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("weightgn")) Then iQty = RS("weightgn")
                 If Not IsDBNull(RS("eppp")) Then eppo = RS("eppp")
@@ -39,15 +41,15 @@ Public Class frmEditPowder
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strWei As String = FluffContent(txtwei.Text)
-            Dim dbWeiGrn As Double = FluffContent(txtGrains.Text, 0) 'ConvertWeight(CDbl(strWei), WeightType.Grains, WeightType.Pounds)
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strWei, "Weight", Me.Text) Then Exit Sub
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strWei As String = GeneralHelpers.FluffContent(txtwei.Text)
+            Dim dbWeiGrn As Double = GeneralHelpers.FluffContent(txtGrains.Text, 0) 'ConvertWeight(CDbl(strWei), WeightType.Grains, WeightType.Pounds)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strWei, "Weight", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And dbWeiGrn > 0 Then
                 EstCostPerItem = (dbPrice / dbWeiGrn)

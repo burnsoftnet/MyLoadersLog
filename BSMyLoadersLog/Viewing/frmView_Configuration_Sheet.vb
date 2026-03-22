@@ -3,6 +3,8 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmView_Configuration_Sheet
     Public ConfigID As Long
     Public ConfigName As String
@@ -269,7 +271,7 @@ Public Class frmView_Configuration_Sheet
         txtNotes.ReadOnly = True
         Try
             Dim Obj As New BSDatabase
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
             Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
             Obj.ConnExec(SQL)
         Catch ex As Exception
