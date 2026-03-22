@@ -1,6 +1,9 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmLoadMakeReady_Details
+    Dim errOut As string
     Public ConfigName As String
     Public ConfigID As Long
     Dim IsPersonal As Boolean
@@ -201,12 +204,15 @@ Public Class frmLoadMakeReady_Details
         Me.Close()
     End Sub
     Private Sub btnMake_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMake.Click
-        Dim strManu As String = FluffContent(txtManu.Text)
-        Dim strName As String = FluffContent(txtName.Text)
-        Dim strCaliber As String = FluffContent(txtCal.Text)
-        Dim strGrains As String = FluffContent(txtGrains.Text)
-        Dim strJacket As String = FluffContent(txtJacket.Text)
-        Dim dcal As Double = ConvToNum(strGrains)
+        Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+        Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+        Dim strCaliber As String = GeneralHelpers.FluffContent(txtCal.Text)
+        Dim strGrains As String = GeneralHelpers.FluffContent(txtGrains.Text)
+        Dim strJacket As String = GeneralHelpers.FluffContent(txtJacket.Text)
+        'Dim dcal As Double = ConvToNum(strGrains)
+        'Converters
+        Dim dcal As Double = Converters.ConvToNum(strGrains, errOut)
+        If errOut.Length > 0 Then Throw New  Exception(errOut)
         Dim iQty As Long = nudQty.Value
         Dim cQty As Long = 0
         Dim ObjIM As New InventoryMath
