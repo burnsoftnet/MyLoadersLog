@@ -188,7 +188,11 @@ Namespace LoadersClass
         '    MyReg.Close()
         'End Sub
         '<Obsolete("This was replaced in the BurnSoft.Applications.MLL.Global.MyRegistry")>
-        'Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean, ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
+        'Public Sub SaveSettings(ByVal NumberFormat As String, ByVal TrackHistory As Boolean, ByVal TrackHistoryDays As Integer, 
+        '                        ByVal AutoUpdate As Boolean, ByVal UseProxy As Boolean, ByVal AlertOnBackUp As Boolean, 
+        '                        ByVal AutoBackup As Boolean, ByVal UOIMG As Boolean, ByVal UseSHOTGUN As Boolean,
+        '                        ByVal UseNONSHOTGUN As Boolean, ByVal UseDEFAULTLIST As String, ByVal UseIPer As Boolean, 
+        '                        ByVal UseViewFPS As Boolean, ByVal UseViewCUPS As Boolean)
         '    Dim strValue As String = DefaultRegPath & "\Settings"
         '    If Not RegSubKeyExists(strValue) Then Call CreateSubKey(strValue)
         '    Dim MyReg As RegistryKey

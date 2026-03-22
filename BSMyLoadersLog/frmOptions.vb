@@ -85,15 +85,16 @@ Public Class FrmOptions
                                                _errOut) Then Throw New Exception(_errOut)
             End If
             'obj.ConnExec(sql)
-            'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value, 
+            'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value,
             '                  False, False, chkAOBU.Checked, chkBackupOnExit.Checked,
-            '                  chkDoOriginalImage.Checked, bShotGun, bRiflePistol, 
+            '                  chkDoOriginalImage.Checked, bShotGun, bRiflePistol,
             '                  strDefaultList, chkIPer.Checked, chkViewFPS.Checked, chkViewCUPS.Checked)
             Dim mySettings As List(Of RegistrySettings) = MyRegistry.BuildRegistry(
                 AlertOnBackUp := chkAOBU.Checked, BackupOnExit := chkBackupOnExit.Checked, 
                 UseOrgImage := chkDoOriginalImage.Checked, LOADERTYPE_SHOTGUN := bShotGun, 
                 LOADERTYPE_NONSHOTGUN := bRiflePistol, DefaultList := strDefaultList, IndvReports := chkIPer.Checked, 
-                VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked)
+                VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked, 
+                TrackHistory:=chkBAKCleanup.Checked, TrackHistoryDays := nudDays.Value)
             If Not MyRegistry.SaveSettings(mySettings, _errOut) Then Throw New Exception(_errOut)
 
             LoadertypeShotgun = bShotGun
