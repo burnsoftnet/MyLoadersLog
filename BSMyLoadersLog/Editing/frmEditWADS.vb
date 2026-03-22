@@ -23,12 +23,12 @@ Public Class frmEditWADS
             Dim dPrice As Double = 0
             Dim GID As Integer
             While RS.Read
-                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("WAD")) Then txtWAD.Text = UnFluffContent(RS("WAD"))
+                If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
+                If Not IsDBNull(RS("WAD")) Then txtWAD.Text =GeneralHelpers. UnFluffContent(RS("WAD"))
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
                 If Not IsDBNull(RS("eppw")) Then eppo = RS("eppw")
-                If Not IsDBNull(RS("load_t")) Then txtLoad.Text = UnFluffContent(RS("load_t"))
+                If Not IsDBNull(RS("load_t")) Then txtLoad.Text = GeneralHelpers.UnFluffContent(RS("load_t"))
                 If Not IsDBNull(RS("gid")) Then GID = RS("GID")
                 cmdGauge.SelectedValue = GID
                 dPrice = eppo * iQty

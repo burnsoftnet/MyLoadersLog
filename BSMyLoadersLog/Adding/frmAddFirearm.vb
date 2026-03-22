@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddFirearm
     Public FromView As Boolean
     Sub AutoFill()
@@ -14,21 +16,21 @@ Public Class frmAddFirearm
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strModel As String = FluffContent(txtModel.Text)
-            Dim strSerial As String = FluffContent(txtSerial.Text)
-            Dim strCal As String = FluffContent(txtCal.Text)
-            Dim strBarrel As String = FluffContent(txtBarrel.Text)
-            Dim strType As String = FluffContent(txtType.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strModel As String = GeneralHelpers.FluffContent(txtModel.Text)
+            Dim strSerial As String = GeneralHelpers.FluffContent(txtSerial.Text)
+            Dim strCal As String = GeneralHelpers.FluffContent(txtCal.Text)
+            Dim strBarrel As String = GeneralHelpers.FluffContent(txtBarrel.Text)
+            Dim strType As String = GeneralHelpers.FluffContent(txtType.Text)
             Dim MGCID As Integer = 0
             Dim iExclude As Integer = 0
             If chkExlude.Checked Then iExclude = 1
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strModel, "model", Me.Text) Then Exit Sub
-            If Not IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
-            If Not IsRequired(strCal, "Caliber", Me.Text) Then Exit Sub
-            If Not IsRequired(strType, "Type", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strModel, "model", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strSerial, "Serial Number", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strCal, "Caliber", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strType, "Type", Me.Text) Then Exit Sub
 
             Dim strFullName As String = strManu & " " & strModel
             Dim Obj As New BSDatabase

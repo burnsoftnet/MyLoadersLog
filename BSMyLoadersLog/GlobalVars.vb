@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Security.RegularEncryption.SHA
 
 Module GlobalVars

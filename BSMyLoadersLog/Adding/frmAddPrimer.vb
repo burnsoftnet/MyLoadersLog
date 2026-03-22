@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddPrimer
     Public FromView As Boolean
@@ -29,14 +30,14 @@ Public Class frmAddPrimer
     End Sub
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
             Dim intPriType As Integer = cmbPriType.SelectedValue
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 Then
                 EstCostPerItem = (dbPrice / intQty)

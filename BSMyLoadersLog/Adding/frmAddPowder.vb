@@ -1,7 +1,9 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddPowder
+    Dim errOut As String
     Public FromView As Boolean
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Close()
@@ -19,14 +21,14 @@ Public Class frmAddPowder
     End Sub
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim dbWei As Double = FluffContent(txtwei.Text, 0)
-            Dim dbWeiGrn As Double = ConvertWeight(dbWei, WeightType.Grains, WeightType.Pounds)
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim dbWei As Double = GeneralHelpers.FluffContent(CDbl(txtwei.Text), 0)
+            Dim dbWeiGrn As Double =Converters.ConvertWeight(dbWei, WeightType.Grains, WeightType.Pounds, errOut)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 Then
                 EstCostPerItem = (dbPrice / dbWeiGrn)

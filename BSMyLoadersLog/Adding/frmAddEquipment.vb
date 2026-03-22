@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmAddEquipment
     Public FromView As Boolean
     Sub AutoFill()
@@ -23,16 +25,16 @@ Public Class frmAddEquipment
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtName.Text)
-            Dim strUse As String = FluffContent(txtUse.Text)
-            Dim strPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim strNotes As String = FluffContent(txtNotes.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
+            Dim strUse As String = GeneralHelpers.FluffContent(txtUse.Text)
+            Dim strPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
+            Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
-            If Not IsRequired(strUse, "Use", Me.Text) Then Exit Sub
-            If Not IsRequired(strPrice, 0, "Price", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strUse, "Use", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strPrice, 0, "Price", Me.Text) Then Exit Sub
 
             Dim Obj As New BSDatabase
             Dim SQL As String = "INSERT INTO General_Equipment(Manufacturer,Name,Use,Cost,Notes) VALUES('" & _

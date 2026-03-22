@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddQtyPowder
     Public PID As Long
@@ -52,19 +53,19 @@ Public Class frmAddQtyPowder
     End Sub
     Sub SaveData()
         Try
-            Dim CQty As Double = CDbl(FluffContent(txtCQty.Text, 0))
-            Dim CGrains As Double = CDbl(FluffContent(txtCQty2.Text, 0))
-            Dim CPrice As Double = CDbl(FluffContent(txtCPrice.Text, 0))
-            Dim CPPI As Double = CDbl(FluffContent(txtCPPI.Text, 0))
-            Dim UQty As Double = CDbl(FluffContent(txtUQty.Text, 0))
-            Dim UPrice As Double = CDbl(FluffContent(txtUPrice.Text, 0))
+            Dim CQty As Double = GeneralHelpers.FluffContent(CDbl(txtCQty.Text), 0)
+            Dim CGrains As Double = GeneralHelpers.FluffContent(CDbl(txtCQty2.Text), 0)
+            Dim CPrice As Double = GeneralHelpers.FluffContent(CDbl(txtCPrice.Text), 0)
+            Dim CPPI As Double = GeneralHelpers.FluffContent(CDbl(txtCPPI.Text), 0)
+            Dim UQty As Double = GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0)
+            Dim UPrice As Double = GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0)
             Dim sType As String = cmbWei.Text
             Dim UPPI As Double = PricePerItem(UQty, UPrice, sType)
             Dim UGrains As Double = 0
             Dim UPounds As Double = 0
             txtUPPI.Text = UPPI
-            If Not IsRequired(UQty, "New Weight", Me.Text) Then Exit Sub
-            If Not IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(UQty, "New Weight", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
 
             If LCase(sType) = "grains (grs)" Then
                 UGrains = CDbl(UQty)
