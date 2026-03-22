@@ -7,6 +7,8 @@ Imports System.Data.Odbc
 Imports System.Windows.Forms
 Imports Microsoft.Win32
 Imports System.Configuration
+Imports BurnSoft.Applications.MLL.Helpers
+
 Namespace LoadersClass
     Public Class BSRegistry
         Private _RegPath As String
@@ -1007,6 +1009,7 @@ Namespace LoadersClass
         Public Function TotalCost_Equipment() As String
             Dim sAns As String = "0.00"
             Try
+                Dim errOut As String
                 Dim Obj As New BSDatabase
                 Call Obj.ConnectDB()
                 Dim SQL As String = "Select Sum(Cost) as TC from General_Equipment"
@@ -1014,7 +1017,7 @@ Namespace LoadersClass
                 Dim RS As OdbcDataReader
                 RS = CMD.ExecuteReader
                 While RS.Read
-                    sAns = CStr(ConvToNum(RS("TC")))
+                    sAns = CStr(Converters.ConvToNum(RS("TC"), errOut))
                 End While
                 RS.Close()
                 RS = Nothing

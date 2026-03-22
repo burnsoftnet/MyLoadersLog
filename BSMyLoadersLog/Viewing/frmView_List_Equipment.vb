@@ -1,5 +1,11 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Global
+
 Public Class frmView_List_Equipment
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Private Sub frmView_List_Equipment_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
         If Me.Height <> 0 Then
             Me.DataGridView1.Height = Me.Height - (65)
@@ -8,8 +14,8 @@ Public Class frmView_List_Equipment
     End Sub
     Public Sub LoadData()
         Me.General_EquipmentTableAdapter.Fill(Me.MLLDataSet.General_Equipment)
-        Dim Obj As New GlobalFunctions
-        tslCost.Text = "Current Total: " & Obj.TotalCost_Equipment
+        'Dim Obj As New GlobalFunctions
+        tslCost.Text = "Current Total: " & GeneralFunctions.TotalCostEquipment(DatabasePath, errOut)
     End Sub
     Private Sub frmView_List_Equipment_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
