@@ -1,6 +1,12 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditConfig
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public ConfigID As Long
     Public ConfigName As String
     Dim IsPersonal As Boolean
@@ -241,15 +247,15 @@ Public Class frmEditConfig
     Sub SavePowder()
         Try
             Dim lngPowderID As Long = cmbPowder.SelectedValue
-            Dim LMin As Double = FluffContent(txtLMin.Text, 0)
-            Dim LMid As Double = FluffContent(txtLMid.Text, 0)
-            Dim LMax As Double = FluffContent(txtLMax.Text, 0)
-            Dim MVMin As Double = FluffContent(txtMVMin.Text, 0)
-            Dim MVMid As Double = FluffContent(txtMVMid.Text, 0)
-            Dim MVMax As Double = FluffContent(txtMVMax.Text, 0)
-            Dim CUPSMin As Double = FluffContent(txtCUPSMin.Text, 0)
-            Dim CUPSMid As Double = FluffContent(txtCUPSMid.Text, 0)
-            Dim CUPSMax As Double = FluffContent(txtCUPSMax.Text, 0)
+            Dim LMin As Double = GeneralHelpers.FluffContent(cDbl(txtLMin.Text), 0)
+            Dim LMid As Double = GeneralHelpers.FluffContent(cDbl(txtLMid.Text), 0)
+            Dim LMax As Double = GeneralHelpers.FluffContent(cDbl(txtLMax.Text), 0)
+            Dim MVMin As Double = GeneralHelpers.FluffContent(cDbl(txtMVMin.Text), 0)
+            Dim MVMid As Double = GeneralHelpers.FluffContent(cDbl(txtMVMid.Text), 0)
+            Dim MVMax As Double = GeneralHelpers.FluffContent(cDbl(txtMVMax.Text), 0)
+            Dim CUPSMin As Double = GeneralHelpers.FluffContent(cDbl(txtCUPSMin.Text), 0)
+            Dim CUPSMid As Double = GeneralHelpers.FluffContent(cDbl(txtCUPSMid.Text), 0)
+            Dim CUPSMax As Double = GeneralHelpers.FluffContent(cDbl(txtCUPSMax.Text), 0)
             Dim intPerf As Integer = 0
             If Not IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
@@ -270,9 +276,9 @@ Public Class frmEditConfig
     Sub SavePowderSG()
         Try
             Dim lngPowderID As Long = cmbPowderSG.SelectedValue
-            Dim dCharge As Double = FluffContent(txtCharge.Text, 0)
-            Dim FPS As Double = FluffContent(txtFPS.Text, 0)
-            Dim PSI As Double = FluffContent(txtPSI.Text, 0)
+            Dim dCharge As Double = GeneralHelpers.FluffContent(cDbl(txtCharge.Text), 0)
+            Dim FPS As Double = GeneralHelpers.FluffContent(cDbl(txtFPS.Text), 0)
+            Dim PSI As Double = GeneralHelpers.FluffContent(cDbl(txtPSI.Text), 0)
             Dim intPerf As Integer = 0
             If Not IsRequired(dCharge, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
@@ -293,13 +299,13 @@ Public Class frmEditConfig
     End Sub
     Sub SaveGD()
         Try
-            Dim strConfigName As String = FluffContent(txtConfigID.Text)
+            Dim strConfigName As String = GeneralHelpers.FluffContent(txtConfigID.Text)
             Dim bRP As Boolean = chkRP.Checked
             Dim bSG As Boolean = chkShotgun.Checked
             Dim lngCal As Long = cmbCal.SelectedValue
             Dim LoadType As Integer = 0
             If bSG Then LoadType = 1
-            If Not IsRequired(strConfigName, "Configuration ID", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strConfigName, "Configuration ID", Me.Text) Then Exit Sub
             Dim Obj As New BSDatabase
             Dim ObjG As New GlobalFunctions
             Dim SQL As String = "UPDATE Config_List_Name set ConfigName='" & strConfigName & _
@@ -324,7 +330,7 @@ Public Class frmEditConfig
             Dim bOther As Boolean = chkBook.Checked
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
-            Dim strSource As String = FluffContent(txtLoad.Text)
+            Dim strSource As String = GeneralHelpers.FluffContent(txtLoad.Text)
             If bOther Then
                 SQL = "UPDATE Config_List_Name set IsPersonal=0  where id=" & ConfigID
             Else
@@ -349,9 +355,9 @@ Public Class frmEditConfig
             Dim bPersonal As Boolean = chkPersonalSG.Checked
             Dim bOther As Boolean = chkBookSG.Checked
             Dim sCharge As String = txtShotCharge.Text
-            Dim sSource As String = FluffContent(txtSourceSG.Text)
+            Dim sSource As String = GeneralHelpers.FluffContent(txtSourceSG.Text)
             Dim CAL As Long = cmbCal.SelectedValue
-            Dim dCharge As Double = ConvertOZToDouble(sCharge)
+            Dim dCharge As Double = Converters.ConvertOZToDouble(sCharge, errOut)
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
             If IsSlug Then

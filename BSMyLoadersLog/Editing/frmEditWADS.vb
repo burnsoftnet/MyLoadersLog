@@ -1,6 +1,12 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmEditWADS
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public SID As Integer
     Public FromView As Boolean
     Sub Loaddata()
@@ -40,17 +46,17 @@ Public Class frmEditWADS
     End Sub
     Sub SaveData()
         Try
-            Dim strManu As String = FluffContent(txtManu.Text)
-            Dim strName As String = FluffContent(txtWAD.Text)
+            Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
+            Dim strName As String = GeneralHelpers.FluffContent(txtWAD.Text)
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = FluffContent(txtPrice.Text, 0)
-            Dim sLoad As String = FluffContent(txtLoad.Text, "0")
-            Dim dLoad As Double = ConvertOZToDouble(sLoad)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(cdbl(txtPrice.Text), 0)
+            Dim sLoad As String = GeneralHelpers.FluffContent(txtLoad.Text, "0")
+            Dim dLoad As Double = Converters.ConvertOZToDouble(sLoad, errOut)
             Dim GName As String = cmdGauge.Text
             Dim GID As Integer = cmdGauge.SelectedValue
 
-            If Not IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 And intQty > 0 Then
                 EstCostPerItem = (dbPrice / intQty)

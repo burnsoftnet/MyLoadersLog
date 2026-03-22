@@ -1,7 +1,13 @@
 Imports System.Data
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Helpers
+
 Public Class frmConfig_Add_Wizard_SG_2
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public ConfigName As String
     Public CalID As Long
     Public CalName As String
@@ -55,10 +61,10 @@ Public Class frmConfig_Add_Wizard_SG_2
             Dim HID As Long = cmdHull.SelectedValue
             Dim WID As Long = cmdWAD.SelectedValue
             Dim sLoad As String = txtShotCharge.Text
-            Dim dLoad As Double = ConvertOZToDouble(sLoad)
+            Dim dLoad As Double = Converters.ConvertOZToDouble(sLoad, errOut)
             Dim SLTID As Long = cmdShotType.SelectedValue
             Dim LTID As Long = cmbLoadType.SelectedValue
-            Dim sSource As String = FluffContent(txtSource.Text)
+            Dim sSource As String = GeneralHelpers.FluffContent(txtSource.Text)
             Dim IsPersonal As Boolean = chkPersonal.Checked
             Dim iPersonal As Integer = 1
             Dim SQL As String = ""
