@@ -47,11 +47,11 @@ Namespace Adding
         End Sub
         Sub SaveData()
             Try
-                Dim CQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtCQty.Text), 0))
-                Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPrice.Text), 0))
-                Dim CPPI As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPPI.Text), 0))
-                Dim UQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0))
-                Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0))
+                Dim CQty As Long = CLng(GeneralHelpers.FluffContent(txtCQty.Text, 0))
+                Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
+                Dim CPPI As Double = CDbl(GeneralHelpers.FluffContent(txtCPPI.Text, 0))
+                Dim UQty As Long = CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0))
+                Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
                 Dim UPPI As Double = PricePerItem(UQty, UPrice)
                 txtUPPI.Text = UPPI
                 If Not GeneralHelpers.IsRequired(UQty, "Update Qty", Me.Text) Then Exit Sub
@@ -74,20 +74,20 @@ Namespace Adding
                 Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        Private Sub frmAddQtyBullets_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Private Sub frmAddQtyBullets_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Call LoadData()
         End Sub
-        Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-            Me.Close()
+        Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+            Close()
         End Sub
-        Private Sub btnViewCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnViewCalc.Click
+        Private Sub btnViewCalc_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCalc.Click
             txtUPPI.Text = PricePerItem(CLng(txtUQty.Text), CDbl(txtUPrice.Text))
         End Sub
-        Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
+        Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
             Try
                 Call SaveData()
                 If FromView Then Call frmView_List_Bullets.LoadData()
-                Me.Close()
+                Close()
             Catch ex As Exception
                 Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
             End Try

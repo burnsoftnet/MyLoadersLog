@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Public Class frmView_List_ShellHulls
     Const RegViewName As String = "View_ShellHulls"
