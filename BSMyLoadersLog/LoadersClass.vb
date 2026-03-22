@@ -236,9 +236,7 @@ Namespace LoadersClass
     End Class
     Public Class BSDatabase
         Public Conn As OdbcConnection
-        ''' <summary>
-        ''' This function will generate the connection string needed to connect to the load access database
-        ''' <summary>
+
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
         Public Function sConnect() As String
             Dim sAns As String = ""
