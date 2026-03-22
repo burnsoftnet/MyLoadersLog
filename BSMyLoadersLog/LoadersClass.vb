@@ -1005,32 +1005,32 @@ Namespace LoadersClass
             End If
             Return lans
         End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
-        Public Function TotalCost_Equipment() As String
-            Dim sAns As String = "0.00"
-            Try
-                Dim errOut As String
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "Select Sum(Cost) as TC from General_Equipment"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    sAns = CStr(Converters.ConvToNum(RS("TC"), errOut))
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-            Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "TotalCost_Equipment"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
-            End Try
-            Return sAns
-        End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
+        'Public Function TotalCost_Equipment() As String
+        '    Dim sAns As String = "0.00"
+        '    Try
+        '        Dim errOut As String
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "Select Sum(Cost) as TC from General_Equipment"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            sAns = CStr(Converters.ConvToNum(RS("TC"), errOut))
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '    Catch ex As Exception
+        '        Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        Dim strProcedure As String = "TotalCost_Equipment"
+        '        Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        ObjFS.LogFile(MyLogFile, sMessage)
+        '    End Try
+        '    Return sAns
+        'End Function
         <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms.GetDetails function")>
         Public Sub GetFirearmDetails(ByVal FID As Long, Optional ByRef MGCID As Long = 0, _
                             Optional ByRef FullName As String = "", Optional ByRef Manu As String = "", _
