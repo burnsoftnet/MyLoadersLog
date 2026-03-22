@@ -1280,7 +1280,7 @@ Namespace LoadersClass
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function sConnect() As String
             Dim sAns As String = ""
-            sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & MGCPath & ";Pwd=14un0t2n0"
+            sAns = "Driver={Microsoft Access Driver (*.mdb)};dbq=" & MgcPath & ";Pwd=14un0t2n0"
             Return sAns
         End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -2095,7 +2095,7 @@ Namespace LoadersClass
                 Dim lNewCase As Long = lQCase - lQty
                 Dim lNewPrimer As Long = lQPrimer - lQty
                 Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WEIGHT_GRAINS_1LBS, 3)
+                Dim dPounds As Double = Math.Round(lNewPowder / WeightGrains1Lbs, 3)
                 Dim Obj As New BSDatabase
                 Dim SQL As String = "UPDATE List_Bullets set Qty=" & lNewBullet & " where ID=" & BID
                 Obj.ConnExec(SQL)
@@ -2123,7 +2123,7 @@ Namespace LoadersClass
                 Dim lNewPrimer As Long = lQPrimer - lQty
                 Dim lNewWad As Long = lQWADS - lQty
                 Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WEIGHT_GRAINS_1LBS, 3)
+                Dim dPounds As Double = Math.Round(lNewPowder / WeightGrains1Lbs, 3)
                 Dim dNewShotGrans As Double = 0
                 Dim dNewShotOz As Double = 0
                 Dim dNewShotLBS As Double = 0
@@ -2134,8 +2134,8 @@ Namespace LoadersClass
                     SQL = "UPDATE List_SG_ShotType_Details set Qty=" & lNewBullet & " where ID=" & BID
                 Else
                     dNewShotOz = lQSHOT_OZ - (dQPrefLoad * lQty)
-                    dNewShotGrans = dNewShotOz * WEIGHT_GRAMS_OZ
-                    dNewShotLBS = dNewShotOz / WEIGHT_OZ_1LBS
+                    dNewShotGrans = dNewShotOz * WeightGramsOz
+                    dNewShotLBS = dNewShotOz / WeightOz1Lbs
                     SQL = "UPDATE List_SG_ShotType_Details set weight=" & dNewShotLBS & _
                             ", ounces=" & dNewShotOz & ", grams=" & dNewShotGrans & " where ID=" & BID
                 End If

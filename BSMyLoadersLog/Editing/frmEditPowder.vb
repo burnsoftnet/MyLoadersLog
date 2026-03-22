@@ -25,7 +25,7 @@ Public Class frmEditPowder
                 If Not IsDBNull(RS("weightgn")) Then iQty = RS("weightgn")
                 If Not IsDBNull(RS("eppp")) Then eppo = RS("eppp")
                 'If Not IsDBNull(RS("weightlbs")) Then txtwei.Text = RS("weightlbs")
-                txtwei.Text = Math.Round(iQty / WEIGHT_GRAINS_1LBS, 3)
+                txtwei.Text = Math.Round(iQty / WeightGrains1Lbs, 3)
                 dPrice = eppo * iQty
                 txtGrains.Text = iQty
                 Dim ObjIM As New InventoryMath

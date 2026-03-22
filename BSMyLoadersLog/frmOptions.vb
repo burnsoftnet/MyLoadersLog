@@ -63,7 +63,7 @@ Public Class FrmOptions
             'Dim sql As String = ""
             'Dim obj As New BSDatabase
             'Dim objR As New BSRegistry
-            If OwnerID = 0 Then
+            If OwnerId = 0 Then
                 If Not  OwnerInformation.Add(DatabasePath, strName, strLoadName, strAddress, 
                                              strCity, strState, strZip, strPhone, strLic, bSec, 
                                              strUid, strPwd, strPhrase, strWord, 
@@ -79,7 +79,7 @@ Public Class FrmOptions
                 '        ",City='" & strCity & "',State='" & strState & "',ZipCode='" & strZip & "', Phone='" & strPhone & "',Lic='" & strLic & _
                 '        "',UseLock=" & iUsePassword & ",UserName='" & strUid & "',Password='" & strPwd & "'," & _
                 '        "Password_forgot='" & strPhrase & "',Password_Forgot_word='" & strWord & "' where ID=" & OwnerID
-                If Not OwnerInformation.Update(DatabasePath, OwnerID, strName, strLoadName, strAddress, 
+                If Not OwnerInformation.Update(DatabasePath, OwnerId, strName, strLoadName, strAddress, 
                                                strCity, strState, strZip, strPhone, strLic, bSec, 
                                                strUid, strPwd, strPhrase, strWord, 
                                                _errOut) Then Throw New Exception(_errOut)
@@ -96,12 +96,12 @@ Public Class FrmOptions
                 VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked)
             If Not MyRegistry.SaveSettings(mySettings, _errOut) Then Throw New Exception(_errOut)
 
-            LOADERTYPE_SHOTGUN = bShotGun
+            LoadertypeShotgun = bShotGun
             OwnerLoadName = Replace(strLoadName, "''", "'")
-            LOADERTYPE_NONSHOTGUN = bRiflePistol
-            VIEW_FPS = chkViewFPS.Checked
-            VIEW_CUPS = chkViewCUPS.Checked
-            DEFAULTLIST = strDefaultList
+            LoadertypeNonshotgun = bRiflePistol
+            ViewFps = chkViewFPS.Checked
+            ViewCups = chkViewCUPS.Checked
+            Defaultlist = strDefaultList
             Call MDIParentMain.InitLoaderType()
             Return 0
         Catch ex As Exception
@@ -129,11 +129,11 @@ Public Class FrmOptions
             chkIPer.Checked = o.IndvReports
         Next
 
-        chkShotGun.Checked = LOADERTYPE_SHOTGUN
-        chkRiflePistol.Checked = LOADERTYPE_NONSHOTGUN
-        cmbDefaultList.Text = DEFAULTLIST
-        chkViewFPS.Checked = VIEW_FPS
-        chkViewCUPS.Checked = VIEW_CUPS
+        chkShotGun.Checked = LoadertypeShotgun
+        chkRiflePistol.Checked = LoadertypeNonshotgun
+        cmbDefaultList.Text = Defaultlist
+        chkViewFPS.Checked = ViewFps
+        chkViewCUPS.Checked = ViewCups
     End Sub
     ''' <summary>
     ''' Gets the database data.
@@ -185,7 +185,7 @@ Public Class FrmOptions
             if value.Count > 0 Then
                 For Each o As PersonalInformation In value
                     _recId = o.Id
-                    OwnerID = _recId
+                    OwnerId = _recId
                     txtLoadName.Text = Trim(o.LoadName)
                     txtName.Text = Trim(o.Name) 'oEncrypt.DecryptSHA(RS("name"))
                     txtAddress.Text = Trim(o.Address)
@@ -251,7 +251,7 @@ Public Class FrmOptions
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub frmOptions_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
         Call LoadData()
-        chkShotGun.Enabled = USE_SHOTGUN
+        chkShotGun.Enabled = UseShotgun
     End Sub
     ''' <summary>
     ''' Sets the security.

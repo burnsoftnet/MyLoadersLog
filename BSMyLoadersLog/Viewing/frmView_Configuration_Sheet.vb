@@ -36,12 +36,12 @@ Public Class frmView_Configuration_Sheet
     Sub LoadPowderGrid()
         '7,8,9 are FPS
         '10,11,12 as CUPS
-        DataGridView1.Columns(7).Visible = VIEW_FPS
-        DataGridView1.Columns(8).Visible = VIEW_FPS
-        DataGridView1.Columns(9).Visible = VIEW_FPS
-        DataGridView1.Columns(10).Visible = VIEW_CUPS
-        DataGridView1.Columns(11).Visible = VIEW_CUPS
-        DataGridView1.Columns(12).Visible = VIEW_CUPS
+        DataGridView1.Columns(7).Visible = ViewFps
+        DataGridView1.Columns(8).Visible = ViewFps
+        DataGridView1.Columns(9).Visible = ViewFps
+        DataGridView1.Columns(10).Visible = ViewCups
+        DataGridView1.Columns(11).Visible = ViewCups
+        DataGridView1.Columns(12).Visible = ViewCups
         Me.Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(Me.MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigID)
     End Sub
     Sub LoadCosts()
@@ -79,7 +79,7 @@ Public Class frmView_Configuration_Sheet
         End Try
     End Sub
     Sub LoadData()
-        LASTCONFIGEDVIEWED = ConfigID
+        Lastconfigedviewed = ConfigID
         Try
             Me.Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(Me.MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
             IsShotGun = False

@@ -173,7 +173,7 @@ Public Class frmEditConfig
     Sub LoadData()
         IsPersonal = False
         IsShotGun = False
-        LASTCONFIGEDVIEWED = ConfigID
+        Lastconfigedviewed = ConfigID
         txtConfigID.Text = ConfigName
         Dim Obj As New InventoryMath
         Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, Notes, isActive, isFav)

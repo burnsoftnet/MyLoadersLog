@@ -7,15 +7,15 @@ Public Class frmConfig_Add_Wizard
             Me.List_CalibersTableAdapter.Fill(Me.MLLDataSet.List_Calibers)
             Dim Obj As New AutoFillCollections
             txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
-            chkShotgun.Enabled = USE_SHOTGUN
-            If LOADERTYPE_SHOTGUN And LOADERTYPE_NONSHOTGUN Then
+            chkShotgun.Enabled = UseShotgun
+            If LoadertypeShotgun And LoadertypeNonshotgun Then
                 chkShotgun.Checked = False
                 chkRP.Checked = False
-            ElseIf LOADERTYPE_NONSHOTGUN And Not LOADERTYPE_SHOTGUN Then
+            ElseIf LoadertypeNonshotgun And Not LoadertypeShotgun Then
                 chkShotgun.Checked = False
                 chkRP.Checked = True
                 chkShotgun.Enabled = False
-            ElseIf Not LOADERTYPE_NONSHOTGUN And LOADERTYPE_SHOTGUN Then
+            ElseIf Not LoadertypeNonshotgun And LoadertypeShotgun Then
                 chkShotgun.Checked = True
                 chkRP.Checked = False
                 chkRP.Enabled = False

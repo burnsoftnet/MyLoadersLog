@@ -45,8 +45,8 @@ Public Class frmView_Configuration_Shotgun_Sheet
     End Sub
     Sub LoadPowderGrid()
         Try
-            DataGridView1.Columns(3).Visible = VIEW_FPS
-            DataGridView1.Columns(4).Visible = VIEW_CUPS
+            DataGridView1.Columns(3).Visible = ViewFps
+            DataGridView1.Columns(4).Visible = ViewCups
             Me.Config_List_Powder_Data_SG_ViewTableAdapter.FillBy_ConfigID(Me.MLLDataSet.Config_List_Powder_Data_SG_View, ConfigID)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadPowderGrid", Err.Number, ex.Message.ToString)
@@ -125,7 +125,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Dim dC1RA As Double = 0
             Dim Obj As New InventoryMath
             If Not IsSlug Then
-                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WEIGHT_GRAMS_OZ) ' * COST_SHOT
+                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightGramsOz) ' * COST_SHOT
             Else
                 COST_BULLET = COST_SLUG
             End If
@@ -175,7 +175,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
     End Sub
     Public Sub LoadData()
         Try
-            LASTCONFIGEDVIEWED = ConfigID
+            Lastconfigedviewed = ConfigID
             Dim ObjG As New GlobalFunctions
             Dim Obj As New InventoryMath
             Me.Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(Me.MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
@@ -337,7 +337,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
         Try
             Dim objS As New ViewSizeSettings
             objS.LoadView_Configuration_Shotgun_Sheet(Me.Height, Me.Width, Me.Location)
-            LASTCONFIGEDVIEWED = ConfigID
+            Lastconfigedviewed = ConfigID
             GroupBox4.Visible = False
             GroupBox1.Visible = False
             Call LoadData()

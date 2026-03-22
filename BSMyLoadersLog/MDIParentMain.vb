@@ -30,7 +30,7 @@ Public Class MdiParentMain
         Try
             If DoAutoBackup Then
                 Dim myProcess As New Process
-                myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_BACKUP
+                myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyBackup
                 myProcess.StartInfo.Arguments = "/auto"
                 myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
                 myProcess.Start()
@@ -46,7 +46,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub MDIParent2_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            LASTCONFIGEDVIEWED = 0
+            Lastconfigedviewed = 0
             'MyLogFile = Application.StartupPath & "\err.log"
             Call CheckforHotFix()
             'If LoginEnabled(UseMyPWD, UseMyUID, UseMyForgotWord, UseMyForgotPhrase) And Not IsLoggedIN Then
@@ -58,19 +58,19 @@ Public Class MdiParentMain
             Dim requiredLogin as Boolean = False
             For Each o As LoginInformationOnly In loginInfo
                 requiredLogin = o.UseLock
-                UseMyPWD = o.Password
-                UseMyUID = o.UserName
+                UseMyPwd = o.Password
+                UseMyUid = o.UserName
                 UseMyForgotWord = o.Forgot
                 UseMyForgotPhrase = o.ForgetPhrase
             Next
 
-            If requiredLogin And Not IsLoggedIN Then
+            If requiredLogin And Not IsLoggedIn Then
                 frmLogin.Show()
                 Close()
             End If
             Dim obj As New BSRegistry
             'OwnerID = GetOwnerID()
-            OwnerID = OwnerInformation.GetOwnerID(DatabasePath, errOut)
+            OwnerId = OwnerInformation.GetOwnerID(DatabasePath, errOut)
             If errOut.Length > 0 Then Throw New Exception(errOut)
            
             'Call obj.UpDateAppDetails()
@@ -98,12 +98,12 @@ Public Class MdiParentMain
             ToolStripStatusLabel.Text = ""
             ToolStripSeparator4.Visible = False
 
-            If OwnerID = 0 Then
+            If OwnerId = 0 Then
                 Dim frmNew As New FrmOptions
                 frmNew.MdiParent = Me
                 frmNew.Show()
             End If
-            If Not USE_SHOTGUN Then
+            If Not UseShotgun Then
                 ToolStripButton6.Visible = False
                 WADListToolStripMenuItem.Visible = False
                 ShellListToolStripMenuItem.Visible = False
@@ -126,7 +126,7 @@ Public Class MdiParentMain
             Call InitForm()
             Call InitLoaderType()
             Dim objFs As New BSFileSystem
-            If objFs.FileExists(MY_HOTFIX_FILE) Then ReRunHotfixUpdatesToolStripMenuItem.Enabled = True
+            If objFs.FileExists(MyHotfixFile) Then ReRunHotfixUpdatesToolStripMenuItem.Enabled = True
         Catch ex As Exception
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
@@ -189,7 +189,7 @@ Public Class MdiParentMain
                     Config_List_NameTableAdapter.Fill(MLLDataSet.Config_List_Name)
             End Select
             lstConfigSheets.Refresh()
-            If LASTCONFIGEDVIEWED > 0 Then lstConfigSheets.SelectedValue = LASTCONFIGEDVIEWED
+            If Lastconfigedviewed > 0 Then lstConfigSheets.SelectedValue = Lastconfigedviewed
             'Dim objR As New BSRegistry
             'objR.SaveConfigSort(selectedView)
             If Not MyRegistry.SaveConfigSort(selectedView, errOut) Then Throw New Exception(errOut)
@@ -257,7 +257,7 @@ Public Class MdiParentMain
     Public Sub InitLoaderType()
         Try
             Call DeinitLoaderType()
-            If LOADERTYPE_SHOTGUN Then
+            If LoadertypeShotgun Then
                 ToolStripSeparator7.Visible = True
                 ToolStripSeparator14.Visible = True
                 WADToolStripMenuItem.Visible = True
@@ -281,7 +281,7 @@ Public Class MdiParentMain
                 PowderBushingsToolStripMenuItem.Visible = True
                 BushingsChargeBarToolStripMenuItem.Visible = True
             End If
-            If LOADERTYPE_NONSHOTGUN Then
+            If LoadertypeNonshotgun Then
                 ToolStripSeparator13.Visible = True
                 ToolStripSeparator10.Visible = True
                 BulletToolStripMenuItem.Visible = True
@@ -308,7 +308,7 @@ Public Class MdiParentMain
             If obj.MyGunCollectionIsInstalled Then
                 tsslMGCEnabled.Enabled = True
                 tsslMGCEnabled.Visible = True
-                MGCPath = obj.GetMGCPath
+                MgcPath = obj.GetMGCPath
                 SaveAsToolStripMenuItem.Enabled = True
                 ToolStripButton1.Enabled = True
                 ExportFirearmsToMGCToolStripMenuItem.Enabled = True
@@ -317,7 +317,7 @@ Public Class MdiParentMain
                 ToolStripButton1.Enabled = False
                 ExportFirearmsToMGCToolStripMenuItem.Enabled = False
             End If
-            Select Case DEFAULTLIST
+            Select Case Defaultlist
                 Case "Caliber List"
                     TabControl1.SelectedTab = TabPage1  'System.Windows.Forms.TabPage(1)
                 Case "Configuration List"
@@ -334,7 +334,7 @@ Public Class MdiParentMain
         Try
             DoAutoBackup = False
             Dim myProcess As New Process
-            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_BACKUP
+            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyBackup
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             myProcess.Start()
             Close()
@@ -349,7 +349,7 @@ Public Class MdiParentMain
         Try
             DoAutoBackup = False
             Dim myProcess As New Process
-            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MY_RESTORE
+            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyRestore
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             myProcess.Start()
             Close()
@@ -364,7 +364,7 @@ Public Class MdiParentMain
         Dim objf As New BSFileSystem
         If objf.FileExists(Application.StartupPath & "\hotfix.ini") Then
             Dim myProcess As New Process
-            Dim runThiSApp As String = Application.StartupPath & "\" & MY_HOTFIX_FILE
+            Dim runThiSApp As String = Application.StartupPath & "\" & MyHotfixFile
             myProcess.StartInfo.FileName = runThiSApp
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             DoAutoBackup = False
@@ -377,7 +377,7 @@ Public Class MdiParentMain
     ''' </summary>
     Sub DoHelp()
         Try
-            Help.ShowHelp(Me, MY_HELP_FILE)
+            Help.ShowHelp(Me, MyHelpFile)
         Catch ex As Exception
             Call LogError(Name, "DoHelp", Err.Number, ex.Message.ToString)
         End Try
@@ -568,8 +568,8 @@ Public Class MdiParentMain
             frmNew.MdiParent = Me
             frmNew.Show()
         End If
-        LASTCONFIGEDVIEWED = lngConfigId
-        lstConfigSheets.SelectedItem = LASTCONFIGEDVIEWED
+        Lastconfigedviewed = lngConfigId
+        lstConfigSheets.SelectedItem = Lastconfigedviewed
     End Sub
     ''' <summary>
     ''' Handles the DoubleClick event of the lstConfigSheets control.
@@ -808,7 +808,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_SHOP
+        myProcess.StartInfo.FileName = MenuShop
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
@@ -819,7 +819,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub TechnicalSupportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TechnicalSupportToolStripMenuItem.Click
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_SUPPORT
+        myProcess.StartInfo.FileName = MenuSupport
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
@@ -830,7 +830,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ReportABugToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ReportABugToolStripMenuItem.Click
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_BUG
+        myProcess.StartInfo.FileName = MenuBug
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
@@ -841,7 +841,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub KnowledgeBaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles KnowledgeBaseToolStripMenuItem.Click
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_WIKI
+        myProcess.StartInfo.FileName = MenuWiki
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
@@ -852,7 +852,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SearchToolStripMenuItem.Click
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MENU_SITESEARCH
+        myProcess.StartInfo.FileName = MenuSitesearch
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
         myProcess.Start()
     End Sub
@@ -862,7 +862,7 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub IndexToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles IndexToolStripMenuItem.Click
-        Help.ShowHelpIndex(Me, MY_HELP_FILE)
+        Help.ShowHelpIndex(Me, MyHelpFile)
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ContentsToolStripMenuItem control.
@@ -1496,7 +1496,7 @@ Public Class MdiParentMain
     Private Sub ReRunHotfixUpdatesToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ReRunHotfixUpdatesToolStripMenuItem.Click
         DoAutoBackup = False
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MY_HOTFIX_FILE
+        myProcess.StartInfo.FileName = MyHotfixFile
         myProcess.StartInfo.Arguments = "/redo"
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
         myProcess.Start()

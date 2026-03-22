@@ -61,7 +61,7 @@ Public Class frmAddQtyShot
             Dim Obj As New BSDatabase
             Dim NQty As Long = CQty + UQty
             Dim NPrice As Double = CPrice + UPrice
-            Dim ounces As Double = WEIGHT_OZ_1LBS * NQty
+            Dim ounces As Double = WeightOz1Lbs * NQty
             SQL = "Update List_SG_ShotType_Details set Price=" & NPrice & ", weight='" & NQty & _
                 "',ounces=" & ounces & " where ID=" & BID
             Obj.ConnExec(SQL)

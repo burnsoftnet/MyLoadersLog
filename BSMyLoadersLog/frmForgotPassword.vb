@@ -4,7 +4,7 @@ Public Class frmForgotPassword
         Dim strword As String = LCase(Trim(txtWord.Text))
         Dim sMsg As String = ""
         If strword = UseMyForgotWord Then
-            sMsg = "Your password is " & UseMyPWD
+            sMsg = "Your password is " & UseMyPwd
             txtWord.Text = ""
             MsgBox(sMsg)
             frmLogin.TopMost = True
