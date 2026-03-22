@@ -46,7 +46,8 @@ Namespace Adding
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim strCal As String = GeneralHelpers.FluffContent(txtCal.Text, "  ")
-                If Not GeneralHelpers.IsRequired(strCal, "Caliber", Text) Then Exit Sub
+                If Not GeneralHelpers.IsRequired(strCal, "Caliber", 
+                                                 Text) Then Exit Sub
                 If Not CaliberInventory.Add(DatabasePath, strCal, _errOut) Then Throw New Exception(_errOut)
             
                 MDIParentMain.RefreshCalData()
