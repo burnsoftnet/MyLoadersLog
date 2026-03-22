@@ -4,9 +4,19 @@ Imports BurnSoft.Applications.MLL.LoadersLog
 'Imports BurnSoft.Applications.MLL.Types
 
 Namespace Adding
-
+    ''' <summary>
+    ''' Class FrmAddFirearm.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmAddFirearm
-        Dim errOut as String
+        ''' <summary>
+        ''' The error out
+        ''' </summary>
+        Dim _errOut as String
+        ''' <summary>
+        ''' From view
+        ''' </summary>
         Public FromView As Boolean
         'TODO: #20 Clean Up Code
         'Sub AutoFill()
@@ -15,11 +25,21 @@ Namespace Adding
         '    Catch ex As Exception
         '        Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
         '    End Try
-        'End Sub
+        'End Sub        
+        ''' <summary>
+        ''' Handles the Click event of the btnCancel control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the btnAdd control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        ''' <exception cref="System.Exception"></exception>
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
@@ -41,7 +61,7 @@ Namespace Adding
 
                 'Dim strFullName As String = strManu & " " & strModel
                 If Not Firearms.Add(DatabasePath, strManu, strModel, strSerial, strCal, 
-                                    strType, strBarrel, errOut) Then Throw New Exception(errOut)
+                                    strType, strBarrel, _errOut) Then Throw New Exception(_errOut)
                 'TODO: #20 Clean Up Code
                 'Dim Obj As New BSDatabase
                 'Dim SQL As String = "INSERT INTO Loaders_Log_Firearms (MGCID,FullName,Manu,Model,Cal,Barrel,SerialNo,GType,exclude)" & _
