@@ -1,10 +1,14 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Global
+
 Public Class frmExportFirearms
+    Dim errOut As String
     Dim iCount As Integer
     Private Sub frmExportFirearms_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Obj As New GlobalFunctions
-        iCount = Obj.CountFirearms
+        'iCount = Obj.CountFirearms
+        iCount = GeneralFunctions.CountFirearms(DatabasePath, errOut)
         If iCount = 1 Then
             Label1.Text = "You have " & iCount & " firearm in your collection, are you ready to export this firearm to the My Gun Collection application?"
         ElseIf iCount > 1 Then
@@ -52,7 +56,8 @@ Public Class frmExportFirearms
             ProgressBar1.Visible = False
             Me.Close()
         Catch ex As Exception
-            Call LogError(Me.Name, "btnStartImport_Click", Err.Number, ex.Message.ToString)
+            Call LogError(Me.Name, "btnStartImport_Click", Err.Number, 
+                          ex.Message.ToString)
         End Try
     End Sub
 End Class

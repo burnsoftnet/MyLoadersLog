@@ -1,14 +1,18 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmView_Loaded_Ammunition
+    Dim errOut As String
     Sub LoadData()
         Try
             Me.Loaders_Log_AmmunitionTableAdapter.Fill(Me.MLLDataSet.Loaders_Log_Ammunition)
             ToolStripButton1.Enabled = MDIParentMain.tsslMGCEnabled.Enabled
-            Dim ObjGF As New GlobalFunctions
-            ToolStripLabel2.Text = ObjGF.CountReadyToUseAmmo
+            'Dim ObjGF As New GlobalFunctions
+            'ToolStripLabel2.Text = ObjGF.CountReadyToUseAmmo
+            ToolStripLabel2.Text = GeneralFunctions.CountReadyToUseAmmo(DatabasePath, errOut)
         Catch ex As Exception
             Dim strProcedure As String = "LoadData"
             Call LogError(Me.Name, strProcedure, Err.Number, ex.Message.ToString)

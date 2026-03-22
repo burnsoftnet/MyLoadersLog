@@ -255,9 +255,11 @@ Namespace LoadersClass
                 Conn = New OdbcConnection(sConnect)
                 Conn.Open()
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MLL.BSDatabase.ConnectDB" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MLL.BSDatabase.ConnectDB" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("BSDatabase", "ConnectDB", Err.Number, 
+                              ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
@@ -266,9 +268,11 @@ Namespace LoadersClass
                 Conn.Close()
                 Conn = Nothing
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MLL.BSDatabase.CloseDB" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MLL.BSDatabase.CloseDB" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("BSDatabase", "CloseDB", Err.Number, 
+                              ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
@@ -283,10 +287,14 @@ Namespace LoadersClass
                 CMD = Nothing
                 Conn = Nothing
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MLL.BSDatabase.ConnExec" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
-                ObjFS.LogFile(MyLogFile, "ConnExec.strSQL=" & strSQL)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MLL.BSDatabase.ConnExec" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                'ObjFS.LogFile(MyLogFile, "ConnExec.strSQL=" & strSQL)
+                Call LogError("BSDatabase", "ConnExec", Err.Number, 
+                              ex.Message.ToString)
+                Call LogError("BSDatabase", "ConnExec", 0, 
+                              "ConnExec.strSQL=" & strSQL)
             End Try
         End Sub
         <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
@@ -300,10 +308,14 @@ Namespace LoadersClass
                 RS.SelectCommand = CMD
                 RS.Fill(Table)
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MLL.BSDatabase.GetData" & "::" & Err.Number & "::" & ex.Message.ToString() & Chr(10) & "SQL STATEMENT: " & SQL
-                ObjFS.LogFile(MyLogFile, "GetData.SQL=" & SQL)
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MLL.BSDatabase.GetData" & "::" & Err.Number & "::" & ex.Message.ToString() & Chr(10) & "SQL STATEMENT: " & SQL
+                'ObjFS.LogFile(MyLogFile, "GetData.SQL=" & SQL)
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("BSDatabase", "GetData", Err.Number, 
+                             ex.Message.ToString)
+                Call LogError("BSDatabase", "GetData", 0, 
+                              "GetData.strSQL=" & SQL)
             End Try
             Return Table
         End Function
@@ -825,11 +837,13 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return bAns
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "ObjectsExistinDB(String)"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "ObjectsExistinDB(String)"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "ObjectsExistinDB", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
@@ -852,11 +866,13 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return bAns
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "ObjectsExistinDB(Intenger)"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "ObjectsExistinDB(Intenger)"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "ObjectsExistinDB", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
@@ -880,11 +896,13 @@ Namespace LoadersClass
                 Call Obj.CloseDB()
                 Return sAns
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "GetID"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "GetID"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetID", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced by BurnSoft.Application.MLL.Database")>
@@ -911,66 +929,70 @@ Namespace LoadersClass
                 CMD = Nothing
                 Call Obj.CloseDB()
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "GetName"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "GetName"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetName", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return sAns
         End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
-        Public Function CountFirearms() As Integer
-            Dim iAns As Integer = 0
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT Count(*) as Total from Loaders_Log_Firearms where MGCID=0"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    iAns = RS("Total")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Call Obj.CloseDB()
-            Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "CountFirearms"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
-            End Try
-            Return iAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
-        Public Function CountReadyToUseAmmo() As Long
-            Dim lAns As Long = 0
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT Sum(Qty) as Total from Loaders_Log_Ammunition"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    If Not IsDBNull(RS("Total")) Then lAns = CLng(RS("Total"))
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Call Obj.CloseDB()
-            Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "CountReadyToUseAmmo"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
-            End Try
-            Return lAns
-        End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
+        'Public Function CountFirearms() As Integer
+        '    Dim iAns As Integer = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT Count(*) as Total from Loaders_Log_Firearms where MGCID=0"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            iAns = RS("Total")
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Call Obj.CloseDB()
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "CountFirearms"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("GlobalFunctions", "CountFirearms", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return iAns
+        'End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
+        'Public Function CountReadyToUseAmmo() As Long
+        '    Dim lAns As Long = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT Sum(Qty) as Total from Loaders_Log_Ammunition"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            If Not IsDBNull(RS("Total")) Then lAns = CLng(RS("Total"))
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Call Obj.CloseDB()
+        '    Catch ex As Exception
+        '        Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        Dim strProcedure As String = "CountReadyToUseAmmo"
+        '        Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        ObjFS.LogFile(MyLogFile, sMessage)
+        '    End Try
+        '    Return lAns
+        'End Function
         <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetTitle(ByVal lngID As Long) As String
             Dim sAns As String = ""
@@ -1058,11 +1080,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "GetFirearmDetails"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "GetFirearmDetails"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetFirearmDetails", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms")>
@@ -1082,11 +1106,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "GetFirearmID"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "GetFirearmID"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetFirearmID", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return lAns
         End Function
@@ -1106,11 +1132,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "GetGaugeID"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "GetGaugeID"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetGaugeID", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return lAns
         End Function
@@ -1131,11 +1159,13 @@ Namespace LoadersClass
                 CMD = Nothing
                 Call Obj.CloseDB()
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "TotalConfigByCal"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "TotalConfigByCal"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "TotalConfigByCal", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return iAns
         End Function
@@ -1171,11 +1201,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "IsSlugConfig"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "IsSlugConfig"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "IsSlugConfig", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return bAns
         End Function
@@ -1194,11 +1226,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "InSG"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "InSG"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "InSG", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return bAns
         End Function
@@ -1219,11 +1253,13 @@ Namespace LoadersClass
                 RS = Nothing
                 CMD = Nothing
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "InRP"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "InRP"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "InRP", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return bAns
         End Function
@@ -1240,11 +1276,13 @@ Namespace LoadersClass
                     bAns = True
                 End If
             Catch ex As Exception
-                Dim strform As String = "LoadersClass.GlobalFunctions"
-                Dim strProcedure As String = "IsNotInShotgunConfigbyCal"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "LoadersClass.GlobalFunctions"
+                'Dim strProcedure As String = "IsNotInShotgunConfigbyCal"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "IsNotInShotgunConfigbyCal", 
+                              Err.Number, ex.Message.ToString)
             End Try
             Return bAns
         End Function
@@ -1289,9 +1327,11 @@ Namespace LoadersClass
                 Conn = New OdbcConnection(sConnect)
                 Conn.Open()
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.ConnectDB" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.ConnectDB" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "BSMGC.ConnectDB", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1300,9 +1340,11 @@ Namespace LoadersClass
                 Conn.Close()
                 'Conn = Nothing
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MGC.BSDatabase.CloseDB" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MGC.BSDatabase.CloseDB" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "BSMGC.CloseDb", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1317,9 +1359,11 @@ Namespace LoadersClass
                 CMD = Nothing
                 'Conn = Nothing
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "MGC.BSDatabase.ConnExec" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "MGC.BSDatabase.ConnExec" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "BSMGC.ConnExec", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
@@ -1384,9 +1428,11 @@ Namespace LoadersClass
                 Call CloseDB()
                 Return bAns
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.ObjectExistsinDB" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.ObjectExistsinDB" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "ObjectExistsinDB", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1409,9 +1455,11 @@ Namespace LoadersClass
                 Call CloseDB()
                 Return sAns
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.GetID" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.GetID" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetID", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1495,9 +1543,11 @@ Namespace LoadersClass
                 Return iAns
 
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.GetGunShopID" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.GetGunShopID" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetGunShopID", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1507,9 +1557,11 @@ Namespace LoadersClass
                 Dim iAns As Long = GetID(SQL)
                 Return iAns
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.GetLastFirearmID" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.GetLastFirearmID" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "GetLastFirearmID", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -1520,9 +1572,11 @@ Namespace LoadersClass
                     ConnExec(SQL)
                 End If
             Catch ex As Exception
-                Dim ObjFS As New BSFileSystem
-                Dim sMessage As String = "LoadersClass.BSMGC.UpdateGunType" & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim ObjFS As New BSFileSystem
+                'Dim sMessage As String = "LoadersClass.BSMGC.UpdateGunType" & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "UpdateGunType", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
@@ -2240,11 +2294,13 @@ Namespace LoadersClass
                 Config.AppSettings.Settings.Remove(sKey)
                 Config.Save(ConfigurationSaveMode.Minimal)
             Catch ex As Exception
-                Dim strform As String = "BSAppConfig"
-                Dim strProcedure As String = "RemoveAppSetting"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "BSAppConfig"
+                'Dim strProcedure As String = "RemoveAppSetting"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "RemoveAppSetting", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         Sub SaveAppSetting(ByVal sKey As String, ByVal sValue As String)
@@ -2254,11 +2310,13 @@ Namespace LoadersClass
                 Config.Save(ConfigurationSaveMode.Minimal)
                 ConfigurationManager.RefreshSection("AppSettings")
             Catch ex As Exception
-                Dim strform As String = "BSAppConfig"
-                Dim strProcedure As String = "SaveAppSetting"
-                Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                ObjFS.LogFile(MyLogFile, sMessage)
+                'Dim strform As String = "BSAppConfig"
+                'Dim strProcedure As String = "SaveAppSetting"
+                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+                'ObjFS.LogFile(MyLogFile, sMessage)
+                Call LogError("LoadersClass", "SaveAppSetting", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         Function GetAppSetting(ByVal sKey As String) As String
@@ -2426,7 +2484,9 @@ Namespace LoadersClass
                 ObjFS.OutPutToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
-                Call LogError("LoadersClass.Inventory_Export_Import", "XML_Generate_Powder_Export", Err.Number, ex.Message.ToString)
+                Call LogError("LoadersClass.Inventory_Export_Import",
+                              "XML_Generate_Powder_Export", Err.Number,
+                              ex.Message.ToString)
             End Try
         End Sub
         Sub XML_Generate_Bushings_Powder_Import(ByVal sPath As String)
@@ -2495,7 +2555,9 @@ Namespace LoadersClass
                 ObjFS.OutPutToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
-                Call LogError("LoadersClass.Inventory_Export_Import", "XML_Generate_Bushings_Powder_Export", Err.Number, ex.Message.ToString)
+                Call LogError("LoadersClass.Inventory_Export_Import", 
+                              "XML_Generate_Bushings_Powder_Export", 
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
         Sub XML_Generate_Bushings_Shot_Import(ByVal sPath As String)
@@ -2559,7 +2621,9 @@ Namespace LoadersClass
                 ObjFS.OutPutToFile(strPath, sAns)
                 MsgBox("Config was exported to " & Chr(10) & strPath)
             Catch ex As Exception
-                Call LogError("LoadersClass.Inventory_Export_Import", "XML_Generate_Bushings_Shot_Export", Err.Number, ex.Message.ToString)
+                Call LogError("LoadersClass.Inventory_Export_Import", 
+                              "XML_Generate_Bushings_Shot_Export",
+                              Err.Number, ex.Message.ToString)
             End Try
         End Sub
     End Class
