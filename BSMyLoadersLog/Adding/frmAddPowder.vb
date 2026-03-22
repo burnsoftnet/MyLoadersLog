@@ -6,8 +6,8 @@ Imports BurnSoft.Applications.MLL.Helpers
 Public Class frmAddPowder
     Dim errOut As String
     Public FromView As Boolean
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
     Sub AutoFill()
         Try
@@ -20,7 +20,7 @@ Public Class frmAddPowder
             Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
             Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
             Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
@@ -29,8 +29,8 @@ Public Class frmAddPowder
                                                              WeightValues.WeightType.Pounds, errOut)
             Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
             Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
-            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Me.Text) Then Exit Sub
-            If Not GeneralHelpers.IsRequired(strName, "Name", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Exit Sub
             Dim EstCostPerItem As Double = 0
             If dbPrice <> 0 Then
                 EstCostPerItem = (dbPrice / dbWeiGrn)
@@ -48,7 +48,7 @@ Public Class frmAddPowder
         End Try
     End Sub
 
-    Private Sub frmAddPowder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmAddPowder_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Call AutoFill()
     End Sub
 End Class
