@@ -2,43 +2,156 @@ Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
 
+''' <summary>
+''' Class frmLoadMakeReady_Details.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class frmLoadMakeReady_Details
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
     Dim errOut As string
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
+    ''' <summary>
+    ''' The is personal
+    ''' </summary>
     Dim IsPersonal As Boolean
+    ''' <summary>
+    ''' The is shot gun'
+    ''' </summary>
     Dim IsShotGun As Boolean
+    ''' <summary>
+    ''' The cost bullet
+    ''' </summary>
     Dim COST_BULLET As Double
+    ''' <summary>
+    ''' The cost primer
+    ''' </summary>
     Dim COST_PRIMER As Double
+    ''' <summary>
+    ''' The cost case
+    ''' </summary>
     Dim COST_CASE As Double
+    ''' <summary>
+    ''' The cost powder
+    ''' </summary>
     Dim COST_POWDER As Double
+    ''' <summary>
+    ''' The cost shot
+    ''' </summary>
     Dim COST_SHOT As Double
+    ''' <summary>
+    ''' The cost slug
+    ''' </summary>
     Dim COST_SLUG As Double
+    ''' <summary>
+    ''' The mid powder
+    ''' </summary>
     Dim MID_POWDER As Double
+    ''' <summary>
+    ''' The l makeable rounds
+    ''' </summary>
     Dim lMakeableRounds As Long
+    ''' <summary>
+    ''' The instock bullet
+    ''' </summary>
     Dim INSTOCK_BULLET As Long
+    ''' <summary>
+    ''' The instock primer
+    ''' </summary>
     Dim INSTOCK_PRIMER As Long
+    ''' <summary>
+    ''' The instock case
+    ''' </summary>
     Dim INSTOCK_CASE As Long
+    ''' <summary>
+    ''' The instock powder
+    ''' </summary>
     Dim INSTOCK_POWDER As Double
+    ''' <summary>
+    ''' The instock shot
+    ''' </summary>
     Dim INSTOCK_SHOT As Double
+    ''' <summary>
+    ''' The instock shot oz
+    ''' </summary>
     Dim INSTOCK_SHOT_OZ As Double
+    ''' <summary>
+    ''' The shot prefload
+    ''' </summary>
     Dim SHOT_PREFLOAD As Double
+    ''' <summary>
+    ''' The instock slug
+    ''' </summary>
     Dim INSTOCK_SLUG As Double
+    ''' <summary>
+    ''' The preffered powder identifier
+    ''' </summary>
     Dim PrefferedPowderID As Long
+    ''' <summary>
+    ''' The wad maxload
+    ''' </summary>
     Dim WAD_MAXLOAD As Double
+    ''' <summary>
+    ''' The instock wad
+    ''' </summary>
     Dim INSTOCK_WAD As Double
+    ''' <summary>
+    ''' The shot details gr
+    ''' </summary>
     Dim ShotDetails_GR As Double
+    ''' <summary>
+    ''' The cost wad
+    ''' </summary>
     Dim COST_WAD As Double
+    ''' <summary>
+    ''' The FPS mid
+    ''' </summary>
     Dim FPS_MID As Double
+    ''' <summary>
+    ''' The is slug
+    ''' </summary>
     Dim IsSlug As Boolean
+    ''' <summary>
+    ''' The bid
+    ''' </summary>
     Dim BID As Long
+    ''' <summary>
+    ''' The prid
+    ''' </summary>
     Dim PRID As Long
+    ''' <summary>
+    ''' The cid
+    ''' </summary>
     Dim CID As Long
-    Dim SID As Long  'Shot/SlugID
-    Dim HID As Long  'Hull ID
-    Dim WID As Long  'WAD ID
+    ''' <summary>
+    ''' The Shot/SlugID  
+    ''' </summary>
+    Dim SID As Long  
+    ''' <summary>
+    ''' The Hull ID 
+    ''' </summary>
+    Dim HID As Long   
+    ''' <summary>
+    ''' The WAD ID  
+    ''' </summary>
+    Dim WID As Long  
+    ''' <summary>
+    ''' The d c1 ra
+    ''' </summary>
     Dim dC1RA As Double
 #Region "General Subs and Functions"
+    ''' <summary>
+    ''' Loads the costs.
+    ''' </summary>
     Sub LoadCosts()
         Dim lnmr As Long = 0
         Dim dPowPerB As Double = 0
@@ -88,6 +201,9 @@ Public Class frmLoadMakeReady_Details
         End If
         lMakeableRounds = lnmr
     End Sub
+    ''' <summary>
+    ''' Loads the data.
+    ''' </summary>
     Sub LoadData()
         Try
             IsShotGun = False
@@ -110,6 +226,9 @@ Public Class frmLoadMakeReady_Details
             Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Loads the configuration rifle pistol.
+    ''' </summary>
     Private Sub LoadConfig_RiflePistol()
         Try
             Dim Obj As New BSDatabase
@@ -138,6 +257,9 @@ Public Class frmLoadMakeReady_Details
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Loads the configuration shot gun.
+    ''' </summary>
     Private Sub LoadConfig_ShotGun()
         Try
             Dim Obj As New BSDatabase
@@ -186,6 +308,10 @@ Public Class frmLoadMakeReady_Details
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Saves the audit.
+    ''' </summary>
+    ''' <param name="qty">The qty.</param>
     Sub SaveAudit(ByVal qty As Long)
         Dim Obj As New BSDatabase
         Dim ObjIM As New InventoryMath
@@ -195,14 +321,30 @@ Public Class frmLoadMakeReady_Details
     End Sub
 #End Region
 #Region "Form Subs"
+    ''' <summary>
+    ''' Handles the Load event of the frmLoadMakeReady_Details control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub frmLoadMakeReady_Details_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Call LoadData()
         lblInv.Text = "NOTE: Inventory states that you have enough to make " & lMakeableRounds & " rounds."
         nudQty.Maximum = lMakeableRounds
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the Cancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         Me.Close()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnMake control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
     Private Sub btnMake_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMake.Click
         Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
         Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
