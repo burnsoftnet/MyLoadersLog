@@ -2,6 +2,7 @@ Imports System.Data
 Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 
