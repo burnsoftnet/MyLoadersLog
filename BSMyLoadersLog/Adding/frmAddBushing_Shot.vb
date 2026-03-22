@@ -13,18 +13,18 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private errOut as String
+        Private _errOut as String
         ''' <summary>
         ''' Pres the load data.
         ''' </summary>
         Sub PreLoadData()
             Try
-                txtCharge.AutoCompleteCustomSource = ConfigShotgun.BushingShotCharge(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtManu.AutoCompleteCustomSource = ConfigShotgun.BushingShotManufacturer(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtName.AutoCompleteCustomSource = ConfigShotgun.BushingShotName(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                txtCharge.AutoCompleteCustomSource = ConfigShotgun.BushingShotCharge(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtManu.AutoCompleteCustomSource = ConfigShotgun.BushingShotManufacturer(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtName.AutoCompleteCustomSource = ConfigShotgun.BushingShotName(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "PreLoadData", Err.Number, ex.Message.ToString)
             End Try
@@ -64,7 +64,7 @@ Namespace Adding
                 If Not GeneralHelpers.IsRequired(sCharge, "Charge Amount", 
                                                  Text) Then Exit Sub
                 If Not ShotgunShotInventory.Add(DatabasePath, manu, sName, sCharge, 
-                                                sType, errOut) Then Throw New Exception(errOut)
+                                                sType, _errOut) Then Throw New Exception(_errOut)
                 Call ClearFields()
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
