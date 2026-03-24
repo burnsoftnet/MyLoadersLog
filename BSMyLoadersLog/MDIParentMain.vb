@@ -471,6 +471,7 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <param name="myId">My identifier.</param>
     ''' <param name="configId">The configuration identifier.</param>
+    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataMetalic.CopyConfig")>
     Private Sub CopyConfigDetailsNsg(ByVal myId As Long, ByVal configId As Long)
         Try
             Dim sql As String = "SELECT * from Config_List_Data_NSG where CLNID=" & configId
@@ -496,6 +497,7 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <param name="myId">My identifier.</param>
     ''' <param name="configId">The configuration identifier.</param>
+    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowders.CopyConfig")>
     Private Sub CopyConfigPowdersNsg(ByVal myId As Long, ByVal configId As Long)
         Try
             Dim sql As String = "SELECT * from Config_List_Powder_Data_NSG where CLNID=" & configId
