@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -54,4 +55,5 @@ layout: default
 * [Add Shell Hulls to Inventory](add_shellhulls2Inv.md)
 * [Backing up your Database](backup_database.md)
 * [Restoring a Database](import_database.md)
-                    
+          
+[back](./)		            

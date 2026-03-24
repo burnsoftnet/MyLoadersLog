@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -53,3 +54,5 @@ To Delete a Loaders Log entry in the list, just click once on the Log entry that
 ![](images/View_LoadersLog_Delete.jpg)
 
 If you are sure this is the Log entry that you wish to delete, then click on the Yes button.
+
+[back](./)

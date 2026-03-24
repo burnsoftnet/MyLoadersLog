@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -25,3 +26,5 @@ Based on the example above, I have 6999.99 grains of powder ( 1 lbs. or also a n
 ![](images/View_Config_Cost_Stats_Update.jpg)
 
 Now I can make 94 rounds of ammunition which will cost $17.89 or $19.00 for a 100 if I had it.  Even beats the cost of some of the cheaper ammunition available.
+
+[back](./)

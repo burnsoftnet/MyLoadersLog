@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -102,3 +103,4 @@ Once it is finished, you will get a message box stating the the import was compl
 ![](images/View_Config_Import_ListUpdated.jpg)
 
 
+[back](./)

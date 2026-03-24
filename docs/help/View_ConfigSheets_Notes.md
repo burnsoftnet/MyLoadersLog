@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -24,3 +25,4 @@ Type in what you wish, once you are done, click on the Update button to save.
 
 And that is how you add and edit the notes section.
 
+[back](./)

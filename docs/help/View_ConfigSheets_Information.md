@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -26,3 +27,5 @@ When viewing a configuration, all you have to do is click on the Active or Inact
 ## Setting Favorite
 
 When viewing a configuration, all you have to do is click on the checkbox near Favorite to mark it as a favorite, Once you click on it, it's set.
+
+[back](./)

@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -19,3 +20,5 @@ Once you click on that the report will appear.
 As you can see it is how the report will look when you print it out.  To print out the report, just click on the Printer icon ( ![](images/Report_PrintIcon.jpg) ) that is located on the menu bar on the report, once you click on that the Print Options will appear:
 
 ![](images/Report_PrintOptions.jpg)
+
+[back](./)

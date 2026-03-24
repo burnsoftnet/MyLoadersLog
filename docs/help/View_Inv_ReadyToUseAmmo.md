@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -40,3 +41,4 @@ Click on the Yes button to export
 
 Click on the Ammunition that you wish to delete, then click on the delete ( ![](images/delete_16x16.gif) ) button on the tool bar.
 
+[back](./)
