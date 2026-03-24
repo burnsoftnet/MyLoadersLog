@@ -129,21 +129,7 @@ Public Class MdiParentMain
                 frmNew.MdiParent = Me
                 frmNew.Show()
             End If
-            If Not UseShotgun Then
-                ToolStripButton6.Visible = False
-                WADListToolStripMenuItem.Visible = False
-                ShellListToolStripMenuItem.Visible = False
-                ShotListToolStripMenuItem.Visible = False
-                SlugListToolStripMenuItem.Visible = False
-                BushingsChargeBarToolStripMenuItem.Visible = False
-                WADInventoryToolStripMenuItem.Visible = False
-                ShellInventoryToolStripMenuItem.Visible = False
-                ShotInventoryToolStripMenuItem.Visible = False
-                SlugInventoryToolStripMenuItem.Visible = False
-                ShotgunsToolStripMenuItem.Visible = False
-                ShotgunGaugesToolStripMenuItem.Visible = False
-                ShotWeightToolStripMenuItem.Visible = False
-            End If
+            Call EnableShotGun()
             'OwnerLoadName = Replace(GetLoadName(), "''", "'")
             OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, errOut), "''", "'")
             If OwnerLoadName <> "My Loaders Log" Then Text = OwnerLoadName & " Loaders Log"
@@ -155,6 +141,26 @@ Public Class MdiParentMain
         Catch ex As Exception
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
+    End Sub
+    ''' <summary>
+    ''' Enables the shot gun.
+    ''' </summary>
+    Private Sub EnableShotGun()
+        If Not LoaderTypeShotGun Then
+            ToolStripButton6.Visible = False
+            WADListToolStripMenuItem.Visible = False
+            ShellListToolStripMenuItem.Visible = False
+            ShotListToolStripMenuItem.Visible = False
+            SlugListToolStripMenuItem.Visible = False
+            BushingsChargeBarToolStripMenuItem.Visible = False
+            WADInventoryToolStripMenuItem.Visible = False
+            ShellInventoryToolStripMenuItem.Visible = False
+            ShotInventoryToolStripMenuItem.Visible = False
+            SlugInventoryToolStripMenuItem.Visible = False
+            ShotgunsToolStripMenuItem.Visible = False
+            ShotgunGaugesToolStripMenuItem.Visible = False
+            ShotWeightToolStripMenuItem.Visible = False
+        End If
     End Sub
     ''' <summary>
     ''' Handles the Resize event of the MDIParentMain control.
