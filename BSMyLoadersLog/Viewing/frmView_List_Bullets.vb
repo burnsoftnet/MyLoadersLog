@@ -95,7 +95,7 @@ Namespace Viewing
         Private Sub AddToQtyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddToQtyToolStripMenuItem.Click
             Dim frmNew As New frmAddQtyBullets
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-            frmNew.BID = ItemID
+            frmNew.BulletId = ItemID
             frmNew.FromView = True
             frmNew.MdiParent = Me.MdiParent
             frmNew.Show()
