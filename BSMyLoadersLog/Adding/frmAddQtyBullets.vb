@@ -96,7 +96,7 @@ Namespace Adding
             Close()
         End Sub
         Private Sub btnViewCalc_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCalc.Click
-            txtUPPI.Text = CLng(txtUQty.Text) / CDbl(txtUPrice.Text)
+            txtUPPI.Text = CDbl(txtUPrice.Text) / CLng(txtUQty.Text)
         End Sub
         Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
             Try
