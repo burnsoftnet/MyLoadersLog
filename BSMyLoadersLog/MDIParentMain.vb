@@ -524,6 +524,7 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <param name="myId">My identifier.</param>
     ''' <param name="configId">The configuration identifier.</param>
+    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataShotgun.CopyConfig")>
     Private Sub CopyConfigDetailsSg(ByVal myId As Long, ByVal configId As Long)
         Try
             Dim sql As String = "SELECT * from Config_List_Data_SG where CLNID=" & configId
@@ -551,6 +552,7 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <param name="myId">My identifier.</param>
     ''' <param name="configId">The configuration identifier.</param>
+    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowdersShotgun.CopyConfig")>
     Private Sub CopyConfigPowdersSg(ByVal myId As Long, ByVal configId As Long)
         Try
             Dim sql As String = "SELECT * from Config_List_Powder_Data_SG where CLNID=" & configId
@@ -1154,6 +1156,7 @@ Public Class MdiParentMain
         Dim sMsg As String = "What do you wish to call this new configuration?"
         Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
         If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
+            ' TODO: Replace all the code below with the BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.CopyConfig function!
             Dim sql As String = "SELECT * from Config_List_Name where ID=" & configId
             Dim obj As New BSDatabase
             Call obj.ConnectDB()
@@ -1189,15 +1192,20 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
-        Dim frmNew As New frmEditConfig
-        Dim configId As Long = lstConfigSheets.SelectedValue
-        Dim configName As String
-        Dim objG As New GlobalFunctions
-        configName = objG.GetTitle(configId)
-        frmNew.ConfigID = configId
-        frmNew.ConfigName = configName
-        frmNew.MdiParent = Me
-        frmNew.Show()
+        Try
+            Dim frmNew As New frmEditConfig
+            Dim configId As Long = lstConfigSheets.SelectedValue
+            Dim configName As String
+            'Dim objG As New GlobalFunctions
+            'configName = objG.GetTitle(configId)
+            configName = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+            frmNew.ConfigID = configId
+            frmNew.ConfigName = configName
+            frmNew.MdiParent = Me
+            frmNew.Show()
+        Catch ex As Exception
+            Call LogError(Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the UseConfigurationToolStripMenuItem control.
