@@ -59,11 +59,11 @@ Module GlobalVars
     ''' <summary>
     ''' The loadertype shotgun
     ''' </summary>
-    Public LoadertypeShotgun As Boolean
+    Public LoaderTypeShotGun As Boolean
     ''' <summary>
-    ''' The loadertype nonshotgun
+    ''' The loader type metallic reloading
     ''' </summary>
-    Public LoadertypeNonshotgun As Boolean
+    Public LoaderTypeMetalic As Boolean
     ''' <summary>
     ''' The defaultlist
     ''' </summary>

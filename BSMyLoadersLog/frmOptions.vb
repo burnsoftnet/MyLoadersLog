@@ -98,9 +98,9 @@ Public Class FrmOptions
                 TrackHistory:=chkBAKCleanup.Checked, TrackHistoryDays := nudDays.Value)
             If Not MyRegistry.SaveSettings(mySettings, _errOut) Then Throw New Exception(_errOut)
 
-            LoadertypeShotgun = bShotGun
+            LoaderTypeShotGun = bShotGun
             OwnerLoadName = Replace(strLoadName, "''", "'")
-            LoadertypeNonshotgun = bRiflePistol
+            LoaderTypeMetalic = bRiflePistol
             ViewFps = chkViewFPS.Checked
             ViewCups = chkViewCUPS.Checked
             Defaultlist = strDefaultList
@@ -129,15 +129,15 @@ Public Class FrmOptions
             chkBackupOnExit.Checked = o.BackupOnExit
             chkDoOriginalImage.Checked = o.UseOrgImage
             chkIPer.Checked = o.IndvReports
-            LoadertypeShotgun = o.LoaderTypeShotGun
-            LoadertypeNonshotgun = o.LoaderTypeMetalic
+            LoaderTypeShotGun = o.LoaderTypeShotGun
+            LoaderTypeMetalic = o.LoaderTypeMetalic
             Defaultlist = o.DefaultList
             ViewFps = o.ViewFps
             ViewCups = o.ViewCups
         Next
 
-        chkShotGun.Checked = LoadertypeShotgun
-        chkRiflePistol.Checked = LoadertypeNonshotgun
+        chkShotGun.Checked = LoaderTypeShotGun
+        chkRiflePistol.Checked = LoaderTypeMetalic
         cmbDefaultList.Text = Defaultlist
         chkViewFPS.Checked = ViewFps
         chkViewCUPS.Checked = ViewCups

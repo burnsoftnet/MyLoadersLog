@@ -114,8 +114,8 @@ Public Class MdiParentMain
                 DoOriginalImage = o.UseOrgImage
                 UseIndividualReports = o.IndvReports
                 cmbConfigSort.Text = o.ConfigSort
-                LoadertypeShotgun = o.LoaderTypeShotGun
-                LoadertypeNonshotgun = o.LoaderTypeMetalic
+                LoaderTypeShotGun = o.LoaderTypeShotGun
+                LoaderTypeMetalic = o.LoaderTypeMetalic
             Next
             
             'Call obj.GetSettings(LastSucBackup, AlertOnBackUp, TrackHistoryDays, TrackHistory, DoAutoBackup, DoOriginalImage,
@@ -282,7 +282,7 @@ Public Class MdiParentMain
     Public Sub InitLoaderType()
         Try
             Call DeinitLoaderType()
-            If LoadertypeShotgun Then
+            If LoaderTypeShotGun Then
                 ToolStripSeparator7.Visible = True
                 ToolStripSeparator14.Visible = True
                 WADToolStripMenuItem.Visible = True
@@ -306,7 +306,7 @@ Public Class MdiParentMain
                 PowderBushingsToolStripMenuItem.Visible = True
                 BushingsChargeBarToolStripMenuItem.Visible = True
             End If
-            If LoadertypeNonshotgun Then
+            If LoaderTypeMetalic Then
                 ToolStripSeparator13.Visible = True
                 ToolStripSeparator10.Visible = True
                 BulletToolStripMenuItem.Visible = True

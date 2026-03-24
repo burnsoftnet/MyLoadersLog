@@ -8,14 +8,14 @@ Public Class frmConfig_Add_Wizard
             Dim Obj As New AutoFillCollections
             txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
             chkShotgun.Enabled = UseShotgun
-            If LoadertypeShotgun And LoadertypeNonshotgun Then
+            If LoaderTypeShotGun And LoaderTypeMetalic Then
                 chkShotgun.Checked = False
                 chkRP.Checked = False
-            ElseIf LoadertypeNonshotgun And Not LoadertypeShotgun Then
+            ElseIf LoaderTypeMetalic And Not LoaderTypeShotGun Then
                 chkShotgun.Checked = False
                 chkRP.Checked = True
                 chkShotgun.Enabled = False
-            ElseIf Not LoadertypeNonshotgun And LoadertypeShotgun Then
+            ElseIf Not LoaderTypeMetalic And LoaderTypeShotGun Then
                 chkShotgun.Checked = True
                 chkRP.Checked = False
                 chkRP.Enabled = False
