@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -15,3 +16,6 @@ The only thing that is required on this form is the Manufacturer and the Name.  
 ![](images/Add_Powder2Inv_Form_Filled.jpg)
 
 Once you are finished entering in your information, just click on the Add button to store it to the database
+
+
+[back](./)

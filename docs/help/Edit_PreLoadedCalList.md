@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -39,3 +40,5 @@ Double click on the Blank column and type in what you wish to add to the list.
 Once you are finished, just hit your Enter key or click on an another field to save your changes.
 
 ![](images/Edit_Re-LoadedCalList_After_Add.jpg)
+
+[back](./)

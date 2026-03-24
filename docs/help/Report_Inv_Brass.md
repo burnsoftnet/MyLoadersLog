@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -16,3 +17,4 @@ As you can see it is how the report will look when you print it out.  To print o
 
 ![](images/Report_PrintOptions.jpg)
 
+[back](./)

@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -15,3 +16,5 @@ Everything on the form requires input except for the Qty, and Price.   The infor
 ![](images/Add_Hulls_Form_Filled.jpg)
 
 Once you are done, click on the Add button to add it to the database.
+
+[back](./)

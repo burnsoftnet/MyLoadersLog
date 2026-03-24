@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -23,3 +24,5 @@ Once you have selected the option that you wish to perform, click on the Start B
 ![](images/DBCleanup_Form_Deleted.jpg)
 
 Once the Delete is complete, it will let you know by displaying the message box above.   Once you click on OK, it will go back to the Clean Up database window so you can select another action to perform, or close out the window if you are done.
+
+[back](./)

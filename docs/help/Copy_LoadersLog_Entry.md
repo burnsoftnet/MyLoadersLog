@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -19,3 +20,5 @@ While you are viewing the Loaders Log, click on the entry that you want to copy 
 Once you are finished making the changes, click on the Add button to save the information to the database.
 
 ![](images/Copy_LoadersLog_View_After.jpg)
+
+[back](./)

@@ -1,3 +1,5 @@
+[back](./)
+
 ---
 layout: default
 ---
@@ -23,3 +25,5 @@ After you select the drive that you wish to backup the dB to, click on the "Back
 If the program successfully backed up the dB, or if there was an error, a message box will come up and tell you.
 
 We recommend that should be done at least once a month.
+
+[back](./)
