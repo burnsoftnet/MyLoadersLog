@@ -6,9 +6,9 @@ Namespace Adding
 
     ''' <summary>
     ''' Class FrmAddBushingPowder.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddBushingPowder
         ''' <summary>
         ''' The error out
@@ -35,8 +35,8 @@ Namespace Adding
         ''' Handles the Load event of the frmAddChargeBushing control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub frmAddChargeBushing_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub frmAddChargeBushing_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 Call PreloadData()
             Catch ex As Exception
@@ -48,7 +48,7 @@ Namespace Adding
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
         ''' <summary>
@@ -92,7 +92,7 @@ Namespace Adding
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
+        Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Call SaveData()
         End Sub
         ''' <summary>
@@ -115,7 +115,7 @@ Namespace Adding
         ''' Handles the Enter event of the txtName control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub txtName_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtName.Enter
             txtName.SelectAll()
         End Sub
@@ -123,7 +123,7 @@ Namespace Adding
         ''' Handles the Enter event of the txtPowderName control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub txtPowderName_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtPowderName.Enter
             txtPowderName.SelectAll()
         End Sub

@@ -6,9 +6,9 @@ Namespace Adding
 
     ''' <summary>
     ''' Class frmAddBushing_Shot.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddBushingShot
         ''' <summary>
         ''' The error out
@@ -43,8 +43,8 @@ Namespace Adding
         ''' Handles the Click event of the btnCancel control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
         ''' <summary>
@@ -75,7 +75,7 @@ Namespace Adding
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
+        Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Call SaveData()
         End Sub
         ''' <summary>
@@ -98,7 +98,7 @@ Namespace Adding
         ''' Handles the Enter event of the txtName control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub txtName_Enter(ByVal sender As Object, ByVal e As EventArgs) Handles txtName.Enter
             txtName.SelectAll()
         End Sub
@@ -107,7 +107,7 @@ Namespace Adding
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        Private Sub frmAddBushing_Shot_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
+        Private Sub frmAddBushing_Shot_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Call PreLoadData()
         End Sub
     End Class
