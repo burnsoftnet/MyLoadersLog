@@ -2,8 +2,6 @@ Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
-'Imports BurnSoft.Applications.MLL.Global
-'Imports BSMyLoadersLog.LoadersClass
 
 Namespace Adding
     ''' <summary>
@@ -34,13 +32,6 @@ Namespace Adding
         ''' <exception cref="System.Exception"></exception>
         Sub AutoFill()
             Try
-                'TODO: #20 Clean Up Code
-                'Dim ObjAF As New AutoFillCollections
-                'txtManu.AutoCompleteCustomSource = ObjAF.General_Powder_Manufacturer
-                'txtName.AutoCompleteCustomSource = ObjAF.General_Powder_Name
-                'txtPrice.AutoCompleteCustomSource = ObjAF.General_Powder_Price
-                'txtwei.AutoCompleteCustomSource = ObjAF.General_Powder_WeightInPounds
-                'Dim ObjAF As New AutoFillCollections
                 txtManu.AutoCompleteCustomSource = Powder.Manufacturer(DatabasePath, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtName.AutoCompleteCustomSource = Powder.Name(DatabasePath, _errOut)
@@ -64,8 +55,6 @@ Namespace Adding
                 Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
                 Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
                 Dim dbWei As Double = GeneralHelpers.FluffContent(txtwei.Text, 0)
-                'Dim dbWeiGrn As Double =Converters.ConvertWeight(dbWei, WeightValues.WeightType.Grains, 
-                '                                                 WeightValues.WeightType.Pounds, errOut)
                 Dim dbPrice As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0)
                 Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
                 If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Text) Then Exit Sub
@@ -73,17 +62,7 @@ Namespace Adding
                 
                 If Not PowderInventory.Add(DatabasePath, strManu, strName, dbWei, 
                                            dbPrice, strNotes, _errOut) Then Throw New Exception(_errOut)
-                'TODO: #20 Clean Up Code
-                'Dim EstCostPerItem As Double = 0
-                'If dbPrice <> 0 Then
-                '    EstCostPerItem = (dbPrice / dbWeiGrn)
-                'End If
-                'Dim Obj As New BSDatabase
-                'Dim SQL As String = "INSERT INTO General_Powder(Manufacturer,Name," & _
-                '                    "weightlbs,weightgn,Price,Notes,ePPP) VALUES ('" & strManu & "','" & _
-                '                    strName & "'," & dbWei & "," & dbWeiGrn & "," & dbPrice & ",'" & _
-                '                    strNotes & "'," & EstCostPerItem & ")"
-                'Obj.ConnExec(SQL)
+
                 If FromView Then Call frmView_List_Powder.LoadData()
                 Close()
             Catch ex As Exception

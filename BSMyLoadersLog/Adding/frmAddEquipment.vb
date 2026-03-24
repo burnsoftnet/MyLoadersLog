@@ -1,4 +1,3 @@
-'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
@@ -24,13 +23,6 @@ Namespace Adding
         ''' <exception cref="System.Exception"></exception>
         Sub AutoFill()
             Try
-                'TODO #20 Delete Old Code
-                'Dim ObjAF As New AutoFillCollections
-                'txtManu.AutoCompleteCustomSource = ObjAF.General_Equipment_Manufacturer
-                'txtName.AutoCompleteCustomSource = ObjAF.General_Equipment_Name
-                'txtUse.AutoCompleteCustomSource = ObjAF.General_Equipment_Use
-                'txtPrice.AutoCompleteCustomSource = ObjAF.General_Equipment_Cost
-                'Dim ObjAF As New AutoFillCollections
                 txtManu.AutoCompleteCustomSource = Equipment.Manufacturer(DatabasePath, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtName.AutoCompleteCustomSource = Equipment.Name(DatabasePath, _errOut)
@@ -87,13 +79,6 @@ Namespace Adding
                 If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Exit Sub
                 If Not GeneralHelpers.IsRequired(strUse, "Use", Text) Then Exit Sub
                 If Not GeneralHelpers.IsRequired(strPrice, 0, "Price", Text) Then Exit Sub
-
-                'TODO #20 Delete Old Code
-                'Dim Obj As New BSDatabase
-                'Dim SQL As String = "INSERT INTO General_Equipment(Manufacturer,Name,Use,Cost,Notes) VALUES('" & _
-                '                    strManu & "','" & strName & "','" & strUse & "'," & strPrice & ",'" & strNotes & "')"
-                'Obj.ConnExec(SQL)
-                'Obj = Nothing
 
                 If Not EquipmentInventory.Add(DatabasePath, strManu, strName, strUse, strPrice, 
                                               strNotes, _errOut) Then Throw New Exception(_errOut)

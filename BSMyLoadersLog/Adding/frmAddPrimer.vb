@@ -1,4 +1,3 @@
-'Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
@@ -43,12 +42,6 @@ Namespace Adding
         ''' </summary>
         Sub AutoFill()
             Try
-                ' TODO: @20 Removed Unused Code
-                'Dim ObjAF As New AutoFillCollections
-                'txtManu.AutoCompleteCustomSource = ObjAF.General_Primer_Type_ManuFacturers
-                'txtName.AutoCompleteCustomSource = ObjAF.General_Primer_Type_Name
-                'txtPrice.AutoCompleteCustomSource = ObjAF.General_Primer_Type_Price
-                'Dim ObjAF As New AutoFillCollections
                 txtManu.AutoCompleteCustomSource = Primers.Manufacturer(DatabasePath, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtName.AutoCompleteCustomSource = Primers.Name(DatabasePath, _errOut)
@@ -86,15 +79,7 @@ Namespace Adding
                                                  Text) Then Exit Sub
                 If Not PrimerInventory.Add(DatabasePath, strManu, strName, intPriType, 
                                            dbPrice, intQty, _errOut) Then Throw New Exception(_errOut)
-                'Dim EstCostPerItem As Double = 0
-                'If dbPrice <> 0 Then
-                '    EstCostPerItem = (dbPrice / intQty)
-                'End If
-                'Dim Obj As New BSDatabase
-                'Dim SQL As String = "INSERT INTO General_Primer(Manufacturer,Name,Primer_Type," & _
-                '                    "Qty,Price, ePPP) VALUES('" & strManu & "','" & strName & "'," & intPriType & "," & _
-                '                    intQty & "," & dbPrice & "," & EstCostPerItem & ")"
-                'Obj.ConnExec(SQL)
+
                 If FromView Then Call frmView_List_Primer.LoadData()
                 Close()
             Catch ex As Exception
