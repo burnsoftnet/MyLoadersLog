@@ -13,9 +13,9 @@ Imports BurnSoft.Universal
 
 ''' <summary>
 ''' Class MdiParentMain.
-''' Implements the <see cref="System.Windows.Forms.Form" />
+''' Implements the <see cref="Form" />
 ''' </summary>
-''' <seealso cref="System.Windows.Forms.Form" />
+''' <seealso cref="Form" />
 Public Class MdiParentMain
     ''' <summary>
     ''' The error out
@@ -41,6 +41,28 @@ Public Class MdiParentMain
         End Try
     End Sub
     ''' <summary>
+    ''' Checks the login.
+    ''' </summary>
+    ''' <exception cref="System.Exception"></exception>
+    Private Sub CheckLogin()
+        Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, errOut)
+        If errOut.Length > 0 Then Throw New Exception(errOut)
+        Dim requiredLogin as Boolean = False
+        For Each o As LoginInformationOnly In loginInfo
+            requiredLogin = o.UseLock
+            UseMyPwd = o.Password
+            UseMyUid = o.UserName
+            UseMyForgotWord = o.Forgot
+            UseMyForgotPhrase = o.ForgetPhrase
+        Next
+
+        If requiredLogin And Not IsLoggedIn Then
+            frmLogin.Show()
+            Close()
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Handles the Load event of the MDIParent2 control.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
@@ -50,26 +72,27 @@ Public Class MdiParentMain
             Lastconfigedviewed = 0
             'MyLogFile = Application.StartupPath & "\err.log"
             Call CheckforHotFix()
+            Call CheckLogin()
             'If LoginEnabled(UseMyPWD, UseMyUID, UseMyForgotWord, UseMyForgotPhrase) And Not IsLoggedIN Then
             '    frmLogin.Show()
             '    Close()
             'End If
-            Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, errOut)
-            If errOut.Length > 0 Then Throw New Exception(errOut)
-            Dim requiredLogin as Boolean = False
-            For Each o As LoginInformationOnly In loginInfo
-                requiredLogin = o.UseLock
-                UseMyPwd = o.Password
-                UseMyUid = o.UserName
-                UseMyForgotWord = o.Forgot
-                UseMyForgotPhrase = o.ForgetPhrase
-            Next
+            'Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, errOut)
+            'If errOut.Length > 0 Then Throw New Exception(errOut)
+            'Dim requiredLogin as Boolean = False
+            'For Each o As LoginInformationOnly In loginInfo
+            '    requiredLogin = o.UseLock
+            '    UseMyPwd = o.Password
+            '    UseMyUid = o.UserName
+            '    UseMyForgotWord = o.Forgot
+            '    UseMyForgotPhrase = o.ForgetPhrase
+            'Next
 
-            If requiredLogin And Not IsLoggedIn Then
-                frmLogin.Show()
-                Close()
-            End If
-            Dim obj As New LoadersClass.BSRegistry
+            'If requiredLogin And Not IsLoggedIn Then
+            '    frmLogin.Show()
+            '    Close()
+            'End If
+            'Dim obj As New LoadersClass.BSRegistry
             'OwnerID = GetOwnerID()
             OwnerId = OwnerInformation.GetOwnerID(DatabasePath, errOut)
             If errOut.Length > 0 Then Throw New Exception(errOut)
@@ -91,6 +114,8 @@ Public Class MdiParentMain
                 DoOriginalImage = o.UseOrgImage
                 UseIndividualReports = o.IndvReports
                 cmbConfigSort.Text = o.ConfigSort
+                LoadertypeShotgun = o.LoaderTypeShotGun
+                LoadertypeNonshotgun = o.LoaderTypeMetalic
             Next
             
             'Call obj.GetSettings(LastSucBackup, AlertOnBackUp, TrackHistoryDays, TrackHistory, DoAutoBackup, DoOriginalImage,
@@ -118,7 +143,6 @@ Public Class MdiParentMain
                 ShotgunsToolStripMenuItem.Visible = False
                 ShotgunGaugesToolStripMenuItem.Visible = False
                 ShotWeightToolStripMenuItem.Visible = False
-
             End If
             'OwnerLoadName = Replace(GetLoadName(), "''", "'")
             OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, errOut), "''", "'")
