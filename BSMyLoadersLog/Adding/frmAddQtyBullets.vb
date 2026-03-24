@@ -6,9 +6,9 @@ Imports BurnSoft.Applications.MLL.Types
 Namespace Adding
     ''' <summary>
     ''' Class FrmAddQtyBullets.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddQtyBullets
         ''' <summary>
         ''' The error out
