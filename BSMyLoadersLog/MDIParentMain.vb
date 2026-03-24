@@ -1213,9 +1213,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles UseConfigurationToolStripMenuItem.Click
-        Dim frmNew As New FrmAddDataSheetRiflePistolsCfg
-        frmNew.MdiParent = Me
-        frmNew.Show()
+        Try
+            Dim frmNew As New FrmAddDataSheetRiflePistolsCfg
+            frmNew.MdiParent = Me
+            frmNew.Show()
+        Catch ex As Exception
+            Call LogError(Name, "UseConfigurationToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the RiflePistolToolStripMenuItem1 control.
@@ -1223,11 +1227,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub RiflePistolToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles RiflePistolToolStripMenuItem1.Click
-        Cursor = Cursors.WaitCursor
-        Dim frmnew As New frmViewDataSheet_RiflePistols
-        frmnew.MdiParent = Me
-        frmnew.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            Dim frmnew As New frmViewDataSheet_RiflePistols
+            frmnew.MdiParent = Me
+            frmnew.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "RiflePistolToolStripMenuItem1_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the AmmunitionInventoryToolStripMenuItem control.
@@ -1235,10 +1244,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub AmmunitionInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AmmunitionInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_Loaded_Ammunition.MdiParent = Me
-        frmReport_Loaded_Ammunition.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_Loaded_Ammunition.MdiParent = Me
+            frmReport_Loaded_Ammunition.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "AmmunitionInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the EquipmentListToolStripMenuItem control.
@@ -1246,10 +1260,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub EquipmentListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EquipmentListToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_List_Equipment.MdiParent = Me
-        frmReport_List_Equipment.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_List_Equipment.MdiParent = Me
+            frmReport_List_Equipment.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "EquipmentListToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the FirearmInventoryToolStripMenuItem control.
@@ -1257,10 +1276,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub FirearmInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles FirearmInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_List_Firearms.MdiParent = Me
-        frmReport_List_Firearms.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_List_Firearms.MdiParent = Me
+            frmReport_List_Firearms.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "FirearmInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PowderInventoryToolStripMenuItem control.
@@ -1268,10 +1292,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PowderInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PowderInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_PowderInventory.MdiParent = Me
-        frmReport_PowderInventory.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_PowderInventory.MdiParent = Me
+            frmReport_PowderInventory.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "PowderInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PrimerInventoryToolStripMenuItem control.
@@ -1279,10 +1308,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PrimerInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PrimerInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_PrimerInventory.MdiParent = Me
-        frmReport_PrimerInventory.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_PrimerInventory.MdiParent = Me
+            frmReport_PrimerInventory.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "PrimerInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the BulletInventoryToolStripMenuItem control.
@@ -1290,10 +1324,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub BulletInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_BulletInventory.MdiParent = Me
-        frmReport_BulletInventory.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_BulletInventory.MdiParent = Me
+            frmReport_BulletInventory.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "BulletInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CaseBrassInventoryToolStripMenuItem control.
@@ -1301,10 +1340,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaseBrassInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaseBrassInventoryToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmReport_CaseInventory.MdiParent = Me
-        frmReport_CaseInventory.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmReport_CaseInventory.MdiParent = Me
+            frmReport_CaseInventory.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "CaseBrassInventoryToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CaliberReloadToolStripMenuItem control.
@@ -1312,8 +1356,12 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaliberReloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaliberReloadToolStripMenuItem.Click
-        FrmAddCaliberToCollection.MdiParent = Me
-        FrmAddCaliberToCollection.Show()
+        Try
+            FrmAddCaliberToCollection.MdiParent = Me
+            FrmAddCaliberToCollection.Show()
+        Catch ex As Exception
+            Call LogError(Name, "CaliberReloadToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PreLoadedCaliberListToolStripMenuItem control.
@@ -1321,10 +1369,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PreLoadedCaliberListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PreLoadedCaliberListToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmView_General_Calibers.MdiParent = Me
-        frmView_General_Calibers.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_General_Calibers.MdiParent = Me
+            frmView_General_Calibers.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "PreLoadedCaliberListToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PrimerTypeToolStripMenuItem control.
@@ -1332,8 +1385,12 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PrimerTypeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PrimerTypeToolStripMenuItem.Click
-        frmEdit_PrimerTypes.MdiParent = Me
-        frmEdit_PrimerTypes.Show()
+        Try
+            frmEdit_PrimerTypes.MdiParent = Me
+            frmEdit_PrimerTypes.Show()
+        Catch ex As Exception
+            Call LogError(Name, "PrimerTypeToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the AmmunitionTypesToolStripMenuItem control.
