@@ -131,7 +131,7 @@ Public Class MdiParentMain
             End If
             'OwnerLoadName = Replace(GetLoadName(), "''", "'")
             OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, errOut), "''", "'")
-            If OwnerLoadName <> "My Loaders Log" Then Text = OwnerLoadName & " Loaders Log"
+            If OwnerLoadName <> "My Loaders Log" Then Text = $"{OwnerLoadName} Loaders Log"
             Call RefreshData()
             Call InitForm()
             Call InitLoaderType()
@@ -208,45 +208,45 @@ Public Class MdiParentMain
             Call LogError(Name, "RefreshConfigData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    ''' <summary>
-    ''' Deinits the type of the loader.
-    ''' </summary>
-    Private Sub DeinitLoaderType()
-        BulletToolStripMenuItem.Visible = False
-        CaseToolStripMenuItem.Visible = False
-        WADToolStripMenuItem.Visible = False
-        ShellToolStripMenuItem.Visible = False
-        BulletToolStripMenuItem1.Visible = False
-        CaseToolStripMenuItem1.Visible = False
-        WADListToolStripMenuItem.Visible = False
-        ShellListToolStripMenuItem.Visible = False
-        ToolStripSeparator7.Visible = False
-        ToolStripSeparator10.Visible = False
-        ToolStripSeparator13.Visible = False
-        ToolStripSeparator14.Visible = False
-        ShotgunToolStripMenuItem.Visible = False
-        ShotgunToolStripMenuItem1.Visible = False
-        RiflePistolToolStripMenuItem.Visible = False
-        RiflePistolToolStripMenuItem1.Visible = False
-        WADInventoryToolStripMenuItem.Visible = False
-        ShellInventoryToolStripMenuItem.Visible = False
-        CaseBrassInventoryToolStripMenuItem.Visible = False
-        BulletInventoryToolStripMenuItem.Visible = False
-        ShotgunGaugesToolStripMenuItem.Visible = False
-        ShotWeightToolStripMenuItem.Visible = False
-        ShotgunsToolStripMenuItem.Visible = False
-        RifleAndPistolsToolStripMenuItem.Visible = False
-        ToolStripButton6.Visible = False
-        ToolStripButton5.Visible = False
-        SlugsToolStripMenuItem.Visible = False
-        ShotToolStripMenuItem.Visible = False
-        SlugListToolStripMenuItem.Visible = False
-        ShotListToolStripMenuItem.Visible = False
-        ShotInventoryToolStripMenuItem.Visible = False
-        SlugInventoryToolStripMenuItem.Visible = False
-        PowderBushingsToolStripMenuItem.Visible = False
-        BushingsChargeBarToolStripMenuItem.Visible = False
-    End Sub
+    '''' <summary>
+    '''' Deinits the type of the loader.
+    '''' </summary>
+    'Private Sub DeinitLoaderType()
+    '    BulletToolStripMenuItem.Visible = False
+    '    CaseToolStripMenuItem.Visible = False
+    '    WADToolStripMenuItem.Visible = False
+    '    ShellToolStripMenuItem.Visible = False
+    '    BulletToolStripMenuItem1.Visible = False
+    '    CaseToolStripMenuItem1.Visible = False
+    '    WADListToolStripMenuItem.Visible = False
+    '    ShellListToolStripMenuItem.Visible = False
+    '    ToolStripSeparator7.Visible = False
+    '    ToolStripSeparator10.Visible = False
+    '    ToolStripSeparator13.Visible = False
+    '    ToolStripSeparator14.Visible = False
+    '    ShotgunToolStripMenuItem.Visible = False
+    '    ShotgunToolStripMenuItem1.Visible = False
+    '    RiflePistolToolStripMenuItem.Visible = False
+    '    RiflePistolToolStripMenuItem1.Visible = False
+    '    WADInventoryToolStripMenuItem.Visible = False
+    '    ShellInventoryToolStripMenuItem.Visible = False
+    '    CaseBrassInventoryToolStripMenuItem.Visible = False
+    '    BulletInventoryToolStripMenuItem.Visible = False
+    '    ShotgunGaugesToolStripMenuItem.Visible = False
+    '    ShotWeightToolStripMenuItem.Visible = False
+    '    ShotgunsToolStripMenuItem.Visible = False
+    '    RifleAndPistolsToolStripMenuItem.Visible = False
+    '    ToolStripButton6.Visible = False
+    '    ToolStripButton5.Visible = False
+    '    SlugsToolStripMenuItem.Visible = False
+    '    ShotToolStripMenuItem.Visible = False
+    '    SlugListToolStripMenuItem.Visible = False
+    '    ShotListToolStripMenuItem.Visible = False
+    '    ShotInventoryToolStripMenuItem.Visible = False
+    '    SlugInventoryToolStripMenuItem.Visible = False
+    '    PowderBushingsToolStripMenuItem.Visible = False
+    '    BushingsChargeBarToolStripMenuItem.Visible = False
+    'End Sub
     ''' <summary>
     ''' Initializes the reg values.
     ''' </summary>
@@ -263,49 +263,104 @@ Public Class MdiParentMain
         End Try
     End Sub
     ''' <summary>
+    ''' Toggles the shotgun views visible or hidden
+    ''' </summary>
+    ''' <param name="status">if set to <c>true</c> [status].</param>
+    Sub ToggleShotgunViews(status As Boolean)
+        If LoaderTypeShotGun Then
+            ToolStripSeparator7.Visible = status
+            ToolStripSeparator14.Visible = status
+            WADToolStripMenuItem.Visible = status
+            ShellToolStripMenuItem.Visible = status
+            WADListToolStripMenuItem.Visible = status
+            ShellListToolStripMenuItem.Visible = status
+            ShotgunToolStripMenuItem.Visible = status
+            ShotgunToolStripMenuItem1.Visible = status
+            WADInventoryToolStripMenuItem.Visible = status
+            ShellInventoryToolStripMenuItem.Visible = status
+            ShotgunGaugesToolStripMenuItem.Visible = status
+            ShotWeightToolStripMenuItem.Visible = status
+            ShotgunsToolStripMenuItem.Visible = status
+            ToolStripButton6.Visible = status
+            SlugsToolStripMenuItem.Visible = status
+            ShotToolStripMenuItem.Visible = status
+            SlugListToolStripMenuItem.Visible = status
+            ShotListToolStripMenuItem.Visible = status
+            ShotInventoryToolStripMenuItem.Visible = status
+            SlugInventoryToolStripMenuItem.Visible = status
+            PowderBushingsToolStripMenuItem.Visible = status
+            BushingsChargeBarToolStripMenuItem.Visible = status
+        End If
+    End Sub
+    ''' <summary>
+    ''' Toggles the metalic views visible or hidden
+    ''' </summary>
+    ''' <param name="status">if set to <c>true</c> [status].</param>
+    Sub ToggleMetalicViews(status As Boolean)
+        If LoaderTypeMetalic Then
+            ToolStripSeparator13.Visible = status
+            ToolStripSeparator10.Visible = status
+            BulletToolStripMenuItem.Visible = status
+            CaseToolStripMenuItem.Visible = status
+            BulletToolStripMenuItem1.Visible = status
+            CaseToolStripMenuItem1.Visible = status
+            RiflePistolToolStripMenuItem.Visible = status
+            RiflePistolToolStripMenuItem1.Visible = status
+            CaseBrassInventoryToolStripMenuItem.Visible = status
+            BulletInventoryToolStripMenuItem.Visible = status
+            RifleAndPistolsToolStripMenuItem.Visible = status
+            ToolStripButton5.Visible = status
+        End If
+    End Sub
+    ''' <summary>
     ''' Initializes the type of the loader.
     ''' </summary>
     Public Sub InitLoaderType()
         Try
-            Call DeinitLoaderType()
-            If LoaderTypeShotGun Then
-                ToolStripSeparator7.Visible = True
-                ToolStripSeparator14.Visible = True
-                WADToolStripMenuItem.Visible = True
-                ShellToolStripMenuItem.Visible = True
-                WADListToolStripMenuItem.Visible = True
-                ShellListToolStripMenuItem.Visible = True
-                ShotgunToolStripMenuItem.Visible = True
-                ShotgunToolStripMenuItem1.Visible = True
-                WADInventoryToolStripMenuItem.Visible = True
-                ShellInventoryToolStripMenuItem.Visible = True
-                ShotgunGaugesToolStripMenuItem.Visible = True
-                ShotWeightToolStripMenuItem.Visible = True
-                ShotgunsToolStripMenuItem.Visible = True
-                ToolStripButton6.Visible = True
-                SlugsToolStripMenuItem.Visible = True
-                ShotToolStripMenuItem.Visible = True
-                SlugListToolStripMenuItem.Visible = True
-                ShotListToolStripMenuItem.Visible = True
-                ShotInventoryToolStripMenuItem.Visible = True
-                SlugInventoryToolStripMenuItem.Visible = True
-                PowderBushingsToolStripMenuItem.Visible = True
-                BushingsChargeBarToolStripMenuItem.Visible = True
-            End If
-            If LoaderTypeMetalic Then
-                ToolStripSeparator13.Visible = True
-                ToolStripSeparator10.Visible = True
-                BulletToolStripMenuItem.Visible = True
-                CaseToolStripMenuItem.Visible = True
-                BulletToolStripMenuItem1.Visible = True
-                CaseToolStripMenuItem1.Visible = True
-                RiflePistolToolStripMenuItem.Visible = True
-                RiflePistolToolStripMenuItem1.Visible = True
-                CaseBrassInventoryToolStripMenuItem.Visible = True
-                BulletInventoryToolStripMenuItem.Visible = True
-                RifleAndPistolsToolStripMenuItem.Visible = True
-                ToolStripButton5.Visible = True
-            End If
+            Call ToggleShotgunViews(False)
+            Call ToggleMetalicViews(False)
+            Call ToggleShotgunViews(True)
+            Call ToggleMetalicViews(True)
+            'Call DeinitLoaderType()
+
+            'If LoaderTypeShotGun Then
+            '    ToolStripSeparator7.Visible = True
+            '    ToolStripSeparator14.Visible = True
+            '    WADToolStripMenuItem.Visible = True
+            '    ShellToolStripMenuItem.Visible = True
+            '    WADListToolStripMenuItem.Visible = True
+            '    ShellListToolStripMenuItem.Visible = True
+            '    ShotgunToolStripMenuItem.Visible = True
+            '    ShotgunToolStripMenuItem1.Visible = True
+            '    WADInventoryToolStripMenuItem.Visible = True
+            '    ShellInventoryToolStripMenuItem.Visible = True
+            '    ShotgunGaugesToolStripMenuItem.Visible = True
+            '    ShotWeightToolStripMenuItem.Visible = True
+            '    ShotgunsToolStripMenuItem.Visible = True
+            '    ToolStripButton6.Visible = True
+            '    SlugsToolStripMenuItem.Visible = True
+            '    ShotToolStripMenuItem.Visible = True
+            '    SlugListToolStripMenuItem.Visible = True
+            '    ShotListToolStripMenuItem.Visible = True
+            '    ShotInventoryToolStripMenuItem.Visible = True
+            '    SlugInventoryToolStripMenuItem.Visible = True
+            '    PowderBushingsToolStripMenuItem.Visible = True
+            '    BushingsChargeBarToolStripMenuItem.Visible = True
+            'End If
+            'If LoaderTypeMetalic Then
+            '    ToolStripSeparator13.Visible = True
+            '    ToolStripSeparator10.Visible = True
+            '    BulletToolStripMenuItem.Visible = True
+            '    CaseToolStripMenuItem.Visible = True
+            '    BulletToolStripMenuItem1.Visible = True
+            '    CaseToolStripMenuItem1.Visible = True
+            '    RiflePistolToolStripMenuItem.Visible = True
+            '    RiflePistolToolStripMenuItem1.Visible = True
+            '    CaseBrassInventoryToolStripMenuItem.Visible = True
+            '    BulletInventoryToolStripMenuItem.Visible = True
+            '    RifleAndPistolsToolStripMenuItem.Visible = True
+            '    ToolStripButton5.Visible = True
+            'End If
         Catch ex As Exception
             Call LogError(Name, "InitLoaderType", Err.Number, ex.Message.ToString)
         End Try
@@ -399,11 +454,14 @@ Public Class MdiParentMain
     ''' </summary>
     Sub CheckBackup()
         Try
-            Dim objR As New LoadersClass.BSRegistry
+            'Dim objR As New LoadersClass.BSRegistry
             If Not AlertOnBackUp Then Exit Sub
             Dim myLastDateDiff As Long = DateDiff(DateInterval.Day, CDate(LastSucBackup), DateTime.Now)
             Dim obj As New MsgClass
-            If myLastDateDiff > TrackHistoryDays Then obj.DoMessage("It has been " & myLastDateDiff & " days since your last backup.", MgboxStyle.Inf_OK, MgBtnStyle.mb_Exclamantion, "Last Backup Notice", , True, "Backup Warning", False)
+            If myLastDateDiff > TrackHistoryDays Then obj.DoMessage($"It has been {myLastDateDiff} days since your last backup.",
+                                                                    MgboxStyle.Inf_OK, MgBtnStyle.mb_Exclamantion,
+                                                                    "Last Backup Notice", , True, "Backup Warning",
+                                                                    False)
         Catch ex As Exception
             Call LogError(Name, "CheckBackup", Err.Number, ex.Message.ToString)
         End Try
