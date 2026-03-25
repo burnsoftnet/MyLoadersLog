@@ -8,6 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MGC
 Imports BurnSoft.Applications.MGC.LoadersLog
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
@@ -756,10 +757,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
-        Cursor = Cursors.WaitCursor
-        frmView_Loaded_Ammunition.MdiParent = Me
-        frmView_Loaded_Ammunition.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_Loaded_Ammunition.MdiParent = Me
+            frmView_Loaded_Ammunition.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "tsslMGCEnabled_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the btnImportConfig control.
@@ -767,8 +773,12 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnImportConfig_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnImportConfig.Click
-        frmImportConfiguration.MdiParent = Me
-        frmImportConfiguration.Show()
+        Try
+            frmImportConfiguration.MdiParent = Me
+            frmImportConfiguration.Show()
+        Catch ex As Exception
+            Call LogError(Name, "btnImportConfig_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripButton5 control.
@@ -776,10 +786,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton5_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton5.Click
-        Cursor = Cursors.WaitCursor
-        frmSearchConfig_RiflePistol.MdiParent = Me
-        frmSearchConfig_RiflePistol.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmSearchConfig_RiflePistol.MdiParent = Me
+            frmSearchConfig_RiflePistol.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "ToolStripButton5_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the SelectedIndexChanged event of the cmbConfigSort control.
@@ -1090,15 +1105,20 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub MakeReadyToUseAmmunitionToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MakeReadyToUseAmmunitionToolStripMenuItem.Click
-        Dim configId As Long = lstConfigSheets.SelectedValue
-        Dim configName As String
-        Dim frmNew As New frmLoadMakeReady_Details
-        Dim objG As New GlobalFunctions
-        configName = objG.GetTitle(configId)
-        frmNew.ConfigID = configId
-        frmNew.ConfigName = configName
-        frmNew.MdiParent = Me
-        frmNew.Show()
+        Try
+            Dim configId As Long = lstConfigSheets.SelectedValue
+            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+            if errOut.Length > 0 Then Throw new Exception(errOut)
+            Dim frmNew As New frmLoadMakeReady_Details
+            'Dim objG As New GlobalFunctions
+            'configName = objG.GetTitle(configId)
+            frmNew.ConfigID = configId
+            frmNew.ConfigName = configName
+            frmNew.MdiParent = Me
+            frmNew.Show()
+        Catch ex As Exception
+            Call LogError(Name, "MakeReadyToUseAmmunitionToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the DeleteToolStripMenuItem control.
@@ -1106,31 +1126,41 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
-        Dim lngConfigId As Long = lstConfigSheets.SelectedValue
-        Dim obj As New BSDatabase
-        Dim objG As New GlobalFunctions
-        Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
-        Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-        Dim isShotGun As Boolean = objG.IsShotGunCOnfig(lngConfigId)
-        Dim sql As String = ""
-        If strAns = vbYes Then
-            If Not isShotGun Then
-                sql = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
-                obj.ConnExec(sql)
-                sql = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
-                obj.ConnExec(sql)
-                sql = "DELETE from Config_List_Name where ID=" & lngConfigId
-                obj.ConnExec(sql)
-            Else
-                sql = "DELETE from Config_List_Powder_Data_SG where CLNID=" & lngConfigId
-                obj.ConnExec(sql)
-                sql = "DELETE from Config_List_Data_SG where CLNID=" & lngConfigId
-                obj.ConnExec(sql)
-                sql = "DELETE from Config_List_Name where ID=" & lngConfigId
-                obj.ConnExec(sql)
+        Try
+            Dim lngConfigId As Long = lstConfigSheets.SelectedValue
+            Dim obj As New BSDatabase
+            Dim objG As New GlobalFunctions
+            'Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+            Dim sql As String = $"SELECT * from Config_List_Name where ID={lngConfigId}"
+            Dim strName As String = BurnSoft.Applications.MLL.Database.GetName(DatabasePath, sql, "ConfigName", errOut)
+            if errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
+            'Dim isShotGun As Boolean = objG.IsShotGunCOnfig(lngConfigId)
+            'Dim isShotGun As Boolean = ConfigListGeneral.IsShotGunCOnfig(DatabasePath, lngConfigId, errOut)
+            if errOut.Length > 0 Then Throw New Exception(errOut)
+            'Dim sql As String = ""
+            If strAns = vbYes Then
+                If Not ConfigListDataName.Delete(DatabasePath, lngConfigId, errOut) Then Throw new Exception(errOut)
+                'If Not isShotGun Then
+                '    sql = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                '    sql = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                '    sql = "DELETE from Config_List_Name where ID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                'Else
+                '    sql = "DELETE from Config_List_Powder_Data_SG where CLNID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                '    sql = "DELETE from Config_List_Data_SG where CLNID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                '    sql = "DELETE from Config_List_Name where ID=" & lngConfigId
+                '    obj.ConnExec(sql)
+                'End If
+                Call RefreshConfigData()
             End If
-            Call RefreshConfigData()
-        End If
+        Catch ex As Exception
+            Call LogError(Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripMenuItem1 control.
