@@ -897,8 +897,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub OptionsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OptionsToolStripMenuItem.Click
-        FrmOptions.MdiParent = Me
-        FrmOptions.Show()
+        Try
+            FrmOptions.MdiParent = Me
+            FrmOptions.Show()
+        Catch ex As Exception
+            Call LogError(Name, "TechnicalSupportToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the SaveToolStripMenuItem control.
@@ -908,27 +913,32 @@ Public Class MdiParentMain
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SaveToolStripMenuItem.Click
         Call DoBackup()
     End Sub
-    ''' <summary>
-    ''' Handles the Click event of the PurchaseToolStripMenuItem control.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-    Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MenuShop
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
-    End Sub
+    '''' <summary>
+    '''' Handles the Click event of the PurchaseToolStripMenuItem control.
+    '''' </summary>
+    '''' <param name="sender">The source of the event.</param>
+    '''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    'Private Sub PurchaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    '    Dim myProcess As New Process
+    '    myProcess.StartInfo.FileName = MenuShop
+    '    myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+    '    myProcess.Start()
+    'End Sub
     ''' <summary>
     ''' Handles the Click event of the TechnicalSupportToolStripMenuItem control.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub TechnicalSupportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TechnicalSupportToolStripMenuItem.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MenuSupport
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
+        Try
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = GeneralSettings.MENU_SUPPORT
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "TechnicalSupportToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ReportABugToolStripMenuItem control.
@@ -936,10 +946,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ReportABugToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ReportABugToolStripMenuItem.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MenuBug
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
+        Try
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = GeneralSettings.MENU_BUG
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "ReportABugToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the KnowledgeBaseToolStripMenuItem control.
@@ -947,10 +962,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub KnowledgeBaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles KnowledgeBaseToolStripMenuItem.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MenuWiki
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
+        Try
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = GeneralSettings.MENU_WIKI
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "KnowledgeBaseToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the SearchToolStripMenuItem control.
@@ -958,10 +978,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SearchToolStripMenuItem.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MenuSitesearch
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
-        myProcess.Start()
+        Try
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = GeneralSettings.MENU_SITESEARCH
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "SearchToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the IndexToolStripMenuItem control.
@@ -969,7 +994,12 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub IndexToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles IndexToolStripMenuItem.Click
-        Help.ShowHelpIndex(Me, MyHelpFile)
+        Try
+            Help.ShowHelpIndex(Me, GeneralSettings.MY_HELP_FILE)
+        Catch ex As Exception
+            Call LogError(Name, "IndexToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ContentsToolStripMenuItem control.
@@ -985,8 +1015,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PowderToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PowderToolStripMenuItem.Click
-        frmAddPowder.MdiParent = Me
-        frmAddPowder.Show()
+        Try
+            frmAddPowder.MdiParent = Me
+            frmAddPowder.Show()
+        Catch ex As Exception
+            Call LogError(Name, "PowderToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PrimerToolStripMenuItem control.
@@ -994,8 +1029,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PrimerToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PrimerToolStripMenuItem.Click
-        frmAddPrimer.MdiParent = Me
-        frmAddPrimer.Show()
+        Try
+            frmAddPrimer.MdiParent = Me
+            frmAddPrimer.Show()
+        Catch ex As Exception
+            Call LogError(Name, "PrimerToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the BulletToolStripMenuItem control.
@@ -1003,8 +1043,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub BulletToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletToolStripMenuItem.Click
-        FrmAddBullets.MdiParent = Me
-        FrmAddBullets.Show()
+        Try
+            FrmAddBullets.MdiParent = Me
+            FrmAddBullets.Show()
+        Catch ex As Exception
+            Call LogError(Name, "BulletToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CaseToolStripMenuItem control.
@@ -1012,8 +1057,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaseToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaseToolStripMenuItem.Click
-        frmAddShells.MdiParent = Me
-        frmAddShells.Show()
+        Try
+            frmAddShells.MdiParent = Me
+            frmAddShells.Show()
+        Catch ex As Exception
+            Call LogError(Name, "CaseToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the MyFirearmCollectionsToolStripMenuItem control.
@@ -1021,10 +1071,15 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub MyFirearmCollectionsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MyFirearmCollectionsToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmView_List_Firearms.MdiParent = Me
-        frmView_List_Firearms.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_List_Firearms.MdiParent = Me
+            frmView_List_Firearms.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Call LogError(Name, "MyFirearmCollectionsToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the EquipmentToolStripMenuItem control.
@@ -1032,8 +1087,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub EquipmentToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EquipmentToolStripMenuItem.Click
-        frmAddEquipment.MdiParent = Me
-        frmAddEquipment.Show()
+        Try
+            frmAddEquipment.MdiParent = Me
+            frmAddEquipment.Show()
+        Catch ex As Exception
+            Call LogError(Name, "EquipmentToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the AddFirearmToolStripMenuItem control.
@@ -1041,8 +1101,13 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub AddFirearmToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddFirearmToolStripMenuItem.Click
-        frmAddFirearm.MdiParent = Me
-        frmAddFirearm.Show()
+        Try
+            frmAddFirearm.MdiParent = Me
+            frmAddFirearm.Show()
+        Catch ex As Exception
+            Call LogError(Name, "AddFirearmToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the EquipmentToolStripMenuItem1 control.
@@ -1050,10 +1115,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub EquipmentToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EquipmentToolStripMenuItem1.Click
-        Cursor = Cursors.WaitCursor
-        frmView_List_Equipment.MdiParent = Me
-        frmView_List_Equipment.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_List_Equipment.MdiParent = Me
+            frmView_List_Equipment.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "EquipmentToolStripMenuItem1_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CaseToolStripMenuItem1 control.
@@ -1061,10 +1132,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CaseToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaseToolStripMenuItem1.Click
-        Cursor = Cursors.WaitCursor
-        FrmViewListShells.MdiParent = Me
-        FrmViewListShells.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            FrmViewListShells.MdiParent = Me
+            FrmViewListShells.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "CaseToolStripMenuItem1_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PrimerListToolStripMenuItem control.
@@ -1072,10 +1149,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PrimerListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PrimerListToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmView_List_Primer.MdiParent = Me
-        frmView_List_Primer.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_List_Primer.MdiParent = Me
+            frmView_List_Primer.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "PrimerListToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the PowderListToolStripMenuItem control.
@@ -1083,10 +1166,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub PowderListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PowderListToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        frmView_List_Powder.MdiParent = Me
-        frmView_List_Powder.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_List_Powder.MdiParent = Me
+            frmView_List_Powder.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "PowderListToolStripMenuItem_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the BulletToolStripMenuItem1 control.
@@ -1094,10 +1183,16 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub BulletToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletToolStripMenuItem1.Click
-        Cursor = Cursors.WaitCursor
-        frmView_List_Bullets.MdiParent = Me
-        frmView_List_Bullets.Show()
-        Cursor = Cursors.Arrow
+        Try
+            Cursor = Cursors.WaitCursor
+            frmView_List_Bullets.MdiParent = Me
+            frmView_List_Bullets.Show()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "BulletToolStripMenuItem1_Click", Err.Number, 
+                          ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the MakeReadyToUseAmmunitionToolStripMenuItem control.
@@ -1128,8 +1223,8 @@ Public Class MdiParentMain
     Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
         Try
             Dim lngConfigId As Long = lstConfigSheets.SelectedValue
-            Dim obj As New BSDatabase
-            Dim objG As New GlobalFunctions
+            'Dim obj As New BSDatabase
+            'Dim objG As New GlobalFunctions
             'Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
             Dim sql As String = $"SELECT * from Config_List_Name where ID={lngConfigId}"
             Dim strName As String = BurnSoft.Applications.MLL.Database.GetName(DatabasePath, sql, "ConfigName", errOut)
@@ -1177,6 +1272,7 @@ Public Class MdiParentMain
             Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
             If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
                 ' TODO: Replace with BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.Rename Function
+                'if Not ConfigListDataName.Rename(DatabasePath, configId, strNewName, errOut) Then Throw new Exception(errOut)
                 Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
                 Dim obj As New BSDatabase
                 obj.ConnExec(sql)
@@ -1192,9 +1288,14 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ViewToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ViewToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
-        Call ViewConfigs()
-        Cursor = Cursors.Arrow
+        try
+            Cursor = Cursors.WaitCursor
+            Call ViewConfigs()
+            Cursor = Cursors.Arrow
+        Catch ex As Exception
+            Cursor = Cursors.Arrow
+            Call LogError(Name, "ViewToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the CopyToolStripMenuItem control.
@@ -1202,43 +1303,51 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
-        Dim configId As Long = lstConfigSheets.SelectedValue
+        Try
+            Dim configId As Long = lstConfigSheets.SelectedValue
         Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
         'Dim objG As New GlobalFunctions
         'configName = objG.GetTitle(configId)
-        Dim isShotGun As Boolean = False
+        'Dim isShotGun As Boolean = False
         Dim sMsg As String = "What do you wish to call this new configuration?"
         Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
         If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
-            ' TODO: Replace all the code below with the BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.CopyConfig function!
-            Dim sql As String = "SELECT * from Config_List_Name where ID=" & configId
-            Dim obj As New BSDatabase
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            While rs.Read()
-                If rs("IsShotGun") = 1 Then isShotGun = True
-                Dim strNotes As String = " "
-                If Not IsDBNull(rs("notes")) Then strNotes = GeneralHelpers.FluffContent(rs("Notes"))
-                sql = "INSERT INTO Config_List_Name(ConfigName,IsPersonal,IsShotGun,Notes,IsActive,IsFav) VALUES('" & _
-                        strNewName & "'," & rs("IsPersonal") & "," & rs("IsShotGun") & ",'" & _
-                        strNotes & "'," & rs("IsActive") & "," & rs("IsFav") & ")"
-                obj.ConnExec(sql)
-            End While
-            rs.Close()
-            rs = Nothing
-            cmd = Nothing
-            Dim myId As Long = objG.GetID("SELECT * from Config_list_Name where ConfigName='" & strNewName & "'")
-            If Not isShotGun Then
-                Call CopyConfigDetailsNsg(myId, configId)
-                Call CopyConfigPowdersNsg(myId, configId)
-            Else
-                Call CopyConfigDetailsSg(myId, configId)
-                Call CopyConfigPowdersSg(myId, configId)
-            End If
+            if Not ConfigListDataName.CopyConfig(DatabasePath, strNewName, configId, errOut) Then Throw new Exception(errOut)
+
+            '' TODO: Replace all the code below with the BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.CopyConfig function!
+            'Dim sql As String = "SELECT * from Config_List_Name where ID=" & configId
+            'Dim obj As New BSDatabase
+            'Call obj.ConnectDB()
+            'Dim cmd As New OdbcCommand(sql, obj.Conn)
+            'Dim rs As OdbcDataReader
+            'rs = cmd.ExecuteReader
+            'While rs.Read()
+            '    If rs("IsShotGun") = 1 Then isShotGun = True
+            '    Dim strNotes As String = " "
+            '    If Not IsDBNull(rs("notes")) Then strNotes = GeneralHelpers.FluffContent(rs("Notes"))
+            '    sql = "INSERT INTO Config_List_Name(ConfigName,IsPersonal,IsShotGun,Notes,IsActive,IsFav) VALUES('" & _
+            '            strNewName & "'," & rs("IsPersonal") & "," & rs("IsShotGun") & ",'" & _
+            '            strNotes & "'," & rs("IsActive") & "," & rs("IsFav") & ")"
+            '    obj.ConnExec(sql)
+            'End While
+            'rs.Close()
+            'rs = Nothing
+            'cmd = Nothing
+            ''Dim myId As Long = objG.GetID("SELECT * from Config_list_Name where ConfigName='" & strNewName & "'")
+            'Dim myId As Long = ConfigListDataName.GetId(DatabasePath, strNewName, errOut)
+            'if errOut.Length > 0 then Throw New Exception(errOut)
+            'If Not isShotGun Then
+            '    Call CopyConfigDetailsNsg(myId, configId)
+            '    Call CopyConfigPowdersNsg(myId, configId)
+            'Else
+            '    Call CopyConfigDetailsSg(myId, configId)
+            '    Call CopyConfigPowdersSg(myId, configId)
+            'End If
             Call RefreshConfigData()
         End If
+        Catch ex As Exception
+            Call LogError(Name, "CopyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the EditToolStripMenuItem control.
@@ -1588,7 +1697,9 @@ Public Class MdiParentMain
             Dim objG As New GlobalFunctions
             Dim strSqlTable As String = "List_Calibers"
             'Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
-            Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
+            'Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
+            Dim cOnfigCount As Long = CaliberInventory.TotalConfigurationUsedByCaliber(DatabasePath, lngCalId, errOut)
+            if errOut.Length > 0 Then Throw New Exception(errOut)
             Dim strName As String = CaliberInventory.GetName(DatabasePath, lngCalId, errOut)
             if errOut.Length > 0 Then Throw New Exception(errOut)
             'Dim cOnfigCount As Long = 
@@ -1602,8 +1713,9 @@ Public Class MdiParentMain
             If strAns = vbYes Then
                 If cOnfigCount = 0 Then
                     Cursor = Cursors.WaitCursor
-                    sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
-                    obj.ConnExec(sql)
+                    'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
+                    'obj.ConnExec(sql)
+                    if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
                     Cursor = Cursors.Arrow
                 Else
                     sql = "Select ID,IsShotGun from qry_ConfigCal_NSG where CalID=" & lngCalId
@@ -1616,6 +1728,7 @@ Public Class MdiParentMain
                     Cursor = Cursors.WaitCursor
                     While rs.Read
                         configId = rs("CLNID")
+                        ' TODO: Replace with DconfigListDataName.Delete function
                         If rs("IsShotGun") = 0 Then
                             sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
                             obj.ConnExec(sql)
@@ -1639,8 +1752,9 @@ Public Class MdiParentMain
                     rs.Close()
                     rs = Nothing
                     cmd = Nothing
-                    sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
-                    obj.ConnExec(sql)
+                    'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
+                    'obj.ConnExec(sql)
+                    if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
                     Call RefreshCalData()
                     Call RefreshConfigData()
                     Cursor = Cursors.Arrow
