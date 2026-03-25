@@ -8,6 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Universal
@@ -670,20 +671,26 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub lstCal_DoubleClick(ByVal sender As Object, ByVal e As EventArgs) Handles lstCal.DoubleClick
-        Dim objGf As New GlobalFunctions
-        Dim lngCalId As Long = lstCal.SelectedValue
-        Dim isNsg As Boolean = objGf.IsNotInShotgunConfigbyCal(lngCalId)
-        If isNsg Then
-            Dim frmNew As New frmView_List_ConfigurationsByCal
-            frmNew.CALID = lngCalId
-            frmNew.MdiParent = Me
-            frmNew.Show()
-        Else
-            Dim frmNewS As New frmView_List_ConfigurationsByCal_SG
-            frmNewS.CALID = lngCalId
-            frmNewS.MdiParent = Me
-            frmNewS.Show()
-        End If
+        Try
+            'Dim objGf As New GlobalFunctions
+            Dim lngCalId As Long = lstCal.SelectedValue
+            'Dim isNsg As Boolean = objGf.IsNotInShotgunConfigbyCal(lngCalId)
+            Dim isNsg As Boolean = ConfigListGeneral.IsNotInShotgunConfigByCaliber(DatabasePath, lngCalId, errOut)
+            If errOut.Length > 0 Then Throw new Exception(errOut)
+            If isNsg Then
+                Dim frmNew As New frmView_List_ConfigurationsByCal
+                frmNew.CALID = lngCalId
+                frmNew.MdiParent = Me
+                frmNew.Show()
+            Else
+                Dim frmNewS As New frmView_List_ConfigurationsByCal_SG
+                frmNewS.CALID = lngCalId
+                frmNewS.MdiParent = Me
+                frmNewS.Show()
+            End If
+        Catch ex As Exception
+            Call LogError(Name, "lstCal_DoubleClick", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the btnDelete control.
@@ -714,10 +721,14 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub tsslErrorsFound_Click(ByVal sender As Object, ByVal e As EventArgs) Handles tsslErrorsFound.Click
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MyLogFile
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-        myProcess.Start()
+        Try
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = MyLogFile
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "tsslErrorsFound_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the tsslMGCEnabled control.
@@ -725,12 +736,17 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub tsslMGCEnabled_Click(ByVal sender As Object, ByVal e As EventArgs) Handles tsslMGCEnabled.Click
-        Dim obj As New BSMGC
-        Dim strPath As String = obj.GetMGCEXEPath
-        Dim myProcess As New Process
-        myProcess.StartInfo.FileName = strPath
-        myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
-        myProcess.Start()
+        Try
+            Dim obj As New BSMGC
+            Dim strPath As String = obj.GetMGCEXEPath
+            'Dim strPath As String = RegistryHelpers.
+            Dim myProcess As New Process
+            myProcess.StartInfo.FileName = strPath
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+            myProcess.Start()
+        Catch ex As Exception
+            Call LogError(Name, "tsslMGCEnabled_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripButton4 control.
