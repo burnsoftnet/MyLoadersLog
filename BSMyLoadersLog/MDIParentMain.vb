@@ -9,6 +9,7 @@ Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Universal
 
 ''' <summary>
@@ -1533,8 +1534,11 @@ Public Class MdiParentMain
             Dim obj As New BSDatabase
             Dim objG As New GlobalFunctions
             Dim strSqlTable As String = "List_Calibers"
-            Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
+            'Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
             Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
+            Dim strName As String = CaliberInventory.GetName(DatabasePath, lngCalId, errOut)
+            if errOut.Length > 0 Then Throw New Exception(errOut)
+            'Dim cOnfigCount As Long = 
             Dim strAns As String = ""
             Dim sql As String = ""
             If cOnfigCount = 0 Then
