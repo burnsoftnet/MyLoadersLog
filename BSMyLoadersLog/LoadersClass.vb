@@ -1175,6 +1175,7 @@ Namespace LoadersClass
             End Try
             Return iAns
         End Function
+        <Obsolete("Replaced with function with same name in BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral")>
         Function IsShotGunCOnfig(ByVal iCal As Long) As Boolean
             Dim bAns As Boolean = False
             bAns = ObjectExistsinDB(CInt(iCal), "Id", "qry_ConfigCal_SG")
@@ -1193,6 +1194,7 @@ Namespace LoadersClass
             sAns = Replace(sAns, "'", "''")
             Return sAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.IsSlugConfig")>
         Public Function IsSlugConfig(ByVal BID As String) As Boolean
             Dim bAns As Boolean = False
             Try
@@ -1219,6 +1221,7 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InShotgun")>
         Private Function InSG(ByVal lCALID As Long) As Boolean
             Dim bAns As Boolean = False
             Try
@@ -1244,6 +1247,7 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InMetallic")>
         Private Function InRP(ByVal lCALID As Long) As Boolean
             Dim bAns As Boolean = False
             Try
