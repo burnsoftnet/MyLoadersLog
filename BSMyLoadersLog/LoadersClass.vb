@@ -1180,11 +1180,13 @@ Namespace LoadersClass
             bAns = ObjectExistsinDB(CInt(iCal), "Id", "qry_ConfigCal_SG")
             Return bAns
         End Function
+        <Obsolete(" Replaced with function with same name in BurnSoft.Applications.MLL.Helpers.GeneralHelpers")>
         Function FormatForXML(ByVal sValue As String) As String
             Dim sAns As String = ""
             sAns = Replace(sValue, "&", "&amp;")
             Return sAns
         End Function
+        <Obsolete(" Replaced with function with same name in BurnSoft.Applications.MLL.Helpers.GeneralHelpers")>
         Function FormatFromXML(ByVal sValue As String) As String
             Dim sAns As String = ""
             sAns = Replace(sValue, "&amp;", "&")
