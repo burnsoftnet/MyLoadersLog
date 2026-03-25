@@ -1168,18 +1168,22 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripMenuItem1.Click
-        Dim configId As Long = lstConfigSheets.SelectedValue
-        Dim configName As String
-        Dim objG As New GlobalFunctions
-        configName = objG.GetTitle(configId)
-        Dim sMsg As String = "Renaming " & configName & " to:"
-        Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
-        If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
-            Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
-            Dim obj As New BSDatabase
-            obj.ConnExec(sql)
-            Call RefreshConfigData()
-        End If
+        try
+            Dim configId As Long = lstConfigSheets.SelectedValue
+            Dim configName As String = 
+            'Dim objG As New GlobalFunctions
+            'configName = objG.GetTitle(configId)
+            Dim sMsg As String = "Renaming " & configName & " to:"
+            Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
+            If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
+                Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
+                Dim obj As New BSDatabase
+                obj.ConnExec(sql)
+                Call RefreshConfigData()
+            End If
+        Catch ex As Exception
+            Call LogError(Name, "ToolStripMenuItem1_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ViewToolStripMenuItem control.
