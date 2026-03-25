@@ -72,6 +72,9 @@
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BurnSoft.Applications.MGC, Version=1.7.16.58, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BurnSoft.Applications.MGC.1.7.16.58\lib\net481\BurnSoft.Applications.MGC.dll</HintPath>
+    </Reference>
     <Reference Include="BurnSoft.Applications.MLL, Version=3.0.3.65, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BurnSoft.Applications.MLL.3.0.3.65-beta\lib\net481\BurnSoft.Applications.MLL.dll</HintPath>
     </Reference>
@@ -1241,6 +1244,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="BurnSoft.Applications.MGC.chm" />
     <None Include="BurnSoft.Applications.MLL.chm" />
     <None Include="BurnSoft.Security.RegularEncryption.chm" />
     <None Include="BurnSoft.Universal.chm" />
