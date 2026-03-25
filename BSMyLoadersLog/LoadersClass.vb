@@ -1275,6 +1275,7 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.IsNotInShotgunConfigByCaliber")>
         Public Function IsNotInShotgunConfigbyCal(ByVal lCALID As Long) As Boolean
             Dim bAns As Boolean = False
             Try
