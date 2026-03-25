@@ -8,7 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
-Imports BurnSoft.Applications.MGC
+'Imports BurnSoft.Applications.MGC
 Imports BurnSoft.Applications.MGC.LoadersLog
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
@@ -374,11 +374,12 @@ Public Class MdiParentMain
     ''' </summary>
     Sub InitForm()
         Try
-            Dim obj As New BSMGC
-            If obj.MyGunCollectionIsInstalled Then
+            'Dim obj As New BSMGC
+            If RegistryHelpers.MyGunCollectionIsInstalled(errOut) Then
                 tsslMGCEnabled.Enabled = True
                 tsslMGCEnabled.Visible = True
-                MgcPath = obj.GetMGCPath
+                MgcPath = RegistryHelpers.GetMgcExePath(errOut)
+                if errOut.Length > 0 Then Throw new Exception(errOut)
                 SaveAsToolStripMenuItem.Enabled = True
                 ToolStripButton1.Enabled = True
                 ExportFirearmsToMGCToolStripMenuItem.Enabled = True
@@ -470,116 +471,116 @@ Public Class MdiParentMain
             Call LogError(Name, "CheckBackup", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    ''' <summary>
-    ''' Copies the configuration details NSG.
-    ''' </summary>
-    ''' <param name="myId">My identifier.</param>
-    ''' <param name="configId">The configuration identifier.</param>
-    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataMetalic.CopyConfig")>
-    Private Sub CopyConfigDetailsNsg(ByVal myId As Long, ByVal configId As Long)
-        Try
-            Dim sql As String = "SELECT * from Config_List_Data_NSG where CLNID=" & configId
-            Dim obj As New BSDatabase
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            While rs.Read
-                sql = "INSERT INTO Config_List_Data_NSG (CLNID,ATID,CALID,BID,PRID,CAID,Source) VALUES(" & _
-                        myId & "," & rs("ATID") & "," & rs("CALID") & "," & rs("BID") & "," & rs("PRID") & "," & rs("CAID") & ",'" & _
-                        rs("Source") & "')"
-                obj.ConnExec(sql)
-            End While
-            rs.Close()
+    '''' <summary>
+    '''' Copies the configuration details NSG.
+    '''' </summary>
+    '''' <param name="myId">My identifier.</param>
+    '''' <param name="configId">The configuration identifier.</param>
+    '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataMetalic.CopyConfig")>
+    'Private Sub CopyConfigDetailsNsg(ByVal myId As Long, ByVal configId As Long)
+    '    Try
+    '        Dim sql As String = "SELECT * from Config_List_Data_NSG where CLNID=" & configId
+    '        Dim obj As New BSDatabase
+    '        Call obj.ConnectDB()
+    '        Dim cmd As New OdbcCommand(sql, obj.Conn)
+    '        Dim rs As OdbcDataReader
+    '        rs = cmd.ExecuteReader
+    '        While rs.Read
+    '            sql = "INSERT INTO Config_List_Data_NSG (CLNID,ATID,CALID,BID,PRID,CAID,Source) VALUES(" & _
+    '                    myId & "," & rs("ATID") & "," & rs("CALID") & "," & rs("BID") & "," & rs("PRID") & "," & rs("CAID") & ",'" & _
+    '                    rs("Source") & "')"
+    '            obj.ConnExec(sql)
+    '        End While
+    '        rs.Close()
 
-        Catch ex As Exception
-            Call LogError(Name, "CopyConfigDetailsNSG", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-    ''' <summary>
-    ''' Copies the configuration powders NSG.
-    ''' </summary>
-    ''' <param name="myId">My identifier.</param>
-    ''' <param name="configId">The configuration identifier.</param>
-    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowders.CopyConfig")>
-    Private Sub CopyConfigPowdersNsg(ByVal myId As Long, ByVal configId As Long)
-        Try
-            Dim sql As String = "SELECT * from Config_List_Powder_Data_NSG where CLNID=" & configId
-            Dim obj As New BSDatabase
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            While rs.Read
-                sql = "INSERT INTO Config_List_Powder_Data_NSG (CLNID,PID,Load_Min,Load_Mid,Load_Max," & _
-                            "FPS_Min,FPS_MID,FPS_Max,CUPS_Min,CUPS_Mid,CUPS_Max,IsPref) VALUES(" & myId & _
-                            "," & rs("PID") & "," & rs("Load_Min") & "," & rs("Load_Mid") & "," & rs("Load_Max") & "," & _
-                             rs("FPS_Min") & "," & rs("FPS_MID") & "," & rs("FPS_Max") & "," & rs("CUPS_Min") & "," & _
-                              rs("CUPS_Mid") & "," & rs("CUPS_Max") & "," & rs("IsPref") & ")"
-                obj.ConnExec(sql)
-            End While
-            rs.Close()
-        Catch ex As Exception
-            Call LogError(Name, "CopyConfigPowdersNSG", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-    ''' <summary>
-    ''' Copies the configuration details sg.
-    ''' </summary>
-    ''' <param name="myId">My identifier.</param>
-    ''' <param name="configId">The configuration identifier.</param>
-    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataShotgun.CopyConfig")>
-    Private Sub CopyConfigDetailsSg(ByVal myId As Long, ByVal configId As Long)
-        Try
-            Dim sql As String = "SELECT * from Config_List_Data_SG where CLNID=" & configId
-            Dim obj As New BSDatabase
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            While rs.Read
-                sql = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,Source,SW,SS,Bushing,WAD,SCL,SW_t,GID,IsPersonal) VALUES(" & _
-                        myId & "," & rs("ATID") & "," & rs("CALID") & "," & rs("PRID") & "," & rs("CAID") & ",'" & _
-                        rs("Source") & "'," & rs("SW") & "," & rs("SS") & "," & rs("Bushing") & "," & rs("WAD") & _
-                        "," & rs("SCL") & ",'" & rs("SW_t") & "'," & rs("GID") & "," & rs("IsPersonal") & ")"
-                obj.ConnExec(sql)
-            End While
-            rs.Close()
-            rs = Nothing
-            cmd = Nothing
-        Catch ex As Exception
-            Call LogError(Name, "CopyConfigDetailsSG", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-    ''' <summary>
-    ''' Copies the configuration powders sg.
-    ''' </summary>
-    ''' <param name="myId">My identifier.</param>
-    ''' <param name="configId">The configuration identifier.</param>
-    <Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowdersShotgun.CopyConfig")>
-    Private Sub CopyConfigPowdersSg(ByVal myId As Long, ByVal configId As Long)
-        Try
-            Dim sql As String = "SELECT * from Config_List_Powder_Data_SG where CLNID=" & configId
-            Dim obj As New BSDatabase
-            Call obj.ConnectDB()
-            Dim cmd As New OdbcCommand(sql, obj.Conn)
-            Dim rs As OdbcDataReader
-            rs = cmd.ExecuteReader
-            While rs.Read
-                sql = "INSERT INTO Config_List_Powder_Data_SG (CLNID,PID,Load_Min,Load_Mid,Load_Max," & _
-                            "FPS_Min,FPS_MID,FPS_Max,PSI_Min,PSI_Mid,PSI_Max,IsPref) VALUES(" & myId & _
-                            "," & rs("PID") & "," & rs("Load_Min") & "," & rs("Load_Mid") & "," & rs("Load_Max") & "," & _
-                             rs("FPS_Min") & "," & rs("FPS_MID") & "," & rs("FPS_Max") & "," & rs("PSI_Min") & "," & _
-                              rs("PSI_Mid") & "," & rs("PSI_Max") & "," & rs("IsPref") & ")"
-                obj.ConnExec(sql)
-            End While
-            rs.Close()
-            rs = Nothing
-            cmd = Nothing
-        Catch ex As Exception
-            Call LogError(Name, "CopyConfigPowdersSG", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        Call LogError(Name, "CopyConfigDetailsNSG", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
+    '''' <summary>
+    '''' Copies the configuration powders NSG.
+    '''' </summary>
+    '''' <param name="myId">My identifier.</param>
+    '''' <param name="configId">The configuration identifier.</param>
+    '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowders.CopyConfig")>
+    'Private Sub CopyConfigPowdersNsg(ByVal myId As Long, ByVal configId As Long)
+    '    Try
+    '        Dim sql As String = "SELECT * from Config_List_Powder_Data_NSG where CLNID=" & configId
+    '        Dim obj As New BSDatabase
+    '        Call obj.ConnectDB()
+    '        Dim cmd As New OdbcCommand(sql, obj.Conn)
+    '        Dim rs As OdbcDataReader
+    '        rs = cmd.ExecuteReader
+    '        While rs.Read
+    '            sql = "INSERT INTO Config_List_Powder_Data_NSG (CLNID,PID,Load_Min,Load_Mid,Load_Max," & _
+    '                        "FPS_Min,FPS_MID,FPS_Max,CUPS_Min,CUPS_Mid,CUPS_Max,IsPref) VALUES(" & myId & _
+    '                        "," & rs("PID") & "," & rs("Load_Min") & "," & rs("Load_Mid") & "," & rs("Load_Max") & "," & _
+    '                         rs("FPS_Min") & "," & rs("FPS_MID") & "," & rs("FPS_Max") & "," & rs("CUPS_Min") & "," & _
+    '                          rs("CUPS_Mid") & "," & rs("CUPS_Max") & "," & rs("IsPref") & ")"
+    '            obj.ConnExec(sql)
+    '        End While
+    '        rs.Close()
+    '    Catch ex As Exception
+    '        Call LogError(Name, "CopyConfigPowdersNSG", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
+    '''' <summary>
+    '''' Copies the configuration details sg.
+    '''' </summary>
+    '''' <param name="myId">My identifier.</param>
+    '''' <param name="configId">The configuration identifier.</param>
+    '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataShotgun.CopyConfig")>
+    'Private Sub CopyConfigDetailsSg(ByVal myId As Long, ByVal configId As Long)
+    '    Try
+    '        Dim sql As String = "SELECT * from Config_List_Data_SG where CLNID=" & configId
+    '        Dim obj As New BSDatabase
+    '        Call obj.ConnectDB()
+    '        Dim cmd As New OdbcCommand(sql, obj.Conn)
+    '        Dim rs As OdbcDataReader
+    '        rs = cmd.ExecuteReader
+    '        While rs.Read
+    '            sql = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,Source,SW,SS,Bushing,WAD,SCL,SW_t,GID,IsPersonal) VALUES(" & _
+    '                    myId & "," & rs("ATID") & "," & rs("CALID") & "," & rs("PRID") & "," & rs("CAID") & ",'" & _
+    '                    rs("Source") & "'," & rs("SW") & "," & rs("SS") & "," & rs("Bushing") & "," & rs("WAD") & _
+    '                    "," & rs("SCL") & ",'" & rs("SW_t") & "'," & rs("GID") & "," & rs("IsPersonal") & ")"
+    '            obj.ConnExec(sql)
+    '        End While
+    '        rs.Close()
+    '        rs = Nothing
+    '        cmd = Nothing
+    '    Catch ex As Exception
+    '        Call LogError(Name, "CopyConfigDetailsSG", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
+    '''' <summary>
+    '''' Copies the configuration powders sg.
+    '''' </summary>
+    '''' <param name="myId">My identifier.</param>
+    '''' <param name="configId">The configuration identifier.</param>
+    '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowdersShotgun.CopyConfig")>
+    'Private Sub CopyConfigPowdersSg(ByVal myId As Long, ByVal configId As Long)
+    '    Try
+    '        Dim sql As String = "SELECT * from Config_List_Powder_Data_SG where CLNID=" & configId
+    '        Dim obj As New BSDatabase
+    '        Call obj.ConnectDB()
+    '        Dim cmd As New OdbcCommand(sql, obj.Conn)
+    '        Dim rs As OdbcDataReader
+    '        rs = cmd.ExecuteReader
+    '        While rs.Read
+    '            sql = "INSERT INTO Config_List_Powder_Data_SG (CLNID,PID,Load_Min,Load_Mid,Load_Max," & _
+    '                        "FPS_Min,FPS_MID,FPS_Max,PSI_Min,PSI_Mid,PSI_Max,IsPref) VALUES(" & myId & _
+    '                        "," & rs("PID") & "," & rs("Load_Min") & "," & rs("Load_Mid") & "," & rs("Load_Max") & "," & _
+    '                         rs("FPS_Min") & "," & rs("FPS_MID") & "," & rs("FPS_Max") & "," & rs("PSI_Min") & "," & _
+    '                          rs("PSI_Mid") & "," & rs("PSI_Max") & "," & rs("IsPref") & ")"
+    '            obj.ConnExec(sql)
+    '        End While
+    '        rs.Close()
+    '        rs = Nothing
+    '        cmd = Nothing
+    '    Catch ex As Exception
+    '        Call LogError(Name, "CopyConfigPowdersSG", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
 #End Region
 #Region "Tool Bar And Misc. Components Subs"
     ''' <summary>
@@ -630,9 +631,11 @@ Public Class MdiParentMain
     ''' Views the configs.
     ''' </summary>
     Sub ViewConfigs()
-        Dim objGs As New GlobalFunctions
+        'Dim objGs As New GlobalFunctions
         Dim lngConfigId As Long = lstConfigSheets.SelectedValue
-        Dim configType As Boolean = objGs.IsShotGunCOnfig(lngConfigId)
+        'Dim configType As Boolean = objGs.IsShotGunCOnfig(lngConfigId)
+        Dim configType As Boolean = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngConfigId, errOut)
+        if errOut.Length > 0 Then Throw New Exception(errOut)
 
         If Not configType Then
             Dim frmNew As New frmView_Configuration_Sheet
@@ -1695,7 +1698,7 @@ Public Class MdiParentMain
             Dim lngCalId As Long = lstCal.SelectedValue
             Dim obj As New BSDatabase
             Dim objG As New GlobalFunctions
-            Dim strSqlTable As String = "List_Calibers"
+            'Dim strSqlTable As String = "List_Calibers"
             'Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
             'Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
             Dim cOnfigCount As Long = CaliberInventory.TotalConfigurationUsedByCaliber(DatabasePath, lngCalId, errOut)
@@ -1706,9 +1709,12 @@ Public Class MdiParentMain
             Dim strAns As String = ""
             Dim sql As String = ""
             If cOnfigCount = 0 Then
-                strAns = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
+                strAns = MsgBox("Are you sure you want to delete " & strName & "?", 
+                                MsgBoxStyle.YesNo, "Delete Item from the Database.")
             Else
-                strAns = MsgBox("Are you sure you want to delete " & strName & " and the " & cOnfigCount & " configurations with it?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
+                strAns = MsgBox("Are you sure you want to delete " & strName & " and the " & 
+                                cOnfigCount & " configurations with it?", MsgBoxStyle.YesNo, 
+                                "Delete Item from the Database.")
             End If
             If strAns = vbYes Then
                 If cOnfigCount = 0 Then
@@ -1719,7 +1725,7 @@ Public Class MdiParentMain
                     Cursor = Cursors.Arrow
                 Else
                     sql = "Select ID,IsShotGun from qry_ConfigCal_NSG where CalID=" & lngCalId
-                    If objG.IsShotGunCOnfig(lngCalId) Then sql = "Select ID,IsShotGun from qry_ConfigCal_SG where CalID=" & lngCalId
+                    If ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, errOut) Then sql = "Select ID,IsShotGun from qry_ConfigCal_SG where CalID=" & lngCalId
                     obj.ConnectDB()
                     Dim cmd As New OdbcCommand(sql, obj.Conn)
                     Dim rs As OdbcDataReader
