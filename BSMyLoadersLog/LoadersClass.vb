@@ -1147,6 +1147,7 @@ Namespace LoadersClass
             End Try
             Return lAns
         End Function
+        <Obsolete("Replace by BurnSoft.Applications.MLL.Inventory.CaliberInventory.TotalConfigurationUsedByCaliber")>
         Public Function TotalConfigByCal(ByVal lCalID As Long) As Long
             Dim iAns As Integer = 0
             Try
