@@ -1170,12 +1170,13 @@ Public Class MdiParentMain
     Private Sub ToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripMenuItem1.Click
         try
             Dim configId As Long = lstConfigSheets.SelectedValue
-            Dim configName As String = 
+            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
             Dim sMsg As String = "Renaming " & configName & " to:"
             Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
             If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
+                ' TODO: Replace with BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.Rename Function
                 Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
                 Dim obj As New BSDatabase
                 obj.ConnExec(sql)
@@ -1202,9 +1203,9 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
         Dim configId As Long = lstConfigSheets.SelectedValue
-        Dim configName As String
-        Dim objG As New GlobalFunctions
-        configName = objG.GetTitle(configId)
+        Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+        'Dim objG As New GlobalFunctions
+        'configName = objG.GetTitle(configId)
         Dim isShotGun As Boolean = False
         Dim sMsg As String = "What do you wish to call this new configuration?"
         Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
