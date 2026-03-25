@@ -108,46 +108,46 @@ Module GlobalVars
     ''' The application path data
     ''' </summary>
     Public ApplicationPathData As String
-    ''' <summary>
-    ''' Help File path
-    ''' </summary>
-    Public Const MyHelpFile = GeneralSettings.MY_HELP_FILE
+    '''' <summary>
+    '''' Help File path
+    '''' </summary>
+    'Public Const MyHelpFile = GeneralSettings.MY_HELP_FILE
     ''' <summary>
     ''' Hotfixe file path
     ''' </summary>
     Public Const MyHotfixFile = GeneralSettings.MY_HOTFIX_FILE
-    ''' <summary>
-    ''' Backup application
-    ''' </summary>
-    Public Const MyBackup = GeneralSettings.MY_BACKUP
-    ''' <summary>
-    ''' Restore application
-    ''' </summary>
-    Public Const MyRestore = GeneralSettings.MY_RESTORE
-    ''' <summary>
-    ''' Wiki Link
-    ''' </summary>
-    Public Const MenuWiki = GeneralSettings.MENU_WIKI
-    ''' <summary>
-    ''' Shop Menu, might not be used anymore
-    ''' </summary>
-    Public Const MenuShop = GeneralSettings.MENU_SHOP
-    ''' <summary>
-    ''' Bug Report link
-    ''' </summary>
-    Public Const MenuBug = GeneralSettings.MENU_BUG
-    ''' <summary>
-    ''' Support Link
-    ''' </summary>
-    Public Const MenuSupport = GeneralSettings.MENU_SUPPORT
-    ''' <summary>
-    ''' Search Site, might not be used anymore
-    ''' </summary>
-    Public Const MenuSitesearch = GeneralSettings.MENU_SITESEARCH
-    ''' <summary>
-    ''' Menu Links Might not Be used anymore
-    ''' </summary>
-    Public Const MenuLinks = GeneralSettings.MENU_LINKS
+    '''' <summary>
+    '''' Backup application
+    '''' </summary>
+    'Public Const MyBackup = GeneralSettings.MY_BACKUP
+    '''' <summary>
+    '''' Restore application
+    '''' </summary>
+    'Public Const MyRestore = GeneralSettings.MY_RESTORE
+    '''' <summary>
+    '''' Wiki Link
+    '''' </summary>
+    'Public Const MenuWiki = GeneralSettings.MENU_WIKI
+    '''' <summary>
+    '''' Shop Menu, might not be used anymore
+    '''' </summary>
+    'Public Const MenuShop = GeneralSettings.MENU_SHOP
+    '''' <summary>
+    '''' Bug Report link
+    '''' </summary>
+    'Public Const MenuBug = GeneralSettings.MENU_BUG
+    '''' <summary>
+    '''' Support Link
+    '''' </summary>
+    'Public Const MenuSupport = GeneralSettings.MENU_SUPPORT
+    '''' <summary>
+    '''' Search Site, might not be used anymore
+    '''' </summary>
+    'Public Const MenuSitesearch = GeneralSettings.MENU_SITESEARCH
+    '''' <summary>
+    '''' Menu Links Might not Be used anymore
+    '''' </summary>
+    'Public Const MenuLinks = GeneralSettings.MENU_LINKS
     ''' <summary>
     ''' Weight Grains 1 lbs
     ''' </summary>

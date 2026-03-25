@@ -35,7 +35,7 @@ Public Class MdiParentMain
         Try
             If DoAutoBackup Then
                 Dim myProcess As New Process
-                myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyBackup
+                myProcess.StartInfo.FileName = Application.StartupPath & "\" & GeneralSettings.MY_BACKUP
                 myProcess.StartInfo.Arguments = "/auto"
                 myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
                 myProcess.Start()
@@ -404,7 +404,7 @@ Public Class MdiParentMain
         Try
             DoAutoBackup = False
             Dim myProcess As New Process
-            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyBackup
+            myProcess.StartInfo.FileName = Application.StartupPath & "\" & GeneralSettings.MY_BACKUP
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             myProcess.Start()
             Close()
@@ -419,7 +419,7 @@ Public Class MdiParentMain
         Try
             DoAutoBackup = False
             Dim myProcess As New Process
-            myProcess.StartInfo.FileName = Application.StartupPath & "\" & MyRestore
+            myProcess.StartInfo.FileName = Application.StartupPath & "\" & GeneralSettings.MY_RESTORE
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             myProcess.Start()
             Close()
@@ -447,7 +447,7 @@ Public Class MdiParentMain
     ''' </summary>
     Sub DoHelp()
         Try
-            Help.ShowHelp(Me, MyHelpFile)
+            Help.ShowHelp(Me, GeneralSettings.MY_HELP_FILE)
         Catch ex As Exception
             Call LogError(Name, "DoHelp", Err.Number, ex.Message.ToString)
         End Try
