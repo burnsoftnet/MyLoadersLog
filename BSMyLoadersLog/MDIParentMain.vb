@@ -8,6 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MGC.LoadersLog
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
@@ -737,9 +738,10 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub tsslMGCEnabled_Click(ByVal sender As Object, ByVal e As EventArgs) Handles tsslMGCEnabled.Click
         Try
-            Dim obj As New BSMGC
-            Dim strPath As String = obj.GetMGCEXEPath
-            'Dim strPath As String = RegistryHelpers.
+            'Dim obj As New BSMGC
+            'Dim strPath As String = obj.GetMGCEXEPath
+            Dim strPath As String = RegistryHelpers.GetMgcExePath(errOut)
+            if errOut.Length > 0 then Throw new Exception(errOut)
             Dim myProcess As New Process
             myProcess.StartInfo.FileName = strPath
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
