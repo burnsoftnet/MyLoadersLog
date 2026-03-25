@@ -140,7 +140,7 @@ Public Class MdiParentMain
             Call InitForm()
             Call InitLoaderType()
             Dim objFs As New FileIO
-            If objFs.FileExists(MyHotfixFile) Then ReRunHotfixUpdatesToolStripMenuItem.Enabled = True
+            If objFs.FileExists(GeneralSettings.MY_HOTFIX_FILE) Then ReRunHotfixUpdatesToolStripMenuItem.Enabled = True
         Catch ex As Exception
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
@@ -434,7 +434,7 @@ Public Class MdiParentMain
         Dim objf As New FileIO
         If objf.FileExists(Application.StartupPath & "\hotfix.ini") Then
             Dim myProcess As New Process
-            Dim runThiSApp As String = Application.StartupPath & "\" & MyHotfixFile
+            Dim runThiSApp As String = Application.StartupPath & "\" & GeneralSettings.MY_HOTFIX_FILE
             myProcess.StartInfo.FileName = runThiSApp
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
             DoAutoBackup = False
@@ -1803,7 +1803,7 @@ Public Class MdiParentMain
     Private Sub ReRunHotfixUpdatesToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ReRunHotfixUpdatesToolStripMenuItem.Click
         DoAutoBackup = False
         Dim myProcess As New Process
-        myProcess.StartInfo.FileName = MyHotfixFile
+        myProcess.StartInfo.FileName = GeneralSettings.MY_HOTFIX_FILE
         myProcess.StartInfo.Arguments = "/redo"
         myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
         myProcess.Start()

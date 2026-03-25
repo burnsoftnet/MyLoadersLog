@@ -7,6 +7,7 @@ Imports System.Data.Odbc
 Imports System.Windows.Forms
 Imports Microsoft.Win32
 Imports System.Configuration
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
@@ -2193,7 +2194,7 @@ Namespace LoadersClass
                 Dim lNewCase As Long = lQCase - lQty
                 Dim lNewPrimer As Long = lQPrimer - lQty
                 Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WeightGrains1Lbs, 3)
+                Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
                 Dim Obj As New BSDatabase
                 Dim SQL As String = "UPDATE List_Bullets set Qty=" & lNewBullet & " where ID=" & BID
                 Obj.ConnExec(SQL)
@@ -2223,7 +2224,7 @@ Namespace LoadersClass
                 Dim lNewPrimer As Long = lQPrimer - lQty
                 Dim lNewWad As Long = lQWADS - lQty
                 Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WeightGrains1Lbs, 3)
+                Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
                 Dim dNewShotGrans As Double = 0
                 Dim dNewShotOz As Double = 0
                 Dim dNewShotLBS As Double = 0
@@ -2234,8 +2235,8 @@ Namespace LoadersClass
                     SQL = "UPDATE List_SG_ShotType_Details set Qty=" & lNewBullet & " where ID=" & BID
                 Else
                     dNewShotOz = lQSHOT_OZ - (dQPrefLoad * lQty)
-                    dNewShotGrans = dNewShotOz * WeightGramsOz
-                    dNewShotLBS = dNewShotOz / WeightOz1Lbs
+                    dNewShotGrans = dNewShotOz * WeightValues.WEIGHT_GRAMS_OZ
+                    dNewShotLBS = dNewShotOz / WeightValues.WEIGHT_OZ_1LBS
                     SQL = "UPDATE List_SG_ShotType_Details set weight=" & dNewShotLBS & _
                             ", ounces=" & dNewShotOz & ", grams=" & dNewShotGrans & " where ID=" & BID
                 End If

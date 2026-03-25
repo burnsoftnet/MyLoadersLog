@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddQtyShot
@@ -61,7 +62,7 @@ Public Class frmAddQtyShot
             Dim Obj As New BSDatabase
             Dim NQty As Long = CQty + UQty
             Dim NPrice As Double = CPrice + UPrice
-            Dim ounces As Double = WeightOz1Lbs * NQty
+            Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * NQty
             SQL = "Update List_SG_ShotType_Details set Price=" & NPrice & ", weight='" & NQty & _
                 "',ounces=" & ounces & " where ID=" & BID
             Obj.ConnExec(SQL)

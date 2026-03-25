@@ -16,7 +16,7 @@ Public Class frmAddQtyPowder
             Case "Grains (grs)"
                 lNewValue = lValue
             Case "Pounds (lbs)"
-                lNewValue = lValue * WeightGrains1Lbs
+                lNewValue = lValue * WeightValues.WEIGHT_GRAINS_1LBS
         End Select
         If lValue > 0 Then
             dAns = dPrice / lNewValue

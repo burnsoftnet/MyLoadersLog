@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 ''' <summary>
@@ -168,7 +169,7 @@ Public Class frmLoadMakeReady_Details
             If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
         Else
             If Not IsSlug Then
-                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightGramsOz) ' * COST_SHOT
+                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightValues.WEIGHT_GRAMS_OZ) ' * COST_SHOT
             Else
                 COST_BULLET = COST_SLUG
             End If

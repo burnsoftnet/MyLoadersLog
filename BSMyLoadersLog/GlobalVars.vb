@@ -112,10 +112,10 @@ Module GlobalVars
     '''' Help File path
     '''' </summary>
     'Public Const MyHelpFile = GeneralSettings.MY_HELP_FILE
-    ''' <summary>
-    ''' Hotfixe file path
-    ''' </summary>
-    Public Const MyHotfixFile = GeneralSettings.MY_HOTFIX_FILE
+    '''' <summary>
+    '''' Hotfixe file path
+    '''' </summary>
+    'Public Const MyHotfixFile = GeneralSettings.MY_HOTFIX_FILE
     '''' <summary>
     '''' Backup application
     '''' </summary>
@@ -148,26 +148,26 @@ Module GlobalVars
     '''' Menu Links Might not Be used anymore
     '''' </summary>
     'Public Const MenuLinks = GeneralSettings.MENU_LINKS
-    ''' <summary>
-    ''' Weight Grains 1 lbs
-    ''' </summary>
-    Public Const WeightGrains1Lbs = WeightValues.WEIGHT_GRAINS_1LBS
-    ''' <summary>
-    ''' Weight in Grains 1 gm
-    ''' </summary>
-    Public Const WeightGrains1Gm = WeightValues.WEIGHT_GRAINS_1GM
-    ''' <summary>
-    ''' Weight in Grams for 1 lbs
-    ''' </summary>
-    Public Const WeightGrams1Lbs = WeightValues.WEIGHT_GRAMS_1LBS
-    ''' <summary>
-    ''' Weight in oz for 1 lbs
-    ''' </summary>
-    Public Const WeightOz1Lbs = WeightValues.WEIGHT_OZ_1LBS
-    ''' <summary>
-    ''' Weight in Grams from Ounce
-    ''' </summary>
-    Public Const WeightGramsOz = WeightValues.WEIGHT_GRAMS_OZ
+    '''' <summary>
+    '''' Weight Grains 1 lbs
+    '''' </summary>
+    'Public Const WeightGrains1Lbs = WeightValues.WEIGHT_GRAINS_1LBS
+    '''' <summary>
+    '''' Weight in Grains 1 gm
+    '''' </summary>
+    'Public Const WeightGrains1Gm = WeightValues.WEIGHT_GRAINS_1GM
+    '''' <summary>
+    '''' Weight in Grams for 1 lbs
+    '''' </summary>
+    'Public Const WeightGrams1Lbs = WeightValues.WEIGHT_GRAMS_1LBS
+    '''' <summary>
+    '''' Weight in oz for 1 lbs
+    '''' </summary>
+    'Public Const WeightOz1Lbs = WeightValues.WEIGHT_OZ_1LBS
+    '''' <summary>
+    '''' Weight in Grams from Ounce
+    '''' </summary>
+    'Public Const WeightGramsOz = WeightValues.WEIGHT_GRAMS_OZ
     ''' <summary>
     ''' The Database Name
     ''' </summary>

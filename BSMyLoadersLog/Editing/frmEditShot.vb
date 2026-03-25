@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmEditShot
@@ -39,8 +40,8 @@ Public Class frmEditShot
             Dim Cost As Double = GeneralHelpers.FluffContent(txtPrice.Text, 0.0)
             Dim SQL As String = ""
             Dim Obj As New BSDatabase
-            Dim ounces As Double = WeightOz1Lbs * CDbl(Weight)
-            Dim grams As Double = ounces * WeightGramsOz
+            Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * CDbl(Weight)
+            Dim grams As Double = ounces * WeightValues.WEIGHT_GRAMS_OZ
             Dim epps As Double = 0
             If Cost > 0 Then epps = Cost / grams
 

@@ -3,6 +3,7 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
@@ -126,7 +127,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Dim dC1RA As Double = 0
             Dim Obj As New InventoryMath
             If Not IsSlug Then
-                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightGramsOz) ' * COST_SHOT
+                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightValues.WEIGHT_GRAMS_OZ) ' * COST_SHOT
             Else
                 COST_BULLET = COST_SLUG
             End If
