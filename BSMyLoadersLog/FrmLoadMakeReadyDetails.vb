@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MGC
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
@@ -316,12 +317,12 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Private Sub LoadConfig_ShotGun()
         Try
-            Dim Obj As New BSDatabase
+            'Dim Obj As New BSDatabase
             Dim ObjIM As New InventoryMath
-            Dim SQL As String = "SELECT * from Config_List_Data_SG where CLNID=" & ConfigID
-            Call Obj.ConnectDB()
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
+            'Dim SQL As String = "SELECT * from Config_List_Data_SG where CLNID=" & ConfigID
+            'Call Obj.ConnectDB()
+            'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+            'Dim RS As OdbcDataReader
             Dim ShotDetails_Manu As String = ""
             Dim ShotDetails_Name As String = ""
             Dim ShotDetails_QTY As Double = 0
@@ -329,35 +330,72 @@ Public Class FrmLoadMakeReadyDetails
             Dim ShotDetails_ShotMat As String = ""
             Dim ShotDetails_ShotNo As String = ""
             Dim ShotDetails_SlugWeight As String = ""
-            RS = CMD.ExecuteReader
-            While RS.Read
-                txtCal.Text = ObjIM.GetCaliber(RS("ATID"))
-                SID = RS("SCL")
-                PRID = RS("PRID")
-                HID = RS("CAID")
-                WID = RS("WAD")
-                Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
-                                    ShotDetails_ShotMat, ShotDetails_ShotNo, ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
-                                    0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+            'RS = CMD.ExecuteReader
+            'While RS.Read
+            '    txtCal.Text = ObjIM.GetCaliber(RS("ATID"))
+            '    SID = RS("SCL")
+            '    PRID = RS("PRID")
+            '    HID = RS("CAID")
+            '    WID = RS("WAD")
+            '    Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
+            '                        ShotDetails_ShotMat, ShotDetails_ShotNo, ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
+            '                        0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+            '    txtManu.Text = OwnerLoadName
+            '    txtName.Text = ConfigName
+            '    txtJacket.Text = ShotDetails_ShotNo & " Shot"
+            '    If Not IsDBNull(RS("SW_t")) Then txtGrains.Text = RS("SW_t") & " oz. shot"
+            '    SHOT_PREFLOAD = RS("SW")
+            '    If Not IsSlug Then
+            '        COST_SHOT = ShotDetails_EPPS
+            '        INSTOCK_SHOT = ShotDetails_GR
+            '    Else
+            '        COST_SLUG = ShotDetails_EPPS
+            '        INSTOCK_SLUG = ShotDetails_QTY
+            '    End If
+            '    Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD, INSTOCK_WAD, COST_WAD)
+            '    Call ObjIM.LoadPrimerInfo(PRID, "", "", "", COST_PRIMER, INSTOCK_PRIMER)
+            '    Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
+            'End While
+            'RS.Close()
+            'RS = Nothing
+            'CMD = Nothing
+
+            Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigID, errOut)
+            For Each o As ConfigListDataShotgunData In lst
+                'txtCal.Text = CaliberInventory.GetName(DatabasePath, o.AmmoTypeId, errOut)
+                txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                SID = o.ShotChargeLoad
+                PRID = o.PrimerId
+                HID = o.CaseId
+                WID = o.Wad
                 txtManu.Text = OwnerLoadName
                 txtName.Text = ConfigName
-                txtJacket.Text = ShotDetails_ShotNo & " Shot"
-                If Not IsDBNull(RS("SW_t")) Then txtGrains.Text = RS("SW_t") & " oz. shot"
-                SHOT_PREFLOAD = RS("SW")
-                If Not IsSlug Then
-                    COST_SHOT = ShotDetails_EPPS
-                    INSTOCK_SHOT = ShotDetails_GR
-                Else
-                    COST_SLUG = ShotDetails_EPPS
-                    INSTOCK_SLUG = ShotDetails_QTY
-                End If
-                Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD, INSTOCK_WAD, COST_WAD)
-                Call ObjIM.LoadPrimerInfo(PRID, "", "", "", COST_PRIMER, INSTOCK_PRIMER)
-                Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
+                txtGrains.Text = $"{o.ShotWeightText} oz. shot"
+                SHOT_PREFLOAD = o.ShotWeight
+            Next
+
+            Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
+                                               ShotDetails_ShotMat, ShotDetails_ShotNo, ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
+                                               0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+            txtJacket.Text = $"{ShotDetails_ShotNo} Shot"
+            If Not IsSlug Then
+                COST_SHOT = ShotDetails_EPPS
+                INSTOCK_SHOT = ShotDetails_GR
+            Else
+                COST_SLUG = ShotDetails_EPPS
+                INSTOCK_SLUG = ShotDetails_QTY
+            End If
+
+            Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD, INSTOCK_WAD, COST_WAD)
+
+            Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, errOut)
+            For Each o As PrimerListings In primerList
+                COST_PRIMER = o.PricePerPrimer
+                INSTOCK_PRIMER = o.Qty
+            Next
+
+            Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
+
         Catch ex As Exception
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
