@@ -303,29 +303,29 @@ Namespace LoadersClass
                               "ConnExec.strSQL=" & strSQL)
             End Try
         End Sub
-        <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
-        Public Function GetData(ByVal SQL As String) As DataTable
-            Dim Table As New DataTable
-            Try
-                Table.Locale = System.Globalization.CultureInfo.InvariantCulture
-                Call ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Conn)
-                Dim RS As New OdbcDataAdapter
-                RS.SelectCommand = CMD
-                RS.Fill(Table)
-            Catch ex As Exception
-                'Dim ObjFS As New BSFileSystem
-                'Dim sMessage As String = "MLL.BSDatabase.GetData" & "::" & Err.Number & "::" & ex.Message.ToString() & Chr(10) & "SQL STATEMENT: " & SQL
-                'ObjFS.LogFile(MyLogFile, "GetData.SQL=" & SQL)
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("BSDatabase", "GetData", Err.Number, 
-                             ex.Message.ToString)
-                Call LogError("BSDatabase", "GetData", 0, 
-                              "GetData.strSQL=" & SQL)
-            End Try
-            Return Table
-        End Function
-    End Class
+    '    <Obsolete("This was replaced in the BurnSoft.Applications.MLL.Database")>
+    '    Public Function GetData(ByVal SQL As String) As DataTable
+    '        Dim Table As New DataTable
+    '        Try
+    '            Table.Locale = System.Globalization.CultureInfo.InvariantCulture
+    '            Call ConnectDB()
+    '            Dim CMD As New OdbcCommand(SQL, Conn)
+    '            Dim RS As New OdbcDataAdapter
+    '            RS.SelectCommand = CMD
+    '            RS.Fill(Table)
+    '        Catch ex As Exception
+    '            'Dim ObjFS As New BSFileSystem
+    '            'Dim sMessage As String = "MLL.BSDatabase.GetData" & "::" & Err.Number & "::" & ex.Message.ToString() & Chr(10) & "SQL STATEMENT: " & SQL
+    '            'ObjFS.LogFile(MyLogFile, "GetData.SQL=" & SQL)
+    '            'ObjFS.LogFile(MyLogFile, sMessage)
+    '            Call LogError("BSDatabase", "GetData", Err.Number, 
+    '                         ex.Message.ToString)
+    '            Call LogError("BSDatabase", "GetData", 0, 
+    '                          "GetData.strSQL=" & SQL)
+    '        End Try
+    '        Return Table
+    '    End Function
+    'End Class
     '<Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
     'Public Class BSFileSystem
     '    <Obsolete("Replaced with BurnSoft.Universal.BSFileSystem Class")>
