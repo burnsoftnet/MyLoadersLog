@@ -1,29 +1,36 @@
 Imports System.Data
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmConfig_Add_Wizard_SG_3
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public ConfigName As String
     Public CalID As Long
     Public ConfigID As Long
     Public CalName As String
     Public GID As Long
-    Private Sub frmConfig_Add_Wizard_SG_3_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmConfig_Add_Wizard_SG_3_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List_Slug(Me.MLLDataSet.List_SG_ShotType_Details, CalName)
-            Me.List_SG_ShotCharge_LoadsTableAdapter.Fill(Me.MLLDataSet.List_SG_ShotCharge_Loads)
-            Me.List_SG_WADTableAdapter.FillBy_CFG_WADList(Me.MLLDataSet.List_SG_WAD, GID)
-            Me.List_SG_CaseTableAdapter.FillBy_CFG_List(Me.MLLDataSet.List_SG_Case, GID)
-            Me.ViewPrimerListTableAdapter.Fill(Me.MLLDataSet.viewPrimerList)
-            Dim ObjAF As New AutoFillCollections.ShotGun
-            txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
+            List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List_Slug(MLLDataSet.List_SG_ShotType_Details, CalName)
+            List_SG_ShotCharge_LoadsTableAdapter.Fill(MLLDataSet.List_SG_ShotCharge_Loads)
+            List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GID)
+            List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GID)
+            ViewPrimerListTableAdapter.Fill(MLLDataSet.viewPrimerList)
+            'Dim ObjAF As New AutoFillCollections.ShotGun
+            'txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
+            txtSource.AutoCompleteCustomSource = ConfigShotgun.Source(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 
-    Private Sub chkPersonal_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPersonal.CheckedChanged
+    Private Sub chkPersonal_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkPersonal.CheckedChanged
         If chkPersonal.Checked Then
             txtSource.ReadOnly = True
         Else
@@ -31,7 +38,7 @@ Public Class frmConfig_Add_Wizard_SG_3
         End If
     End Sub
 
-    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+    Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
         Try
             Dim PID As Long = cmbPrimer.SelectedValue
             Dim HID As Long = cmdHull.SelectedValue

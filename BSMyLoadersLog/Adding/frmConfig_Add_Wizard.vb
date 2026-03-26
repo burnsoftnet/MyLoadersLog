@@ -7,9 +7,9 @@ Public Class frmConfig_Add_Wizard
     ''' The error out
     ''' </summary>
     Dim errOut as String
-    Private Sub frmConfig_Add_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmConfig_Add_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.List_CalibersTableAdapter.Fill(Me.MLLDataSet.List_Calibers)
+            Me.List_CalibersTableAdapter.Fill(MLLDataSet.List_Calibers)
             'Dim Obj As New AutoFillCollections
             'txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
             txtConfigID.AutoCompleteCustomSource = ConfigMetalic.ConfigName(DatabasePath, errOut)
@@ -28,11 +28,11 @@ Public Class frmConfig_Add_Wizard
                 chkRP.Enabled = False
             End If
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 
-    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+    Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
         Try
             Dim strConfigName As String = GeneralHelpers.FluffContent(txtConfigID.Text)
             Dim bRP As Boolean = chkRP.Checked
@@ -84,11 +84,11 @@ Public Class frmConfig_Add_Wizard
         End Try
     End Sub
 
-    Private Sub chkRP_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkRP.CheckedChanged
+    Private Sub chkRP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkRP.CheckedChanged
         If chkShotgun.Checked Then chkShotgun.Checked = False
     End Sub
 
-    Private Sub chkShotgun_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkShotgun.CheckedChanged
+    Private Sub chkShotgun_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkShotgun.CheckedChanged
         If chkRP.Checked Then chkRP.Checked = False
     End Sub
 End Class

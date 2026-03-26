@@ -1,8 +1,13 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmEditBushing_Powder
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public CID As Long
     Sub LoadData()
         Try
@@ -30,10 +35,16 @@ Public Class frmEditBushing_Powder
     End Sub
     Sub PreloadData()
         Try
-            Dim Objaf As New AutoFillCollections.ShotGun
-            txtManu.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Manufacturer
-            txtName.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Name
-            txtCharge.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_sCharge
+            'Dim Objaf As New AutoFillCollections.ShotGun
+            'txtManu.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Manufacturer
+            'txtName.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_Name
+            'txtCharge.AutoCompleteCustomSource = Objaf.List_SG_Bushings_Powder_sCharge
+            txtManu.AutoCompleteCustomSource = ConfigShotgun.BushingPowderManufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = ConfigShotgun.BushingPowderName(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtCharge.AutoCompleteCustomSource = ConfigShotgun.BushingPowderCharge(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Me.Name, "PreloadData", Err.Number, ex.Message.ToString)
         End Try
