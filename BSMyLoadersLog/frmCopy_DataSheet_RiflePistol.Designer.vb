@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmCopy_DataSheet_RiflePistol
+Partial Class FrmCopyDataSheetRiflePistol
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class frmCopy_DataSheet_RiflePistol
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCopy_DataSheet_RiflePistol))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCopyDataSheetRiflePistol))
         Me.txtCase = New System.Windows.Forms.TextBox
         Me.txtPrimer = New System.Windows.Forms.TextBox
         Me.txtBullet = New System.Windows.Forms.TextBox
@@ -390,7 +390,7 @@ Partial Class frmCopy_DataSheet_RiflePistol
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmCopy_DataSheet_RiflePistol"
+        Me.Name = "FrmCopyDataSheetRiflePistol"
         Me.HelpProvider1.SetShowHelp(Me, True)
         Me.Text = "Copy Loaders Log Entry"
         CType(Me.nudYards, System.ComponentModel.ISupportInitialize).EndInit()

@@ -151,9 +151,9 @@ Public Class frmViewDataSheet_RiflePistols
     End Sub
 
     Private Sub CopyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CopyToolStripMenuItem.Click
-        Dim frmNew As New frmCopy_DataSheet_RiflePistol
+        Dim frmNew As New FrmCopyDataSheetRiflePistol
         Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-        frmNew.CFGID = ItemID
+        frmNew.ConfigId = ItemID
         frmNew.FromView = True
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
