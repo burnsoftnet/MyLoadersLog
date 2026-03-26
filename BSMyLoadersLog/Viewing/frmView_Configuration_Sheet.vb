@@ -3,10 +3,15 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
 Public Class frmView_Configuration_Sheet
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public ConfigID As Long
     Public ConfigName As String
     Dim IsPersonal As Boolean
@@ -254,22 +259,24 @@ Public Class frmView_Configuration_Sheet
     End Function
 #End Region
 #Region "Form Related Subs"
-    Private Sub frmView_Configuration_Sheet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmView_Configuration_Sheet_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Dim ObjG As New GlobalFunctions
-            ConfigName = ObjG.GetTitle(ConfigID)
-            Me.Text = ConfigName & " Configuration Sheet"
+            'Dim ObjG As New GlobalFunctions
+            'ConfigName = ObjG.GetTitle(ConfigID)
+            ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigID, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            Text = $"{ConfigName} Configuration Sheet"
             Call LoadData()
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnAddNotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddNotes.Click
+    Private Sub btnAddNotes_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddNotes.Click
         btnAddNotes.Enabled = False
         btnUpdate.Visible = True
         txtNotes.ReadOnly = False
     End Sub
-    Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         btnUpdate.Visible = False
         btnAddNotes.Enabled = True
         txtNotes.ReadOnly = True
@@ -282,7 +289,7 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub frmView_Configuration_Sheet_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
+    Private Sub frmView_Configuration_Sheet_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
         If Me.Width > 0 Then
             TabControl1.Width = Me.Width - 5
             TabControl1.Height = Me.Height - 60
@@ -292,20 +299,20 @@ Public Class frmView_Configuration_Sheet
             txtNotes.Height = TabControl1.Height - 69
         End If
     End Sub
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Dim frmNew As New frmConfig_Add_Wizard_Powder
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub
-    Private Sub btnRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefresh.Click
+    Private Sub btnRefresh_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRefresh.Click
         Call LoadPowderGrid()
     End Sub
-    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+    Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
         Me.Close()
     End Sub
-    Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+    Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
         Dim frmNew As New frmLoadMakeReady_Details
         frmNew.MdiParent = Me.MdiParent
         frmNew.ConfigID = ConfigID
@@ -313,7 +320,7 @@ Public Class frmView_Configuration_Sheet
         frmNew.Show()
         Me.Close()
     End Sub
-    Private Sub rbstatus1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus1.CheckedChanged
+    Private Sub rbstatus1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus1.CheckedChanged
         If rbstatus1.Checked Then
             rbstatus2.Checked = False
             isActive = True
@@ -321,7 +328,7 @@ Public Class frmView_Configuration_Sheet
             Call MDIParentMain.RefreshConfigData()
         End If
     End Sub
-    Private Sub rbstatus2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus2.CheckedChanged
+    Private Sub rbstatus2_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus2.CheckedChanged
         If rbstatus2.Checked Then
             rbstatus1.Checked = False
             isActive = False
@@ -329,7 +336,7 @@ Public Class frmView_Configuration_Sheet
             Call MDIParentMain.RefreshConfigData()
         End If
     End Sub
-    Private Sub chkFav_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFav.CheckedChanged
+    Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
         If chkFav.Checked Then
             isFav = True
             Call UpdateFav(1)
@@ -339,10 +346,10 @@ Public Class frmView_Configuration_Sheet
         End If
         Call MDIParentMain.RefreshConfigData()
     End Sub
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
-    Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+    Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
         Me.Cursor = Cursors.WaitCursor
         Dim frmNew As New frmEditConfig
         frmNew.ConfigID = ConfigID
@@ -352,7 +359,7 @@ Public Class frmView_Configuration_Sheet
         Me.Close()
         Me.Cursor = Cursors.Arrow
     End Sub
-    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
         Try
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
             Dim Obj As New BSDatabase
@@ -365,7 +372,7 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton4.Click
+    Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
         Me.Cursor = Cursors.WaitCursor
         Try
             Dim frmNew As New frmReport_Configuration_Sheet
@@ -399,20 +406,20 @@ Public Class frmView_Configuration_Sheet
         End Try
         Me.Cursor = Cursors.Arrow
     End Sub
-    Private Sub ToolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton5.Click
+    Private Sub ToolStripButton5_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton5.Click
         Dim DefaultFileName As String = "ExportConfig_" & ConfigName & ".xml"
         SaveFileDialog1.FilterIndex = 1
         SaveFileDialog1.Filter = "XML File(*.xml)|*.xml"
         SaveFileDialog1.Title = "Export Data to XML File"
         SaveFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
-        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then Exit Sub
+        If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
         Call XML_Generate(strFilePath)
         Me.Close()
     End Sub
 #End Region
 
-    Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
+    Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
         Try
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
             Dim Obj As New BSDatabase

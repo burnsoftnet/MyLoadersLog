@@ -999,18 +999,18 @@ Namespace LoadersClass
         '    End Try
         '    Return lAns
         'End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
-        Public Function GetTitle(ByVal lngID As Long) As String
-            Dim sAns As String = ""
-            sAns = GetName("SELECT * from Config_List_Name where ID=" & lngID, "ConfigName")
-            Return sAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
-        Public Function GetAmmoTypeID(ByVal sName) As Long
-            Dim lAns As Long = 0
-            lAns = GetID("SELECT ID from General_Ammunition_Type where FType='" & sName & "'")
-            Return lAns
-        End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
+        'Public Function GetTitle(ByVal lngID As Long) As String
+        '    Dim sAns As String = ""
+        '    sAns = GetName("SELECT * from Config_List_Name where ID=" & lngID, "ConfigName")
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
+        'Public Function GetAmmoTypeID(ByVal sName) As Long
+        '    Dim lAns As Long = 0
+        '    lAns = GetID("SELECT ID from General_Ammunition_Type where FType='" & sName & "'")
+        '    Return lAns
+        'End Function
         <Obsolete("Replaced with BurnSoft.Applications.MLL.Global.GeneralFunctions")>
         Public Function GetAmmoTypeIDSG(ByVal sName) As Long
             Dim lAns As Long = 0
@@ -1148,40 +1148,40 @@ Namespace LoadersClass
             End Try
             Return lAns
         End Function
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Inventory.CaliberInventory.TotalConfigurationUsedByCaliber")>
-        Public Function TotalConfigByCal(ByVal lCalID As Long) As Long
-            Dim iAns As Integer = 0
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT Count(*) as Total from qry_CFG_SR_PowderList where MyCalID=" & lCalID
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    iAns = RS("Total")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Call Obj.CloseDB()
-            Catch ex As Exception
-                'Dim strform As String = "LoadersClass.GlobalFunctions"
-                'Dim strProcedure As String = "TotalConfigByCal"
-                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "TotalConfigByCal", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-            Return iAns
-        End Function
-        <Obsolete("Replaced with function with same name in BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral")>
-        Function IsShotGunCOnfig(ByVal iCal As Long) As Boolean
-            Dim bAns As Boolean = False
-            bAns = ObjectExistsinDB(CInt(iCal), "Id", "qry_ConfigCal_SG")
-            Return bAns
-        End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Inventory.CaliberInventory.TotalConfigurationUsedByCaliber")>
+        'Public Function TotalConfigByCal(ByVal lCalID As Long) As Long
+        '    Dim iAns As Integer = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT Count(*) as Total from qry_CFG_SR_PowderList where MyCalID=" & lCalID
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            iAns = RS("Total")
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Call Obj.CloseDB()
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "TotalConfigByCal"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "TotalConfigByCal", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return iAns
+        'End Function
+        '<Obsolete("Replaced with function with same name in BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral")>
+        'Function IsShotGunCOnfig(ByVal iCal As Long) As Boolean
+        '    Dim bAns As Boolean = False
+        '    bAns = ObjectExistsinDB(CInt(iCal), "Id", "qry_ConfigCal_SG")
+        '    Return bAns
+        'End Function
         <Obsolete(" Replaced with function with same name in BurnSoft.Applications.MLL.Helpers.GeneralHelpers")>
         Function FormatForXML(ByVal sValue As String) As String
             Dim sAns As String = ""
@@ -1222,84 +1222,84 @@ Namespace LoadersClass
             End Try
             Return bAns
         End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InShotgun")>
-        Private Function InSG(ByVal lCALID As Long) As Boolean
-            Dim bAns As Boolean = False
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT Config_List_Name.ID,Config_List_Name.ConfigName,Config_List_Name.IsPersonal,Config_List_Name.IsActive,Config_List_Name.IsFav,Config_List_Name.IsShotgun, Config_List_Data_SG.ATID,Config_List_Data_SG.CALID,Config_List_Data_SG.PRID,Config_List_Data_SG.CAID,Config_List_Data_SG.SW,Config_List_Data_SG.SS,Config_List_Data_SG.WAD,Config_List_Data_SG.SCL,Config_List_Data_SG.GID,Config_List_Data_SG.LTID from Config_List_Name INNER JOIN Config_List_Data_SG on Config_List_Data_SG.CLNID=Config_List_Name.ID " & _
-                                    "where Config_List_Data_SG.ATID=" & lCALID & " order by Config_List_Name.ConfigName ASC"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                bAns = RS.HasRows
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-            Catch ex As Exception
-                'Dim strform As String = "LoadersClass.GlobalFunctions"
-                'Dim strProcedure As String = "InSG"
-                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "InSG", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-            Return bAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InMetallic")>
-        Private Function InRP(ByVal lCALID As Long) As Boolean
-            Dim bAns As Boolean = False
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT Config_List_Name.ID,Config_List_Name.ConfigName,Config_List_Name.IsPersonal,Config_List_Name.IsActive,Config_List_Name.IsFav,Config_List_Name.IsShotgun, " & _
-                                    "Config_List_Data_NSG.ATID, Config_List_Data_NSG.CALID,Config_List_Data_NSG.CAID, Config_List_Data_NSG.BID, " & _
-                                    "Config_List_Data_NSG.PRID from Config_List_Name INNER JOIN Config_List_Data_NSG on " & _
-                                    "Config_List_Data_NSG.CLNID=Config_List_Name.ID  where Config_List_Data_NSG.CALID=" & lCALID & " order by Config_List_Name.ConfigName ASC"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                bAns = RS.HasRows
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-            Catch ex As Exception
-                'Dim strform As String = "LoadersClass.GlobalFunctions"
-                'Dim strProcedure As String = "InRP"
-                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "InRP", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-            Return bAns
-        End Function
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.IsNotInShotgunConfigByCaliber")>
-        Public Function IsNotInShotgunConfigbyCal(ByVal lCALID As Long) As Boolean
-            Dim bAns As Boolean = False
-            Try
-                If Not InRP(lCALID) Then
-                    If InSG(lCALID) Then
-                        bAns = False
-                    Else
-                        bAns = True
-                    End If
-                Else
-                    bAns = True
-                End If
-            Catch ex As Exception
-                'Dim strform As String = "LoadersClass.GlobalFunctions"
-                'Dim strProcedure As String = "IsNotInShotgunConfigbyCal"
-                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "IsNotInShotgunConfigbyCal", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-            Return bAns
-        End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InShotgun")>
+        'Private Function InSG(ByVal lCALID As Long) As Boolean
+        '    Dim bAns As Boolean = False
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT Config_List_Name.ID,Config_List_Name.ConfigName,Config_List_Name.IsPersonal,Config_List_Name.IsActive,Config_List_Name.IsFav,Config_List_Name.IsShotgun, Config_List_Data_SG.ATID,Config_List_Data_SG.CALID,Config_List_Data_SG.PRID,Config_List_Data_SG.CAID,Config_List_Data_SG.SW,Config_List_Data_SG.SS,Config_List_Data_SG.WAD,Config_List_Data_SG.SCL,Config_List_Data_SG.GID,Config_List_Data_SG.LTID from Config_List_Name INNER JOIN Config_List_Data_SG on Config_List_Data_SG.CLNID=Config_List_Name.ID " & _
+        '                            "where Config_List_Data_SG.ATID=" & lCALID & " order by Config_List_Name.ConfigName ASC"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        bAns = RS.HasRows
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "InSG"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "InSG", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return bAns
+        'End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.InMetallic")>
+        'Private Function InRP(ByVal lCALID As Long) As Boolean
+        '    Dim bAns As Boolean = False
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT Config_List_Name.ID,Config_List_Name.ConfigName,Config_List_Name.IsPersonal,Config_List_Name.IsActive,Config_List_Name.IsFav,Config_List_Name.IsShotgun, " & _
+        '                            "Config_List_Data_NSG.ATID, Config_List_Data_NSG.CALID,Config_List_Data_NSG.CAID, Config_List_Data_NSG.BID, " & _
+        '                            "Config_List_Data_NSG.PRID from Config_List_Name INNER JOIN Config_List_Data_NSG on " & _
+        '                            "Config_List_Data_NSG.CLNID=Config_List_Name.ID  where Config_List_Data_NSG.CALID=" & lCALID & " order by Config_List_Name.ConfigName ASC"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        bAns = RS.HasRows
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "InRP"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "InRP", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return bAns
+        'End Function
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.ConfigSheets.ConfigListGeneral.IsNotInShotgunConfigByCaliber")>
+        'Public Function IsNotInShotgunConfigbyCal(ByVal lCALID As Long) As Boolean
+        '    Dim bAns As Boolean = False
+        '    Try
+        '        If Not InRP(lCALID) Then
+        '            If InSG(lCALID) Then
+        '                bAns = False
+        '            Else
+        '                bAns = True
+        '            End If
+        '        Else
+        '            bAns = True
+        '        End If
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "IsNotInShotgunConfigbyCal"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "IsNotInShotgunConfigbyCal", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return bAns
+        'End Function
     End Class
     <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog")>
     Public Class BSMGC
@@ -1314,21 +1314,21 @@ Namespace LoadersClass
                 _RegPath = value
             End Set
         End Property
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Function MyGunCollectionIsInstalled() As Boolean
-            Dim bAns As Boolean = False
-            Dim MyReg As RegistryKey
-            Dim strValue As String = DefaultRegPath
-            On Error Resume Next
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            If MyReg Is Nothing Then
-                bAns = False
-            Else
-                bAns = True
-            End If
-            Return bAns
-            Return bAns
-        End Function
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+        'Public Function MyGunCollectionIsInstalled() As Boolean
+        '    Dim bAns As Boolean = False
+        '    Dim MyReg As RegistryKey
+        '    Dim strValue As String = DefaultRegPath
+        '    On Error Resume Next
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    If MyReg Is Nothing Then
+        '        bAns = False
+        '    Else
+        '        bAns = True
+        '    End If
+        '    Return bAns
+        '    Return bAns
+        'End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function sConnect() As String
             Dim sAns As String = ""
@@ -1380,49 +1380,49 @@ Namespace LoadersClass
                               Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
-        Public Function GetMGCPath() As String
-            Dim sAns As String = ""
-            Dim MyReg As RegistryKey
-            Dim strValue As String = DefaultRegPath
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            If MyReg Is Nothing Then
-                MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
-            End If
-            sAns = MyReg.GetValue("DataBase", "")
-            MyReg.Close()
-            Return sAns
-        End Function
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
-        Public Function GetMGCEXEPath() As String
-            Dim sAns As String = ""
-            Dim MyReg As RegistryKey
-            Dim strValue As String = DefaultRegPath
-            MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
-            If MyReg Is Nothing Then
-                MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
-            End If
-            sAns = MyReg.GetValue("AppEXE", "")
-            MyReg.Close()
-            Return sAns
-        End Function
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Function CountFirearms() As Integer
-            Dim iAns As Integer = 0
-            Call ConnectDB()
-            Dim SQL As String = "SELECT Count(*) as Total from Gun_Collection where ItemSold=0"
-            Dim CMD As New OdbcCommand(SQL, Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            While RS.Read
-                iAns = RS("Total")
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            Call CloseDB()
-            Return ians
-        End Function
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
+        'Public Function GetMGCPath() As String
+        '    Dim sAns As String = ""
+        '    Dim MyReg As RegistryKey
+        '    Dim strValue As String = DefaultRegPath
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    If MyReg Is Nothing Then
+        '        MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
+        '    End If
+        '    sAns = MyReg.GetValue("DataBase", "")
+        '    MyReg.Close()
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.RegistryHelpers")>
+        'Public Function GetMGCEXEPath() As String
+        '    Dim sAns As String = ""
+        '    Dim MyReg As RegistryKey
+        '    Dim strValue As String = DefaultRegPath
+        '    MyReg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(strValue, True)
+        '    If MyReg Is Nothing Then
+        '        MyReg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(strValue)
+        '    End If
+        '    sAns = MyReg.GetValue("AppEXE", "")
+        '    MyReg.Close()
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+        'Public Function CountFirearms() As Integer
+        '    Dim iAns As Integer = 0
+        '    Call ConnectDB()
+        '    Dim SQL As String = "SELECT Count(*) as Total from Gun_Collection where ItemSold=0"
+        '    Dim CMD As New OdbcCommand(SQL, Conn)
+        '    Dim RS As OdbcDataReader
+        '    RS = CMD.ExecuteReader
+        '    While RS.Read
+        '        iAns = RS("Total")
+        '    End While
+        '    RS.Close()
+        '    RS = Nothing
+        '    CMD = Nothing
+        '    Call CloseDB()
+        '    Return ians
+        'End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function ObjectExistsinDB(ByVal strObject As String, ByVal strField As String, ByVal strTable As String) As Boolean
             Try
@@ -1509,12 +1509,12 @@ Namespace LoadersClass
             End If
             Return iAns
         End Function
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Function GetManufacturersName(ByVal strValue As String) As String
-            Dim SQL As String = "SELECT Brand from Gun_Manufacturer where ID=" & strValue
-            Dim sAns As String = GetName(SQL, "Brand")
-            Return sAns
-        End Function
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+        'Public Function GetManufacturersName(ByVal strValue As String) As String
+        '    Dim SQL As String = "SELECT Brand from Gun_Manufacturer where ID=" & strValue
+        '    Dim sAns As String = GetName(SQL, "Brand")
+        '    Return sAns
+        'End Function
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function GetModelID(ByVal strValue As String, ByVal StrValueID As Long) As Long
             Dim SQL As String = "SELECT ID from Gun_Model where Model='" & strValue & "' and GMID=" & StrValueID
@@ -1578,21 +1578,21 @@ Namespace LoadersClass
                               Err.Number, ex.Message.ToString)
             End Try
         End Function
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Sub UpdateGunType(ByVal strType As String)
-            Try
-                If Not ObjectExistsinDB(strType, "Type", "Gun_Type") Then
-                    Dim SQL As String = "INSERT INTO Gun_Type(Type) VALUES('" & strType & "')"
-                    ConnExec(SQL)
-                End If
-            Catch ex As Exception
-                'Dim ObjFS As New BSFileSystem
-                'Dim sMessage As String = "LoadersClass.BSMGC.UpdateGunType" & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "UpdateGunType", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-        End Sub
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+        'Public Sub UpdateGunType(ByVal strType As String)
+        '    Try
+        '        If Not ObjectExistsinDB(strType, "Type", "Gun_Type") Then
+        '            Dim SQL As String = "INSERT INTO Gun_Type(Type) VALUES('" & strType & "')"
+        '            ConnExec(SQL)
+        '        End If
+        '    Catch ex As Exception
+        '        'Dim ObjFS As New BSFileSystem
+        '        'Dim sMessage As String = "LoadersClass.BSMGC.UpdateGunType" & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "UpdateGunType", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        'End Sub
         <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         Public Function CaliberExists(ByVal strCaliber As String) As Boolean
             Return ObjectExistsinDB(strCaliber, "Cal", "Gun_Cal")
