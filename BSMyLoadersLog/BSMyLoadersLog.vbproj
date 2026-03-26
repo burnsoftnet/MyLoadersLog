@@ -521,10 +521,10 @@
     <Compile Include="ImportExport\frmImportFirearms.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLoadMakeReady_Details.Designer.vb">
-      <DependentUpon>frmLoadMakeReady_Details.vb</DependentUpon>
+    <Compile Include="FrmLoadMakeReadyDetails.Designer.vb">
+      <DependentUpon>FrmLoadMakeReadyDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLoadMakeReady_Details.vb">
+    <Compile Include="FrmLoadMakeReadyDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.vb">
@@ -1058,9 +1058,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmImportFirearms.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLoadMakeReady_Details.resx">
+    <EmbeddedResource Include="FrmLoadMakeReadyDetails.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>frmLoadMakeReady_Details.vb</DependentUpon>
+      <DependentUpon>FrmLoadMakeReadyDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <SubType>Designer</SubType>

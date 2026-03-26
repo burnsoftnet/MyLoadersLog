@@ -313,7 +313,7 @@ Public Class frmView_Configuration_Sheet
         Me.Close()
     End Sub
     Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
-        Dim frmNew As New frmLoadMakeReady_Details
+        Dim frmNew As New FrmLoadMakeReadyDetails
         frmNew.MdiParent = Me.MdiParent
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName

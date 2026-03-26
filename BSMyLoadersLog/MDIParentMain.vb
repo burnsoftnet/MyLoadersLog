@@ -1198,7 +1198,7 @@ Public Class MdiParentMain
             if _errOut.Length > 0 Then Throw new Exception(_errOut)
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
-            Dim frmNew As New frmLoadMakeReady_Details With {
+            Dim frmNew As New FrmLoadMakeReadyDetails With {
                 .ConfigID = configId,
                 .ConfigName = configName,
                 .MdiParent = Me
