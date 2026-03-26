@@ -1,10 +1,15 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 ''' <summary>
 ''' Add Data sheet for Rifle or Pistol, aka metallic reloading data sheet
 ''' </summary>
 Public Class FrmAddDataSheetRiflePistolsMan
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     ''' <summary>
     ''' This is from a view
     ''' </summary>
@@ -18,15 +23,32 @@ Public Class FrmAddDataSheetRiflePistolsMan
     ''' </summary>
     Sub LoadAutoFill()
         Try
-            Dim objAf As New AutoFillCollections
-            txtGroup.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_GroupSize
-            txtCon.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_conditions
-            txtLen.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_tl
-            txtPowName.AutoCompleteCustomSource = objAf.General_Powder_Name
-            txtPowManu.AutoCompleteCustomSource = objAf.General_Powder_Manufacturer
-            txtBullet.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_Bullet
-            txtPrimer.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_primer
-            txtCase.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_case
+            'Dim objAf As New AutoFillCollections
+            'txtGroup.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_GroupSize
+            'txtCon.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_conditions
+            'txtLen.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_tl
+            'txtPowName.AutoCompleteCustomSource = objAf.General_Powder_Name
+            'txtPowManu.AutoCompleteCustomSource = objAf.General_Powder_Manufacturer
+            'txtBullet.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_Bullet
+            'txtPrimer.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_primer
+            'txtCase.AutoCompleteCustomSource = objAf.Loaders_Log_NSG_case
+            'Dim objAf As New AutoFillCollections
+            txtGroup.AutoCompleteCustomSource = ConfigMetalic.GroupSize(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtCon.AutoCompleteCustomSource = ConfigMetalic.Conditions(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtLen.AutoCompleteCustomSource = ConfigMetalic.TotalLenght(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPowName.AutoCompleteCustomSource = Powder.Name(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPowManu.AutoCompleteCustomSource = Powder.Manufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtBullet.AutoCompleteCustomSource = ConfigMetalic.Bullet(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPrimer.AutoCompleteCustomSource = ConfigMetalic.Primer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtCase.AutoCompleteCustomSource = ConfigMetalic.Case(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
         End Try
