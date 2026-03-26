@@ -1,7 +1,10 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
+Imports BurnSoft.Applications.MLL.Types
 
 ''' <summary>
 ''' Class frmLoadMakeReady_Details.
@@ -187,10 +190,10 @@ Public Class FrmLoadMakeReadyDetails
                 If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
                 If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             Else
-                Dim CountMakeAble As Double = INSTOCK_SHOT_OZ / SHOT_PREFLOAD
-                lnmr = CountMakeAble
+                Dim countMakeAble As Double = INSTOCK_SHOT_OZ / SHOT_PREFLOAD
+                lnmr = countMakeAble
                 If lnmr < INSTOCK_CASE Then
-                    lnmr = CountMakeAble
+                    lnmr = countMakeAble
                 ElseIf lnmr > INSTOCK_CASE Then
                     lnmr = INSTOCK_CASE
                 End If
@@ -209,17 +212,37 @@ Public Class FrmLoadMakeReadyDetails
         Try
             IsShotGun = False
             IsPersonal = False
-            Dim Obj As New InventoryMath
-            Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, "")
+            'Dim Obj As New InventoryMath
+            'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, "")
+            Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            For Each o As ConfigNameList In lst
+                IsPersonal = o.IsPersonal
+                IsShotGun = o.IsShotGun
+            Next
             If Not IsShotGun Then
-                PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER, FPS_MID)
-                COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
-                INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+                'PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER, FPS_MID)
+                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
+                'COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
+                'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
                 Call LoadConfig_RiflePistol()
             Else
-                PrefferedPowderID = Obj.GetPrefSGPowderID(ConfigID, MID_POWDER, FPS_MID)
-                COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
-                INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+                'PrefferedPowderID = Obj.GetPrefSGPowderID(ConfigID, MID_POWDER, FPS_MID)
+                'COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
+                'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+                PrefferedPowderID = ConfigListDataPowderShotGun.GetDefaultPowderId(DatabasePath, 
+                                                                                   CInt(ConfigID), MID_POWDER, 
+                                                                                   FPS_MID, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then Throw New Exception(errOut)
                 LoadConfig_ShotGun()
             End If
             Call LoadCosts()
@@ -232,28 +255,58 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Private Sub LoadConfig_RiflePistol()
         Try
-            Dim Obj As New BSDatabase
-            Dim ObjIM As New InventoryMath
-            Dim SQL As String = "SELECT * from Config_List_Data_NSG where CLNID=" & ConfigID
-            Call Obj.ConnectDB()
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            While RS.Read
-                txtManu.Text = OwnerLoadName
-                txtName.Text = ConfigName
-                txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
-                BID = RS("BID")
-                PRID = RS("PRID")
-                CID = RS("CAID")
-                Call ObjIM.LoadBulletInfo(BID, "", txtJacket.Text, "", txtGrains.Text, _
-                        "", "", "", INSTOCK_BULLET, "", COST_BULLET)
-                Call ObjIM.LoadPrimerInfo(PRID, "", "", "", COST_PRIMER, INSTOCK_PRIMER)
-                Call ObjIM.LoadCaseInfo(CID, "", "", "", "", INSTOCK_CASE, COST_CASE)
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
+            'Dim Obj As New BSDatabase
+            'Dim ObjIM As New InventoryMath
+            'Dim SQL As String = "SELECT * from Config_List_Data_NSG where CLNID=" & ConfigID
+            'Call Obj.ConnectDB()
+            'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+            'Dim RS As OdbcDataReader
+            'RS = CMD.ExecuteReader
+            'While RS.Read
+            '    txtManu.Text = OwnerLoadName
+            '    txtName.Text = ConfigName
+            '    txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
+            '    BID = RS("BID")
+            '    PRID = RS("PRID")
+            '    CID = RS("CAID")
+            '    Call ObjIM.LoadBulletInfo(BID, "", txtJacket.Text, "", txtGrains.Text, _
+            '            "", "", "", INSTOCK_BULLET, "", COST_BULLET)
+            '    Call ObjIM.LoadPrimerInfo(PRID, "", "", "", COST_PRIMER, INSTOCK_PRIMER)
+            '    Call ObjIM.LoadCaseInfo(CID, "", "", "", "", INSTOCK_CASE, COST_CASE)
+            'End While
+            'RS.Close()
+            'RS = Nothing
+            'CMD = Nothing
+
+            Dim lst as List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, errOut)
+            if lst.Count > 0 Then
+                For Each o As ConfigListDataMetalicData In lst
+                    txtManu.Text = OwnerLoadName
+                    txtName.Text = ConfigName
+                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                    BID = o.BulletId
+                    PRID = o.PrimerId
+                    CID = o.CaliberId
+                Next
+                Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, BID, errOut)
+                For Each o As BulletListings In bulletList
+                    txtJacket.Text = o.Name
+                    txtGrains.Text = o.Weight
+                    INSTOCK_BULLET = o.Qty
+                    COST_BULLET = o.EsitmatedPricePerBullet
+                Next
+                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, errOut)
+                For Each o As PrimerListings In primerList
+                    COST_PRIMER = o.PricePerPrimer
+                    INSTOCK_PRIMER = o.Qty
+                Next
+                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, CID, errOut)
+                For Each o As CaseListings In caseList
+                    COST_CASE = o.EstimatedPricePerCase
+                    INSTOCK_CASE = o.Qty
+                Next
+            End If
+            
         Catch ex As Exception
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
