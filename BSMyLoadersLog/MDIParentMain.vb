@@ -705,19 +705,22 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnDelete_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnDelete.Click
         Dim lngConfigId As Long = lstConfigSheets.SelectedValue
-        Dim obj As New BSDatabase
-        Dim objG As New GlobalFunctions
-        Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+        'Dim obj As New BSDatabase
+        'Dim objG As New GlobalFunctions
+        'Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+        Dim strName As String = ConfigListDataName.GetName(DatabasePath, lngConfigId ,errOut)
+        If errOut.Length > 0 then Throw New Exception(errout)
         Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-        Dim sql As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
+        'Dim sql As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
         If strAns = vbYes Then
-            obj.ConnExec(sql)
-            sql = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
-            obj.ConnExec(sql)
-            sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & lngConfigId
-            obj.ConnExec(sql)
-            sql = "DELETE from Config_List_Name where ID=" & lngConfigId
-            obj.ConnExec(sql)
+            if Not ConfigListDataName.Delete(DatabasePath, lngConfigId ,errOut) then Throw New Exception(errOut)
+            'obj.ConnExec(sql)
+            'sql = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
+            'obj.ConnExec(sql)
+            'sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & lngConfigId
+            'obj.ConnExec(sql)
+            'sql = "DELETE from Config_List_Name where ID=" & lngConfigId
+            'obj.ConnExec(sql)
             Call RefreshConfigData()
         End If
     End Sub
