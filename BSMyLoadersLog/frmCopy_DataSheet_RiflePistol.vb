@@ -1,13 +1,11 @@
-'Imports BSMyLoadersLog.LoadersClass
-'Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Applications.MLL.LoadersLog
 ''' <summary>
 ''' Class FrmCopyDataSheetRiflePistol.
-''' Implements the <see cref="System.Windows.Forms.Form" />
+''' Implements the <see cref="Form" />
 ''' </summary>
-''' <seealso cref="System.Windows.Forms.Form" />
+''' <seealso cref="Form" />
 Public Class FrmCopyDataSheetRiflePistol
     ''' <summary>
     ''' The error out
@@ -48,35 +46,6 @@ Public Class FrmCopyDataSheetRiflePistol
                 txtLen.Text = o.TotalLenght
                 txtNotes.Text = o.Notes
             Next
-            'Dim SQL As String = "SELECT * from Loaders_Log_NSG where ID=" & ConfigId
-            'Dim Obj As New BSDatabase
-            'Call Obj.ConnectDB()
-            'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            'Dim RS As OdbcDataReader
-            'RS = CMD.ExecuteReader
-            ''Dim strSplit() As String
-            'While RS.Read
-            '    cmbFirearm.SelectedValue = RS("fid")
-            '    dtpTested.Value = RS("dt")
-            '    txtGroup.Text = RS("gs")
-            '    nudShots.Value = RS("ns")
-            '    nudYards.Value = RS("yds")
-            '    strSplit = Split(RS("pwm"), " - ")
-            '    txtPowName.Text = Trim(strSplit(0))
-            '    txtPowWei.Text = Trim(strSplit(1))
-            '    txtPowManu.Text = Trim(strSplit(2))
-            '    'txtPowwtMFG.Text = RS("pwm")
-            '    txtBullet.Text = RS("bullet")
-            '    txtPrimer.Text = RS("primer")
-            '    txtCase.Text = RS("case")
-            '    txtCon.Text = RS("conditions")
-            '    txtLen.Text = RS("tl")
-            '    txtNotes.Text = RS("notes")
-            'End While
-            'RS.Close()
-            'RS = Nothing
-            'CMD = Nothing
-            'Obj.CloseDB()
         Catch ex As Exception
             Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
@@ -105,29 +74,19 @@ Public Class FrmCopyDataSheetRiflePistol
             Dim configName As String = "N/A"
             Dim barrelLenght As String = ""
             Dim caliber As String = ""
-            'Dim Obj As New BSDatabase
-            'Dim ObjIM As New InventoryMath
-            'Dim ObjGF As New GlobalFunctions
+
             Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(firearmId), _errOut)
             For Each o As FirearmCollection In lst
                 caliber = o.Caliber
                 barrelLenght = o.Barrel
             Next
-            'Call ObjGF.GetFirearmDetails(lngFID, 0, "", "", "", Caliber, strBarLen)
+
             If Not LoadersLogMetallic.Add(DatabasePath, firearmId, dateCreated, CInt(yards), groupSize, 
                                           CInt(numShots), $"{powderName} - {powderWeight} - {powderManufacturer}", 
                                           bulletDetails, primerDetails, caseDetails, condition, oal, notes,
                                           configName, firearmName, caliber, barrelLenght, 
                                           _errOut) Then Throw New Exception(_errOut)
-            'Dim Sql As String = "INSERT INTO Loaders_Log_NSG (fid,dt,yds,gs,ns,pwm,bullet," & _
-            '        "primer,case,conditions,tl,notes,ConfigName,FirearmName,Caliber,BarrelLen)" & _
-            '        " VALUES (" & lngFID & ",'" & strDateTested & "'," & lngYards & _
-            '        ",'" & strGroup & "'," & lngNumShots & ",'" & strPowName & " - " & strPowWei & _
-            '        " - " & strPowManu & "','" & strBullet & _
-            '        "','" & strPrimer & "','" & strCase & _
-            '        "','" & strCond & "','" & strLen & "','" & strNotes & "','" & _
-            '        ConfigName & "','" & strFireArm & "','" & Caliber & "','" & strBarLen & "')"
-            'Obj.ConnExec(Sql)
+
             MsgBox("Information was saved to the Loaders Log!")
             If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
             Close()
