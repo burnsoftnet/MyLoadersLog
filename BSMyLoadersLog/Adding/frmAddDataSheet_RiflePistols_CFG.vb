@@ -1,5 +1,6 @@
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
@@ -24,7 +25,7 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private _errOut as String
+        Private _errOut As String
         ''' <summary>
         ''' Loads the automatic fill.
         ''' </summary>
@@ -32,11 +33,11 @@ Namespace Adding
         Sub LoadAutoFill()
             Try
                 txtGroup.AutoCompleteCustomSource = ConfigMetalic.GroupSize(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtCon.AutoCompleteCustomSource = ConfigMetalic.Conditions(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtLen.AutoCompleteCustomSource = ConfigMetalic.TotalLenght(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
             End Try
@@ -95,23 +96,23 @@ Namespace Adding
                 Else
                     caseStatus = "(USED)"
                 End If
-                Dim powderDetails as String = GeneralHelpers.FluffContent(powName & " - " & powWei & " - " & powManu)
+                Dim powderDetails As String = GeneralHelpers.FluffContent(powName & " - " & powWei & " - " & powManu)
                 Dim bulletDetails As String = GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")"
                 Dim primerDetails As String = priManu & " " & priName
                 Dim caseDetails As String = caseManu & " " & caseName & " " & caseStatus
 
-                If Not LoadersLogMetallic.Add(DatabasePath, firearmId := lngFid, dateCreated := strDateTested, 
-                                              yards := lngYards, groupSize := strGroup, numberOfShots := lngNumShots, 
-                                              powderDetails := powderDetails, bulletDetails := bulletDetails, 
-                                              primerDetails := primerDetails, caseDetails := caseDetails, 
-                                              condition := strCond, oal := strLen, notes := strNotes, 
-                                              configName := configName, FirearmName := strFireArm, 
-                                              caliber := caliber, BarrelLenght := strBarLen, _errOut) Then
+                If Not LoadersLogMetallic.Add(DatabasePath, firearmId:=lngFid, dateCreated:=strDateTested,
+                                              yards:=lngYards, groupSize:=strGroup, numberOfShots:=lngNumShots,
+                                              powderDetails:=powderDetails, bulletDetails:=bulletDetails,
+                                              primerDetails:=primerDetails, caseDetails:=caseDetails,
+                                              condition:=strCond, oal:=strLen, notes:=strNotes,
+                                              configName:=configName, FirearmName:=strFireArm,
+                                              caliber:=caliber, BarrelLenght:=strBarLen, _errOut) Then
                     Throw New Exception(_errOut)
                 End If
 
                 MsgBox("Information was saved to the Loaders Log!")
-                If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
+                If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
@@ -156,15 +157,15 @@ Namespace Adding
                 Dim lngFid As Integer = cmbFirearm.SelectedValue
                 Dim strCal As String = ""
                 Dim values As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, lngFid, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In values
                     strCal = o.Caliber
                 Next
-                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath, strCal, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
             Catch ex As Exception
-                Call LogError(Name, "UpdateConfigList", Err.Number, 
+                Call LogError(Name, "UpdateConfigList", Err.Number,
                               ex.Message.ToString)
             End Try
         End Sub
@@ -185,4 +186,4 @@ Namespace Adding
 
         End Sub
     End Class
-End NameSpace
+End Namespace

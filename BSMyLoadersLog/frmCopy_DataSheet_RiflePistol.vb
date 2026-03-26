@@ -1,6 +1,7 @@
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Applications.MLL.LoadersLog
+Imports BSMyLoadersLog.Viewing
 ''' <summary>
 ''' Class FrmCopyDataSheetRiflePistol.
 ''' Implements the <see cref="Form" />
@@ -88,7 +89,7 @@ Public Class FrmCopyDataSheetRiflePistol
                                           _errOut) Then Throw New Exception(_errOut)
 
             MsgBox("Information was saved to the Loaders Log!")
-            If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
+            If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
             Close()
         Catch ex As Exception
             Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)

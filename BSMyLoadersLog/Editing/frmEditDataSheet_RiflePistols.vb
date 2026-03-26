@@ -1,7 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
-
+Imports BSMyLoadersLog.Viewing
 Public Class frmEditDataSheet_RiflePistols
     Public CFGID As Long
     Public FromView As Boolean
@@ -67,7 +67,7 @@ Public Class frmEditDataSheet_RiflePistols
                                 "',BarrelLen='" & strBarLen & "' where ID=" & CFGID
             Obj.ConnExec(Sql)
             MsgBox("Information was saved to the Loaders Log!")
-            If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
+            If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

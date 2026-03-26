@@ -1,7 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
-
+Imports BSMyLoadersLog.Viewing
 ''' <summary>
 ''' Add Data sheet for Rifle or Pistol, aka metallic reloading data sheet
 ''' </summary>
@@ -100,7 +100,7 @@ Public Class FrmAddDataSheetRiflePistolsMan
                     configName & "','" & strFireArm & "','" & caliber & "','" & strBarLen & "')"
             obj.ConnExec(sql)
             MsgBox("Information was saved to the Loaders Log!")
-            If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
+            If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
             Close()
         Catch ex As Exception
             Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
