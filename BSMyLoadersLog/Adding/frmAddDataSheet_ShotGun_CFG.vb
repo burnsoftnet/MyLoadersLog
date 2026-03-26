@@ -1,15 +1,22 @@
 ﻿Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MLL.AutoFill
+
 Public Class FrmAddDataSheetShotGunCfg
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public Fid As Long
     Public FromView As Boolean
     Sub LoadAutoFill()
         Try
 
-            Dim objAf As New AutoFillCollections.ShotGun
-            'Put in things that you want to autofill in this box
-            txtPattern.AutoCompleteCustomSource = objAf.List_SG_Log_SG_Patterns()
-
+            'Dim objAf As New AutoFillCollections.ShotGun
+            ''Put in things that you want to autofill in this box
+            'txtPattern.AutoCompleteCustomSource = objAf.List_SG_Log_SG_Patterns()
+            txtPattern.AutoCompleteCustomSource = ConfigShotgun.LogPattern(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
         End Try

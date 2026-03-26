@@ -1,15 +1,30 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddShell
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Sub AutoLoad()
         Try
-            Dim ObjAF As New AutoFillCollections.ShotGun
-            txtManu.AutoCompleteCustomSource = ObjAF.List_SG_Case_Manufacturer
-            txtName.AutoCompleteCustomSource = ObjAF.List_SG_Case_Name
-            txtLen.AutoCompleteCustomSource = ObjAF.List_SG_Case_Length
-            txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_Case_Price
-            txtDRAM.AutoCompleteCustomSource = ObjAF.List_SG_Case_DRAM
+            'Dim ObjAF As New AutoFillCollections.ShotGun
+            'txtManu.AutoCompleteCustomSource = ObjAF.List_SG_Case_Manufacturer
+            'txtName.AutoCompleteCustomSource = ObjAF.List_SG_Case_Name
+            'txtLen.AutoCompleteCustomSource = ObjAF.List_SG_Case_Length
+            'txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_Case_Price
+            'txtDRAM.AutoCompleteCustomSource = ObjAF.List_SG_Case_DRAM
+            txtManu.AutoCompleteCustomSource = GeneralShotgun.CaseManufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = GeneralShotgun.CaseName(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtLen.AutoCompleteCustomSource = GeneralShotgun.Length(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPrice.AutoCompleteCustomSource = GeneralShotgun.Price(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtDRAM.AutoCompleteCustomSource = GeneralShotgun.Dram(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Me.Name, "utoLoad", Err.Number, ex.Message.ToString)
         End Try

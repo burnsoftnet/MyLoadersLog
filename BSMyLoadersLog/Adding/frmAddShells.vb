@@ -1,16 +1,29 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddShells
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public FromView As Boolean
     Sub AutoFill()
         Try
-            Dim ObjAf As New AutoFillCollections
-            txtManu.AutoCompleteCustomSource = ObjAf.List_Case_Manufacturer
-            txtName.AutoCompleteCustomSource = ObjAf.List_Case_Name
-            txtTTL.AutoCompleteCustomSource = ObjAf.List_Case_Trim_to_length
-            txtPrice.AutoCompleteCustomSource = ObjAf.List_Case_Price
+            'Dim ObjAf As New AutoFillCollections
+            'txtManu.AutoCompleteCustomSource = ObjAf.List_Case_Manufacturer
+            'txtName.AutoCompleteCustomSource = ObjAf.List_Case_Name
+            'txtTTL.AutoCompleteCustomSource = ObjAf.List_Case_Trim_to_length
+            'txtPrice.AutoCompleteCustomSource = ObjAf.List_Case_Price
+            txtManu.AutoCompleteCustomSource = Cases.Manufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = Cases.Name(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtTTL.AutoCompleteCustomSource = Cases.TrimToLength(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPrice.AutoCompleteCustomSource = Cases.Price(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             'Dim ObjFS As New BSFileSystem
             'Dim sMessage As String = "frmAddShells.AutoFill" & "::" & Err.Number & "::" & ex.Message.ToString()

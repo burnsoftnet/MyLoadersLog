@@ -1,12 +1,19 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmConfig_Add_Wizard
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Private Sub frmConfig_Add_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Me.List_CalibersTableAdapter.Fill(Me.MLLDataSet.List_Calibers)
-            Dim Obj As New AutoFillCollections
-            txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
+            'Dim Obj As New AutoFillCollections
+            'txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
+            txtConfigID.AutoCompleteCustomSource = ConfigMetalic.ConfigName(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
             chkShotgun.Enabled = UseShotgun
             If LoaderTypeShotGun And LoaderTypeMetalic Then
                 chkShotgun.Checked = False

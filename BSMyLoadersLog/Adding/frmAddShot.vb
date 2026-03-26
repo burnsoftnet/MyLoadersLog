@@ -1,18 +1,35 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmAddShot
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public FromView As Boolean
     Sub AutoFill()
         Try
-            Dim ObjAF As New AutoFillCollections.ShotGun
-            txtManu.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Manu
-            txtName.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Name
-            txtMat.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_mat
-            txtShotNo.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_ShotNo
-            txtPounds.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_weight
-            txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Price
+            'Dim ObjAF As New AutoFillCollections.ShotGun
+            'txtManu.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Manu
+            'txtName.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Name
+            'txtMat.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_mat
+            'txtShotNo.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_ShotNo
+            'txtPounds.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_weight
+            'txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_SHOTSLUG_Details_Price
+            txtManu.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsManufacturer(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtName.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsName(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtMat.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsMat(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtShotNo.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsShotNo(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPounds.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsWeight(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtPrice.AutoCompleteCustomSource = GeneralShotgun.TypeDetailsPrice(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Me.Name, "AutoFill", Err.Number, ex.Message.ToString)
         End Try
