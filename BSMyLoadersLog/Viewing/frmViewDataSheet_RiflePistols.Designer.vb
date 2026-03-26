@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmViewDataSheet_RiflePistols
+Partial Class FrmViewDataSheetRiflePistols
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class frmViewDataSheet_RiflePistols
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewDataSheet_RiflePistols))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmViewDataSheetRiflePistols))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripDropDownButton
@@ -352,7 +352,7 @@ Partial Class frmViewDataSheet_RiflePistols
         Me.HelpProvider1.SetHelpNavigator(Me, System.Windows.Forms.HelpNavigator.KeywordIndex)
         Me.HelpProvider1.SetHelpString(Me, "View Loaders Log - Rifle & Pistol")
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmViewDataSheet_RiflePistols"
+        Me.Name = "FrmViewDataSheetRiflePistols"
         Me.HelpProvider1.SetShowHelp(Me, True)
         Me.Text = "Loaders Log - Rifles & Pistols"
         Me.ToolStrip1.ResumeLayout(False)

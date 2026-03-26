@@ -1383,7 +1383,7 @@ Public Class MdiParentMain
     Private Sub RiflePistolToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles RiflePistolToolStripMenuItem1.Click
         Try
             Cursor = Cursors.WaitCursor
-            Dim frmnew As New frmViewDataSheet_RiflePistols
+            Dim frmnew As New FrmViewDataSheetRiflePistols
             frmnew.MdiParent = Me
             frmnew.Show()
             Cursor = Cursors.Arrow
