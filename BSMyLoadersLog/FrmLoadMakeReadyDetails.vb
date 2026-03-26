@@ -5,6 +5,7 @@ Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
+Imports BurnSoft.Applications.MLL.LoadersLog
 Imports BurnSoft.Applications.MLL.Types
 
 ''' <summary>
@@ -405,11 +406,19 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     ''' <param name="qty">The qty.</param>
     Sub SaveAudit(ByVal qty As Long)
-        Dim Obj As New BSDatabase
-        Dim ObjIM As New InventoryMath
-        Dim SQL As String = "INSERT INTO Loaders_Log_Ammunition_Audit (CFID,dtc,qty,ec,ecpr) VALUES(" & _
-            ConfigID & ",'" & Now & "'," & qty & "," & ObjIM.ConvertToDollars((qty * dC1RA)) & "," & ObjIM.ConvertToDollars(dC1RA) & ")"
-        Obj.ConnExec(SQL)
+        'Dim Obj As New BSDatabase
+        'Dim ObjIM As New InventoryMath
+        'Dim SQL As String = "INSERT INTO Loaders_Log_Ammunition_Audit (CFID,dtc,qty,ec,ecpr) VALUES(" & _
+        '    ConfigID & ",'" & Now & "'," & qty & "," & ObjIM.ConvertToDollars((qty * dC1RA)) & "," & ObjIM.ConvertToDollars(dC1RA) & ")"
+        'Obj.ConnExec(SQL)
+        Try
+            If Not LoadersLogAmmunitionAudit.Add(DatabasePath, ConfigID, Now, qty, 
+                                                 Converters.ConvertToDollars(qty * dC1RA), 
+                                                 Converters.ConvertToDollars(dC1RA), 
+                                                 errOut) Then Throw New Exception(errOut)
+        Catch ex As Exception
+            Call LogError(Me.Name, "SaveAudit", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
 #End Region
 #Region "Form Subs"
@@ -420,7 +429,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub frmLoadMakeReady_Details_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Call LoadData()
-        lblInv.Text = "NOTE: Inventory states that you have enough to make " & lMakeableRounds & " rounds."
+        lblInv.Text = $"NOTE: Inventory states that you have enough to make {lMakeableRounds} rounds."
         nudQty.Maximum = lMakeableRounds
     End Sub
     ''' <summary>
@@ -429,7 +438,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the btnMake control.
