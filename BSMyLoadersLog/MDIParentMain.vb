@@ -1,7 +1,7 @@
 
-Imports BSMyLoadersLog.LoadersClass
-Imports System.Data.Odbc
-Imports System.Diagnostics.Eventing.Reader
+'Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
+'Imports System.Diagnostics.Eventing.Reader
 Imports System.IO
 Imports BurnSoft.MsgBox
 Imports BSMyLoadersLog.Adding
@@ -25,7 +25,7 @@ Public Class MdiParentMain
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Private errOut as String
+    Private _errOut as String
 #Region "Form Subs"
     ''' <summary>
     ''' Handles the Disposed event of the MDIParentMain control.
@@ -50,8 +50,8 @@ Public Class MdiParentMain
     ''' </summary>
     ''' <exception cref="System.Exception"></exception>
     Private Sub CheckLogin()
-        Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, errOut)
-        If errOut.Length > 0 Then Throw New Exception(errOut)
+        Dim loginInfo as List(Of LoginInformationOnly) = OwnerInformation.LoginEnabled(DatabasePath, _errOut)
+        If _errOut.Length > 0 Then Throw New Exception(_errOut)
         Dim requiredLogin as Boolean = False
         For Each o As LoginInformationOnly In loginInfo
             requiredLogin = o.UseLock
@@ -99,17 +99,17 @@ Public Class MdiParentMain
             'End If
             'Dim obj As New LoadersClass.BSRegistry
             'OwnerID = GetOwnerID()
-            OwnerId = OwnerInformation.GetOwnerID(DatabasePath, errOut)
-            If errOut.Length > 0 Then Throw New Exception(errOut)
+            OwnerId = OwnerInformation.GetOwnerID(DatabasePath, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
            
             'Call obj.UpDateAppDetails()
             If Not MyRegistry.UpdateAppDetails(Application.ProductVersion, Application.ProductName, 
                                         Application.ExecutablePath(), ApplicationPath, 
                                         MyLogFile, DatabasePath, ApplicationPathData, 
-                                               errOut) Then Throw New Exception(errOut)
+                                               _errOut) Then Throw New Exception(_errOut)
 
-            Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(errOut)
-            If errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim regSettings As List(Of RegistrySettings) = MyRegistry.GetSettings(_errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As RegistrySettings In regSettings
                 LastSucBackup = o.LastSucBackup
                 AlertOnBackUp = o.AlertOnBackUp
@@ -135,7 +135,7 @@ Public Class MdiParentMain
                 frmNew.Show()
             End If
             'OwnerLoadName = Replace(GetLoadName(), "''", "'")
-            OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, errOut), "''", "'")
+            OwnerLoadName = Replace(OwnerInformation.GetLoadName(DatabasePath, _errOut), "''", "'")
             If OwnerLoadName <> "My Loaders Log" Then Text = $"{OwnerLoadName} Loaders Log"
             Call RefreshData()
             Call InitForm()
@@ -208,7 +208,7 @@ Public Class MdiParentMain
             If Lastconfigedviewed > 0 Then lstConfigSheets.SelectedValue = Lastconfigedviewed
             'Dim objR As New BSRegistry
             'objR.SaveConfigSort(selectedView)
-            If Not MyRegistry.SaveConfigSort(selectedView, errOut) Then Throw New Exception(errOut)
+            If Not MyRegistry.SaveConfigSort(selectedView, _errOut) Then Throw New Exception(_errOut)
         Catch ex As Exception
             Call LogError(Name, "RefreshConfigData", Err.Number, ex.Message.ToString)
         End Try
@@ -376,11 +376,11 @@ Public Class MdiParentMain
     Sub InitForm()
         Try
             'Dim obj As New BSMGC
-            If RegistryHelpers.MyGunCollectionIsInstalled(errOut) Then
+            If RegistryHelpers.MyGunCollectionIsInstalled(_errOut) Then
                 tsslMGCEnabled.Enabled = True
                 tsslMGCEnabled.Visible = True
-                MgcPath = RegistryHelpers.GetMgcExePath(errOut)
-                if errOut.Length > 0 Then Throw new Exception(errOut)
+                MgcPath = RegistryHelpers.GetMgcExePath(_errOut)
+                if _errOut.Length > 0 Then Throw new Exception(_errOut)
                 SaveAsToolStripMenuItem.Enabled = True
                 ToolStripButton1.Enabled = True
                 ExportFirearmsToMGCToolStripMenuItem.Enabled = True
@@ -460,6 +460,7 @@ Public Class MdiParentMain
     ''' </summary>
     Sub CheckBackup()
         Try
+            ' TODO: See if this is needed or was replaced.
             'Dim objR As New LoadersClass.BSRegistry
             If Not AlertOnBackUp Then Exit Sub
             Dim myLastDateDiff As Long = DateDiff(DateInterval.Day, CDate(LastSucBackup), DateTime.Now)
@@ -472,11 +473,7 @@ Public Class MdiParentMain
             Call LogError(Name, "CheckBackup", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    '''' <summary>
-    '''' Copies the configuration details NSG.
-    '''' </summary>
-    '''' <param name="myId">My identifier.</param>
-    '''' <param name="configId">The configuration identifier.</param>
+
     '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataMetalic.CopyConfig")>
     'Private Sub CopyConfigDetailsNsg(ByVal myId As Long, ByVal configId As Long)
     '    Try
@@ -498,11 +495,7 @@ Public Class MdiParentMain
     '        Call LogError(Name, "CopyConfigDetailsNSG", Err.Number, ex.Message.ToString)
     '    End Try
     'End Sub
-    '''' <summary>
-    '''' Copies the configuration powders NSG.
-    '''' </summary>
-    '''' <param name="myId">My identifier.</param>
-    '''' <param name="configId">The configuration identifier.</param>
+
     '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowders.CopyConfig")>
     'Private Sub CopyConfigPowdersNsg(ByVal myId As Long, ByVal configId As Long)
     '    Try
@@ -525,11 +518,7 @@ Public Class MdiParentMain
     '        Call LogError(Name, "CopyConfigPowdersNSG", Err.Number, ex.Message.ToString)
     '    End Try
     'End Sub
-    '''' <summary>
-    '''' Copies the configuration details sg.
-    '''' </summary>
-    '''' <param name="myId">My identifier.</param>
-    '''' <param name="configId">The configuration identifier.</param>
+
     '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataShotgun.CopyConfig")>
     'Private Sub CopyConfigDetailsSg(ByVal myId As Long, ByVal configId As Long)
     '    Try
@@ -553,11 +542,7 @@ Public Class MdiParentMain
     '        Call LogError(Name, "CopyConfigDetailsSG", Err.Number, ex.Message.ToString)
     '    End Try
     'End Sub
-    '''' <summary>
-    '''' Copies the configuration powders sg.
-    '''' </summary>
-    '''' <param name="myId">My identifier.</param>
-    '''' <param name="configId">The configuration identifier.</param>
+
     '<Obsolete("Replaced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataPowdersShotgun.CopyConfig")>
     'Private Sub CopyConfigPowdersSg(ByVal myId As Long, ByVal configId As Long)
     '    Try
@@ -635,8 +620,8 @@ Public Class MdiParentMain
         'Dim objGs As New GlobalFunctions
         Dim lngConfigId As Long = lstConfigSheets.SelectedValue
         'Dim configType As Boolean = objGs.IsShotGunCOnfig(lngConfigId)
-        Dim configType As Boolean = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngConfigId, errOut)
-        if errOut.Length > 0 Then Throw New Exception(errOut)
+        Dim configType As Boolean = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngConfigId, _errOut)
+        if _errOut.Length > 0 Then Throw New Exception(_errOut)
 
         If Not configType Then
             Dim frmNew As New frmView_Configuration_Sheet
@@ -681,8 +666,8 @@ Public Class MdiParentMain
             'Dim objGf As New GlobalFunctions
             Dim lngCalId As Long = lstCal.SelectedValue
             'Dim isNsg As Boolean = objGf.IsNotInShotgunConfigbyCal(lngCalId)
-            Dim isNsg As Boolean = ConfigListGeneral.IsNotInShotgunConfigByCaliber(DatabasePath, lngCalId, errOut)
-            If errOut.Length > 0 Then Throw new Exception(errOut)
+            Dim isNsg As Boolean = ConfigListGeneral.IsNotInShotgunConfigByCaliber(DatabasePath, lngCalId, _errOut)
+            If _errOut.Length > 0 Then Throw new Exception(_errOut)
             If isNsg Then
                 Dim frmNew As New frmView_List_ConfigurationsByCal
                 frmNew.CALID = lngCalId
@@ -708,12 +693,12 @@ Public Class MdiParentMain
         'Dim obj As New BSDatabase
         'Dim objG As New GlobalFunctions
         'Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
-        Dim strName As String = ConfigListDataName.GetName(DatabasePath, lngConfigId ,errOut)
-        If errOut.Length > 0 then Throw New Exception(errout)
+        Dim strName As String = ConfigListDataName.GetName(DatabasePath, lngConfigId ,_errOut)
+        If _errOut.Length > 0 then Throw New Exception(_errOut)
         Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
         'Dim sql As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
         If strAns = vbYes Then
-            if Not ConfigListDataName.Delete(DatabasePath, lngConfigId ,errOut) then Throw New Exception(errOut)
+            if Not ConfigListDataName.Delete(DatabasePath, lngConfigId ,_errOut) then Throw New Exception(_errOut)
             'obj.ConnExec(sql)
             'sql = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
             'obj.ConnExec(sql)
@@ -748,8 +733,8 @@ Public Class MdiParentMain
         Try
             'Dim obj As New BSMGC
             'Dim strPath As String = obj.GetMGCEXEPath
-            Dim strPath As String = RegistryHelpers.GetMgcExePath(errOut)
-            if errOut.Length > 0 then Throw new Exception(errOut)
+            Dim strPath As String = RegistryHelpers.GetMgcExePath(_errOut)
+            if _errOut.Length > 0 then Throw new Exception(_errOut)
             Dim myProcess As New Process
             myProcess.StartInfo.FileName = strPath
             myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
@@ -1209,14 +1194,15 @@ Public Class MdiParentMain
     Private Sub MakeReadyToUseAmmunitionToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MakeReadyToUseAmmunitionToolStripMenuItem.Click
         Try
             Dim configId As Long = lstConfigSheets.SelectedValue
-            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
-            if errOut.Length > 0 Then Throw new Exception(errOut)
-            Dim frmNew As New frmLoadMakeReady_Details
+            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, _errOut)
+            if _errOut.Length > 0 Then Throw new Exception(_errOut)
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
-            frmNew.ConfigID = configId
-            frmNew.ConfigName = configName
-            frmNew.MdiParent = Me
+            Dim frmNew As New frmLoadMakeReady_Details With {
+                .ConfigID = configId,
+                .ConfigName = configName,
+                .MdiParent = Me
+            }
             frmNew.Show()
         Catch ex As Exception
             Call LogError(Name, "MakeReadyToUseAmmunitionToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
@@ -1234,15 +1220,15 @@ Public Class MdiParentMain
             'Dim objG As New GlobalFunctions
             'Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
             Dim sql As String = $"SELECT * from Config_List_Name where ID={lngConfigId}"
-            Dim strName As String = BurnSoft.Applications.MLL.Database.GetName(DatabasePath, sql, "ConfigName", errOut)
-            if errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim strName As String = BurnSoft.Applications.MLL.Database.GetName(DatabasePath, sql, "ConfigName", _errOut)
+            if _errOut.Length > 0 Then Throw New Exception(_errOut)
             Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
             'Dim isShotGun As Boolean = objG.IsShotGunCOnfig(lngConfigId)
             'Dim isShotGun As Boolean = ConfigListGeneral.IsShotGunCOnfig(DatabasePath, lngConfigId, errOut)
-            if errOut.Length > 0 Then Throw New Exception(errOut)
+            if _errOut.Length > 0 Then Throw New Exception(_errOut)
             'Dim sql As String = ""
             If strAns = vbYes Then
-                If Not ConfigListDataName.Delete(DatabasePath, lngConfigId, errOut) Then Throw new Exception(errOut)
+                If Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw new Exception(_errOut)
                 'If Not isShotGun Then
                 '    sql = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
                 '    obj.ConnExec(sql)
@@ -1272,14 +1258,13 @@ Public Class MdiParentMain
     Private Sub ToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripMenuItem1.Click
         try
             Dim configId As Long = lstConfigSheets.SelectedValue
-            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+            Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, _errOut)
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
             Dim sMsg As String = "Renaming " & configName & " to:"
             Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
             If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
-                ' TODO: Replace with BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.Rename Function
-                if Not ConfigListDataName.Rename(DatabasePath, configId, strNewName, errOut) Then Throw new Exception(errOut)
+                if Not ConfigListDataName.Rename(DatabasePath, configId, strNewName, _errOut) Then Throw new Exception(_errOut)
                 'Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
                 'Dim obj As New BSDatabase
                 'obj.ConnExec(sql)
@@ -1312,16 +1297,15 @@ Public Class MdiParentMain
     Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
         Try
             Dim configId As Long = lstConfigSheets.SelectedValue
-        Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+        Dim configName As String = GeneralFunctions.GetTitle(DatabasePath, configId, _errOut)
         'Dim objG As New GlobalFunctions
         'configName = objG.GetTitle(configId)
         'Dim isShotGun As Boolean = False
         Dim sMsg As String = "What do you wish to call this new configuration?"
         Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Copy Configuration", configName)))
         If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
-            if Not ConfigListDataName.CopyConfig(DatabasePath, strNewName, configId, errOut) Then Throw new Exception(errOut)
+            if Not ConfigListDataName.CopyConfig(DatabasePath, strNewName, configId, _errOut) Then Throw new Exception(_errOut)
 
-            '' TODO: Replace all the code below with the BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.CopyConfig function!
             'Dim sql As String = "SELECT * from Config_List_Name where ID=" & configId
             'Dim obj As New BSDatabase
             'Call obj.ConnectDB()
@@ -1368,7 +1352,7 @@ Public Class MdiParentMain
             Dim configName As String
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
-            configName = GeneralFunctions.GetTitle(DatabasePath, configId, errOut)
+            configName = GeneralFunctions.GetTitle(DatabasePath, configId, _errOut)
             frmNew.ConfigID = configId
             frmNew.ConfigName = configName
             frmNew.MdiParent = Me
@@ -1705,10 +1689,10 @@ Public Class MdiParentMain
             'Dim strSqlTable As String = "List_Calibers"
             'Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
             'Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
-            Dim cOnfigCount As Long = CaliberInventory.TotalConfigurationUsedByCaliber(DatabasePath, lngCalId, errOut)
-            if errOut.Length > 0 Then Throw New Exception(errOut)
-            Dim strName As String = CaliberInventory.GetName(DatabasePath, lngCalId, errOut)
-            if errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim cOnfigCount As Long = CaliberInventory.TotalConfigurationUsedByCaliber(DatabasePath, lngCalId, _errOut)
+            if _errOut.Length > 0 Then Throw New Exception(_errOut)
+            Dim strName As String = CaliberInventory.GetName(DatabasePath, lngCalId, _errOut)
+            if _errOut.Length > 0 Then Throw New Exception(_errOut)
             'Dim cOnfigCount As Long = 
             Dim strAns As String
             'Dim sql As String = ""
@@ -1726,22 +1710,22 @@ Public Class MdiParentMain
                     'Cursor = Cursors.WaitCursor
                     'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
                     'obj.ConnExec(sql)
-                    if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
+                    if not CaliberInventory.Delete(DatabasePath, lngCalId, _errOut) then throw new Exception(_errOut)
                     'Cursor = Cursors.Arrow
                 Else
-                    Dim lst as List(Of QueryConfigCaliberData) = New List(Of QueryConfigCaliberData)()
-                    Dim isShotgunConfig as Boolean  = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, errOut)
-                    if errOut.Length > 0 Then Throw New Exception(errOut)
+                    Dim lst as List(Of QueryConfigCaliberData)
+                    Dim isShotgunConfig as Boolean  = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, _errOut)
+                    if _errOut.Length > 0 Then Throw New Exception(_errOut)
                     if isShotgunConfig Then
-                        lst = QueryConfigCaliberShotgun.GetDetailsByCaliberId(DatabasePath, lngCalId, errOut)
-                        if errOut.Length > 0 Then Throw New Exception(errOut)
+                        lst = QueryConfigCaliberShotgun.GetDetailsByCaliberId(DatabasePath, lngCalId, _errOut)
+                        if _errOut.Length > 0 Then Throw New Exception(_errOut)
                     Else 
-                        lst = QueryConfigCaliberMetallic.GetDetailsByCaliberId(DatabasePath, lngCalId, errOut)
-                        if errOut.Length > 0 Then Throw New Exception(errOut)
+                        lst = QueryConfigCaliberMetallic.GetDetailsByCaliberId(DatabasePath, lngCalId, _errOut)
+                        if _errOut.Length > 0 Then Throw New Exception(_errOut)
                     End If
 
                     For Each o As QueryConfigCaliberData In lst
-                        If Not ConfigListDataName.Delete(DatabasePath, o.Id, errOut ) Then Throw New Exception(errOut)
+                        If Not ConfigListDataName.Delete(DatabasePath, o.Id, _errOut ) Then Throw New Exception(_errOut)
                     Next
 
 
@@ -1755,7 +1739,6 @@ Public Class MdiParentMain
                     'Cursor = Cursors.WaitCursor
                     'While rs.Read
                     '    configId = rs("CLNID")
-                    '    ' TODO: Replace with ConfigListDataName.Delete function
                     '    If rs("IsShotGun") = 0 Then
                     '        sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
                     '        obj.ConnExec(sql)
@@ -1781,7 +1764,7 @@ Public Class MdiParentMain
                     'cmd = Nothing
                     'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
                     'obj.ConnExec(sql)
-                    if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
+                    if not CaliberInventory.Delete(DatabasePath, lngCalId, _errOut) then throw new Exception(_errOut)
                     Call RefreshCalData()
                     Call RefreshConfigData()
                     Cursor = Cursors.Arrow
