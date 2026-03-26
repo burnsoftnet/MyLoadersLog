@@ -252,21 +252,21 @@ Public Class MdiParentMain
     '    PowderBushingsToolStripMenuItem.Visible = False
     '    BushingsChargeBarToolStripMenuItem.Visible = False
     'End Sub
-    ''' <summary>
-    ''' Initializes the reg values.
-    ''' </summary>
-    Private Sub InitRegValues()
-        'Dim objr As New BSRegistry
-        'Call objr.UpDateAppDetails()
-        Try
-            If Not MyRegistry.UpdateAppDetails(Application.ProductVersion, Application.ProductName, 
-                                               Application.ExecutablePath(), ApplicationPath, 
-                                               MyLogFile, DatabasePath, ApplicationPathData, 
-                                               errOut) Then Throw New Exception(errOut)
-        Catch ex As Exception
-            Call LogError(Name, "InitRegValues", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
+    '''' <summary>
+    '''' Initializes the reg values.
+    '''' </summary>
+    'Private Sub InitRegValues()
+    '    'Dim objr As New BSRegistry
+    '    'Call objr.UpDateAppDetails()
+    '    Try
+    '        If Not MyRegistry.UpdateAppDetails(Application.ProductVersion, Application.ProductName, 
+    '                                           Application.ExecutablePath(), ApplicationPath, 
+    '                                           MyLogFile, DatabasePath, ApplicationPathData, 
+    '                                           errOut) Then Throw New Exception(errOut)
+    '    Catch ex As Exception
+    '        Call LogError(Name, "InitRegValues", Err.Number, ex.Message.ToString)
+    '    End Try
+    'End Sub
     ''' <summary>
     ''' Toggles the shotgun views visible or hidden
     ''' </summary>
@@ -1710,7 +1710,7 @@ Public Class MdiParentMain
             Dim strName As String = CaliberInventory.GetName(DatabasePath, lngCalId, errOut)
             if errOut.Length > 0 Then Throw New Exception(errOut)
             'Dim cOnfigCount As Long = 
-            Dim strAns As String = ""
+            Dim strAns As String
             'Dim sql As String = ""
             If cOnfigCount = 0 Then
                 strAns = MsgBox("Are you sure you want to delete " & strName & "?", 
