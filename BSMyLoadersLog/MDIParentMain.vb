@@ -1734,7 +1734,7 @@ Public Class MdiParentMain
                     Cursor = Cursors.WaitCursor
                     While rs.Read
                         configId = rs("CLNID")
-                        ' TODO: Replace with DconfigListDataName.Delete function
+                        ' TODO: Replace with ConfigListDataName.Delete function
                         If rs("IsShotGun") = 0 Then
                             sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
                             obj.ConnExec(sql)
