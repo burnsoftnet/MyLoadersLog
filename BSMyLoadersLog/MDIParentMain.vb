@@ -1,6 +1,7 @@
 
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports System.Diagnostics.Eventing.Reader
 Imports System.IO
 Imports BurnSoft.MsgBox
 Imports BSMyLoadersLog.Adding
@@ -1275,10 +1276,10 @@ Public Class MdiParentMain
             Dim strNewName As String = Trim(GeneralHelpers.FluffContent(InputBox(sMsg, "Rename Configuration Name", configName)))
             If Len(strNewName) <> 0 And LCase(strNewName) <> LCase(configName) Then
                 ' TODO: Replace with BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.Rename Function
-                'if Not ConfigListDataName.Rename(DatabasePath, configId, strNewName, errOut) Then Throw new Exception(errOut)
-                Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
-                Dim obj As New BSDatabase
-                obj.ConnExec(sql)
+                if Not ConfigListDataName.Rename(DatabasePath, configId, strNewName, errOut) Then Throw new Exception(errOut)
+                'Dim sql As String = "UPDATE Config_List_Name set ConfigName='" & strNewName & "' where id=" & configId
+                'Dim obj As New BSDatabase
+                'obj.ConnExec(sql)
                 Call RefreshConfigData()
             End If
         Catch ex As Exception
@@ -1696,8 +1697,8 @@ Public Class MdiParentMain
     Private Sub DeleteCaliberToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteCaliberToolStripMenuItem.Click
         Try
             Dim lngCalId As Long = lstCal.SelectedValue
-            Dim obj As New BSDatabase
-            Dim objG As New GlobalFunctions
+            'Dim obj As New BSDatabase
+            'Dim objG As New GlobalFunctions
             'Dim strSqlTable As String = "List_Calibers"
             'Dim strName As String = objG.GetName("SELECT * from " & strSqlTable & " where ID=" & lngCalId, "Cal")
             'Dim cOnfigCount As Long = objG.TotalConfigByCal(lngCalId)
@@ -1707,7 +1708,7 @@ Public Class MdiParentMain
             if errOut.Length > 0 Then Throw New Exception(errOut)
             'Dim cOnfigCount As Long = 
             Dim strAns As String = ""
-            Dim sql As String = ""
+            'Dim sql As String = ""
             If cOnfigCount = 0 Then
                 strAns = MsgBox("Are you sure you want to delete " & strName & "?", 
                                 MsgBoxStyle.YesNo, "Delete Item from the Database.")
@@ -1717,47 +1718,64 @@ Public Class MdiParentMain
                                 "Delete Item from the Database.")
             End If
             If strAns = vbYes Then
+                Cursor = Cursors.WaitCursor
                 If cOnfigCount = 0 Then
-                    Cursor = Cursors.WaitCursor
+                    'Cursor = Cursors.WaitCursor
                     'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
                     'obj.ConnExec(sql)
                     if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
-                    Cursor = Cursors.Arrow
+                    'Cursor = Cursors.Arrow
                 Else
-                    sql = "Select ID,IsShotGun from qry_ConfigCal_NSG where CalID=" & lngCalId
-                    If ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, errOut) Then sql = "Select ID,IsShotGun from qry_ConfigCal_SG where CalID=" & lngCalId
-                    obj.ConnectDB()
-                    Dim cmd As New OdbcCommand(sql, obj.Conn)
-                    Dim rs As OdbcDataReader
-                    rs = cmd.ExecuteReader
-                    Dim configId As Long = 0
-                    Cursor = Cursors.WaitCursor
-                    While rs.Read
-                        configId = rs("CLNID")
-                        ' TODO: Replace with ConfigListDataName.Delete function
-                        If rs("IsShotGun") = 0 Then
-                            sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Data_NSG where CLNID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Name where ID=" & configId
-                            obj.ConnExec(sql)
-                        Else
-                            sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Powder_Data_SG where CLNID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Data_SG where CLNID=" & configId
-                            obj.ConnExec(sql)
-                            sql = "DELETE from Config_List_Name where ID=" & configId
-                            obj.ConnExec(sql)
-                        End If
-                    End While
-                    rs.Close()
-                    rs = Nothing
-                    cmd = Nothing
+                    Dim lst as List(Of QueryConfigCaliberData) = New List(Of QueryConfigCaliberData)()
+                    Dim isShotgunConfig as Boolean  = ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, errOut)
+                    if errOut.Length > 0 Then Throw New Exception(errOut)
+                    if isShotgunConfig Then
+                        lst = QueryConfigCaliberShotgun.GetDetailsByCaliberId(DatabasePath, lngCalId, errOut)
+                        if errOut.Length > 0 Then Throw New Exception(errOut)
+                    Else 
+                        lst = QueryConfigCaliberMetallic.GetDetailsByCaliberId(DatabasePath, lngCalId, errOut)
+                        if errOut.Length > 0 Then Throw New Exception(errOut)
+                    End If
+
+                    For Each o As QueryConfigCaliberData In lst
+                        If Not ConfigListDataName.Delete(DatabasePath, o.Id, errOut ) Then Throw New Exception(errOut)
+                    Next
+
+
+                    'sql = "Select ID,IsShotGun from qry_ConfigCal_NSG where CalID=" & lngCalId
+                    'If ConfigListGeneral.IsShotgunConfig(DatabasePath, lngCalId, errOut) Then sql = "Select ID,IsShotGun from qry_ConfigCal_SG where CalID=" & lngCalId
+                    'obj.ConnectDB()
+                    'Dim cmd As New OdbcCommand(sql, obj.Conn)
+                    'Dim rs As OdbcDataReader
+                    'rs = cmd.ExecuteReader
+                    'Dim configId As Long = 0
+                    'Cursor = Cursors.WaitCursor
+                    'While rs.Read
+                    '    configId = rs("CLNID")
+                    '    ' TODO: Replace with ConfigListDataName.Delete function
+                    '    If rs("IsShotGun") = 0 Then
+                    '        sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Data_NSG where CLNID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Name where ID=" & configId
+                    '        obj.ConnExec(sql)
+                    '    Else
+                    '        sql = "DELETE from Loaders_Log_Ammunition_Audit where CFID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Powder_Data_SG where CLNID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Data_SG where CLNID=" & configId
+                    '        obj.ConnExec(sql)
+                    '        sql = "DELETE from Config_List_Name where ID=" & configId
+                    '        obj.ConnExec(sql)
+                    '    End If
+                    'End While
+                    'rs.Close()
+                    'rs = Nothing
+                    'cmd = Nothing
                     'sql = "DELETE from " & strSqlTable & " where ID=" & lngCalId
                     'obj.ConnExec(sql)
                     if not CaliberInventory.Delete(DatabasePath, lngCalId, errOut) then throw new Exception(errOut)
