@@ -3,6 +3,7 @@ Imports BSMyLoadersLog.ImportExport.ExportModule
 Imports BurnSoft.Applications.MLL
 
 Public Class frmReport_Custom
+    ' TODO #18 Add Comments
     Dim errOut as String
     Public SQL As String
     Private GridPrinter As DataGridPrinter

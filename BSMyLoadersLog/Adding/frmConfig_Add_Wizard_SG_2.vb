@@ -1,6 +1,7 @@
 Imports System.Data
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmConfig_Add_Wizard_SG_2
@@ -22,9 +23,14 @@ Public Class frmConfig_Add_Wizard_SG_2
             Dim WID As Long = cmdWAD.SelectedValue
             txtShotCharge.Text = GetMaxWADCharge(WID)
             Me.List_SG_ShotCharge_LoadsTableAdapter.Fill(Me.MLLDataSet.List_SG_ShotCharge_Loads)
-            Dim ObjAF As New AutoFillCollections.ShotGun
-            txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
-            txtShotCharge.AutoCompleteCustomSource = ObjAF.Config_LoadInOZ_SG
+            'Dim ObjAF As New AutoFillCollections.ShotGun
+            'txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
+            'txtShotCharge.AutoCompleteCustomSource = ObjAF.Config_LoadInOZ_SG
+            'Dim ObjAF As New AutoFillCollections.ShotGun
+            txtSource.AutoCompleteCustomSource = ConfigShotgun.Source(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
+            txtShotCharge.AutoCompleteCustomSource = ConfigShotgun.LoadInOunces(DatabasePath, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
             Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
         End Try

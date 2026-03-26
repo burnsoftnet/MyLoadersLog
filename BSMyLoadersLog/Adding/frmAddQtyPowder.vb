@@ -10,7 +10,7 @@ Public Class frmAddQtyPowder
     Public FromView As Boolean
     Function PricePerItem(ByVal lValue As Long, ByVal dPrice As Double, ByVal sType As String) As Double
         Dim dAns As Double = 0
-        Dim ObjIM As New InventoryMath
+        'Dim ObjIM As New InventoryMath
         Dim lNewValue As Long = 0
         Select Case sType
             Case "Grains (grs)"
@@ -21,8 +21,8 @@ Public Class frmAddQtyPowder
         If lValue > 0 Then
             dAns = dPrice / lNewValue
         End If
-        ObjIM.ConvertToDollars(dAns)
-        Return dAns
+        'ObjIM.ConvertToDollars(dAns)
+        Return Converters.ConvertToDollars( dAns)
     End Function
     Sub LoadData()
         Try
@@ -42,8 +42,9 @@ Public Class frmAddQtyPowder
                 If Not IsDBNull(RS("eppp")) Then eppo = RS("eppp")
                 txtCQty2.Text = iQty
                 txtCPPI.Text = eppo
-                Dim ObjIM As New InventoryMath
-                txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                'Dim ObjIM As New InventoryMath
+                'txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtCPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing
