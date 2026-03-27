@@ -2187,6 +2187,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.MetallicUpdate")>
         Public Sub ARUNSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
                     ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, ByVal dGrainsUses As Double)
             Try
@@ -2214,6 +2215,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.ShotgunUpdate")>
         Public Sub ARUSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
                     ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, _
                     ByVal dGrainsUses As Double, ByVal lQWADS As Long, ByVal WID As Long, ByVal IsSlug As Boolean, _
@@ -2259,6 +2261,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced by BurnSoft.Applications.MLL.Inventory.LoadersLogAmmunition.IsAlreadyListed")>
         Public Function IsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
         ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
             Dim bAns As Boolean = False
