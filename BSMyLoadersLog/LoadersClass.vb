@@ -2291,6 +2291,7 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
+        <Obsolete("Replaced by BurnSoft.Applications.MLL.Inventory.PowderInventory.GetDetails List")>
         Public Sub GetPowderDetails(ByVal PID As Long, Optional ByRef Manu As String = "", _
                     Optional ByRef sName As String = "", Optional ByVal weightlbs As Double = 0, _
                     Optional ByRef weightgn As Double = 0, Optional ByRef Price As Double = 0, _
