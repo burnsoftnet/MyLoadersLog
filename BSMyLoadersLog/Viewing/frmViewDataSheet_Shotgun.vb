@@ -1,5 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BSMyLoadersLog.Adding
+
 Public Class frmViewDataSheet_Shotgun
     Public FID As Long
     Public FirearmName As String
@@ -156,7 +158,7 @@ Public Class frmViewDataSheet_Shotgun
     End Sub
 
     Private Sub CopyToolStripMenuItem_Click(sender As Object, e As System.EventArgs) Handles CopyToolStripMenuItem.Click
-        Dim frmNew As New frmCopy_DataSheet_Copy_ShotGun
+        Dim frmNew As New FrmCopyDataSheetCopyShotGun
         Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
         frmNew.CFGID = ItemID
         frmNew.FromView = True

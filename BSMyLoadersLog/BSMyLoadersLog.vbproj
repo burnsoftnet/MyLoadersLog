@@ -177,10 +177,10 @@
     <Compile Include="Adding\frmAddQtyHulls.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.Designer.vb">
+    <Compile Include="Adding\frmCopy_DataSheet_Copy_ShotGun.Designer.vb">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_Copy_ShotGun.vb">
+    <Compile Include="Adding\frmCopy_DataSheet_Copy_ShotGun.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editing\frmEditBushing_Powder.Designer.vb">
@@ -383,10 +383,10 @@
     <Compile Include="Adding\frmConfig_Add_Wizard_SG_Powder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_RiflePistol.Designer.vb">
+    <Compile Include="Adding\frmCopy_DataSheet_RiflePistol.Designer.vb">
       <DependentUpon>frmCopy_DataSheet_RiflePistol.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCopy_DataSheet_RiflePistol.vb">
+    <Compile Include="Adding\frmCopy_DataSheet_RiflePistol.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDBCleanup.Designer.vb">
@@ -823,7 +823,7 @@
     <EmbeddedResource Include="Adding\frmAddQtyHulls.resx">
       <DependentUpon>frmAddQtyHulls.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCopy_DataSheet_Copy_ShotGun.resx">
+    <EmbeddedResource Include="Adding\frmCopy_DataSheet_Copy_ShotGun.resx">
       <DependentUpon>frmCopy_DataSheet_Copy_ShotGun.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editing\frmEditBushing_Powder.resx">
@@ -966,7 +966,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmConfig_Add_Wizard_SG_Powder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCopy_DataSheet_RiflePistol.resx">
+    <EmbeddedResource Include="Adding\frmCopy_DataSheet_RiflePistol.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmCopy_DataSheet_RiflePistol.vb</DependentUpon>
     </EmbeddedResource>
