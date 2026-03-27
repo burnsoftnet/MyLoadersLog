@@ -1,4 +1,3 @@
-'Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
@@ -63,35 +62,35 @@ Namespace Adding
         ''' </summary>
         Sub SaveData()
             Try
-                Dim lngFid As Long = cmbFirearm.SelectedValue
-                Dim strFireArm As String = cmbFirearm.Text
-                Dim strDateTested As String = dtpTested.Value
-                Dim strGroup As String = GeneralHelpers.FluffContent(txtGroup.Text)
-                Dim lngNumShots As Long = nudShots.Value
-                Dim lngYards As Long = nudYards.Value
-                Dim strPowName As String = GeneralHelpers.FluffContent(txtPowName.Text)
-                Dim strPowWei As String = GeneralHelpers.FluffContent(txtPowWei.Text)
-                Dim strPowManu As String = GeneralHelpers.FluffContent(txtPowManu.Text)
-                Dim strBullet As String = GeneralHelpers.FluffContent(txtBullet.Text)
-                Dim strPrimer As String = GeneralHelpers.FluffContent(txtPrimer.Text)
-                Dim strCase As String = GeneralHelpers.FluffContent(txtCase.Text)
-                Dim strCond As String = GeneralHelpers.FluffContent(txtCon.Text)
-                Dim strLen As String = GeneralHelpers.FluffContent(txtLen.Text)
-                Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
+                Dim firearmId As Long = cmbFirearm.SelectedValue
+                Dim firearmName As String = cmbFirearm.Text
+                Dim dateCreated As String = dtpTested.Value
+                Dim groupSize As String = GeneralHelpers.FluffContent(txtGroup.Text)
+                Dim numShots As Long = nudShots.Value
+                Dim yards As Long = nudYards.Value
+                Dim powderName As String = GeneralHelpers.FluffContent(txtPowName.Text)
+                Dim powderWeight As String = GeneralHelpers.FluffContent(txtPowWei.Text)
+                Dim powderManufacturer As String = GeneralHelpers.FluffContent(txtPowManu.Text)
+                Dim bulletDetails As String = GeneralHelpers.FluffContent(txtBullet.Text)
+                Dim primerDetails As String = GeneralHelpers.FluffContent(txtPrimer.Text)
+                Dim caseDetails As String = GeneralHelpers.FluffContent(txtCase.Text)
+                Dim condition As String = GeneralHelpers.FluffContent(txtCon.Text)
+                Dim oal As String = GeneralHelpers.FluffContent(txtLen.Text)
+                Dim notes As String = GeneralHelpers.FluffContent(txtNotes.Text)
                 Dim configName As String = "N/A"
-                Dim strBarLen As String = ""
+                Dim barrelLenght As String = ""
                 Dim caliber As String = ""
 
-                Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(lngFid), _errOut)
+                Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(firearmId), _errOut)
                 For Each o As FirearmCollection In lst
                     caliber = o.Caliber
-                    strBarLen = o.Barrel
+                    barrelLenght = o.Barrel
                 Next
 
-                If Not LoadersLogMetallic.Add(DatabasePath, lngFid, strDateTested, CInt(lngYards), strGroup, 
-                                              CInt(lngNumShots), $"{strPowName} - {strPowWei} - {strPowManu}", 
-                                              strBullet, strPrimer, strCase, strCond, strLen, strNotes,
-                                              configName, strFireArm, caliber, strBarLen, 
+                If Not LoadersLogMetallic.Add(DatabasePath, firearmId, dateCreated, CInt(yards), groupSize, 
+                                              CInt(numShots), $"{powderName} - {powderWeight} - {powderManufacturer}", 
+                                              bulletDetails, primerDetails, caseDetails, condition, oal, notes,
+                                              configName, firearmName, caliber, barrelLenght, 
                                               _errOut) Then Throw New Exception(_errOut)
 
                 MsgBox("Information was saved to the Loaders Log!")
