@@ -30,7 +30,7 @@ Public Class frmEditPowder
                 dPrice = eppo * iQty
                 txtGrains.Text = iQty
                 Dim ObjIM As New InventoryMath
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing

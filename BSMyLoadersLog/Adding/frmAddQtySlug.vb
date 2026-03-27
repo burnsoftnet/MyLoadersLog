@@ -11,7 +11,7 @@ Public Class frmAddQtySlug
         If lQty > 0 Then
             dAns = dPrice / lQty
         End If
-        ObjIM.ConvertToDollars(dAns)
+        Converters.ConvertToDollars(dAns)
         Return dAns
     End Function
     Public Sub LoadData()
@@ -31,8 +31,8 @@ Public Class frmAddQtySlug
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
                 If Not IsDBNull(RS("epps")) Then eppo = RS("epps")
                 txtCQty.Text = iQty
-                txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
-                txtCPPI.Text = ObjIM.ConvertToDollars(eppo)
+                txtCPrice.Text = Converters.ConvertToDollars(dPrice)
+                txtCPPI.Text = Converters.ConvertToDollars(eppo)
             End While
             RS.Close()
             RS = Nothing

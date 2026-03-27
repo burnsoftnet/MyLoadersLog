@@ -12,7 +12,7 @@ Public Class frmAddQtyShellcase
         If lQty > 0 Then
             dAns = dPrice / lQty
         End If
-        ObjIM.ConvertToDollars(dAns)
+        Converters.ConvertToDollars(dAns)
         Return dAns
     End Function
     Sub LoadData()
@@ -34,7 +34,7 @@ Public Class frmAddQtyShellcase
                 txtCQty.Text = iQty
                 txtCPPI.Text = eppo
                 Dim ObjIM As New InventoryMath
-                txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtCPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing

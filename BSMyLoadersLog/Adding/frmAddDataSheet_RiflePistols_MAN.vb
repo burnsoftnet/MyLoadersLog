@@ -82,6 +82,7 @@ Namespace Adding
                 Dim caliber As String = ""
 
                 Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(firearmId), _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In lst
                     caliber = o.Caliber
                     barrelLenght = o.Barrel
@@ -92,7 +93,7 @@ Namespace Adding
                                               bulletDetails, primerDetails, caseDetails, condition, oal, notes,
                                               configName, firearmName, caliber, barrelLenght, 
                                               _errOut) Then Throw New Exception(_errOut)
-
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 MsgBox("Information was saved to the Loaders Log!")
                 If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
                 Close()

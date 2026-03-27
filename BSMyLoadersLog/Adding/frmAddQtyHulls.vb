@@ -6,16 +6,18 @@ Imports BurnSoft.Applications.MLL.Helpers
 Namespace Adding
 
     Public Class FrmAddQtyHulls
+        ' TODO: #33 Update when this function as been added to the library.
+        Dim errOut As String
         Public SID As Long
         Public FromView As Boolean
         Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
             Dim dAns As Double = 0
-            Dim ObjIM As New InventoryMath
+            'Dim ObjIM As New InventoryMath
             If lQty > 0 Then
                 dAns = dPrice / lQty
             End If
-            ObjIM.ConvertToDollars(dAns)
-            Return dAns
+            'Converters.ConvertToDollars(dAns)
+            Return Converters.ConvertToDollars(dAns)
         End Function
         Sub LoadData()
             Try
@@ -36,7 +38,8 @@ Namespace Adding
                     txtCQty.Text = iQty
                     txtCPPI.Text = eppo
                     Dim ObjIM As New InventoryMath
-                    txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                    'txtCPrice.Text = Converters.ConvertToDollars(dPrice)
+                    txtCPrice.Text = Converters.ConvertToDollars(dPrice)
                 End While
                 RS.Close()
                 RS = Nothing

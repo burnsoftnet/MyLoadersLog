@@ -29,7 +29,7 @@ Public Class frmEditPrimer
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
                 Dim ObjIM As New InventoryMath
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing

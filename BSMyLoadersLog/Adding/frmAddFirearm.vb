@@ -51,7 +51,7 @@ Namespace Adding
                 MsgBox(strManu & " " & strModel & " was added to the database!")
                 Close()
             Catch ex As Exception
-                Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
     End Class

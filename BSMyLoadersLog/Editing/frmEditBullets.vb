@@ -41,7 +41,7 @@ Public Class frmEditBullets
                 If Not IsDBNull(RS("ePPB")) Then eppo = RS("ePPB")
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing

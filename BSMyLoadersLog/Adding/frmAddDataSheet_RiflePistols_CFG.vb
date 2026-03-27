@@ -74,24 +74,27 @@ Namespace Adding
                 Dim prefferedPowderId As Long = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, configId, powderWeight, _errOut)
 
                 Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(firearmId), _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In lst
                     barrelLenght = o.Barrel
                 Next
 
                 Dim configList As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(
                     DatabasePath, configId, _errOut)
-
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim bulletId As Long
                 Dim primerId As Long
                 Dim caseId As Long
                 For Each o As ConfigListDataMetalicData In configList
                     caliber = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     bulletId = o.BulletId
                     primerId = o.PrimerId
                     caseId = o.CaseId
                 Next
 
                 Dim bulletList As List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, bulletId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As BulletListings In bulletList
                     bulletManufacturer = o.Manufacturer
                     bulletName = o.Name
@@ -99,12 +102,14 @@ Namespace Adding
                 Next
 
                 Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, primerId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As PrimerListings In primerList
                     primerManufacturer = o.Manufacturer
                     primerName = o.Name
                 Next
 
                 Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, caseId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As CaseListings In caseList
                     caseManu = o.Manufacturer
                     caseName = o.Name
@@ -112,6 +117,7 @@ Namespace Adding
                 Next
 
                 Dim powderList as List(Of PowderListing) = PowderInventory.GetDetails(DatabasePath, prefferedPowderId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As PowderListing In powderList
                     powderManufacturer = o.Manufacturer
                     powderName = o.Name

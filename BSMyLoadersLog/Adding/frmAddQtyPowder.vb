@@ -21,7 +21,7 @@ Public Class frmAddQtyPowder
         If lValue > 0 Then
             dAns = dPrice / lNewValue
         End If
-        'ObjIM.ConvertToDollars(dAns)
+        'Converters.ConvertToDollars(dAns)
         Return Converters.ConvertToDollars( dAns)
     End Function
     Sub LoadData()
@@ -43,7 +43,7 @@ Public Class frmAddQtyPowder
                 txtCQty2.Text = iQty
                 txtCPPI.Text = eppo
                 'Dim ObjIM As New InventoryMath
-                'txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                'txtCPrice.Text = Converters.ConvertToDollars(dPrice)
                 txtCPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
