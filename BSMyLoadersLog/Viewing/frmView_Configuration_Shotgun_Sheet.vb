@@ -135,11 +135,11 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Else
                 COST_BULLET = COST_SLUG
             End If
-            txtCPB.Text = Obj.ConvertToDollars(COST_BULLET)
-            txtCPP.Text = Obj.ConvertToDollars(COST_PRIMER)
-            txtCPC.Text = Obj.ConvertToDollars(COST_CASE)
-            txtCOPMid.Text = Obj.ConvertToDollars((COST_POWDER * MID_POWDER))
-            txtCPW.Text = Obj.ConvertToDollars(COST_WAD)
+            txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
+            txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
+            txtCPC.Text = Converters.ConvertToDollars(COST_CASE)
+            txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
+            txtCPW.Text = Converters.ConvertToDollars(COST_WAD)
             dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
             txtC1RA.Text = dC1RA
             txtCNWIS.Text = INSTOCK_WAD
@@ -174,7 +174,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             End If
 
             txtNMR.Text = lnmr
-            txtTCR.Text = lnmr * Obj.ConvertToDollars(dC1RA)
+            txtTCR.Text = lnmr * Converters.ConvertToDollars(dC1RA)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadCosts", Err.Number, ex.Message.ToString)
         End Try

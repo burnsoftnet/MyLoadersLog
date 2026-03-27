@@ -2173,16 +2173,16 @@ Namespace LoadersClass
                               Err.Number, ex.Message.ToString())
             End Try
         End Sub
-        ''' <summary>
-        '''
-        ''' </summary>
-        ''' <returns></returns>
-        <Obsolete("This was replaced with the MLL Library Under Helpers.Converters")>
-        Public Function ConvertToDollars(ByVal dValue As Double) As Double
-            Dim dAns As Double = 0
-            dAns = Math.Round(dValue, 2)
-            Return dAns
-        End Function
+        '''' <summary>
+        ''''
+        '''' </summary>
+        '''' <returns></returns>
+        '<Obsolete("This was replaced with the MLL Library Under Helpers.Converters")>
+        'Public Function ConvertToDollars(ByVal dValue As Double) As Double
+        '    Dim dAns As Double = 0
+        '    dAns = Math.Round(dValue, 2)
+        '    Return dAns
+        'End Function
         ''' <summary>
         '''
         ''' </summary>

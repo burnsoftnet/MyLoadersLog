@@ -56,10 +56,10 @@ Public Class frmView_Configuration_Sheet
             Dim dPowPerB As Double = 0
             Dim dC1RA As Double = 0
             Dim Obj As New InventoryMath
-            txtCPB.Text = Obj.ConvertToDollars(COST_BULLET)
-            txtCPP.Text = Obj.ConvertToDollars(COST_PRIMER)
-            txtCPC.Text = Obj.ConvertToDollars(COST_CASE)
-            txtCOPMid.Text = Obj.ConvertToDollars((COST_POWDER * MID_POWDER))
+            txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
+            txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
+            txtCPC.Text = Converters.ConvertToDollars(COST_CASE)
+            txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
             'Cost Seems higher txtC1RA
             'dC1RA = ((COST_POWDER * MID_POWDER) + COST_CASE + COST_PRIMER + COST_BULLET)
             dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
@@ -79,7 +79,7 @@ Public Class frmView_Configuration_Sheet
             If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
             If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             txtNMR.Text = lnmr
-            txtTCR.Text = lnmr * Obj.ConvertToDollars(dC1RA)
+            txtTCR.Text = lnmr * Converters.ConvertToDollars(dC1RA)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadCosts", Err.Number, ex.Message.ToString)
         End Try
