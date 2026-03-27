@@ -23,7 +23,7 @@ Namespace Adding
         ''' <summary>
         ''' The bullet id
         ''' </summary>
-        Public Bid As Long
+        Public BulletId As Long
         ''' <summary>
         ''' The error out
         ''' </summary>
@@ -34,7 +34,7 @@ Namespace Adding
         Sub LoadData()
             Try
                 Dim values As List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, 
-                                                                                    Bid, _errOut)
+                                                                                    BulletId, _errOut)
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As BulletListings In values
                     txtManu.Text = o.Manufacturer
