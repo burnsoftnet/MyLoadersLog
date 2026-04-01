@@ -315,8 +315,23 @@ Public Class FrmLoadMakeReadyDetails
             Next
 
             Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
-                                               ShotDetails_ShotMat, ShotDetails_ShotNo, ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
+                                               ShotDetails_ShotMat, ShotDetails_ShotNo, 
+                                               ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
                                                0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+            Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, errOut := errOut)
+            For Each o As ShotgunShotTypeData In shotList
+                ShotDetails_Manu = o.Manufacturer
+                ShotDetails_Name = o.Name
+                IsSlug = o.IsSlug
+                ShotDetails_ShotMat = o.MaterialUsed
+                ShotDetails_ShotNo = o.ShotNumber
+                ShotDetails_SlugWeight = O.Weight
+                ShotDetails_QTY = O.Qty
+                ShotDetails_EPPS = O.EstimatedPricePerItem
+                INSTOCK_SHOT_OZ = o.Ounces
+                ' TODO: Eanbled in build 70 beta
+                'ShotDetails_GR = o.Grams
+            Next
             txtJacket.Text = $"{ShotDetails_ShotNo} Shot"
             If Not IsSlug Then
                 COST_SHOT = ShotDetails_EPPS
