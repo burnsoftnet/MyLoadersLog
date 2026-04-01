@@ -314,10 +314,10 @@ Public Class FrmLoadMakeReadyDetails
                 SHOT_PREFLOAD = o.ShotWeight
             Next
 
-            Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
-                                               ShotDetails_ShotMat, ShotDetails_ShotNo, 
-                                               ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
-                                               0, INSTOCK_SHOT_OZ, ShotDetails_GR)
+            'Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
+            '                                   ShotDetails_ShotMat, ShotDetails_ShotNo, 
+            '                                   ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
+            '                                   0, INSTOCK_SHOT_OZ, ShotDetails_GR)
             Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, errOut := errOut)
             For Each o As ShotgunShotTypeData In shotList
                 ShotDetails_Manu = o.Manufacturer
