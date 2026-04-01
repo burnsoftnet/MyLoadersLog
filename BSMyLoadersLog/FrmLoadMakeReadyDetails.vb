@@ -290,15 +290,15 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Private Sub LoadConfig_ShotGun()
         Try
-            Dim ObjIM As New InventoryMath
+            'Dim ObjIM As New InventoryMath
 
-            Dim ShotDetails_Manu As String = ""
-            Dim ShotDetails_Name As String = ""
-            Dim ShotDetails_QTY As Double = 0
-            Dim ShotDetails_EPPS As Double = 0
-            Dim ShotDetails_ShotMat As String = ""
-            Dim ShotDetails_ShotNo As String = ""
-            Dim ShotDetails_SlugWeight As String = ""
+            'Dim ShotDetails_Manu As String = ""
+            'Dim ShotDetails_Name As String = ""
+            'Dim ShotDetails_QTY As Double = 0
+            'Dim ShotDetails_EPPS As Double = 0
+            'Dim ShotDetails_ShotMat As String = ""
+            'Dim ShotDetails_ShotNo As String = ""
+            'Dim ShotDetails_SlugWeight As String = ""
 
             Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigID, errOut)
             For Each o As ConfigListDataShotgunData In lst
@@ -320,26 +320,33 @@ Public Class FrmLoadMakeReadyDetails
             '                                   0, INSTOCK_SHOT_OZ, ShotDetails_GR)
             Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, errOut := errOut)
             For Each o As ShotgunShotTypeData In shotList
-                ShotDetails_Manu = o.Manufacturer
-                ShotDetails_Name = o.Name
+                'ShotDetails_Manu = o.Manufacturer
+                'ShotDetails_Name = o.Name
                 IsSlug = o.IsSlug
-                ShotDetails_ShotMat = o.MaterialUsed
-                ShotDetails_ShotNo = o.ShotNumber
-                ShotDetails_SlugWeight = O.Weight
-                ShotDetails_QTY = O.Qty
-                ShotDetails_EPPS = O.EstimatedPricePerItem
-                INSTOCK_SHOT_OZ = o.Ounces
-                ' TODO: Eanbled in build 70 beta
+                'ShotDetails_ShotMat = o.MaterialUsed
+                'ShotDetails_ShotNo = o.ShotNumber
+                'ShotDetails_SlugWeight = O.Weight
+                'ShotDetails_QTY = O.Qty
+                'ShotDetails_EPPS = O.EstimatedPricePerItem
+                'INSTOCK_SHOT_OZ = o.Ounces
                 'ShotDetails_GR = o.Grams
+                txtJacket.Text = $"{ o.ShotNumber} Shot"
+                If Not IsSlug Then
+                    COST_SHOT = O.EstimatedPricePerItem
+                    INSTOCK_SHOT = o.Grams
+                Else
+                    COST_SLUG = O.EstimatedPricePerItem
+                    INSTOCK_SLUG = O.Qty
+                End If
             Next
-            txtJacket.Text = $"{ShotDetails_ShotNo} Shot"
-            If Not IsSlug Then
-                COST_SHOT = ShotDetails_EPPS
-                INSTOCK_SHOT = ShotDetails_GR
-            Else
-                COST_SLUG = ShotDetails_EPPS
-                INSTOCK_SLUG = ShotDetails_QTY
-            End If
+            'txtJacket.Text = $"{ShotDetails_ShotNo} Shot"
+            'If Not IsSlug Then
+            '    COST_SHOT = ShotDetails_EPPS
+            '    INSTOCK_SHOT = ShotDetails_GR
+            'Else
+            '    COST_SLUG = ShotDetails_EPPS
+            '    INSTOCK_SLUG = ShotDetails_QTY
+            'End If
 
             'Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD,
             '                       INSTOCK_WAD, COST_WAD)
@@ -364,7 +371,7 @@ Public Class FrmLoadMakeReadyDetails
             Next
 
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -378,7 +385,7 @@ Public Class FrmLoadMakeReadyDetails
                                                  Converters.ConvertToDollars(dC1RA), 
                                                  errOut) Then Throw New Exception(errOut)
         Catch ex As Exception
-            Call LogError(Me.Name, "SaveAudit", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "SaveAudit", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 #End Region
@@ -388,7 +395,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    Private Sub frmLoadMakeReady_Details_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmLoadMakeReady_Details_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Call LoadData()
         lblInv.Text = $"NOTE: Inventory states that you have enough to make {lMakeableRounds} rounds."
         nudQty.Maximum = lMakeableRounds
@@ -398,7 +405,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
+    Private Sub Cancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Cancel.Click
         Close()
     End Sub
     ''' <summary>
@@ -407,7 +414,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     ''' <exception cref="System.Exception"></exception>
-    Private Sub btnMake_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMake.Click
+    Private Sub btnMake_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMake.Click
         Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
         Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
         Dim strCaliber As String = GeneralHelpers.FluffContent(txtCal.Text)
