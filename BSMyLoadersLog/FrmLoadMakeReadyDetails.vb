@@ -244,7 +244,7 @@ Public Class FrmLoadMakeReadyDetails
             End If
             Call LoadCosts()
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -282,7 +282,7 @@ Public Class FrmLoadMakeReadyDetails
             End If
             
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -326,7 +326,14 @@ Public Class FrmLoadMakeReadyDetails
                 INSTOCK_SLUG = ShotDetails_QTY
             End If
 
-            Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD, INSTOCK_WAD, COST_WAD)
+            'Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD,
+            '                       INSTOCK_WAD, COST_WAD)
+            Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, WID, errOut)
+            For Each o As WadData In wadList
+                WAD_MAXLOAD = o.LoadInOz
+                INSTOCK_WAD = o.Qty
+                COST_WAD = o.Price
+            Next
 
             Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, errOut)
             For Each o As PrimerListings In primerList
@@ -334,7 +341,12 @@ Public Class FrmLoadMakeReadyDetails
                 INSTOCK_PRIMER = o.Qty
             Next
 
-            Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
+            'Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
+            Dim hullList As List(Of ShotgunHullData) = ShotgunHullInventory.GetDetails(DatabasePath, HID, errOut)
+            For Each o As ShotgunHullData In hullList
+                INSTOCK_CASE = o.Qty
+                COST_CASE = O.Price
+            Next
 
         Catch ex As Exception
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
