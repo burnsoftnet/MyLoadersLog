@@ -1,5 +1,13 @@
 Namespace ViewReports
+    ''' <summary>
+    ''' Class FrmReportCaseInventory.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmReportCaseInventory
+        ''' <summary>
+        ''' Loads the data.
+        ''' </summary>
         Sub LoadData()
             Try
                 Select Case LCase(ToolStripComboBox1.SelectedItem.ToString)
@@ -47,6 +55,11 @@ Namespace ViewReports
                 Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Load event of the frmReport_CaseInventory control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmReport_CaseInventory_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 List_Case_DetailsTableAdapter.Fill(MLLDataSet.List_Case_Details)
@@ -55,7 +68,11 @@ Namespace ViewReports
                 Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged event of the ToolStripComboBox1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadData()
         End Sub

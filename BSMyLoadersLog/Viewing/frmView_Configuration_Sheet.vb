@@ -376,29 +376,29 @@ Public Class frmView_Configuration_Sheet
         Me.Cursor = Cursors.WaitCursor
         Try
             Dim frmNew As New frmReport_Configuration_Sheet
-            frmNew.Config_ID = ConfigID
-            frmNew.Config_Name = ConfigName
-            frmNew.Config_AT = txtAmmoType.Text
-            frmNew.Config_Cal = txtCal.Text
-            frmNew.Config_Notes = txtNotes.Text
-            frmNew.Bul_Manu = txtBManu.Text
-            frmNew.Bul_Name = txtBName.Text
-            frmNew.Bul_Dia = txtBDia.Text
-            frmNew.Bul_Wei = txtBWei.Text
-            frmNew.Bul_SD = txtBSecDen.Text
-            frmNew.Bul_PN = txtBPartNo.Text
-            frmNew.Bul_BC = txtBBCO.Text
-            frmNew.Bul_BT = txtBType.Text
-            frmNew.Pri_Manu = txtPManu.Text
-            frmNew.Pri_Name = txtPName.Text
-            frmNew.Pri_PT = txtPType.Text
-            frmNew.Case_Manu = txtCManu.Text
-            frmNew.Case_Name = txtCName.Text
-            frmNew.Case_TTL = txtCTOL.Text
-            frmNew.Case_TU = txtCTU.Text
-            frmNew.Config_ISPersonal = IsPersonal
-            frmNew.Config_Ref = lblReffer.Text
-            frmNew.Config_Fav = chkFav.Checked
+            frmNew.ConfigId = ConfigID
+            frmNew.ConfigName = ConfigName
+            frmNew.ConfigAmmoType = txtAmmoType.Text
+            frmNew.ConfigCaliber = txtCal.Text
+            frmNew.ConfigNotes = txtNotes.Text
+            frmNew.BulletManufacturer = txtBManu.Text
+            frmNew.BulletName = txtBName.Text
+            frmNew.BulletDiameter = txtBDia.Text
+            frmNew.BulletWeight = txtBWei.Text
+            frmNew.BulletSectionalDensity = txtBSecDen.Text
+            frmNew.BulletPartNumber = txtBPartNo.Text
+            frmNew.BulletBallisticCoeffcient = txtBBCO.Text
+            frmNew.BulletType = txtBType.Text
+            frmNew.PrimerManufacturer = txtPManu.Text
+            frmNew.PrimerName = txtPName.Text
+            frmNew.PrimerType = txtPType.Text
+            frmNew.CaseManufacturer = txtCManu.Text
+            frmNew.CaseName = txtCName.Text
+            frmNew.CaseTrimToLength = txtCTOL.Text
+            frmNew.CaseTimesUsed = txtCTU.Text
+            frmNew.ConfigIsPersonal = IsPersonal
+            frmNew.ConfigReferance = lblReffer.Text
+            frmNew.ConfigFavorite = chkFav.Checked
             frmNew.MdiParent = Me.MdiParent
             frmNew.Show()
         Catch ex As Exception

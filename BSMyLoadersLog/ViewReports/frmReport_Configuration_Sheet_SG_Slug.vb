@@ -29,8 +29,8 @@ Public Class frmReport_Configuration_Sheet_SG_Slug
             Dim parmList As New Generic.List(Of ReportParameter)
             parmList.Add(New ReportParameter("Config_Name", Config_Name))
             parmList.Add(New ReportParameter("Config_AT", Config_AT))
-            parmList.Add(New ReportParameter("Config_Cal", Config_Cal))
-            parmList.Add(New ReportParameter("Config_Notes", Config_Notes))
+            parmList.Add(New ReportParameter("ConfigCaliber", Config_Cal))
+            parmList.Add(New ReportParameter("ConfigNotes", Config_Notes))
 
             parmList.Add(New ReportParameter("Pro_Manu", Pro_Manu))
             parmList.Add(New ReportParameter("Pro_Name", Pro_Name))
