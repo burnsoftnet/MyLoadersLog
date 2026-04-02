@@ -17,7 +17,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut As string
+    Dim _errOut As string
     ''' <summary>
     ''' The configuration name
     ''' </summary>
@@ -162,7 +162,8 @@ Public Class FrmLoadMakeReadyDetails
         Dim lnmr As Long = 0
         Dim dPowPerB As Double = 0
         If Not IsShotGun Then
-            dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+            dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, 
+                                                         MID_POWDER)
             lnmr = INSTOCK_BULLET
             If lnmr < INSTOCK_CASE Then
                 lnmr = INSTOCK_BULLET
@@ -178,7 +179,8 @@ Public Class FrmLoadMakeReadyDetails
             Else
                 COST_BULLET = COST_SLUG
             End If
-            dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
+            dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, 
+                                                         COST_POWDER, MID_POWDER, COST_WAD)
 
             If IsSlug Then
                 lnmr = INSTOCK_SLUG
@@ -216,30 +218,30 @@ Public Class FrmLoadMakeReadyDetails
             IsPersonal = False
             'Dim Obj As New InventoryMath
             'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, "")
-            Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, errOut)
-            If errOut.Length > 0 Then Throw New Exception(errOut)
+            Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ConfigNameList In lst
                 IsPersonal = o.IsPersonal
                 IsShotGun = o.IsShotGun
             Next
             If Not IsShotGun Then
-                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Call LoadConfig_RiflePistol()
             Else
 
                 PrefferedPowderID = ConfigListDataPowderShotGun.GetDefaultPowderId(DatabasePath, 
                                                                                    CInt(ConfigID), MID_POWDER, 
-                                                                                   FPS_MID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                                                                                   FPS_MID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 LoadConfig_ShotGun()
             End If
             Call LoadCosts()
@@ -252,29 +254,33 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Private Sub LoadConfig_RiflePistol()
         Try
-            Dim lst as List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, errOut)
+            Dim lst as List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             if lst.Count > 0 Then
                 For Each o As ConfigListDataMetalicData In lst
                     txtManu.Text = OwnerLoadName
                     txtName.Text = ConfigName
-                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
                     BID = o.BulletId
                     PRID = o.PrimerId
                     CID = o.CaliberId
                 Next
-                Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, BID, errOut)
+                Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, BID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As BulletListings In bulletList
                     txtJacket.Text = o.Name
                     txtGrains.Text = o.Weight
                     INSTOCK_BULLET = o.Qty
                     COST_BULLET = o.EsitmatedPricePerBullet
                 Next
-                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, errOut)
+                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As PrimerListings In primerList
                     COST_PRIMER = o.PricePerPrimer
                     INSTOCK_PRIMER = o.Qty
                 Next
-                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, CID, errOut)
+                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, CID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As CaseListings In caseList
                     COST_CASE = o.EstimatedPricePerCase
                     INSTOCK_CASE = o.Qty
@@ -300,10 +306,12 @@ Public Class FrmLoadMakeReadyDetails
             'Dim ShotDetails_ShotNo As String = ""
             'Dim ShotDetails_SlugWeight As String = ""
 
-            Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigID, errOut)
+            Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ConfigListDataShotgunData In lst
-                'txtCal.Text = CaliberInventory.GetName(DatabasePath, o.AmmoTypeId, errOut)
-                txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                'txtCal.Text = CaliberInventory.GetName(DatabasePath, o.AmmoTypeId, _errOut)
+                txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 SID = o.ShotChargeLoad
                 PRID = o.PrimerId
                 HID = o.CaseId
@@ -318,7 +326,9 @@ Public Class FrmLoadMakeReadyDetails
             '                                   ShotDetails_ShotMat, ShotDetails_ShotNo, 
             '                                   ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
             '                                   0, INSTOCK_SHOT_OZ, ShotDetails_GR)
-            Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, errOut := errOut)
+            Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, 
+                                                                                               errOut := _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ShotgunShotTypeData In shotList
                 'ShotDetails_Manu = o.Manufacturer
                 'ShotDetails_Name = o.Name
@@ -350,21 +360,24 @@ Public Class FrmLoadMakeReadyDetails
 
             'Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD,
             '                       INSTOCK_WAD, COST_WAD)
-            Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, WID, errOut)
+            Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, WID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As WadData In wadList
                 WAD_MAXLOAD = o.LoadInOz
                 INSTOCK_WAD = o.Qty
                 COST_WAD = o.Price
             Next
 
-            Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, errOut)
+            Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As PrimerListings In primerList
                 COST_PRIMER = o.PricePerPrimer
                 INSTOCK_PRIMER = o.Qty
             Next
 
             'Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
-            Dim hullList As List(Of ShotgunHullData) = ShotgunHullInventory.GetDetails(DatabasePath, HID, errOut)
+            Dim hullList As List(Of ShotgunHullData) = ShotgunHullInventory.GetDetails(DatabasePath, HID, _errOut)
+            If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ShotgunHullData In hullList
                 INSTOCK_CASE = o.Qty
                 COST_CASE = O.Price
@@ -383,7 +396,7 @@ Public Class FrmLoadMakeReadyDetails
             If Not LoadersLogAmmunitionAudit.Add(DatabasePath, ConfigID, Now, qty, 
                                                  Converters.ConvertToDollars(qty * dC1RA), 
                                                  Converters.ConvertToDollars(dC1RA), 
-                                                 errOut) Then Throw New Exception(errOut)
+                                                 _errOut) Then Throw New Exception(_errOut)
         Catch ex As Exception
             Call LogError(Name, "SaveAudit", Err.Number, ex.Message.ToString)
         End Try
@@ -422,8 +435,8 @@ Public Class FrmLoadMakeReadyDetails
         Dim strJacket As String = GeneralHelpers.FluffContent(txtJacket.Text)
         'Dim dcal As Double = ConvToNum(strGrains)
         'Converters
-        'Dim dcal As Double = Converters.ConvToNum(strGrains, errOut)
-        If errOut.Length > 0 Then Throw New  Exception(errOut)
+        'Dim dcal As Double = Converters.ConvToNum(strGrains, _errOut)
+        'If _errOut.Length > 0 Then Throw New  Exception(_errOut)
         Dim iQty As Long = nudQty.Value
         Dim cQty As Long = 0
         'Dim ObjIM As New InventoryMath
@@ -432,13 +445,13 @@ Public Class FrmLoadMakeReadyDetails
         Dim MID As Long = 0
 
         If LoadersLogAmmunition.IsAlreadyListed(DatabasePath, strManu, strName, strCaliber, 
-                                                strGrains, strJacket, errOut, cQty, MID) Then
+                                                strGrains, strJacket, _errOut, cQty, MID) Then
             If Not LoadersLogAmmunition.UpdateQty(DatabasePath, MID, (cQty + iQty), 
-                                                  errOut) then throw New Exception(errOut)
+                                                  _errOut) then throw New Exception(_errOut)
         Else 
             if not LoadersLogAmmunition.Add(DatabasePath, strManu, strName, strCaliber, 
                                             strGrains, strJacket, iQty, FPS_MID, 
-                                            errOut) then Throw new Exception(errOut)
+                                            _errOut) then Throw new Exception(_errOut)
         End If
 
         'If ObjIM.IsAlreadyListed(strManu, strName, strCaliber, strGrains, strJacket, cQty, MID) Then
@@ -456,7 +469,7 @@ Public Class FrmLoadMakeReadyDetails
             If Not InventoryUpdate.MetallicUpdate(DatabasePath, iQty, INSTOCK_BULLET, BID, 
                                                   INSTOCK_PRIMER, PRID, INSTOCK_CASE, 
                                                   CID, INSTOCK_POWDER,PrefferedPowderID,
-                                                  MID_POWDER, errOut) Then Throw New Exception(errOut)
+                                                  MID_POWDER, _errOut) Then Throw New Exception(_errOut)
         Else
             'Call ObjIM.ARUSG_UpdateInventoryQty(iQty, INSTOCK_SLUG, SID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, HID, _
             '            INSTOCK_POWDER, PrefferedPowderID, MID_POWDER, INSTOCK_WAD, WID, IsSlug, INSTOCK_SHOT_OZ, ShotDetails_GR, SHOT_PREFLOAD)
@@ -465,7 +478,7 @@ Public Class FrmLoadMakeReadyDetails
                                                  SHOT_PREFLOAD, INSTOCK_WAD, WID, 
                                                  INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, 
                                                  INSTOCK_POWDER, PrefferedPowderID, 
-                                                 FPS_MID, errOut) Then Throw new Exception(errOut)
+                                                 FPS_MID, _errOut) Then Throw new Exception(_errOut)
         End If
         Call SaveAudit(iQty)
         Close()
