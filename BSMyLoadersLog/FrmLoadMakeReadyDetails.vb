@@ -433,7 +433,8 @@ Public Class FrmLoadMakeReadyDetails
 
         If LoadersLogAmmunition.IsAlreadyListed(DatabasePath, strManu, strName, strCaliber, 
                                                 strGrains, strJacket, errOut, cQty, MID) Then
-            'TODO: Add function to update Qty.
+            If Not LoadersLogAmmunition.UpdateQty(DatabasePath, MID, (cQty + iQty), 
+                                                  errOut) then throw New Exception(errOut)
         Else 
             if not LoadersLogAmmunition.Add(DatabasePath, strManu, strName, strCaliber, 
                                             strGrains, strJacket, iQty, FPS_MID, 
