@@ -14,6 +14,7 @@ Imports BurnSoft.Applications.MLL.Types
 ''' </summary>
 ''' <seealso cref="System.Windows.Forms.Form" />
 Public Class FrmLoadMakeReadyDetails
+#Region "Variables"
     ''' <summary>
     ''' The error out
     ''' </summary>
@@ -158,7 +159,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' The wad maxload
     ''' </summary>
     Public Property WadMaxLoad as Double
-
+#End Region
 #Region "General Subs and Functions"
     ''' <summary>
     ''' Loads the costs.
@@ -238,7 +239,6 @@ Public Class FrmLoadMakeReadyDetails
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Call LoadConfig_RiflePistol()
             Else
-
                 _prefferedPowderId = ConfigListDataPowderShotGun.GetDefaultPowderId(DatabasePath, 
                                                                                    CInt(ConfigId), _powderMidRangeLoad, 
                                                                                    _midRangeFps, _errOut)
