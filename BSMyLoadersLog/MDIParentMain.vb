@@ -1199,7 +1199,7 @@ Public Class MdiParentMain
             'Dim objG As New GlobalFunctions
             'configName = objG.GetTitle(configId)
             Dim frmNew As New FrmLoadMakeReadyDetails With {
-                .ConfigID = configId,
+                .ConfigId = configId,
                 .ConfigName = configName,
                 .MdiParent = Me
             }

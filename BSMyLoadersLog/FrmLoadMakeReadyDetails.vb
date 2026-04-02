@@ -25,222 +25,222 @@ Public Class FrmLoadMakeReadyDetails
     ''' <summary>
     ''' The configuration identifier
     ''' </summary>
-    Public ConfigID As Long
-    ''' <summary>
-    ''' The is personal
-    ''' </summary>
-    Dim IsPersonal As Boolean
+    Public ConfigId As Long
+    '''' <summary>
+    '''' The is personal
+    '''' </summary>
+    'Dim IsPersonal As Boolean
     ''' <summary>
     ''' The is shot gun'
     ''' </summary>
-    Dim IsShotGun As Boolean
+    Dim _isShotGun As Boolean
     ''' <summary>
     ''' The cost bullet
     ''' </summary>
-    Dim COST_BULLET As Double
+    Dim _bulletPrice As Double
     ''' <summary>
     ''' The cost primer
     ''' </summary>
-    Dim COST_PRIMER As Double
+    Dim _primerPrice As Double
     ''' <summary>
     ''' The cost case
     ''' </summary>
-    Dim COST_CASE As Double
+    Dim _casePrice As Double
     ''' <summary>
     ''' The cost powder
     ''' </summary>
-    Dim COST_POWDER As Double
+    Dim _powderPrice As Double
     ''' <summary>
     ''' The cost shot
     ''' </summary>
-    Dim COST_SHOT As Double
+    Dim _shotPrice As Double
     ''' <summary>
     ''' The cost slug
     ''' </summary>
-    Dim COST_SLUG As Double
+    Dim _slugPrice As Double
     ''' <summary>
     ''' The mid powder
     ''' </summary>
-    Dim MID_POWDER As Double
+    Dim _powderMidRangeLoad As Double
     ''' <summary>
     ''' The l makeable rounds
     ''' </summary>
-    Dim lMakeableRounds As Long
+    Dim _roundsAbleToMake As Long
     ''' <summary>
     ''' The instock bullet
     ''' </summary>
-    Dim INSTOCK_BULLET As Long
+    Dim _bulletQty As Long
     ''' <summary>
     ''' The instock primer
     ''' </summary>
-    Dim INSTOCK_PRIMER As Long
+    Dim _primerQty As Long
     ''' <summary>
     ''' The instock case
     ''' </summary>
-    Dim INSTOCK_CASE As Long
+    Dim _caseQty As Long
     ''' <summary>
     ''' The instock powder
     ''' </summary>
-    Dim INSTOCK_POWDER As Double
+    Dim _powderQty As Double
     ''' <summary>
     ''' The instock shot
     ''' </summary>
-    Dim INSTOCK_SHOT As Double
+    Dim _shotQty As Double
     ''' <summary>
     ''' The instock shot oz
     ''' </summary>
-    Dim INSTOCK_SHOT_OZ As Double
+    Dim _shotOzQty As Double
     ''' <summary>
     ''' The shot prefload
     ''' </summary>
-    Dim SHOT_PREFLOAD As Double
+    Dim _shotPrefferedLoad As Double
     ''' <summary>
     ''' The instock slug
     ''' </summary>
-    Dim INSTOCK_SLUG As Double
+    Dim _slugQty As Double
     ''' <summary>
     ''' The preffered powder identifier
     ''' </summary>
-    Dim PrefferedPowderID As Long
+    Dim _prefferedPowderId As Long
     ''' <summary>
     ''' The wad maxload
     ''' </summary>
-    Dim WAD_MAXLOAD As Double
+    Dim _wadMaxLoad As Double
     ''' <summary>
     ''' The instock wad
     ''' </summary>
-    Dim INSTOCK_WAD As Double
+    Dim _wadQty As Double
     ''' <summary>
     ''' The shot details gr
     ''' </summary>
-    Dim ShotDetails_GR As Double
+    Dim _shotDetailsInGrains As Double
     ''' <summary>
     ''' The cost wad
     ''' </summary>
-    Dim COST_WAD As Double
+    Dim _wadPrice As Double
     ''' <summary>
     ''' The FPS mid
     ''' </summary>
-    Dim FPS_MID As Double
+    Dim _midRangeFps As Double
     ''' <summary>
     ''' The is slug
     ''' </summary>
-    Dim IsSlug As Boolean
+    Dim _isSlug As Boolean
     ''' <summary>
     ''' The bid
     ''' </summary>
-    Dim BID As Long
+    Dim _bulletId As Long
     ''' <summary>
     ''' The prid
     ''' </summary>
-    Dim PRID As Long
+    Dim _primerId As Long
     ''' <summary>
     ''' The cid
     ''' </summary>
-    Dim CID As Long
+    Dim _caseId As Long
     ''' <summary>
     ''' The Shot/SlugID  
     ''' </summary>
-    Dim SID As Long  
+    Dim _shotSlugId As Long  
     ''' <summary>
     ''' The Hull ID 
     ''' </summary>
-    Dim HID As Long   
+    Dim _hullId As Long   
     ''' <summary>
     ''' The WAD ID  
     ''' </summary>
-    Dim WID As Long  
+    Dim _wadId As Long
     ''' <summary>
-    ''' The d c1 ra
+    ''' The cost to make rounds
     ''' </summary>
-    Dim dC1RA As Double
+    Dim _costToMakeRounds As Double
 #Region "General Subs and Functions"
     ''' <summary>
     ''' Loads the costs.
     ''' </summary>
     Sub LoadCosts()
-        Dim lnmr As Long = 0
-        Dim dPowPerB As Double = 0
-        If Not IsShotGun Then
-            dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, 
-                                                         MID_POWDER)
-            lnmr = INSTOCK_BULLET
-            If lnmr < INSTOCK_CASE Then
-                lnmr = INSTOCK_BULLET
-            ElseIf lnmr > INSTOCK_CASE Then
-                lnmr = INSTOCK_CASE
+        Dim lnmr As Long
+        Dim dPowPerB As Double
+        If Not _isShotGun Then
+            _costToMakeRounds = Converters.CostOfRoundsOfAmmoMetalic(_primerPrice, _casePrice, _bulletPrice, _powderPrice, 
+                                                         _powderMidRangeLoad)
+            lnmr = _bulletQty
+            If lnmr < _caseQty Then
+                lnmr = _bulletQty
+            ElseIf lnmr > _caseQty Then
+                lnmr = _caseQty
             End If
-            dPowPerB = (INSTOCK_POWDER / MID_POWDER)
-            If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
+            dPowPerB = (_powderQty / _powderMidRangeLoad)
+            If lnmr > _primerQty Then lnmr = _primerQty
             If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
         Else
-            If Not IsSlug Then
-                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightValues.WEIGHT_GRAMS_OZ) ' * COST_SHOT
+            If Not _isSlug Then
+                _bulletPrice = _shotPrice * (_shotPrefferedLoad * WeightValues.WEIGHT_GRAMS_OZ) ' * _shotPrice
             Else
-                COST_BULLET = COST_SLUG
+                _bulletPrice = _slugPrice
             End If
-            dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, 
-                                                         COST_POWDER, MID_POWDER, COST_WAD)
+            _costToMakeRounds = Converters.CostOfRoundsOfAmmoShotGun(_primerPrice, _casePrice, _bulletPrice, 
+                                                         _powderPrice, _powderMidRangeLoad, _wadPrice)
 
-            If IsSlug Then
-                lnmr = INSTOCK_SLUG
-                If lnmr < INSTOCK_CASE Then
-                    lnmr = INSTOCK_SLUG
-                ElseIf lnmr > INSTOCK_CASE Then
-                    lnmr = INSTOCK_CASE
+            If _isSlug Then
+                lnmr = _slugQty
+                If lnmr < _caseQty Then
+                    lnmr = _slugQty
+                ElseIf lnmr > _caseQty Then
+                    lnmr = _caseQty
                 End If
-                If lnmr > INSTOCK_WAD Then lnmr = INSTOCK_WAD
-                dPowPerB = (INSTOCK_POWDER / MID_POWDER)
-                If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
+                If lnmr > _wadQty Then lnmr = _wadQty
+                dPowPerB = (_powderQty / _powderMidRangeLoad)
+                If lnmr > _primerQty Then lnmr = _primerQty
                 If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             Else
-                Dim countMakeAble As Double = INSTOCK_SHOT_OZ / SHOT_PREFLOAD
+                Dim countMakeAble As Double = _shotOzQty / _shotPrefferedLoad
                 lnmr = countMakeAble
-                If lnmr < INSTOCK_CASE Then
+                If lnmr < _caseQty Then
                     lnmr = countMakeAble
-                ElseIf lnmr > INSTOCK_CASE Then
-                    lnmr = INSTOCK_CASE
+                ElseIf lnmr > _caseQty Then
+                    lnmr = _caseQty
                 End If
-                If lnmr > INSTOCK_WAD Then lnmr = INSTOCK_WAD
-                dPowPerB = (INSTOCK_POWDER / MID_POWDER)
-                If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
+                If lnmr > _wadQty Then lnmr = _wadQty
+                dPowPerB = (_powderQty / _powderMidRangeLoad)
+                If lnmr > _primerQty Then lnmr = _primerQty
                 If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             End If
         End If
-        lMakeableRounds = lnmr
+        _roundsAbleToMake = lnmr
     End Sub
     ''' <summary>
     ''' Loads the data.
     ''' </summary>
     Sub LoadData()
         Try
-            IsShotGun = False
-            IsPersonal = False
+            _isShotGun = False
+            'IsPersonal = False
             'Dim Obj As New InventoryMath
             'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, "")
-            Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, _errOut)
+            Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ConfigNameList In lst
-                IsPersonal = o.IsPersonal
-                IsShotGun = o.IsShotGun
+                'IsPersonal = o.IsPersonal
+                _isShotGun = o.IsShotGun
             Next
-            If Not IsShotGun Then
-                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, _errOut)
+            If Not _isShotGun Then
+                _prefferedPowderId = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigId, _powderMidRangeLoad, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _powderPrice = PowderInventory.GetPricePerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _powderQty = PowderInventory.GetQtyPerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Call LoadConfig_RiflePistol()
             Else
 
-                PrefferedPowderID = ConfigListDataPowderShotGun.GetDefaultPowderId(DatabasePath, 
-                                                                                   CInt(ConfigID), MID_POWDER, 
-                                                                                   FPS_MID, _errOut)
+                _prefferedPowderId = ConfigListDataPowderShotGun.GetDefaultPowderId(DatabasePath, 
+                                                                                   CInt(ConfigId), _powderMidRangeLoad, 
+                                                                                   _midRangeFps, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _powderPrice = PowderInventory.GetPricePerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _powderQty = PowderInventory.GetQtyPerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 LoadConfig_ShotGun()
             End If
@@ -254,36 +254,36 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Private Sub LoadConfig_RiflePistol()
         Try
-            Dim lst as List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, _errOut)
+            Dim lst as List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             if lst.Count > 0 Then
                 For Each o As ConfigListDataMetalicData In lst
                     txtManu.Text = OwnerLoadName
                     txtName.Text = ConfigName
                     txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
-                    BID = o.BulletId
-                    PRID = o.PrimerId
-                    CID = o.CaliberId
+                    _bulletId = o.BulletId
+                    _primerId = o.PrimerId
+                    _caseId = o.CaliberId
                 Next
-                Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, BID, _errOut)
+                Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, _bulletId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As BulletListings In bulletList
                     txtJacket.Text = o.Name
                     txtGrains.Text = o.Weight
-                    INSTOCK_BULLET = o.Qty
-                    COST_BULLET = o.EsitmatedPricePerBullet
+                    _bulletQty = o.Qty
+                    _bulletPrice = o.EsitmatedPricePerBullet
                 Next
-                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, _errOut)
+                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, _primerId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As PrimerListings In primerList
-                    COST_PRIMER = o.PricePerPrimer
-                    INSTOCK_PRIMER = o.Qty
+                    _primerPrice = o.PricePerPrimer
+                    _primerQty = o.Qty
                 Next
-                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, CID, _errOut)
+                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, _caseId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As CaseListings In caseList
-                    COST_CASE = o.EstimatedPricePerCase
-                    INSTOCK_CASE = o.Qty
+                    _casePrice = o.EstimatedPricePerCase
+                    _caseQty = o.Qty
                 Next
             End If
             
@@ -306,81 +306,81 @@ Public Class FrmLoadMakeReadyDetails
             'Dim ShotDetails_ShotNo As String = ""
             'Dim ShotDetails_SlugWeight As String = ""
 
-            Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigID, _errOut)
+            Dim lst As List(Of ConfigListDataShotgunData) = ConfigListDataShotgun.GetDetails(DatabasePath, ConfigId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ConfigListDataShotgunData In lst
                 'txtCal.Text = CaliberInventory.GetName(DatabasePath, o.AmmoTypeId, _errOut)
                 txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
-                SID = o.ShotChargeLoad
-                PRID = o.PrimerId
-                HID = o.CaseId
-                WID = o.Wad
+                _shotSlugId = o.ShotChargeLoad
+                _primerId = o.PrimerId
+                _hullId = o.CaseId
+                _wadId = o.Wad
                 txtManu.Text = OwnerLoadName
                 txtName.Text = ConfigName
                 txtGrains.Text = $"{o.ShotWeightText} oz. shot"
-                SHOT_PREFLOAD = o.ShotWeight
+                _shotPrefferedLoad = o.ShotWeight
             Next
 
-            'Call ObjIM.LoadSG_ShotType_Details(SID, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
+            'Call ObjIM.LoadSG_ShotType_Details(_shotSlugId, ShotDetails_Manu, ShotDetails_Name, IsSlug, _
             '                                   ShotDetails_ShotMat, ShotDetails_ShotNo, 
             '                                   ShotDetails_SlugWeight, "", ShotDetails_QTY, ShotDetails_EPPS, _
-            '                                   0, INSTOCK_SHOT_OZ, ShotDetails_GR)
-            Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, SID, 
+            '                                   0, _shotOzQty, _shotDetailsInGrains)
+            Dim shotList As List(Of ShotgunShotTypeData) = ShotgunShotTypeInventory.GetDetails(DatabasePath, _shotSlugId, 
                                                                                                errOut := _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ShotgunShotTypeData In shotList
                 'ShotDetails_Manu = o.Manufacturer
                 'ShotDetails_Name = o.Name
-                IsSlug = o.IsSlug
+                _isSlug = o.IsSlug
                 'ShotDetails_ShotMat = o.MaterialUsed
                 'ShotDetails_ShotNo = o.ShotNumber
                 'ShotDetails_SlugWeight = O.Weight
                 'ShotDetails_QTY = O.Qty
                 'ShotDetails_EPPS = O.EstimatedPricePerItem
-                'INSTOCK_SHOT_OZ = o.Ounces
-                'ShotDetails_GR = o.Grams
+                _shotOzQty = o.Ounces
+                _shotDetailsInGrains = o.Grams
                 txtJacket.Text = $"{ o.ShotNumber} Shot"
-                If Not IsSlug Then
-                    COST_SHOT = O.EstimatedPricePerItem
-                    INSTOCK_SHOT = o.Grams
+                If Not _isSlug Then
+                    _shotPrice = O.EstimatedPricePerItem
+                    _shotQty = o.Grams
                 Else
-                    COST_SLUG = O.EstimatedPricePerItem
-                    INSTOCK_SLUG = O.Qty
+                    _slugPrice = O.EstimatedPricePerItem
+                    _slugQty = O.Qty
                 End If
             Next
             'txtJacket.Text = $"{ShotDetails_ShotNo} Shot"
             'If Not IsSlug Then
-            '    COST_SHOT = ShotDetails_EPPS
-            '    INSTOCK_SHOT = ShotDetails_GR
+            '    _shotPrice = ShotDetails_EPPS
+            '    _shotQty = _shotDetailsInGrains
             'Else
-            '    COST_SLUG = ShotDetails_EPPS
-            '    INSTOCK_SLUG = ShotDetails_QTY
+            '    _slugPrice = ShotDetails_EPPS
+            '    _slugQty = ShotDetails_QTY
             'End If
 
-            'Call ObjIM.LoadWADInfo(WID, "", "", "", WAD_MAXLOAD,
-            '                       INSTOCK_WAD, COST_WAD)
-            Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, WID, _errOut)
+            'Call ObjIM.LoadWADInfo(_wadId, "", "", "", _wadMaxLoad,
+            '                       _wadQty, _wadPrice)
+            Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, _wadId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As WadData In wadList
-                WAD_MAXLOAD = o.LoadInOz
-                INSTOCK_WAD = o.Qty
-                COST_WAD = o.Price
+                _wadMaxLoad = o.LoadInOz
+                _wadQty = o.Qty
+                _wadPrice = o.Price
             Next
 
-            Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, PRID, _errOut)
+            Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, _primerId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As PrimerListings In primerList
-                COST_PRIMER = o.PricePerPrimer
-                INSTOCK_PRIMER = o.Qty
+                _primerPrice = o.PricePerPrimer
+                _primerQty = o.Qty
             Next
 
-            'Call ObjIM.LoadHullInfo(HID, "", "", "", INSTOCK_CASE, COST_CASE)
-            Dim hullList As List(Of ShotgunHullData) = ShotgunHullInventory.GetDetails(DatabasePath, HID, _errOut)
+            'Call ObjIM.LoadHullInfo(_hullId, "", "", "", _caseQty, _casePrice)
+            Dim hullList As List(Of ShotgunHullData) = ShotgunHullInventory.GetDetails(DatabasePath, _hullId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As ShotgunHullData In hullList
-                INSTOCK_CASE = o.Qty
-                COST_CASE = O.Price
+                _caseQty = o.Qty
+                _casePrice = O.Price
             Next
 
         Catch ex As Exception
@@ -393,9 +393,9 @@ Public Class FrmLoadMakeReadyDetails
     ''' <param name="qty">The qty.</param>
     Sub SaveAudit(ByVal qty As Long)
         Try
-            If Not LoadersLogAmmunitionAudit.Add(DatabasePath, ConfigID, Now, qty, 
-                                                 Converters.ConvertToDollars(qty * dC1RA), 
-                                                 Converters.ConvertToDollars(dC1RA), 
+            If Not LoadersLogAmmunitionAudit.Add(DatabasePath, ConfigId, Now, qty, 
+                                                 Converters.ConvertToDollars(qty * _costToMakeRounds), 
+                                                 Converters.ConvertToDollars(_costToMakeRounds), 
                                                  _errOut) Then Throw New Exception(_errOut)
         Catch ex As Exception
             Call LogError(Name, "SaveAudit", Err.Number, ex.Message.ToString)
@@ -410,8 +410,8 @@ Public Class FrmLoadMakeReadyDetails
     ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     Private Sub frmLoadMakeReady_Details_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Call LoadData()
-        lblInv.Text = $"NOTE: Inventory states that you have enough to make {lMakeableRounds} rounds."
-        nudQty.Maximum = lMakeableRounds
+        lblInv.Text = $"NOTE: Inventory states that you have enough to make {_roundsAbleToMake} rounds."
+        nudQty.Maximum = _roundsAbleToMake
     End Sub
     ''' <summary>
     ''' Handles the Click event of the Cancel control.
@@ -442,15 +442,15 @@ Public Class FrmLoadMakeReadyDetails
         'Dim ObjIM As New InventoryMath
         'Dim Obj As New BSDatabase
         'Dim SQL As String = ""
-        Dim MID As Long = 0
+        Dim ammoId As Long = 0
 
         If LoadersLogAmmunition.IsAlreadyListed(DatabasePath, strManu, strName, strCaliber, 
-                                                strGrains, strJacket, _errOut, cQty, MID) Then
-            If Not LoadersLogAmmunition.UpdateQty(DatabasePath, MID, (cQty + iQty), 
+                                                strGrains, strJacket, _errOut, cQty, ammoId) Then
+            If Not LoadersLogAmmunition.UpdateQty(DatabasePath, ammoId, (cQty + iQty), 
                                                   _errOut) then throw New Exception(_errOut)
         Else 
             if not LoadersLogAmmunition.Add(DatabasePath, strManu, strName, strCaliber, 
-                                            strGrains, strJacket, iQty, FPS_MID, 
+                                            strGrains, strJacket, iQty, _midRangeFps, 
                                             _errOut) then Throw new Exception(_errOut)
         End If
 
@@ -460,25 +460,25 @@ Public Class FrmLoadMakeReadyDetails
         'Else
         '    SQL = "INSERT INTO Loaders_Log_Ammunition(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,Vel) VALUES('" & _
         '            strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
-        '            strJacket & "'," & iQty & "," & dcal & "," & FPS_MID & ")"
+        '            strJacket & "'," & iQty & "," & dcal & "," & _midRangeFps & ")"
         '    Obj.ConnExec(SQL)
         'End If
-        If Not IsShotGun Then
-            'Call ObjIM.ARUNSG_UpdateInventoryQty(iQty, INSTOCK_BULLET, BID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, _
-            '            INSTOCK_POWDER, PrefferedPowderID, MID_POWDER)
-            If Not InventoryUpdate.MetallicUpdate(DatabasePath, iQty, INSTOCK_BULLET, BID, 
-                                                  INSTOCK_PRIMER, PRID, INSTOCK_CASE, 
-                                                  CID, INSTOCK_POWDER,PrefferedPowderID,
-                                                  MID_POWDER, _errOut) Then Throw New Exception(_errOut)
+        If Not _isShotGun Then
+            'Call ObjIM.ARUNSG_UpdateInventoryQty(iQty, _bulletQty, _bulletId, _primerQty, _primerId, _caseQty, _CaseId, _
+            '            _powderQty, PrefferedPowderID, _powderMidRangeLoad)
+            If Not InventoryUpdate.MetallicUpdate(DatabasePath, iQty, _bulletQty, _bulletId, 
+                                                  _primerQty, _primerId, _caseQty, 
+                                                  _caseId, _powderQty,_prefferedPowderId,
+                                                  _powderMidRangeLoad, _errOut) Then Throw New Exception(_errOut)
         Else
-            'Call ObjIM.ARUSG_UpdateInventoryQty(iQty, INSTOCK_SLUG, SID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, HID, _
-            '            INSTOCK_POWDER, PrefferedPowderID, MID_POWDER, INSTOCK_WAD, WID, IsSlug, INSTOCK_SHOT_OZ, ShotDetails_GR, SHOT_PREFLOAD)
-            If not InventoryUpdate.ShotgunUpdate(DatabasePath, iQty, SID, INSTOCK_SLUG, 
-                                                 IsSlug, INSTOCK_SHOT_OZ,ShotDetails_GR, 
-                                                 SHOT_PREFLOAD, INSTOCK_WAD, WID, 
-                                                 INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, 
-                                                 INSTOCK_POWDER, PrefferedPowderID, 
-                                                 FPS_MID, _errOut) Then Throw new Exception(_errOut)
+            'Call ObjIM.ARUSG_UpdateInventoryQty(iQty, _slugQty, _shotSlugId, _primerQty, _primerId, _caseQty, _hullId, _
+            '            _powderQty, PrefferedPowderID, _powderMidRangeLoad, _wadQty, _wadId, IsSlug, _shotOzQty, _shotDetailsInGrains, _shotPrefferedLoad)
+            If not InventoryUpdate.ShotgunUpdate(DatabasePath, iQty, _shotSlugId, _slugQty, 
+                                                 _isSlug, _shotOzQty,_shotDetailsInGrains, 
+                                                 _shotPrefferedLoad, _wadQty, _wadId, 
+                                                 _primerQty, _primerId, _caseQty, _caseId, 
+                                                 _powderQty, _prefferedPowderId, 
+                                                 _midRangeFps, _errOut) Then Throw new Exception(_errOut)
         End If
         Call SaveAudit(iQty)
         Close()

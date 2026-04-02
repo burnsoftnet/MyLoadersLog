@@ -454,7 +454,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
     Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
         Dim frmNew As New FrmLoadMakeReadyDetails
         frmNew.MdiParent = Me.MdiParent
-        frmNew.ConfigID = ConfigID
+        frmNew.ConfigId = ConfigID
         frmNew.ConfigName = ConfigName
         frmNew.Show()
         Me.Close()
