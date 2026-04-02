@@ -413,6 +413,7 @@ Public Class FrmLoadMakeReadyDetails
                                                  Converters.ConvertToDollars(qty * _costToMakeRounds), 
                                                  Converters.ConvertToDollars(_costToMakeRounds), 
                                                  _errOut) Then Throw New Exception(_errOut)
+            ' TODO: #25 Add The generic log generator here or in the function above.
         Catch ex As Exception
             Call LogError(Name, "SaveAudit", Err.Number, ex.Message.ToString)
         End Try
