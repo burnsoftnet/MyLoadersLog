@@ -76,6 +76,11 @@ Namespace ViewReports
                 Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Load event of the frmReport_BulletInventory control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmReport_BulletInventory_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 List_Bullets_DetailsTableAdapter.Fill(MLLDataSet.List_Bullets_Details)
@@ -84,6 +89,11 @@ Namespace ViewReports
                 Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged event of the ToolStripComboBox1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadData()
         End Sub
