@@ -1,6 +1,6 @@
-Imports BSMyLoadersLog.LoadersClass
-Imports System.Data.Odbc
-Imports BurnSoft.Applications.MGC
+'Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
+'Imports BurnSoft.Applications.MGC
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
@@ -422,13 +422,13 @@ Public Class FrmLoadMakeReadyDetails
         Dim strJacket As String = GeneralHelpers.FluffContent(txtJacket.Text)
         'Dim dcal As Double = ConvToNum(strGrains)
         'Converters
-        Dim dcal As Double = Converters.ConvToNum(strGrains, errOut)
+        'Dim dcal As Double = Converters.ConvToNum(strGrains, errOut)
         If errOut.Length > 0 Then Throw New  Exception(errOut)
         Dim iQty As Long = nudQty.Value
         Dim cQty As Long = 0
-        Dim ObjIM As New InventoryMath
-        Dim Obj As New BSDatabase
-        Dim SQL As String = ""
+        'Dim ObjIM As New InventoryMath
+        'Dim Obj As New BSDatabase
+        'Dim SQL As String = ""
         Dim MID As Long = 0
 
         If LoadersLogAmmunition.IsAlreadyListed(DatabasePath, strManu, strName, strCaliber, 
