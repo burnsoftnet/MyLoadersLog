@@ -431,24 +431,43 @@ Public Class FrmLoadMakeReadyDetails
         Dim SQL As String = ""
         Dim MID As Long = 0
 
-        If ObjIM.IsAlreadyListed(strManu, strName, strCaliber, strGrains, strJacket, cQty, MID) Then
-            SQL = "UPDATE Loaders_Log_Ammunition set Qty='" & (cQty + iQty) & "' where id=" & MID
-            Obj.ConnExec(SQL)
-        Else
-            SQL = "INSERT INTO Loaders_Log_Ammunition(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,Vel) VALUES('" & _
-                    strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
-                    strJacket & "'," & iQty & "," & dcal & "," & FPS_MID & ")"
-            Obj.ConnExec(SQL)
+        If LoadersLogAmmunition.IsAlreadyListed(DatabasePath, strManu, strName, strCaliber, 
+                                                strGrains, strJacket, errOut, cQty, MID) Then
+            'TODO: Add function to update Qty.
+        Else 
+            if not LoadersLogAmmunition.Add(DatabasePath, strManu, strName, strCaliber, 
+                                            strGrains, strJacket, iQty, FPS_MID, 
+                                            errOut) then Throw new Exception(errOut)
         End If
+
+        'If ObjIM.IsAlreadyListed(strManu, strName, strCaliber, strGrains, strJacket, cQty, MID) Then
+        '    SQL = "UPDATE Loaders_Log_Ammunition set Qty='" & (cQty + iQty) & "' where id=" & MID
+        '    Obj.ConnExec(SQL)
+        'Else
+        '    SQL = "INSERT INTO Loaders_Log_Ammunition(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,Vel) VALUES('" & _
+        '            strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
+        '            strJacket & "'," & iQty & "," & dcal & "," & FPS_MID & ")"
+        '    Obj.ConnExec(SQL)
+        'End If
         If Not IsShotGun Then
-            Call ObjIM.ARUNSG_UpdateInventoryQty(iQty, INSTOCK_BULLET, BID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, _
-                        INSTOCK_POWDER, PrefferedPowderID, MID_POWDER)
+            'Call ObjIM.ARUNSG_UpdateInventoryQty(iQty, INSTOCK_BULLET, BID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, _
+            '            INSTOCK_POWDER, PrefferedPowderID, MID_POWDER)
+            If Not InventoryUpdate.MetallicUpdate(DatabasePath, iQty, INSTOCK_BULLET, BID, 
+                                                  INSTOCK_PRIMER, PRID, INSTOCK_CASE, 
+                                                  CID, INSTOCK_POWDER,PrefferedPowderID,
+                                                  MID_POWDER, errOut) Then Throw New Exception(errOut)
         Else
-            Call ObjIM.ARUSG_UpdateInventoryQty(iQty, INSTOCK_SLUG, SID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, HID, _
-                        INSTOCK_POWDER, PrefferedPowderID, MID_POWDER, INSTOCK_WAD, WID, IsSlug, INSTOCK_SHOT_OZ, ShotDetails_GR, SHOT_PREFLOAD)
+            'Call ObjIM.ARUSG_UpdateInventoryQty(iQty, INSTOCK_SLUG, SID, INSTOCK_PRIMER, PRID, INSTOCK_CASE, HID, _
+            '            INSTOCK_POWDER, PrefferedPowderID, MID_POWDER, INSTOCK_WAD, WID, IsSlug, INSTOCK_SHOT_OZ, ShotDetails_GR, SHOT_PREFLOAD)
+            If not InventoryUpdate.ShotgunUpdate(DatabasePath, iQty, SID, INSTOCK_SLUG, 
+                                                 IsSlug, INSTOCK_SHOT_OZ,ShotDetails_GR, 
+                                                 SHOT_PREFLOAD, INSTOCK_WAD, WID, 
+                                                 INSTOCK_PRIMER, PRID, INSTOCK_CASE, CID, 
+                                                 INSTOCK_POWDER, PrefferedPowderID, 
+                                                 FPS_MID, errOut) Then Throw new Exception(errOut)
         End If
         Call SaveAudit(iQty)
-        Me.Close()
+        Close()
     End Sub
 #End Region
 End Class
