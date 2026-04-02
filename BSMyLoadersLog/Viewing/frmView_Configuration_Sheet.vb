@@ -3,6 +3,7 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BSMyLoadersLog.ViewReports
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
@@ -375,7 +376,7 @@ Public Class frmView_Configuration_Sheet
     Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
         Me.Cursor = Cursors.WaitCursor
         Try
-            Dim frmNew As New frmReport_Configuration_Sheet
+            Dim frmNew As New FrmReportConfigurationSheet
             frmNew.ConfigId = ConfigID
             frmNew.ConfigName = ConfigName
             frmNew.ConfigAmmoType = txtAmmoType.Text
