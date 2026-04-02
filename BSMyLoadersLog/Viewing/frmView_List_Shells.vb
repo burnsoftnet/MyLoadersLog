@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
+Imports BSMyLoadersLog.ViewReports
 
 Namespace Viewing
     Public Class FrmViewListShells
@@ -105,8 +106,8 @@ Namespace Viewing
 
         Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton4.Click
             Me.Cursor = Cursors.WaitCursor
-            frmReport_CaseInventory.MdiParent = Me.MdiParent
-            frmReport_CaseInventory.Show()
+            FrmReportCaseInventory.MdiParent = Me.MdiParent
+            FrmReportCaseInventory.Show()
             Me.Cursor = Cursors.Arrow
         End Sub
         Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged

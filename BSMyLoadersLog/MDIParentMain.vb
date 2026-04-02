@@ -1497,8 +1497,8 @@ Public Class MdiParentMain
     Private Sub CaseBrassInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CaseBrassInventoryToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmReport_CaseInventory.MdiParent = Me
-            frmReport_CaseInventory.Show()
+            FrmReportCaseInventory.MdiParent = Me
+            FrmReportCaseInventory.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
