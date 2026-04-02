@@ -82,10 +82,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' The instock powder
     ''' </summary>
     Dim _powderQty As Double
-    ''' <summary>
-    ''' The instock shot
-    ''' </summary>
-    Dim _shotQty As Double
+
     ''' <summary>
     ''' The instock shot oz
     ''' </summary>
@@ -102,10 +99,7 @@ Public Class FrmLoadMakeReadyDetails
     ''' The preffered powder identifier
     ''' </summary>
     Dim _prefferedPowderId As Long
-    ''' <summary>
-    ''' The wad maxload
-    ''' </summary>
-    Dim _wadMaxLoad As Double
+
     ''' <summary>
     ''' The instock wad
     ''' </summary>
@@ -154,6 +148,17 @@ Public Class FrmLoadMakeReadyDetails
     ''' The cost to make rounds
     ''' </summary>
     Dim _costToMakeRounds As Double
+
+    ''' <summary>
+    ''' The instock shot
+    ''' </summary>
+    Public Property ShotQty as Double
+
+    ''' <summary>
+    ''' The wad maxload
+    ''' </summary>
+    Public Property WadMaxLoad as Double
+
 #Region "General Subs and Functions"
     ''' <summary>
     ''' Loads the costs.
@@ -343,7 +348,7 @@ Public Class FrmLoadMakeReadyDetails
                 txtJacket.Text = $"{ o.ShotNumber} Shot"
                 If Not _isSlug Then
                     _shotPrice = O.EstimatedPricePerItem
-                    _shotQty = o.Grams
+                    ShotQty = o.Grams
                 Else
                     _slugPrice = O.EstimatedPricePerItem
                     _slugQty = O.Qty
@@ -363,7 +368,7 @@ Public Class FrmLoadMakeReadyDetails
             Dim wadList as List(Of WadData) = WadInventory.GetDetails(DatabasePath, _wadId, _errOut)
             If _errOut.Length > 0 Then Throw New Exception(_errOut)
             For Each o As WadData In wadList
-                _wadMaxLoad = o.LoadInOz
+                WadMaxLoad = o.LoadInOz
                 _wadQty = o.Qty
                 _wadPrice = o.Price
             Next
