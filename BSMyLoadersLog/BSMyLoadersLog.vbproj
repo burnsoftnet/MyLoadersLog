@@ -75,8 +75,8 @@
     <Reference Include="BurnSoft.Applications.MGC, Version=1.7.16.58, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BurnSoft.Applications.MGC.1.7.16.58\lib\net481\BurnSoft.Applications.MGC.dll</HintPath>
     </Reference>
-    <Reference Include="BurnSoft.Applications.MLL, Version=3.0.3.72, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BurnSoft.Applications.MLL.3.0.3.72-beta\lib\net481\BurnSoft.Applications.MLL.dll</HintPath>
+    <Reference Include="BurnSoft.Applications.MLL, Version=3.0.3.73, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BurnSoft.Applications.MLL.3.0.3.73-beta\lib\net481\BurnSoft.Applications.MLL.dll</HintPath>
     </Reference>
     <Reference Include="BurnSoft.MsgBox, Version=3.5.4848.17749, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>

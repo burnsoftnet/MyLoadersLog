@@ -166,19 +166,22 @@ Public Class FrmLoadMakeReadyDetails
     ''' </summary>
     Sub LoadCosts()
         Dim lnmr As Long
-        Dim dPowPerB As Double
+        'Dim dPowPerB As Double
         If Not _isShotGun Then
             _costToMakeRounds = Converters.CostOfRoundsOfAmmoMetalic(_primerPrice, _casePrice, _bulletPrice, _powderPrice, 
                                                          _powderMidRangeLoad)
-            lnmr = _bulletQty
-            If lnmr < _caseQty Then
-                lnmr = _bulletQty
-            ElseIf lnmr > _caseQty Then
-                lnmr = _caseQty
-            End If
-            dPowPerB = (_powderQty / _powderMidRangeLoad)
-            If lnmr > _primerQty Then lnmr = _primerQty
-            If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
+            lnmr = GeneralCalculations.CalculateMetallicRoundsToMake(_bulletQty, _caseQty, _primerQty, 
+                                                                     _powderQty, _powderMidRangeLoad, _errOut)
+            If _errOut.Length > 0 Then throw New Exception(_errOut)
+            'lnmr = _bulletQty
+            'If lnmr < _caseQty Then
+            '    lnmr = _bulletQty
+            'ElseIf lnmr > _caseQty Then
+            '    lnmr = _caseQty
+            'End If
+            'dPowPerB = (_powderQty / _powderMidRangeLoad)
+            'If lnmr > _primerQty Then lnmr = _primerQty
+            'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
         Else
             If Not _isSlug Then
                 _bulletPrice = _shotPrice * (_shotPrefferedLoad * WeightValues.WEIGHT_GRAMS_OZ) ' * _shotPrice
@@ -189,28 +192,36 @@ Public Class FrmLoadMakeReadyDetails
                                                          _powderPrice, _powderMidRangeLoad, _wadPrice)
 
             If _isSlug Then
-                lnmr = _slugQty
-                If lnmr < _caseQty Then
-                    lnmr = _slugQty
-                ElseIf lnmr > _caseQty Then
-                    lnmr = _caseQty
-                End If
-                If lnmr > _wadQty Then lnmr = _wadQty
-                dPowPerB = (_powderQty / _powderMidRangeLoad)
-                If lnmr > _primerQty Then lnmr = _primerQty
-                If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
+                lnmr = GeneralCalculations.CalculateShotgunSlugRoundsToMake(_slugQty, _caseQty, _wadQty, 
+                                                                            _powderQty, _powderMidRangeLoad, 
+                                                                            _primerQty, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                'lnmr = _slugQty
+                'If lnmr < _caseQty Then
+                '    lnmr = _slugQty
+                'ElseIf lnmr > _caseQty Then
+                '    lnmr = _caseQty
+                'End If
+                'If lnmr > _wadQty Then lnmr = _wadQty
+                'dPowPerB = (_powderQty / _powderMidRangeLoad)
+                'If lnmr > _primerQty Then lnmr = _primerQty
+                'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             Else
-                Dim countMakeAble As Double = _shotOzQty / _shotPrefferedLoad
-                lnmr = countMakeAble
-                If lnmr < _caseQty Then
-                    lnmr = countMakeAble
-                ElseIf lnmr > _caseQty Then
-                    lnmr = _caseQty
-                End If
-                If lnmr > _wadQty Then lnmr = _wadQty
-                dPowPerB = (_powderQty / _powderMidRangeLoad)
-                If lnmr > _primerQty Then lnmr = _primerQty
-                If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
+                lnmr = GeneralCalculations.CalculateShotgunRoundsToMake(_shotOzQty, _shotPrefferedLoad, _caseQty, _wadQty, 
+                                                                            _powderQty, _powderMidRangeLoad, 
+                                                                            _primerQty, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                'Dim countMakeAble As Double = _shotOzQty / _shotPrefferedLoad
+                'lnmr = countMakeAble
+                'If lnmr < _caseQty Then
+                '    lnmr = countMakeAble
+                'ElseIf lnmr > _caseQty Then
+                '    lnmr = _caseQty
+                'End If
+                'If lnmr > _wadQty Then lnmr = _wadQty
+                'dPowPerB = (_powderQty / _powderMidRangeLoad)
+                'If lnmr > _primerQty Then lnmr = _primerQty
+                'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
             End If
         End If
         _roundsAbleToMake = lnmr
@@ -268,7 +279,7 @@ Public Class FrmLoadMakeReadyDetails
                     txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
                     _bulletId = o.BulletId
                     _primerId = o.PrimerId
-                    _caseId = o.CaliberId
+                    _caseId = o.CaseId
                 Next
                 Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, _bulletId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
