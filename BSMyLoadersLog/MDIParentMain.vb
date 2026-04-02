@@ -9,6 +9,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.PeopleAndPlaces
 Imports BurnSoft.Applications.MLL.Types
 Imports BSMyLoadersLog.Viewing
+Imports BSMyLoadersLog.ViewReports
 'Imports BurnSoft.Applications.MGC
 Imports BurnSoft.Applications.MGC.LoadersLog
 Imports BurnSoft.Applications.MLL.ConfigSheets
@@ -1480,8 +1481,8 @@ Public Class MdiParentMain
     Private Sub BulletInventoryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletInventoryToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmReport_BulletInventory.MdiParent = Me
-            frmReport_BulletInventory.Show()
+            FrmReportBulletInventory.MdiParent = Me
+            FrmReportBulletInventory.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
