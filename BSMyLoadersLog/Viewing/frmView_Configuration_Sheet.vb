@@ -165,12 +165,16 @@ Namespace Viewing
                 'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
 
                 PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
                 COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
                 INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
 
                 Call LoadPowderGrid()
                 'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, isFav)
                 Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
                 For Each o As ConfigNameList In lst
                     IsPersonal = o.IsPersonal
                     IsShotGun = o.IsShotGun
@@ -199,10 +203,14 @@ Namespace Viewing
         Private Sub LoadConfig_RiflePistol()
             Try
                 Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
                 For Each o As ConfigListDataMetalicData In lst
                     txtAmmoType.Text = AmmuntionType.GetAmmoType(DatabasePath, o.AmmoTypeId, errOut)
+                    If errOut.Length > 0 Then throw New Exception(errOut)
                     txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                    If errOut.Length > 0 Then throw New Exception(errOut)
                     Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, o.BulletId, errOut)
+                    If errOut.Length > 0 Then throw New Exception(errOut)
                     For Each v As BulletListings In bulletList
                         txtBManu.Text = v.Manufacturer
                         txtBName.Text = v.Name
@@ -213,47 +221,68 @@ Namespace Viewing
                         txtBBCO.Text = v.BallisticCoeffcient
                         INSTOCK_BULLET = v.Qty
                         txtBType.Text = AmmuntionType.GetAmmoType(DatabasePath, v.BulletType, errOut)
-                        COST_BULLET = v.Price
+                        If errOut.Length > 0 Then throw New Exception(errOut)
+                        COST_BULLET = v.EsitmatedPricePerBullet
                     Next
 
                     Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, o.PrimerId, errOut)
+                    If errOut.Length > 0 Then throw New Exception(errOut)
                     For Each v As PrimerListings In primerList
                         txtPManu.Text = v.Manufacturer
                         txtPName.Text = v.Name
                         txtPType.Text = v.PrimerType
-                        COST_PRIMER = v.Price
+                        COST_PRIMER = v.PricePerPrimer
                         INSTOCK_PRIMER = v.Qty
                     Next
-                Next
 
-                Dim Obj As New BSDatabase
-                Dim ObjIM As New InventoryMath
-                Dim SQL As String = "SELECT * from Config_List_Data_NSG where CLNID=" & ConfigID
-                Call Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    'txtAmmoType.Text = ObjIM.GetAmmoType(RS("ATID"))
-                    'txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
-                    'Call ObjIM.LoadBulletInfo(RS("BID"), txtBManu.Text, txtBName.Text, txtBDia.Text, _
-                    '                          txtBWei.Text, txtBSecDen.Text, txtBPartNo.Text, txtBBCO.Text, _
-                    '                          INSTOCK_BULLET, txtBType.Text, COST_BULLET)
-                    'Call ObjIM.LoadPrimerInfo(RS("PRID"), txtPManu.Text, txtPName.Text, _
-                    '                          txtPType.Text, COST_PRIMER, INSTOCK_PRIMER)
-                    Call ObjIM.LoadCaseInfo(RS("CAID"), txtCManu.Text, txtCName.Text, txtCTOL.Text, _
-                                            txtCTU.Text, INSTOCK_CASE, COST_CASE)
+                    Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, o.CaseId, errOut)
+                    If errOut.Length > 0 Then throw New Exception(errOut)
+                    For Each v As CaseListings In caseList
+                        txtCManu.Text = v.Manufacturer
+                        txtCName.Text = v.Name
+                        txtCTOL.Text = v.TrimToLength
+                        txtCTU.Text = v.TimesUsed
+                        INSTOCK_CASE = v.Qty
+                        COST_CASE = v.EstimatedPricePerCase
+                    Next
+
                     If Not IsPersonal Then
-                        If Not IsDBNull(RS("Source")) Then
-                            lblReffer.Text = "(Refer to " & RS("Source") & ")"
+                        If Not IsDBNull(o.Source) Then
+                            lblReffer.Text = $"(Refer to {o.Source})"
                         Else
-                            lblReffer.Text = "Unknown Referance"
+                            lblReffer.Text = $"Unknown Referance"
                         End If
                     End If
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
+                Next
+
+                'Dim Obj As New BSDatabase
+                'Dim ObjIM As New InventoryMath
+                'Dim SQL As String = "SELECT * from Config_List_Data_NSG where CLNID=" & ConfigID
+                'Call Obj.ConnectDB()
+                'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                'Dim RS As OdbcDataReader
+                'RS = CMD.ExecuteReader
+                'While RS.Read
+                '    'txtAmmoType.Text = ObjIM.GetAmmoType(RS("ATID"))
+                '    'txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
+                ''Call ObjIM.LoadBulletInfo(RS("BID"), txtBManu.Text, txtBName.Text, txtBDia.Text, _
+                ''                          txtBWei.Text, txtBSecDen.Text, txtBPartNo.Text, txtBBCO.Text, _
+                ''                          INSTOCK_BULLET, txtBType.Text, COST_BULLET)
+                '    'Call ObjIM.LoadPrimerInfo(RS("PRID"), txtPManu.Text, txtPName.Text, _
+                '    '                          txtPType.Text, COST_PRIMER, INSTOCK_PRIMER)
+                '    'Call ObjIM.LoadCaseInfo(RS("CAID"), txtCManu.Text, txtCName.Text, txtCTOL.Text, _
+                '    '                        txtCTU.Text, INSTOCK_CASE, COST_CASE)
+                '    If Not IsPersonal Then
+                '        If Not IsDBNull(RS("Source")) Then
+                '            lblReffer.Text = "(Refer to " & RS("Source") & ")"
+                '        Else
+                '            lblReffer.Text = "Unknown Referance"
+                '        End If
+                '    End If
+                'End While
+                'RS.Close()
+                'RS = Nothing
+                'CMD = Nothing
             Catch ex As Exception
                 Call LogError(Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
             End Try
