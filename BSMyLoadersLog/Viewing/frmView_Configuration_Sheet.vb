@@ -93,9 +93,11 @@ Public Class frmView_Configuration_Sheet
         Dim SQL As String = "UPDATE Config_List_Name set IsFav=" & iStat & " where id=" & ConfigID
         Obj.ConnExec(SQL)
     End Sub
+    ''' <summary>
+    ''' Loads the powder grid.
+    ''' Columns 7,8,9 are FPS, and columns 10,11,12 are CUPS
+    ''' </summary>
     Sub LoadPowderGrid()
-        '7,8,9 are FPS
-        '10,11,12 as CUPS
         DataGridView1.Columns(7).Visible = ViewFps
         DataGridView1.Columns(8).Visible = ViewFps
         DataGridView1.Columns(9).Visible = ViewFps
@@ -104,6 +106,9 @@ Public Class frmView_Configuration_Sheet
         DataGridView1.Columns(12).Visible = ViewCups
         Me.Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(Me.MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigID)
     End Sub
+    ''' <summary>
+    ''' Loads the costs.
+    ''' </summary>
     Sub LoadCosts()
         Try
             Dim lnmr As Long = 0
@@ -138,6 +143,9 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "LoadCosts", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Loads the data.
+    ''' </summary>
     Sub LoadData()
         Lastconfigedviewed = ConfigID
         Try
@@ -166,6 +174,9 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Loads the configuration rifle pistol.
+    ''' </summary>
     Private Sub LoadConfig_RiflePistol()
         Try
             Dim Obj As New BSDatabase
@@ -319,6 +330,12 @@ Public Class frmView_Configuration_Sheet
     End Function
 #End Region
 #Region "Form Related Subs"
+    ''' <summary>
+    ''' Handles the Load event of the frmView_Configuration_Sheet control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
     Private Sub frmView_Configuration_Sheet_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
             'Dim ObjG As New GlobalFunctions
@@ -331,11 +348,21 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnAddNotes control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnAddNotes_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddNotes.Click
         btnAddNotes.Enabled = False
         btnUpdate.Visible = True
         txtNotes.ReadOnly = False
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnUpdate control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         btnUpdate.Visible = False
         btnAddNotes.Enabled = True
@@ -349,6 +376,11 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Handles the Resize event of the frmView_Configuration_Sheet control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub frmView_Configuration_Sheet_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
         If Me.Width > 0 Then
             TabControl1.Width = Me.Width - 5
@@ -359,6 +391,11 @@ Public Class frmView_Configuration_Sheet
             txtNotes.Height = TabControl1.Height - 69
         End If
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Dim frmNew As New frmConfig_Add_Wizard_Powder
         frmNew.ConfigID = ConfigID
@@ -366,12 +403,27 @@ Public Class frmView_Configuration_Sheet
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnRefresh control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnRefresh_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRefresh.Click
         Call LoadPowderGrid()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the ToolStripButton2 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
         Me.Close()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the ToolStripButton1 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
         Dim frmNew As New FrmLoadMakeReadyDetails
         frmNew.MdiParent = Me.MdiParent
@@ -380,6 +432,11 @@ Public Class frmView_Configuration_Sheet
         frmNew.Show()
         Me.Close()
     End Sub
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the rbstatus1 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub rbstatus1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus1.CheckedChanged
         If rbstatus1.Checked Then
             rbstatus2.Checked = False
@@ -388,6 +445,11 @@ Public Class frmView_Configuration_Sheet
             Call MDIParentMain.RefreshConfigData()
         End If
     End Sub
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the rbstatus2 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub rbstatus2_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus2.CheckedChanged
         If rbstatus2.Checked Then
             rbstatus1.Checked = False
@@ -396,6 +458,11 @@ Public Class frmView_Configuration_Sheet
             Call MDIParentMain.RefreshConfigData()
         End If
     End Sub
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkFav control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
         If chkFav.Checked Then
             isFav = True
@@ -406,9 +473,19 @@ Public Class frmView_Configuration_Sheet
         End If
         Call MDIParentMain.RefreshConfigData()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the ToolStripButton3 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
         Me.Cursor = Cursors.WaitCursor
         Dim frmNew As New frmEditConfig
@@ -432,6 +509,11 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the ToolStripButton4 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
         Me.Cursor = Cursors.WaitCursor
         Try
@@ -466,6 +548,11 @@ Public Class frmView_Configuration_Sheet
         End Try
         Me.Cursor = Cursors.Arrow
     End Sub
+    ''' <summary>
+    ''' Handles the Click event of the ToolStripButton5 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton5_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton5.Click
         Dim DefaultFileName As String = "ExportConfig_" & ConfigName & ".xml"
         SaveFileDialog1.FilterIndex = 1
@@ -478,7 +565,11 @@ Public Class frmView_Configuration_Sheet
         Me.Close()
     End Sub
 #End Region
-
+    ''' <summary>
+    ''' Handles the Click event of the SetAsDefaultToolStripMenuItem control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
         Try
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
