@@ -1526,8 +1526,8 @@ Public Class MdiParentMain
     Private Sub PreLoadedCaliberListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PreLoadedCaliberListToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_General_Calibers.MdiParent = Me
-            frmView_General_Calibers.Show()
+            FrmViewGeneralCalibers.MdiParent = Me
+            FrmViewGeneralCalibers.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
