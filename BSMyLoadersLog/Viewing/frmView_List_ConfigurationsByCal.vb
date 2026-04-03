@@ -37,7 +37,7 @@ Public Class frmView_List_ConfigurationsByCal
     Private Sub lstConfigSheets_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConfigSheets.DoubleClick
         Dim lngConfigID As Long = lstConfigSheets.SelectedValue
         Dim frmNew As New FrmViewConfigurationSheet
-        frmNew.ConfigID = lngConfigID
+        frmNew.ConfigId = lngConfigID
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub

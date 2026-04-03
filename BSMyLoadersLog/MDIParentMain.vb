@@ -626,7 +626,7 @@ Public Class MdiParentMain
 
         If Not configType Then
             Dim frmNew As New FrmViewConfigurationSheet
-            frmNew.ConfigID = lngConfigId
+            frmNew.ConfigId = lngConfigId
             frmNew.MdiParent = Me
             frmNew.Show()
         Else

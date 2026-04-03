@@ -8,7 +8,7 @@ Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Applications.MLL.Xml
 'Imports BurnSoft.Universal
-
+' TODO: #20 Code Cleanup
 Namespace Viewing
 
     Public Class FrmViewConfigurationSheet
@@ -19,7 +19,7 @@ Namespace Viewing
         ''' <summary>
         ''' The configuration identifier
         ''' </summary>
-        Public ConfigID As Long
+        Public ConfigId As Long
         ''' <summary>
         ''' The configuration name
         ''' </summary>
@@ -27,64 +27,60 @@ Namespace Viewing
         ''' <summary>
         ''' The is personal
         ''' </summary>
-        Dim IsPersonal As Boolean
-        ''' <summary>
-        ''' The is shot gun
-        ''' </summary>
-        Dim IsShotGun As Boolean
+        Dim _isPersonal As Boolean
+        '''' <summary>
+        '''' The is shot gun
+        '''' </summary>
+        'Dim IsShotGun As Boolean
         ''' <summary>
         ''' The is fav
         ''' </summary>
-        Dim isFav As Boolean
+        Dim _isFavorite As Boolean
         ''' <summary>
         ''' The is active
         ''' </summary>
-        Dim isActive As Boolean
+        Dim _isActive As Boolean
         ''' <summary>
-        ''' The cost bullet
+        ''' The Cost per bullet
         ''' </summary>
-        Dim COST_BULLET As Double
+        Dim _costBullet As Double
         ''' <summary>
-        ''' The cost primer
+        ''' The Cost per primer
         ''' </summary>
-        Dim COST_PRIMER As Double
+        Dim _costPrimer As Double
         ''' <summary>
-        ''' The cost case
+        ''' The Cost per case
         ''' </summary>
-        Dim COST_CASE As Double
+        Dim _costCase As Double
         ''' <summary>
-        ''' The cost powder
+        ''' The Cost per powder
         ''' </summary>
-        Dim COST_POWDER As Double
+        Dim _costPowder As Double
         ''' <summary>
         ''' The mid powder
         ''' </summary>
-        Dim MID_POWDER As Double
+        Dim _midPowder As Double
         ''' <summary>
         ''' The instock bullet
         ''' </summary>
-        Dim INSTOCK_BULLET As Long
+        Dim _instockBullet As Long
         ''' <summary>
         ''' The instock primer
         ''' </summary>
-        Dim INSTOCK_PRIMER As Long
+        Dim _instockPrimer As Long
         ''' <summary>
         ''' The instock case
         ''' </summary>
-        Dim INSTOCK_CASE As Long
+        Dim _instockCase As Long
         ''' <summary>
         ''' The instock powder
         ''' </summary>
-        Dim INSTOCK_POWDER As Double
+        Dim _instockPowder As Double
         ''' <summary>
         ''' The preffered powder identifier
         ''' </summary>
-        Dim PrefferedPowderID As Long
+        Dim _prefferedPowderId As Long
 #Region "Subs"
-        '''' <summary>
-        '''' Updates the activity.
-        '''' </summary>
-        '''' <param name="iStat">The i stat.</param>
         '<Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetActivity")>
         'Sub UpdateActivity(ByVal iStat As Integer)
         '    Dim Obj As New BSDatabase
@@ -108,7 +104,7 @@ Namespace Viewing
             DataGridView1.Columns(10).Visible = ViewCups
             DataGridView1.Columns(11).Visible = ViewCups
             DataGridView1.Columns(12).Visible = ViewCups
-            Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigID)
+            Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigId)
         End Sub
         ''' <summary>
         ''' Loads the costs.
@@ -119,18 +115,18 @@ Namespace Viewing
                 'Dim dPowPerB As Double = 0
                 'Dim costForOneRound As Double = 0
                 'Dim Obj As New InventoryMath
-                txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
-                txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
-                txtCPC.Text = Converters.ConvertToDollars(COST_CASE)
-                txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
+                txtCPB.Text = Converters.ConvertToDollars(_costBullet)
+                txtCPP.Text = Converters.ConvertToDollars(_costPrimer)
+                txtCPC.Text = Converters.ConvertToDollars(_costCase)
+                txtCOPMid.Text = Converters.ConvertToDollars((_costPowder * _midPowder))
                 'Cost Seems higher txtC1RA
                 'dC1RA = ((COST_POWDER * MID_POWDER) + COST_CASE + COST_PRIMER + COST_BULLET)
-                Dim costForOneRound As Double = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+                Dim costForOneRound As Double = Converters.CostOfRoundsOfAmmoMetalic(_costPrimer, _costCase, _costBullet, _costPowder, _midPowder)
                 txtC1RA.Text = costForOneRound
-                txtCBIS.Text = INSTOCK_BULLET
-                txtCPriIS.Text = INSTOCK_PRIMER
-                txtCPowIS.Text = INSTOCK_POWDER
-                txtCCIS.Text = INSTOCK_CASE
+                txtCBIS.Text = _instockBullet
+                txtCPriIS.Text = _instockPrimer
+                txtCPowIS.Text = _instockPowder
+                txtCCIS.Text = _instockCase
 
                 'lnmr = INSTOCK_BULLET
                 'If lnmr < INSTOCK_CASE Then
@@ -141,8 +137,8 @@ Namespace Viewing
                 'dPowPerB = (INSTOCK_POWDER / MID_POWDER)
                 'If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
                 'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
-                Dim lowestQtyInStock As Long = GeneralCalculations.CalculateMetallicRoundsToMake(INSTOCK_BULLET, INSTOCK_CASE, INSTOCK_PRIMER, 
-                                                                         INSTOCK_POWDER, MID_POWDER, _errOut)
+                Dim lowestQtyInStock As Long = GeneralCalculations.CalculateMetallicRoundsToMake(_instockBullet, _instockCase, _instockPrimer, 
+                                                                         _instockPowder, _midPowder, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
                 txtNMR.Text = lowestQtyInStock
                 txtTCR.Text = lowestQtyInStock * Converters.ConvertToDollars(costForOneRound)
@@ -154,44 +150,44 @@ Namespace Viewing
         ''' Loads the data.
         ''' </summary>
         Sub LoadData()
-            Lastconfigedviewed = ConfigID
+            Lastconfigedviewed = ConfigId
             Try
-                Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
-                IsShotGun = False
-                IsPersonal = False
+                Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigId)
+                'IsShotGun = False
+                _isPersonal = False
                 txtConfigName.Text = ConfigName
                 'Dim Obj As New InventoryMath
                 'PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER)
                 'COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
                 'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
 
-                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, _errOut)
+                _prefferedPowderId = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigId, _midPowder, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _costPowder = PowderInventory.GetPricePerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                _instockPowder = PowderInventory.GetQtyPerPowder(DatabasePath, _prefferedPowderId, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
 
                 Call LoadPowderGrid()
-                'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, isFav)
-                Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, _errOut)
+                'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, _isFavorite)
+                Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigId, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
                 For Each o As ConfigNameList In lst
-                    IsPersonal = o.IsPersonal
-                    IsShotGun = o.IsShotGun
+                    _isPersonal = o.IsPersonal
+                    'IsShotGun = o.IsShotGun
                     txtNotes.Text = o.Notes
-                    isActive = o.IsActive
-                    isFav = o.IsFavorite
+                    _isActive = o.IsActive
+                    _isFavorite = o.IsFavorite
                 Next
-                ChkPerLoad.Checked = IsPersonal
-                If isActive Then
+                ChkPerLoad.Checked = _isPersonal
+                If _isActive Then
                     rbstatus1.Checked = True
                     rbstatus2.Checked = False
                 Else
                     rbstatus1.Checked = False
                     rbstatus2.Checked = True
                 End If
-                chkFav.Checked = isFav
+                chkFav.Checked = _isFavorite
                 Call LoadConfig_RiflePistol()
                 Call LoadCosts()
             Catch ex As Exception
@@ -203,7 +199,7 @@ Namespace Viewing
         ''' </summary>
         Private Sub LoadConfig_RiflePistol()
             Try
-                Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, _errOut)
+                Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigId, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
                 For Each o As ConfigListDataMetalicData In lst
                     txtAmmoType.Text = AmmuntionType.GetAmmoType(DatabasePath, o.AmmoTypeId, _errOut)
@@ -220,10 +216,10 @@ Namespace Viewing
                         txtBSecDen.Text = v.SectionDensity
                         txtBPartNo.Text = v.PartNumber
                         txtBBCO.Text = v.BallisticCoeffcient
-                        INSTOCK_BULLET = v.Qty
+                        _instockBullet = v.Qty
                         txtBType.Text = AmmuntionType.GetAmmoType(DatabasePath, v.BulletType, _errOut)
                         If _errOut.Length > 0 Then throw New Exception(_errOut)
-                        COST_BULLET = v.EsitmatedPricePerBullet
+                        _costBullet = v.EsitmatedPricePerBullet
                     Next
 
                     Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, o.PrimerId, _errOut)
@@ -232,8 +228,8 @@ Namespace Viewing
                         txtPManu.Text = v.Manufacturer
                         txtPName.Text = v.Name
                         txtPType.Text = v.PrimerType
-                        COST_PRIMER = v.PricePerPrimer
-                        INSTOCK_PRIMER = v.Qty
+                        _costPrimer = v.PricePerPrimer
+                        _instockPrimer = v.Qty
                     Next
 
                     Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, o.CaseId, _errOut)
@@ -243,11 +239,11 @@ Namespace Viewing
                         txtCName.Text = v.Name
                         txtCTOL.Text = v.TrimToLength
                         txtCTU.Text = v.TimesUsed
-                        INSTOCK_CASE = v.Qty
-                        COST_CASE = v.EstimatedPricePerCase
+                        _instockCase = v.Qty
+                        _costCase = v.EstimatedPricePerCase
                     Next
 
-                    If Not IsPersonal Then
+                    If Not _isPersonal Then
                         If Not IsDBNull(o.Source) Then
                             lblReffer.Text = $"(Refer to {o.Source})"
                         Else
@@ -417,7 +413,7 @@ Namespace Viewing
             Try
                 'Dim ObjG As New GlobalFunctions
                 'ConfigName = ObjG.GetTitle(ConfigID)
-                ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigID, _errOut)
+                ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Text = $"{ConfigName} Configuration Sheet"
                 Call LoadData()
@@ -451,7 +447,7 @@ Namespace Viewing
             Try
                 'Dim Obj As New BSDatabase
                 Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
-                If Not ConfigListDataName.UpdateNotes(DatabasePath, ConfigID, strNotes, _errOut) Then Throw New Exception(_errOut)
+                If Not ConfigListDataName.UpdateNotes(DatabasePath, ConfigId, strNotes, _errOut) Then Throw New Exception(_errOut)
                 ''TODO: Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.UpdateNotes
                 'Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
                 'Obj.ConnExec(SQL)
@@ -486,7 +482,7 @@ Namespace Viewing
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim frmNew As New frmConfig_Add_Wizard_Powder
-                frmNew.ConfigID = ConfigID
+                frmNew.ConfigID = ConfigId
                 frmNew.ConfigName = ConfigName
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
@@ -519,7 +515,7 @@ Namespace Viewing
             Try
                 Dim frmNew As New FrmLoadMakeReadyDetails
                 frmNew.MdiParent = MdiParent
-                frmNew.ConfigId = ConfigID
+                frmNew.ConfigId = ConfigId
                 frmNew.ConfigName = ConfigName
                 frmNew.Show()
                 Close()
@@ -536,8 +532,8 @@ Namespace Viewing
             Try
                 If rbstatus1.Checked Then
                     rbstatus2.Checked = False
-                    isActive = True
-                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, True, _errOut)
+                    _isActive = True
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigId, True, _errOut)
                     If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'Call UpdateActivity(1)
                     Call MDIParentMain.RefreshConfigData()
@@ -555,8 +551,8 @@ Namespace Viewing
             Try
                 If rbstatus2.Checked Then
                     rbstatus1.Checked = False
-                    isActive = False
-                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, False, _errOut)
+                    _isActive = False
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigId, False, _errOut)
                     If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'Call UpdateActivity(0)
                     Call MDIParentMain.RefreshConfigData()
@@ -572,12 +568,12 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
             If chkFav.Checked Then
-                isFav = True
-                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, True, _errOut)
+                _isFavorite = True
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigId, True, _errOut)
                 'Call UpdateFav(1)
             Else
-                isFav = False
-                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, False, _errOut)
+                _isFavorite = False
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigId, False, _errOut)
                 'Call UpdateFav(0)
             End If
             Call MDIParentMain.RefreshConfigData()
@@ -599,7 +595,7 @@ Namespace Viewing
             Cursor = Cursors.WaitCursor
             Try
                 Dim frmNew As New frmEditConfig
-                frmNew.ConfigID = ConfigID
+                frmNew.ConfigID = ConfigId
                 frmNew.ConfigName = ConfigName
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
@@ -632,7 +628,7 @@ Namespace Viewing
             Cursor = Cursors.WaitCursor
             Try
                 Dim frmNew As New FrmReportConfigurationSheet
-                frmNew.ConfigId = ConfigID
+                frmNew.ConfigId = ConfigId
                 frmNew.ConfigName = ConfigName
                 frmNew.ConfigAmmoType = txtAmmoType.Text
                 frmNew.ConfigCaliber = txtCal.Text
@@ -652,7 +648,7 @@ Namespace Viewing
                 frmNew.CaseName = txtCName.Text
                 frmNew.CaseTrimToLength = txtCTOL.Text
                 frmNew.CaseTimesUsed = txtCTU.Text
-                frmNew.ConfigIsPersonal = IsPersonal
+                frmNew.ConfigIsPersonal = _isPersonal
                 frmNew.ConfigReferance = lblReffer.Text
                 frmNew.ConfigFavorite = chkFav.Checked
                 frmNew.MdiParent = MdiParent
@@ -677,9 +673,11 @@ Namespace Viewing
                 If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
                 Dim strFilePath As String = SaveFileDialog1.FileName
                 'Call XML_Generate(strFilePath)
-                If not ConfigurationSheets.Generate(DatabasePath, ConfigID, strFilePath, _errOut) Then throw New Exception(_errOut)
-                Close()
+                If not ConfigurationSheets.Generate(DatabasePath, ConfigId, strFilePath, _errOut) Then throw New Exception(_errOut)
+                MsgBox($"Was able to export {ConfigName} to {strFilePath}")
+                'Close()
             Catch ex As Exception
+                MsgBox($"Error Exporting {ConfigName} to Disk, check error Log")
                 Call LogError(Name, "ToolStripButton5_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
@@ -692,7 +690,7 @@ Namespace Viewing
         Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
             Try
                 Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                If Not ConfigListDataPowder.ClearDefault(DatabasePath, ConfigID, _errOut) Then Throw New Exception(_errOut)
+                If Not ConfigListDataPowder.ClearDefault(DatabasePath, ConfigId, _errOut) Then Throw New Exception(_errOut)
                 If Not ConfigListDataPowder.SetNewDefault(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
                 'Dim Obj As New BSDatabase
                 ''Dim ObjG As New GlobalFunctions
