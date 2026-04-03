@@ -1,5 +1,5 @@
-Imports System.Data.Odbc
-Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
+'Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.ViewReports
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
@@ -7,7 +7,7 @@ Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Applications.MLL.Xml
-Imports BurnSoft.Universal
+'Imports BurnSoft.Universal
 
 Namespace Viewing
 
@@ -15,7 +15,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut as String
+        Dim _errOut as String
         ''' <summary>
         ''' The configuration identifier
         ''' </summary>
@@ -142,8 +142,8 @@ Namespace Viewing
                 'If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
                 'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
                 Dim lowestQtyInStock As Long = GeneralCalculations.CalculateMetallicRoundsToMake(INSTOCK_BULLET, INSTOCK_CASE, INSTOCK_PRIMER, 
-                                                                         INSTOCK_POWDER, MID_POWDER, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
+                                                                         INSTOCK_POWDER, MID_POWDER, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
                 txtNMR.Text = lowestQtyInStock
                 txtTCR.Text = lowestQtyInStock * Converters.ConvertToDollars(costForOneRound)
             Catch ex As Exception
@@ -165,17 +165,17 @@ Namespace Viewing
                 'COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
                 'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
 
-                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
-                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
-                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
+                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
 
                 Call LoadPowderGrid()
                 'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, isFav)
-                Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
+                Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
                 For Each o As ConfigNameList In lst
                     IsPersonal = o.IsPersonal
                     IsShotGun = o.IsShotGun
@@ -203,15 +203,15 @@ Namespace Viewing
         ''' </summary>
         Private Sub LoadConfig_RiflePistol()
             Try
-                Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, errOut)
-                If errOut.Length > 0 Then throw New Exception(errOut)
+                Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
                 For Each o As ConfigListDataMetalicData In lst
-                    txtAmmoType.Text = AmmuntionType.GetAmmoType(DatabasePath, o.AmmoTypeId, errOut)
-                    If errOut.Length > 0 Then throw New Exception(errOut)
-                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
-                    If errOut.Length > 0 Then throw New Exception(errOut)
-                    Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, o.BulletId, errOut)
-                    If errOut.Length > 0 Then throw New Exception(errOut)
+                    txtAmmoType.Text = AmmuntionType.GetAmmoType(DatabasePath, o.AmmoTypeId, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
+                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
+                    Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, o.BulletId, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
                     For Each v As BulletListings In bulletList
                         txtBManu.Text = v.Manufacturer
                         txtBName.Text = v.Name
@@ -221,13 +221,13 @@ Namespace Viewing
                         txtBPartNo.Text = v.PartNumber
                         txtBBCO.Text = v.BallisticCoeffcient
                         INSTOCK_BULLET = v.Qty
-                        txtBType.Text = AmmuntionType.GetAmmoType(DatabasePath, v.BulletType, errOut)
-                        If errOut.Length > 0 Then throw New Exception(errOut)
+                        txtBType.Text = AmmuntionType.GetAmmoType(DatabasePath, v.BulletType, _errOut)
+                        If _errOut.Length > 0 Then throw New Exception(_errOut)
                         COST_BULLET = v.EsitmatedPricePerBullet
                     Next
 
-                    Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, o.PrimerId, errOut)
-                    If errOut.Length > 0 Then throw New Exception(errOut)
+                    Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, o.PrimerId, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
                     For Each v As PrimerListings In primerList
                         txtPManu.Text = v.Manufacturer
                         txtPName.Text = v.Name
@@ -236,8 +236,8 @@ Namespace Viewing
                         INSTOCK_PRIMER = v.Qty
                     Next
 
-                    Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, o.CaseId, errOut)
-                    If errOut.Length > 0 Then throw New Exception(errOut)
+                    Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, o.CaseId, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
                     For Each v As CaseListings In caseList
                         txtCManu.Text = v.Manufacturer
                         txtCName.Text = v.Name
@@ -417,8 +417,8 @@ Namespace Viewing
             Try
                 'Dim ObjG As New GlobalFunctions
                 'ConfigName = ObjG.GetTitle(ConfigID)
-                ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigID, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigID, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Text = $"{ConfigName} Configuration Sheet"
                 Call LoadData()
             Catch ex As Exception
@@ -451,7 +451,7 @@ Namespace Viewing
             Try
                 'Dim Obj As New BSDatabase
                 Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
-                If Not ConfigListDataName.UpdateNotes(DatabasePath, ConfigID, strNotes, errOut) Then Throw New Exception(errOut)
+                If Not ConfigListDataName.UpdateNotes(DatabasePath, ConfigID, strNotes, _errOut) Then Throw New Exception(_errOut)
                 ''TODO: Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.UpdateNotes
                 'Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
                 'Obj.ConnExec(SQL)
@@ -537,8 +537,8 @@ Namespace Viewing
                 If rbstatus1.Checked Then
                     rbstatus2.Checked = False
                     isActive = True
-                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, True, errOut)
-                    If errOut.Length > 0 Then Throw New Exception(errOut)
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, True, _errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'Call UpdateActivity(1)
                     Call MDIParentMain.RefreshConfigData()
                 End If
@@ -556,8 +556,8 @@ Namespace Viewing
                 If rbstatus2.Checked Then
                     rbstatus1.Checked = False
                     isActive = False
-                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, False, errOut)
-                    If errOut.Length > 0 Then Throw New Exception(errOut)
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, False, _errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'Call UpdateActivity(0)
                     Call MDIParentMain.RefreshConfigData()
                 End If
@@ -573,11 +573,11 @@ Namespace Viewing
         Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
             If chkFav.Checked Then
                 isFav = True
-                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, True, errOut)
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, True, _errOut)
                 'Call UpdateFav(1)
             Else
                 isFav = False
-                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, False, errOut)
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, False, _errOut)
                 'Call UpdateFav(0)
             End If
             Call MDIParentMain.RefreshConfigData()
@@ -612,7 +612,7 @@ Namespace Viewing
         Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Try
                 Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                If Not ConfigListDataPowder.Delete(DatabasePath, CLng(itemId), errOut) Then Throw New  Exception(errOut)
+                If Not ConfigListDataPowder.Delete(DatabasePath, CLng(itemId), _errOut) Then Throw New  Exception(_errOut)
                 'Dim Obj As New BSDatabase
                 'Dim ObjG As New GlobalFunctions
                 'Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
@@ -677,7 +677,7 @@ Namespace Viewing
                 If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
                 Dim strFilePath As String = SaveFileDialog1.FileName
                 'Call XML_Generate(strFilePath)
-                If not ConfigurationSheets.Generate(DatabasePath, ConfigID, strFilePath, errOut) Then throw New Exception(errOut)
+                If not ConfigurationSheets.Generate(DatabasePath, ConfigID, strFilePath, _errOut) Then throw New Exception(_errOut)
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "ToolStripButton5_Click", Err.Number, ex.Message.ToString)
@@ -691,14 +691,16 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
-                'Dim ObjG As New GlobalFunctions
-                Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
-                Dim SQL As String = "Update " & strSQLTable & " set IsPref=0 where CLNID=" & ConfigID
-                Obj.ConnExec(SQL)
-                SQL = "Update " & strSQLTable & " set IsPref=1 where ID=" & ItemID
-                Obj.ConnExec(SQL)
+                Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                If Not ConfigListDataPowder.ClearDefault(DatabasePath, ConfigID, _errOut) Then Throw New Exception(_errOut)
+                If Not ConfigListDataPowder.SetNewDefault(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
+                'Dim Obj As New BSDatabase
+                ''Dim ObjG As New GlobalFunctions
+                'Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
+                'Dim SQL As String = "Update " & strSQLTable & " set IsPref=0 where CLNID=" & ConfigID
+                'Obj.ConnExec(SQL)
+                'SQL = "Update " & strSQLTable & " set IsPref=1 where ID=" & ItemID
+                'Obj.ConnExec(SQL)
                 Call LoadData()
             Catch ex As Exception
                 Call LogError(Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
