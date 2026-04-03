@@ -198,6 +198,34 @@ Namespace Viewing
         ''' </summary>
         Private Sub LoadConfig_RiflePistol()
             Try
+                Dim lst As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(DatabasePath, ConfigID, errOut)
+                For Each o As ConfigListDataMetalicData In lst
+                    txtAmmoType.Text = AmmuntionType.GetAmmoType(DatabasePath, o.AmmoTypeId, errOut)
+                    txtCal.Text = CaliberInventory.GetName(DatabasePath, o.CaliberId, errOut)
+                    Dim bulletList as List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, o.BulletId, errOut)
+                    For Each v As BulletListings In bulletList
+                        txtBManu.Text = v.Manufacturer
+                        txtBName.Text = v.Name
+                        txtBDia.Text = v.Diameter
+                        txtBWei.Text = v.Weight
+                        txtBSecDen.Text = v.SectionDensity
+                        txtBPartNo.Text = v.PartNumber
+                        txtBBCO.Text = v.BallisticCoeffcient
+                        INSTOCK_BULLET = v.Qty
+                        txtBType.Text = AmmuntionType.GetAmmoType(DatabasePath, v.BulletType, errOut)
+                        COST_BULLET = v.Price
+                    Next
+
+                    Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, o.PrimerId, errOut)
+                    For Each v As PrimerListings In primerList
+                        txtPManu.Text = v.Manufacturer
+                        txtPName.Text = v.Name
+                        txtPType.Text = v.PrimerType
+                        COST_PRIMER = v.Price
+                        INSTOCK_PRIMER = v.Qty
+                    Next
+                Next
+
                 Dim Obj As New BSDatabase
                 Dim ObjIM As New InventoryMath
                 Dim SQL As String = "SELECT * from Config_List_Data_NSG where CLNID=" & ConfigID
@@ -206,13 +234,13 @@ Namespace Viewing
                 Dim RS As OdbcDataReader
                 RS = CMD.ExecuteReader
                 While RS.Read
-                    txtAmmoType.Text = ObjIM.GetAmmoType(RS("ATID"))
-                    txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
-                    Call ObjIM.LoadBulletInfo(RS("BID"), txtBManu.Text, txtBName.Text, txtBDia.Text, _
-                                              txtBWei.Text, txtBSecDen.Text, txtBPartNo.Text, txtBBCO.Text, _
-                                              INSTOCK_BULLET, txtBType.Text, COST_BULLET)
-                    Call ObjIM.LoadPrimerInfo(RS("PRID"), txtPManu.Text, txtPName.Text, _
-                                              txtPType.Text, COST_PRIMER, INSTOCK_PRIMER)
+                    'txtAmmoType.Text = ObjIM.GetAmmoType(RS("ATID"))
+                    'txtCal.Text = ObjIM.GetCaliber(RS("CALID"))
+                    'Call ObjIM.LoadBulletInfo(RS("BID"), txtBManu.Text, txtBName.Text, txtBDia.Text, _
+                    '                          txtBWei.Text, txtBSecDen.Text, txtBPartNo.Text, txtBBCO.Text, _
+                    '                          INSTOCK_BULLET, txtBType.Text, COST_BULLET)
+                    'Call ObjIM.LoadPrimerInfo(RS("PRID"), txtPManu.Text, txtPName.Text, _
+                    '                          txtPType.Text, COST_PRIMER, INSTOCK_PRIMER)
                     Call ObjIM.LoadCaseInfo(RS("CAID"), txtCManu.Text, txtCName.Text, txtCTOL.Text, _
                                             txtCTU.Text, INSTOCK_CASE, COST_CASE)
                     If Not IsPersonal Then
