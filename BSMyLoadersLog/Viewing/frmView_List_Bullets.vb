@@ -25,18 +25,18 @@ Namespace Viewing
             Try
                 Select Case LCase(ToolStripComboBox1.Text)
                     Case LCase("All")
-                        Me.List_Bullets_DetailsTableAdapter.FillByAllManu(Me.MLLDataSet.List_Bullets_Details)
+                        List_Bullets_DetailsTableAdapter.FillByAllManu(MLLDataSet.List_Bullets_Details)
                     Case LCase("Instock")
-                        Me.List_Bullets_DetailsTableAdapter.FillByINSManu(Me.MLLDataSet.List_Bullets_Details)
+                        List_Bullets_DetailsTableAdapter.FillByINSManu(MLLDataSet.List_Bullets_Details)
                     Case LCase("Out-Of-Stock")
-                        Me.List_Bullets_DetailsTableAdapter.FillByOOSManu(Me.MLLDataSet.List_Bullets_Details)
+                        List_Bullets_DetailsTableAdapter.FillByOOSManu(MLLDataSet.List_Bullets_Details)
                     Case LCase("Reference")
-                        Me.List_Bullets_DetailsTableAdapter.FillBy_Reference(Me.MLLDataSet.List_Bullets_Details)
+                        List_Bullets_DetailsTableAdapter.FillBy_Reference(MLLDataSet.List_Bullets_Details)
                     Case Else
-                        Me.List_Bullets_DetailsTableAdapter.Fill(Me.MLLDataSet.List_Bullets_Details)
+                        List_Bullets_DetailsTableAdapter.Fill(MLLDataSet.List_Bullets_Details)
                 End Select
             Catch ex As Exception
-                Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -45,19 +45,19 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.Windows.Forms.FormClosingEventArgs"/> instance containing the event data.</param>
         ''' <exception cref="System.Exception"></exception>
-        Private Sub frmView_List_Bullets_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        Private Sub frmView_List_Bullets_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
             'Dim ObjR As New BSRegistry
             'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.Text)
             Try
                 If Not MyRegistry.SaveViewSettings(RegViewName, ToolStripComboBox1.Text, _errOut) Then Throw New Exception(_errOut)
             Catch ex As Exception
-                Call LogError(Me.Name, "frmView_List_Bullets_FormClosing", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "frmView_List_Bullets_FormClosing", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        Private Sub frmView_List_Bullets_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
-            If Me.Height <> 0 Then
-                Me.DataGridView1.Height = Me.Height - (65)
-                Me.DataGridView1.Width = Me.Width - 15
+        Private Sub frmView_List_Bullets_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
+            If Height <> 0 Then
+                DataGridView1.Height = Height - (65)
+                DataGridView1.Width = Width - 15
             End If
         End Sub
         ''' <summary>
@@ -66,7 +66,7 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         ''' <exception cref="System.Exception"></exception>
-        Private Sub frmView_List_Bullets_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Private Sub frmView_List_Bullets_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             'Dim ObjR As New BSRegistry
             'ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
         
@@ -75,7 +75,7 @@ Namespace Viewing
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Call LoadData()
             Catch ex As Exception
-                Call LogError(Me.Name, "frmView_List_Bullets_Load", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "frmView_List_Bullets_Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -83,13 +83,13 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+        Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
             Try
                 Dim frmNew As New frmAddBullets
-                frmNew.MdiParent = Me.MdiParent
+                frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -106,7 +106,7 @@ Namespace Viewing
                 Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
                 If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
             Catch ex As Exception
-                Call LogError(Me.Name, "DeleteBullet", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "DeleteBullet", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -114,11 +114,11 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+        Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
             Try
                 Call DeleteBullet()
             Catch ex As Exception
-                Call LogError(Me.Name, "ToolStripButton2.Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "ToolStripButton2.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -126,19 +126,19 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+        Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Call LoadData()
         End Sub
-        Private Sub EditToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditToolStripMenuItem.Click
+        Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
             Try
                 Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmEditBullets
                 frmNew.BID = itemId
                 frmNew.FromView = True
-                frmNew.MdiParent = Me.MdiParent
+                frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -146,16 +146,16 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub AddToQtyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddToQtyToolStripMenuItem.Click
+        Private Sub AddToQtyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddToQtyToolStripMenuItem.Click
             Try
                 Dim frmNew As New frmAddQtyBullets
                 Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 frmNew.BulletId = itemId
                 frmNew.FromView = True
-                frmNew.MdiParent = Me.MdiParent
+                frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "AddToQtyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "AddToQtyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -163,7 +163,7 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+        Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Call DeleteBullet()
         End Sub
         ''' <summary>
@@ -171,22 +171,22 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton4.Click
-            Me.Cursor = Cursors.WaitCursor
+        Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
+            Cursor = Cursors.WaitCursor
             Try
-                FrmReportBulletInventory.MdiParent = Me.MdiParent
+                FrmReportBulletInventory.MdiParent = MdiParent
                 FrmReportBulletInventory.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "ToolStripButton4_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "ToolStripButton4_Click", Err.Number, ex.Message.ToString)
             End Try
-            Me.Cursor = Cursors.Arrow
+            Cursor = Cursors.Arrow
         End Sub
         ''' <summary>
         ''' Handles the SelectedIndexChanged event of the ToolStripComboBox1 control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadData()
         End Sub
         ''' <summary>
@@ -194,7 +194,7 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub OutOfStockToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutOfStockToolStripMenuItem.Click
+        Private Sub OutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OutOfStockToolStripMenuItem.Click
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim SQL As String = "UPDATE List_Bullets set QTY=0 where ID=" & ItemID
@@ -202,7 +202,7 @@ Namespace Viewing
                 Obj.ConnExec(SQL)
                 Call LoadData()
             Catch ex As Exception
-                Call LogError(Me.Name, "OutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "OutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -210,14 +210,14 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles DataGridView1.BindingContextChanged
+        Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DataGridView1.BindingContextChanged
             Try
                 If DataGridView1.DataSource Is Nothing Then
                     Return
                 End If
                 DataGridView1.AutoResizeColumns()
             Catch ex As Exception
-                Call LogError(Me.Name, "DataGridView1_BindingContextChanged", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "DataGridView1_BindingContextChanged", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         ''' <summary>
@@ -225,16 +225,16 @@ Namespace Viewing
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub CopyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CopyToolStripMenuItem.Click
+        Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
             Try
                 Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmAddBullets
                 frmNew.DoCopy = True
                 frmNew.BulletId = itemId
-                frmNew.MdiParent = Me.MdiParent
+                frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "CopyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "CopyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
     End Class
