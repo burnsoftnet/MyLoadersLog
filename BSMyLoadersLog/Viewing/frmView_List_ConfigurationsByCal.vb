@@ -1,4 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
+
 Public Class frmView_List_ConfigurationsByCal
     Public CALID As Long
     Public Sub LoadData()
@@ -34,7 +36,7 @@ Public Class frmView_List_ConfigurationsByCal
     End Sub
     Private Sub lstConfigSheets_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConfigSheets.DoubleClick
         Dim lngConfigID As Long = lstConfigSheets.SelectedValue
-        Dim frmNew As New frmView_Configuration_Sheet
+        Dim frmNew As New FrmViewConfigurationSheet
         frmNew.ConfigID = lngConfigID
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()

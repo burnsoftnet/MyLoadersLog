@@ -625,7 +625,7 @@ Public Class MdiParentMain
         if _errOut.Length > 0 Then Throw New Exception(_errOut)
 
         If Not configType Then
-            Dim frmNew As New frmView_Configuration_Sheet
+            Dim frmNew As New FrmViewConfigurationSheet
             frmNew.ConfigID = lngConfigId
             frmNew.MdiParent = Me
             frmNew.Show()
