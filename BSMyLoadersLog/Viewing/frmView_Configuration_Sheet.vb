@@ -105,7 +105,7 @@ Public Class frmView_Configuration_Sheet
         DataGridView1.Columns(10).Visible = ViewCups
         DataGridView1.Columns(11).Visible = ViewCups
         DataGridView1.Columns(12).Visible = ViewCups
-        Me.Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(Me.MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigID)
+        Config_List_Powder_Data_NSG_ViewTableAdapter.FillBy_ConfigID(MLLDataSet.Config_List_Powder_Data_NSG_View, ConfigID)
     End Sub
     ''' <summary>
     ''' Loads the costs.
@@ -141,7 +141,7 @@ Public Class frmView_Configuration_Sheet
             txtNMR.Text = lnmr
             txtTCR.Text = lnmr * Converters.ConvertToDollars(dC1RA)
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadCosts", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadCosts", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -150,7 +150,7 @@ Public Class frmView_Configuration_Sheet
     Sub LoadData()
         Lastconfigedviewed = ConfigID
         Try
-            Me.Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(Me.MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
+            Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
             IsShotGun = False
             IsPersonal = False
             txtConfigName.Text = ConfigName
@@ -172,7 +172,7 @@ Public Class frmView_Configuration_Sheet
             Call LoadConfig_RiflePistol()
             Call LoadCosts()
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -209,7 +209,7 @@ Public Class frmView_Configuration_Sheet
             RS = Nothing
             CMD = Nothing
         Catch ex As Exception
-            Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
@@ -234,7 +234,7 @@ Public Class frmView_Configuration_Sheet
             ObjFS.AppendToFile(strPath, sAns)
             MsgBox("Config was exported to " & Chr(10) & strPath)
         Catch ex As Exception
-            Call LogError(Me.Name, "XML_Generate", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "XML_Generate", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
@@ -269,7 +269,7 @@ Public Class frmView_Configuration_Sheet
             CMD = Nothing
             Obj.CloseDB()
         Catch ex As Exception
-            Call LogError(Me.Name, "XML_GeneratePowderList", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "XML_GeneratePowderList", Err.Number, ex.Message.ToString)
         End Try
         Return sAns
     End Function
@@ -375,7 +375,7 @@ Public Class frmView_Configuration_Sheet
             Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
             Obj.ConnExec(SQL)
         Catch ex As Exception
-            Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -384,9 +384,9 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub frmView_Configuration_Sheet_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
-        If Me.Width > 0 Then
-            TabControl1.Width = Me.Width - 5
-            TabControl1.Height = Me.Height - 60
+        If Width > 0 Then
+            TabControl1.Width = Width - 5
+            TabControl1.Height = Height - 60
             DataGridView1.Width = TabControl1.Width - 27
             DataGridView1.Height = TabControl1.Height - 69
             txtNotes.Width = TabControl1.Width - 27
@@ -402,7 +402,7 @@ Public Class frmView_Configuration_Sheet
         Dim frmNew As New frmConfig_Add_Wizard_Powder
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName
-        frmNew.MdiParent = Me.MdiParent
+        frmNew.MdiParent = MdiParent
         frmNew.Show()
     End Sub
     ''' <summary>
@@ -419,7 +419,7 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripButton1 control.
@@ -428,11 +428,11 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
         Dim frmNew As New FrmLoadMakeReadyDetails
-        frmNew.MdiParent = Me.MdiParent
+        frmNew.MdiParent = MdiParent
         frmNew.ConfigId = ConfigID
         frmNew.ConfigName = ConfigName
         frmNew.Show()
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' Handles the CheckedChanged event of the rbstatus1 control.
@@ -481,7 +481,7 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripButton3 control.
@@ -489,14 +489,14 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
-        Me.Cursor = Cursors.WaitCursor
+        Cursor = Cursors.WaitCursor
         Dim frmNew As New frmEditConfig
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName
-        frmNew.MdiParent = Me.MdiParent
+        frmNew.MdiParent = MdiParent
         frmNew.Show()
-        Me.Close()
-        Me.Cursor = Cursors.Arrow
+        Close()
+        Cursor = Cursors.Arrow
     End Sub
     Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
         Try
@@ -508,7 +508,7 @@ Public Class frmView_Configuration_Sheet
             Obj.ConnExec(SQL)
             Call LoadPowderGrid()
         Catch ex As Exception
-            Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
     ''' <summary>
@@ -517,7 +517,7 @@ Public Class frmView_Configuration_Sheet
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
-        Me.Cursor = Cursors.WaitCursor
+        Cursor = Cursors.WaitCursor
         Try
             Dim frmNew As New FrmReportConfigurationSheet
             frmNew.ConfigId = ConfigID
@@ -543,12 +543,12 @@ Public Class frmView_Configuration_Sheet
             frmNew.ConfigIsPersonal = IsPersonal
             frmNew.ConfigReferance = lblReffer.Text
             frmNew.ConfigFavorite = chkFav.Checked
-            frmNew.MdiParent = Me.MdiParent
+            frmNew.MdiParent = MdiParent
             frmNew.Show()
         Catch ex As Exception
-            Call LogError(Me.Name, "ToolStripButton4_Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "ToolStripButton4_Click", Err.Number, ex.Message.ToString)
         End Try
-        Me.Cursor = Cursors.Arrow
+        Cursor = Cursors.Arrow
     End Sub
     ''' <summary>
     ''' Handles the Click event of the ToolStripButton5 control.
@@ -564,7 +564,7 @@ Public Class frmView_Configuration_Sheet
         If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
         Call XML_Generate(strFilePath)
-        Me.Close()
+        Close()
     End Sub
 #End Region
     ''' <summary>
@@ -584,7 +584,7 @@ Public Class frmView_Configuration_Sheet
             Obj.ConnExec(SQL)
             Call LoadData()
         Catch ex As Exception
-            Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 End Class
