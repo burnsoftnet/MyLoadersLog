@@ -88,6 +88,7 @@ Public Class frmView_Configuration_Sheet
         Dim SQL As String = "UPDATE Config_List_Name set IsActive=" & iStat & " where id=" & ConfigID
         Obj.ConnExec(SQL)
     End Sub
+    <Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetFavorite")>
     Sub UpdateFav(ByVal iStat As Integer)
         Dim Obj As New BSDatabase
         Dim SQL As String = "UPDATE Config_List_Name set IsFav=" & iStat & " where id=" & ConfigID
@@ -370,6 +371,7 @@ Public Class frmView_Configuration_Sheet
         Try
             Dim Obj As New BSDatabase
             Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
+            'TODO: Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.UpdateNotes
             Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
             Obj.ConnExec(SQL)
         Catch ex As Exception
