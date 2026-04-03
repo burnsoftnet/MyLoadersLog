@@ -6,6 +6,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
+Imports BurnSoft.Applications.MLL.Xml
 Imports BurnSoft.Universal
 
 Namespace Viewing
@@ -80,22 +81,22 @@ Namespace Viewing
         ''' </summary>
         Dim PrefferedPowderID As Long
 #Region "Subs"
-        ''' <summary>
-        ''' Updates the activity.
-        ''' </summary>
-        ''' <param name="iStat">The i stat.</param>
-        <Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetActivity")>
-        Sub UpdateActivity(ByVal iStat As Integer)
-            Dim Obj As New BSDatabase
-            Dim SQL As String = "UPDATE Config_List_Name set IsActive=" & iStat & " where id=" & ConfigID
-            Obj.ConnExec(SQL)
-        End Sub
-        <Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetFavorite")>
-        Sub UpdateFav(ByVal iStat As Integer)
-            Dim Obj As New BSDatabase
-            Dim SQL As String = "UPDATE Config_List_Name set IsFav=" & iStat & " where id=" & ConfigID
-            Obj.ConnExec(SQL)
-        End Sub
+        '''' <summary>
+        '''' Updates the activity.
+        '''' </summary>
+        '''' <param name="iStat">The i stat.</param>
+        '<Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetActivity")>
+        'Sub UpdateActivity(ByVal iStat As Integer)
+        '    Dim Obj As New BSDatabase
+        '    Dim SQL As String = "UPDATE Config_List_Name set IsActive=" & iStat & " where id=" & ConfigID
+        '    Obj.ConnExec(SQL)
+        'End Sub
+        '<Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetFavorite")>
+        'Sub UpdateFav(ByVal iStat As Integer)
+        '    Dim Obj As New BSDatabase
+        '    Dim SQL As String = "UPDATE Config_List_Name set IsFav=" & iStat & " where id=" & ConfigID
+        '    Obj.ConnExec(SQL)
+        'End Sub
         ''' <summary>
         ''' Loads the powder grid.
         ''' Columns 7,8,9 are FPS, and columns 10,11,12 are CUPS
@@ -116,7 +117,7 @@ Namespace Viewing
             Try
                 'Dim lnmr As Long = 0
                 'Dim dPowPerB As Double = 0
-                Dim costForOneRound As Double = 0
+                'Dim costForOneRound As Double = 0
                 'Dim Obj As New InventoryMath
                 txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
                 txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
@@ -124,7 +125,7 @@ Namespace Viewing
                 txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
                 'Cost Seems higher txtC1RA
                 'dC1RA = ((COST_POWDER * MID_POWDER) + COST_CASE + COST_PRIMER + COST_BULLET)
-                costForOneRound = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+                Dim costForOneRound As Double = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
                 txtC1RA.Text = costForOneRound
                 txtCBIS.Text = INSTOCK_BULLET
                 txtCPriIS.Text = INSTOCK_PRIMER
@@ -287,123 +288,123 @@ Namespace Viewing
                 Call LogError(Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Sub XML_Generate(ByVal strPath As String)
-            Try
-                Dim sAns As String = ""
-                Dim NL As String = Chr(10) & Chr(13)
-                sAns = "<?xml version=""1.0"" encoding=""utf-8"" ?>"
-                sAns &= "<Inventory>" & NL
-                sAns &= XML_GenerateConfig()
-                sAns &= XML_GenerateBullets()
-                sAns &= XML_GeneratePrimers()
-                sAns &= XML_GenerateCases()
-                sAns &= XML_GeneratePowderList()
-                sAns &= "</Inventory>" & NL
-                sAns = Replace(sAns, "&", "&amp;")
-                'Dim ObjFS As New BSFileSystem
-                'ObjFS.DeleteFile(strPath)
-                'ObjFS.OutPutToFile(strPath, sAns)
-                Dim ObjFS As New FileIO
-                ObjFS.DeleteFile(strPath)
-                ObjFS.AppendToFile(strPath, sAns)
-                MsgBox("Config was exported to " & Chr(10) & strPath)
-            Catch ex As Exception
-                Call LogError(Name, "XML_Generate", Err.Number, ex.Message.ToString)
-            End Try
-        End Sub
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Function XML_GeneratePowderList() As String
-            Dim sAns As String = ""
-            Dim NL As String = Chr(10) & Chr(13)
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "SELECT * from qry_CFG_SR_PowderList where CLNID=" & ConfigID
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    sAns &= "    <General_Powder>" & NL
-                    sAns &= "       <Manufacturer>" & RS("Manufacturer") & "</Manufacturer>" & NL
-                    sAns &= "       <Name>" & RS("Name") & "</Name>" & NL
-                    sAns &= "       <Load_Min>" & RS("Load_Min") & "</Load_Min>" & NL
-                    sAns &= "       <Load_Mid>" & RS("Load_Mid") & "</Load_Mid>" & NL
-                    sAns &= "       <Load_Max>" & RS("Load_Max") & "</Load_Max>" & NL
-                    sAns &= "       <FPS_Min>" & RS("FPS_Min") & "</FPS_Min>" & NL
-                    sAns &= "       <FPS_MID>" & RS("FPS_MID") & "</FPS_MID>" & NL
-                    sAns &= "       <FPS_Max>" & RS("FPS_Max") & "</FPS_Max>" & NL
-                    sAns &= "       <CUPS_Min>" & RS("CUPS_Min") & "</CUPS_Min>" & NL
-                    sAns &= "       <CUPS_Mid>" & RS("CUPS_Mid") & "</CUPS_Mid>" & NL
-                    sAns &= "       <CUPS_Max>" & RS("CUPS_Max") & "</CUPS_Max>" & NL
-                    sAns &= "       <IsPref>" & RS("IsPref") & "</IsPref>" & NL
-                    sAns &= "    </General_Powder>" & NL
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Obj.CloseDB()
-            Catch ex As Exception
-                Call LogError(Name, "XML_GeneratePowderList", Err.Number, ex.Message.ToString)
-            End Try
-            Return sAns
-        End Function
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Function XML_GenerateConfig() As String
-            Dim sAns As String = ""
-            Dim NL As String = Chr(10) & Chr(13)
-            'sAns = "<Config>" & NL
-            sAns &= "    <Details>" & NL
-            sAns &= "       <ConfigName>" & ConfigName & "</ConfigName>" & NL
-            sAns &= "       <IsPersonal>" & IsPersonal & "</IsPersonal>" & NL
-            sAns &= "       <IsShotGun>" & IsShotGun & "</IsShotGun>" & NL
-            sAns &= "       <Notes>" & txtNotes.Text & "</Notes>" & NL
-            sAns &= "       <AmmoType>" & txtAmmoType.Text & "</AmmoType>" & NL
-            sAns &= "       <Caliber>" & txtCal.Text & "</Caliber>" & NL
-            sAns &= "       <Refferance>" & lblReffer.Text & "</Refferance>" & NL
-            sAns &= "    </Details>" & NL
-            'sAns &= "</Config>" & NL
-            Return sAns
-        End Function
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Function XML_GenerateCases() As String
-            Dim sAns As String = ""
-            Dim NL As String = Chr(10) & Chr(13)
-            sAns = "   <List_Case>" & NL
-            sAns &= "       <Manufacturer>" & txtCManu.Text & "</Manufacturer>" & NL
-            sAns &= "       <Name>" & txtCName.Text & "</Name>" & NL
-            sAns &= "       <ttl>" & txtCTOL.Text & "</ttl>" & NL
-            sAns &= "       <TimesUsed>" & txtCTU.Text & "</TimesUsed>" & NL
-            sAns &= "   </List_Case>" & NL
-            Return sAns
-        End Function
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Function XML_GeneratePrimers() As String
-            Dim sAns As String = ""
-            Dim NL As String = Chr(10) & Chr(13)
-            sAns = "   <General_Primer>" & NL
-            sAns &= "       <Manufacturer>" & txtPManu.Text & "</Manufacturer>" & NL
-            sAns &= "       <Name>" & txtPName.Text & "</Name>" & NL
-            sAns &= "       <Primer_Type>" & txtPType.Text & "</Primer_Type>" & NL
-            sAns &= "   </General_Primer>" & NL
-            Return sAns
-        End Function
-        <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
-        Function XML_GenerateBullets() As String
-            Dim sAns As String = ""
-            Dim NL As String = Chr(10) & Chr(13)
-            sAns = "   <List_Bullets>" & NL
-            sAns &= "       <Manufacturer>" & txtBManu.Text & "</Manufacturer>" & NL
-            sAns &= "       <Name>" & txtBName.Text & "</Name>" & NL
-            sAns &= "       <Diameter>" & txtBDia.Text & "</Diameter>" & NL
-            sAns &= "       <Weight>" & txtBWei.Text & "</Weight>" & NL
-            sAns &= "       <Sec_Den>" & txtBSecDen.Text & "</Sec_Den>" & NL
-            sAns &= "       <Part_number>" & txtBPartNo.Text & "</Part_number>" & NL
-            sAns &= "       <Ballistic_Coefficient>" & txtBBCO.Text & "</Ballistic_Coefficient>" & NL
-            sAns &= "       <Bullet_Type>" & txtBType.Text & "</Bullet_Type>" & NL
-            sAns &= "   </List_Bullets>" & NL
-            Return sAns
-        End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Sub XML_Generate(ByVal strPath As String)
+        '    Try
+        '        Dim sAns As String = ""
+        '        Dim NL As String = Chr(10) & Chr(13)
+        '        sAns = "<?xml version=""1.0"" encoding=""utf-8"" ?>"
+        '        sAns &= "<Inventory>" & NL
+        '        sAns &= XML_GenerateConfig()
+        '        sAns &= XML_GenerateBullets()
+        '        sAns &= XML_GeneratePrimers()
+        '        sAns &= XML_GenerateCases()
+        '        sAns &= XML_GeneratePowderList()
+        '        sAns &= "</Inventory>" & NL
+        '        sAns = Replace(sAns, "&", "&amp;")
+        '        'Dim ObjFS As New BSFileSystem
+        '        'ObjFS.DeleteFile(strPath)
+        '        'ObjFS.OutPutToFile(strPath, sAns)
+        '        Dim ObjFS As New FileIO
+        '        ObjFS.DeleteFile(strPath)
+        '        ObjFS.AppendToFile(strPath, sAns)
+        '        MsgBox("Config was exported to " & Chr(10) & strPath)
+        '    Catch ex As Exception
+        '        Call LogError(Name, "XML_Generate", Err.Number, ex.Message.ToString)
+        '    End Try
+        'End Sub
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Function XML_GeneratePowderList() As String
+        '    Dim sAns As String = ""
+        '    Dim NL As String = Chr(10) & Chr(13)
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT * from qry_CFG_SR_PowderList where CLNID=" & ConfigID
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            sAns &= "    <General_Powder>" & NL
+        '            sAns &= "       <Manufacturer>" & RS("Manufacturer") & "</Manufacturer>" & NL
+        '            sAns &= "       <Name>" & RS("Name") & "</Name>" & NL
+        '            sAns &= "       <Load_Min>" & RS("Load_Min") & "</Load_Min>" & NL
+        '            sAns &= "       <Load_Mid>" & RS("Load_Mid") & "</Load_Mid>" & NL
+        '            sAns &= "       <Load_Max>" & RS("Load_Max") & "</Load_Max>" & NL
+        '            sAns &= "       <FPS_Min>" & RS("FPS_Min") & "</FPS_Min>" & NL
+        '            sAns &= "       <FPS_MID>" & RS("FPS_MID") & "</FPS_MID>" & NL
+        '            sAns &= "       <FPS_Max>" & RS("FPS_Max") & "</FPS_Max>" & NL
+        '            sAns &= "       <CUPS_Min>" & RS("CUPS_Min") & "</CUPS_Min>" & NL
+        '            sAns &= "       <CUPS_Mid>" & RS("CUPS_Mid") & "</CUPS_Mid>" & NL
+        '            sAns &= "       <CUPS_Max>" & RS("CUPS_Max") & "</CUPS_Max>" & NL
+        '            sAns &= "       <IsPref>" & RS("IsPref") & "</IsPref>" & NL
+        '            sAns &= "    </General_Powder>" & NL
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Obj.CloseDB()
+        '    Catch ex As Exception
+        '        Call LogError(Name, "XML_GeneratePowderList", Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Function XML_GenerateConfig() As String
+        '    Dim sAns As String = ""
+        '    Dim NL As String = Chr(10) & Chr(13)
+        '    'sAns = "<Config>" & NL
+        '    sAns &= "    <Details>" & NL
+        '    sAns &= "       <ConfigName>" & ConfigName & "</ConfigName>" & NL
+        '    sAns &= "       <IsPersonal>" & IsPersonal & "</IsPersonal>" & NL
+        '    sAns &= "       <IsShotGun>" & IsShotGun & "</IsShotGun>" & NL
+        '    sAns &= "       <Notes>" & txtNotes.Text & "</Notes>" & NL
+        '    sAns &= "       <AmmoType>" & txtAmmoType.Text & "</AmmoType>" & NL
+        '    sAns &= "       <Caliber>" & txtCal.Text & "</Caliber>" & NL
+        '    sAns &= "       <Refferance>" & lblReffer.Text & "</Refferance>" & NL
+        '    sAns &= "    </Details>" & NL
+        '    'sAns &= "</Config>" & NL
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Function XML_GenerateCases() As String
+        '    Dim sAns As String = ""
+        '    Dim NL As String = Chr(10) & Chr(13)
+        '    sAns = "   <List_Case>" & NL
+        '    sAns &= "       <Manufacturer>" & txtCManu.Text & "</Manufacturer>" & NL
+        '    sAns &= "       <Name>" & txtCName.Text & "</Name>" & NL
+        '    sAns &= "       <ttl>" & txtCTOL.Text & "</ttl>" & NL
+        '    sAns &= "       <TimesUsed>" & txtCTU.Text & "</TimesUsed>" & NL
+        '    sAns &= "   </List_Case>" & NL
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Function XML_GeneratePrimers() As String
+        '    Dim sAns As String = ""
+        '    Dim NL As String = Chr(10) & Chr(13)
+        '    sAns = "   <General_Primer>" & NL
+        '    sAns &= "       <Manufacturer>" & txtPManu.Text & "</Manufacturer>" & NL
+        '    sAns &= "       <Name>" & txtPName.Text & "</Name>" & NL
+        '    sAns &= "       <Primer_Type>" & txtPType.Text & "</Primer_Type>" & NL
+        '    sAns &= "   </General_Primer>" & NL
+        '    Return sAns
+        'End Function
+        '<Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
+        'Function XML_GenerateBullets() As String
+        '    Dim sAns As String = ""
+        '    Dim NL As String = Chr(10) & Chr(13)
+        '    sAns = "   <List_Bullets>" & NL
+        '    sAns &= "       <Manufacturer>" & txtBManu.Text & "</Manufacturer>" & NL
+        '    sAns &= "       <Name>" & txtBName.Text & "</Name>" & NL
+        '    sAns &= "       <Diameter>" & txtBDia.Text & "</Diameter>" & NL
+        '    sAns &= "       <Weight>" & txtBWei.Text & "</Weight>" & NL
+        '    sAns &= "       <Sec_Den>" & txtBSecDen.Text & "</Sec_Den>" & NL
+        '    sAns &= "       <Part_number>" & txtBPartNo.Text & "</Part_number>" & NL
+        '    sAns &= "       <Ballistic_Coefficient>" & txtBBCO.Text & "</Ballistic_Coefficient>" & NL
+        '    sAns &= "       <Bullet_Type>" & txtBType.Text & "</Bullet_Type>" & NL
+        '    sAns &= "   </List_Bullets>" & NL
+        '    Return sAns
+        'End Function
 #End Region
 #Region "Form Related Subs"
         ''' <summary>
@@ -430,9 +431,13 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnAddNotes_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddNotes.Click
-            btnAddNotes.Enabled = False
-            btnUpdate.Visible = True
-            txtNotes.ReadOnly = False
+            Try
+                btnAddNotes.Enabled = False
+                btnUpdate.Visible = True
+                txtNotes.ReadOnly = False
+            Catch ex As Exception
+                Call LogError(Name, "btnAddNotes_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the Click event of the btnUpdate control.
@@ -444,11 +449,12 @@ Namespace Viewing
             btnAddNotes.Enabled = True
             txtNotes.ReadOnly = True
             Try
-                Dim Obj As New BSDatabase
+                'Dim Obj As New BSDatabase
                 Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
-                'TODO: Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.UpdateNotes
-                Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
-                Obj.ConnExec(SQL)
+                If Not ConfigListDataName.UpdateNotes(DatabasePath, ConfigID, strNotes, errOut) Then Throw New Exception(errOut)
+                ''TODO: Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.UpdateNotes
+                'Dim SQL As String = "UPDATE Config_List_Name set Notes='" & strNotes & "' where ID=" & ConfigID
+                'Obj.ConnExec(SQL)
             Catch ex As Exception
                 Call LogError(Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
             End Try
@@ -459,14 +465,18 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmView_Configuration_Sheet_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
-            If Width > 0 Then
-                TabControl1.Width = Width - 5
-                TabControl1.Height = Height - 60
-                DataGridView1.Width = TabControl1.Width - 27
-                DataGridView1.Height = TabControl1.Height - 69
-                txtNotes.Width = TabControl1.Width - 27
-                txtNotes.Height = TabControl1.Height - 69
-            End If
+            Try
+                If Width > 0 Then
+                    TabControl1.Width = Width - 5
+                    TabControl1.Height = Height - 60
+                    DataGridView1.Width = TabControl1.Width - 27
+                    DataGridView1.Height = TabControl1.Height - 69
+                    txtNotes.Width = TabControl1.Width - 27
+                    txtNotes.Height = TabControl1.Height - 69
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "frmView_Configuration_Sheet_Resize", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the Click event of the btnAdd control.
@@ -474,11 +484,15 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
-            Dim frmNew As New frmConfig_Add_Wizard_Powder
-            frmNew.ConfigID = ConfigID
-            frmNew.ConfigName = ConfigName
-            frmNew.MdiParent = MdiParent
-            frmNew.Show()
+            Try
+                Dim frmNew As New frmConfig_Add_Wizard_Powder
+                frmNew.ConfigID = ConfigID
+                frmNew.ConfigName = ConfigName
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "btnAdd_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the Click event of the btnRefresh control.
@@ -502,12 +516,16 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
-            Dim frmNew As New FrmLoadMakeReadyDetails
-            frmNew.MdiParent = MdiParent
-            frmNew.ConfigId = ConfigID
-            frmNew.ConfigName = ConfigName
-            frmNew.Show()
-            Close()
+            Try
+                Dim frmNew As New FrmLoadMakeReadyDetails
+                frmNew.MdiParent = MdiParent
+                frmNew.ConfigId = ConfigID
+                frmNew.ConfigName = ConfigName
+                frmNew.Show()
+                Close()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the CheckedChanged event of the rbstatus1 control.
@@ -515,12 +533,18 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub rbstatus1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus1.CheckedChanged
-            If rbstatus1.Checked Then
-                rbstatus2.Checked = False
-                isActive = True
-                Call UpdateActivity(1)
-                Call MDIParentMain.RefreshConfigData()
-            End If
+            Try
+                If rbstatus1.Checked Then
+                    rbstatus2.Checked = False
+                    isActive = True
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, True, errOut)
+                    If errOut.Length > 0 Then Throw New Exception(errOut)
+                    'Call UpdateActivity(1)
+                    Call MDIParentMain.RefreshConfigData()
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "rbstatus1_CheckedChanged", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the CheckedChanged event of the rbstatus2 control.
@@ -528,12 +552,18 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub rbstatus2_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus2.CheckedChanged
-            If rbstatus2.Checked Then
-                rbstatus1.Checked = False
-                isActive = False
-                Call UpdateActivity(0)
-                Call MDIParentMain.RefreshConfigData()
-            End If
+            Try
+                If rbstatus2.Checked Then
+                    rbstatus1.Checked = False
+                    isActive = False
+                    ConfigListDataName.SetActivity(DatabasePath, ConfigID, False, errOut)
+                    If errOut.Length > 0 Then Throw New Exception(errOut)
+                    'Call UpdateActivity(0)
+                    Call MDIParentMain.RefreshConfigData()
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "rbstatus2_CheckedChanged", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the CheckedChanged event of the chkFav control.
@@ -543,10 +573,12 @@ Namespace Viewing
         Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
             If chkFav.Checked Then
                 isFav = True
-                Call UpdateFav(1)
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, True, errOut)
+                'Call UpdateFav(1)
             Else
                 isFav = False
-                Call UpdateFav(0)
+                ConfigListDataName.SetFavorite(DatabasePath, ConfigID, False, errOut)
+                'Call UpdateFav(0)
             End If
             Call MDIParentMain.RefreshConfigData()
         End Sub
@@ -565,22 +597,27 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Cursor = Cursors.WaitCursor
-            Dim frmNew As New frmEditConfig
-            frmNew.ConfigID = ConfigID
-            frmNew.ConfigName = ConfigName
-            frmNew.MdiParent = MdiParent
-            frmNew.Show()
-            Close()
+            Try
+                Dim frmNew As New frmEditConfig
+                frmNew.ConfigID = ConfigID
+                frmNew.ConfigName = ConfigName
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
+                Close()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton3_Click", Err.Number, ex.Message.ToString)
+            End Try
             Cursor = Cursors.Arrow
         End Sub
         Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
-                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
-                Obj.ConnExec(SQL)
+                Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                If Not ConfigListDataPowder.Delete(DatabasePath, CLng(itemId), errOut) Then Throw New  Exception(errOut)
+                'Dim Obj As New BSDatabase
+                'Dim ObjG As New GlobalFunctions
+                'Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
+                'Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
+                'Obj.ConnExec(SQL)
                 Call LoadPowderGrid()
             Catch ex As Exception
                 Call LogError(Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
@@ -631,15 +668,20 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton5_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton5.Click
-            Dim DefaultFileName As String = "ExportConfig_" & ConfigName & ".xml"
-            SaveFileDialog1.FilterIndex = 1
-            SaveFileDialog1.Filter = "XML File(*.xml)|*.xml"
-            SaveFileDialog1.Title = "Export Data to XML File"
-            SaveFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
-            If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
-            Dim strFilePath As String = SaveFileDialog1.FileName
-            Call XML_Generate(strFilePath)
-            Close()
+            Try
+                Dim defaultFileName As String = $"ExportConfig_{ConfigName}.xml"
+                SaveFileDialog1.FilterIndex = 1
+                SaveFileDialog1.Filter = $"XML File(*.xml)|*.xml"
+                SaveFileDialog1.Title = $"Export Data to XML File"
+                SaveFileDialog1.FileName = Replace(Replace(Replace(defaultFileName, " ", "_"), "/", "-"), "\", "-")
+                If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
+                Dim strFilePath As String = SaveFileDialog1.FileName
+                'Call XML_Generate(strFilePath)
+                If not ConfigurationSheets.Generate(DatabasePath, ConfigID, strFilePath, errOut) Then throw New Exception(errOut)
+                Close()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton5_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
 #End Region
         ''' <summary>
@@ -651,7 +693,7 @@ Namespace Viewing
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
+                'Dim ObjG As New GlobalFunctions
                 Dim strSQLTable As String = "Config_List_Powder_Data_NSG"
                 Dim SQL As String = "Update " & strSQLTable & " set IsPref=0 where CLNID=" & ConfigID
                 Obj.ConnExec(SQL)
