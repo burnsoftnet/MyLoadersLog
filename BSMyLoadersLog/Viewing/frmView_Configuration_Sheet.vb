@@ -147,6 +147,7 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "LoadConfig_RiflePistol", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Sub XML_Generate(ByVal strPath As String)
         Try
             Dim sAns As String = ""
@@ -171,6 +172,7 @@ Public Class frmView_Configuration_Sheet
             Call LogError(Me.Name, "XML_Generate", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Function XML_GeneratePowderList() As String
         Dim sAns As String = ""
         Dim NL As String = Chr(10) & Chr(13)
@@ -206,6 +208,7 @@ Public Class frmView_Configuration_Sheet
         End Try
         Return sAns
     End Function
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Function XML_GenerateConfig() As String
         Dim sAns As String = ""
         Dim NL As String = Chr(10) & Chr(13)
@@ -222,6 +225,7 @@ Public Class frmView_Configuration_Sheet
         'sAns &= "</Config>" & NL
         Return sAns
     End Function
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Function XML_GenerateCases() As String
         Dim sAns As String = ""
         Dim NL As String = Chr(10) & Chr(13)
@@ -233,6 +237,7 @@ Public Class frmView_Configuration_Sheet
         sAns &= "   </List_Case>" & NL
         Return sAns
     End Function
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Function XML_GeneratePrimers() As String
         Dim sAns As String = ""
         Dim NL As String = Chr(10) & Chr(13)
@@ -243,6 +248,7 @@ Public Class frmView_Configuration_Sheet
         sAns &= "   </General_Primer>" & NL
         Return sAns
     End Function
+    <Obsolete("Replace by BurnSoft.Applications.MLL.Xml.ConfigurationSheets.Generate")>
     Function XML_GenerateBullets() As String
         Dim sAns As String = ""
         Dim NL As String = Chr(10) & Chr(13)
