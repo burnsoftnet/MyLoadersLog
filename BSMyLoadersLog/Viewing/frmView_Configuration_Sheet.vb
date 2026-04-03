@@ -13,23 +13,76 @@ Public Class frmView_Configuration_Sheet
     ''' The error out
     ''' </summary>
     Dim errOut as String
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The is personal
+    ''' </summary>
     Dim IsPersonal As Boolean
+    ''' <summary>
+    ''' The is shot gun
+    ''' </summary>
     Dim IsShotGun As Boolean
+    ''' <summary>
+    ''' The is fav
+    ''' </summary>
     Dim isFav As Boolean
+    ''' <summary>
+    ''' The is active
+    ''' </summary>
     Dim isActive As Boolean
+    ''' <summary>
+    ''' The cost bullet
+    ''' </summary>
     Dim COST_BULLET As Double
+    ''' <summary>
+    ''' The cost primer
+    ''' </summary>
     Dim COST_PRIMER As Double
+    ''' <summary>
+    ''' The cost case
+    ''' </summary>
     Dim COST_CASE As Double
+    ''' <summary>
+    ''' The cost powder
+    ''' </summary>
     Dim COST_POWDER As Double
+    ''' <summary>
+    ''' The mid powder
+    ''' </summary>
     Dim MID_POWDER As Double
+    ''' <summary>
+    ''' The instock bullet
+    ''' </summary>
     Dim INSTOCK_BULLET As Long
+    ''' <summary>
+    ''' The instock primer
+    ''' </summary>
     Dim INSTOCK_PRIMER As Long
+    ''' <summary>
+    ''' The instock case
+    ''' </summary>
     Dim INSTOCK_CASE As Long
+    ''' <summary>
+    ''' The instock powder
+    ''' </summary>
     Dim INSTOCK_POWDER As Double
+    ''' <summary>
+    ''' The preffered powder identifier
+    ''' </summary>
     Dim PrefferedPowderID As Long
 #Region "Subs"
+    ''' <summary>
+    ''' Updates the activity.
+    ''' </summary>
+    ''' <param name="iStat">The i stat.</param>
+    <Obsolete("Repalced by BurnSoft.Applications.MLL.ConfigSheets.ConfigListDataName.SetActivity")>
     Sub UpdateActivity(ByVal iStat As Integer)
         Dim Obj As New BSDatabase
         Dim SQL As String = "UPDATE Config_List_Name set IsActive=" & iStat & " where id=" & ConfigID
