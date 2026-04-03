@@ -135,7 +135,7 @@ Namespace Adding
                                             strSecDia, strPartNo, strBc, intBt, strQty, dbPrice, cal, _errOut) Then
                     Throw new Exception(_errOut)
                 End If
-                If FromView Then Call frmView_List_Bullets.LoadData()
+                If FromView Then Call FrmViewListBullets.LoadData()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

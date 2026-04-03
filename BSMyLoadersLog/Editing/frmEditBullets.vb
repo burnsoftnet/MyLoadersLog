@@ -99,7 +99,7 @@ Public Class frmEditBullets
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
             Call SaveData()
-            If FromView Then Call frmView_List_Bullets.LoadData()
+            If FromView Then Call FrmViewListBullets.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

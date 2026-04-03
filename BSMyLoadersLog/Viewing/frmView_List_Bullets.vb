@@ -9,7 +9,7 @@ Namespace Viewing
     ''' Implements the <see cref="System.Windows.Forms.Form" />
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
-    Public Class frmView_List_Bullets
+    Public Class FrmViewListBullets
         ''' <summary>
         ''' The error out
         ''' </summary>

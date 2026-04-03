@@ -92,7 +92,7 @@ Namespace Adding
         Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
             Try
                 Call SaveData()
-                If FromView Then Call frmView_List_Bullets.LoadData()
+                If FromView Then Call FrmViewListBullets.LoadData()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)

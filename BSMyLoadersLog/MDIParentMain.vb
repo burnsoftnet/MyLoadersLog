@@ -1178,8 +1178,8 @@ Public Class MdiParentMain
     Private Sub BulletToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BulletToolStripMenuItem1.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_List_Bullets.MdiParent = Me
-            frmView_List_Bullets.Show()
+            FrmViewListBullets.MdiParent = Me
+            FrmViewListBullets.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
