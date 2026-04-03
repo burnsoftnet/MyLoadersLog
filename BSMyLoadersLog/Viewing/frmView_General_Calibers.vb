@@ -1,29 +1,49 @@
+Imports System.ComponentModel
+
 Public Class frmView_General_Calibers
+    ''' <summary>
+    ''' The update pending
+    ''' </summary>
     Public UpdatePending As Boolean
-    Private Sub frmView_General_Calibers_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the frmView_General_Calibers control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub frmView_General_Calibers_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.General_CalibersTableAdapter.Fill(Me.MLLDataSet.General_Calibers)
+            General_CalibersTableAdapter.Fill(MLLDataSet.General_Calibers)
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub GeneralCalibersBindingSource_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles GeneralCalibersBindingSource.ListChanged
+    ''' <summary>
+    ''' Handles the ListChanged event of the GeneralCalibersBindingSource control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="ListChangedEventArgs"/> instance containing the event data.</param>
+    Private Sub GeneralCalibersBindingSource_ListChanged(ByVal sender As Object, ByVal e As ListChangedEventArgs) Handles GeneralCalibersBindingSource.ListChanged
         Try
-            If Me.MLLDataSet.HasChanges Then
-                Me.UpdatePending = True
+            If MLLDataSet.HasChanges Then
+                UpdatePending = True
             End If
         Catch ex As Exception
-            Call LogError(Me.Name, "GeneralCalibersBindingSource_ListChanged", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "GeneralCalibersBindingSource_ListChanged", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub DataGridView1_RowValidated(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.RowValidated
+    ''' <summary>
+    ''' Handles the RowValidated event of the DataGridView1 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+    Private Sub DataGridView1_RowValidated(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DataGridView1.RowValidated
         Try
-            If Me.UpdatePending Then
-                Me.General_CalibersTableAdapter.Update(Me.MLLDataSet.General_Calibers)
-                Me.UpdatePending = False
+            If UpdatePending Then
+                General_CalibersTableAdapter.Update(MLLDataSet.General_Calibers)
+                UpdatePending = False
             End If
         Catch ex As Exception
-            Call LogError(Me.Name, "DataGridView1_RowValidated", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "DataGridView1_RowValidated", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 End Class
