@@ -1,8 +1,11 @@
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.ViewReports
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
+Imports BurnSoft.Applications.MLL.Types
 Imports BurnSoft.Universal
 
 Namespace Viewing
@@ -111,34 +114,37 @@ Namespace Viewing
         ''' </summary>
         Sub LoadCosts()
             Try
-                Dim lnmr As Long = 0
-                Dim dPowPerB As Double = 0
-                Dim dC1RA As Double = 0
-                Dim Obj As New InventoryMath
+                'Dim lnmr As Long = 0
+                'Dim dPowPerB As Double = 0
+                Dim costForOneRound As Double = 0
+                'Dim Obj As New InventoryMath
                 txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
                 txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
                 txtCPC.Text = Converters.ConvertToDollars(COST_CASE)
                 txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
                 'Cost Seems higher txtC1RA
                 'dC1RA = ((COST_POWDER * MID_POWDER) + COST_CASE + COST_PRIMER + COST_BULLET)
-                dC1RA = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
-                txtC1RA.Text = dC1RA
+                costForOneRound = Converters.CostOfRoundsOfAmmoMetalic(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER)
+                txtC1RA.Text = costForOneRound
                 txtCBIS.Text = INSTOCK_BULLET
                 txtCPriIS.Text = INSTOCK_PRIMER
                 txtCPowIS.Text = INSTOCK_POWDER
                 txtCCIS.Text = INSTOCK_CASE
 
-                lnmr = INSTOCK_BULLET
-                If lnmr < INSTOCK_CASE Then
-                    lnmr = INSTOCK_BULLET
-                ElseIf lnmr > INSTOCK_CASE Then
-                    lnmr = INSTOCK_CASE
-                End If
-                dPowPerB = (INSTOCK_POWDER / MID_POWDER)
-                If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
-                If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
-                txtNMR.Text = lnmr
-                txtTCR.Text = lnmr * Converters.ConvertToDollars(dC1RA)
+                'lnmr = INSTOCK_BULLET
+                'If lnmr < INSTOCK_CASE Then
+                '    lnmr = INSTOCK_BULLET
+                'ElseIf lnmr > INSTOCK_CASE Then
+                '    lnmr = INSTOCK_CASE
+                'End If
+                'dPowPerB = (INSTOCK_POWDER / MID_POWDER)
+                'If lnmr > INSTOCK_PRIMER Then lnmr = INSTOCK_PRIMER
+                'If lnmr > dPowPerB Then lnmr = CLng(dPowPerB)
+                Dim lowestQtyInStock As Long = GeneralCalculations.CalculateMetallicRoundsToMake(INSTOCK_BULLET, INSTOCK_CASE, INSTOCK_PRIMER, 
+                                                                         INSTOCK_POWDER, MID_POWDER, errOut)
+                If errOut.Length > 0 Then throw New Exception(errOut)
+                txtNMR.Text = lowestQtyInStock
+                txtTCR.Text = lowestQtyInStock * Converters.ConvertToDollars(costForOneRound)
             Catch ex As Exception
                 Call LogError(Name, "LoadCosts", Err.Number, ex.Message.ToString)
             End Try
@@ -153,12 +159,25 @@ Namespace Viewing
                 IsShotGun = False
                 IsPersonal = False
                 txtConfigName.Text = ConfigName
-                Dim Obj As New InventoryMath
-                PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER)
-                COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
-                INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+                'Dim Obj As New InventoryMath
+                'PrefferedPowderID = Obj.GetPrefNSGPowderID(ConfigID, MID_POWDER)
+                'COST_POWDER = Obj.GetPricePerPowder(PrefferedPowderID)
+                'INSTOCK_POWDER = Obj.GetQTYPerPowder(PrefferedPowderID)
+
+                PrefferedPowderID = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, ConfigID, MID_POWDER, errOut)
+                COST_POWDER = PowderInventory.GetPricePerPowder(DatabasePath, PrefferedPowderID, errOut)
+                INSTOCK_POWDER = PowderInventory.GetQtyPerPowder(DatabasePath, PrefferedPowderID, errOut)
+
                 Call LoadPowderGrid()
-                Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, isFav)
+                'Call Obj.LoadConfig(ConfigID, IsPersonal, IsShotGun, txtNotes.Text, isActive, isFav)
+                Dim lst as List(Of ConfigNameList) = ConfigListDataName.GetDetails(DatabasePath, ConfigID, errOut)
+                For Each o As ConfigNameList In lst
+                    IsPersonal = o.IsPersonal
+                    IsShotGun = o.IsShotGun
+                    txtNotes.Text = o.Notes
+                    isActive = o.IsActive
+                    isFav = o.IsFavorite
+                Next
                 ChkPerLoad.Checked = IsPersonal
                 If isActive Then
                     rbstatus1.Checked = True
