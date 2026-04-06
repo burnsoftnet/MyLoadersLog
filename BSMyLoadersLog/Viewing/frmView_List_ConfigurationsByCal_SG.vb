@@ -14,7 +14,7 @@ Namespace Viewing
         ''' <summary>
         ''' The calid
         ''' </summary>
-        Public CALID As Long
+        Public CaliberId As Long
         ''' <summary>
         ''' Loads the data.
         ''' </summary>
@@ -24,19 +24,19 @@ Namespace Viewing
                 Dim selectedView As String = ToolStripComboBox1.SelectedItem.ToString
                 Select Case UCase(selectedView)
                     Case UCase("All")
-                        ConfigList_Simple_SGTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case UCase("Active Only")
-                        ConfigList_Simple_SGTableAdapter.FillBy_Active(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Active(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case UCase("Inactive Only")
-                        ConfigList_Simple_SGTableAdapter.FillBy_Inactive(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Inactive(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case UCase("All Favorites")
-                        ConfigList_Simple_SGTableAdapter.FillBy_Fav(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Fav(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case UCase("Personal Loads")
-                        ConfigList_Simple_SGTableAdapter.FillBy_Personal(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Personal(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case UCase("Reffered Loads")
-                        ConfigList_Simple_SGTableAdapter.FillBy_NonPersonal(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_NonPersonal(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                     Case Else
-                        ConfigList_Simple_SGTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple_SG, CALID)
+                        ConfigList_Simple_SGTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple_SG, CaliberId)
                         'ConfigList_Simple_SGTableAdapter.Fill(MLLDataSet.ConfigList_Simple_SG)
                 End Select
             Catch ex As Exception
@@ -51,7 +51,7 @@ Namespace Viewing
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub frmView_List_ConfigurationsByCal_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
-                If CALID = 0 Then
+                If CaliberId = 0 Then
                     Dim sMsg As String = "Please Select a Caliber from the Side Caliber List!"
                     MsgBox(sMsg)
                     Close()
@@ -70,9 +70,9 @@ Namespace Viewing
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub lstConfigSheets_DoubleClick(ByVal sender As Object, ByVal e As EventArgs) Handles lstConfigSheets.DoubleClick
             Try
-                Dim lngConfigID As Long = lstConfigSheets.SelectedValue
+                Dim lngConfigId As Long = lstConfigSheets.SelectedValue
                 Dim frmNew As New frmView_Configuration_Shotgun_Sheet
-                frmNew.ConfigID = lngConfigID
+                frmNew.ConfigID = lngConfigId
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
@@ -99,18 +99,18 @@ Namespace Viewing
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
             Try
-                Dim lngConfigID As Long = lstConfigSheets.SelectedValue
-                Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim strName As String = ObjG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigID, "ConfigName")
+                Dim lngConfigId As Long = lstConfigSheets.SelectedValue
+                Dim obj As New BSDatabase
+                Dim objG As New GlobalFunctions
+                Dim strName As String = objG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from Config_List_Powder_Data_SG where CLNID=" & lngConfigID
+                Dim SQL As String = "DELETE from Config_List_Powder_Data_SG where CLNID=" & lngConfigId
                 If strAns = vbYes Then
-                    Obj.ConnExec(SQL)
-                    SQL = "DELETE from Config_List_Data_SG where CLNID=" & lngConfigID
-                    Obj.ConnExec(SQL)
-                    SQL = "DELETE from Config_List_Name where ID=" & lngConfigID
-                    Obj.ConnExec(SQL)
+                    obj.ConnExec(SQL)
+                    SQL = "DELETE from Config_List_Data_SG where CLNID=" & lngConfigId
+                    obj.ConnExec(SQL)
+                    SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
+                    obj.ConnExec(SQL)
                     Call LoadData()
                     Call MDIParentMain.RefreshConfigData()
                 End If

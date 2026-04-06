@@ -676,7 +676,7 @@ Public Class MdiParentMain
                 frmNew.Show()
             Else
                 Dim frmNewS As New FrmViewListConfigurationsByCalSg
-                frmNewS.CALID = lngCalId
+                frmNewS.CaliberId = lngCalId
                 frmNewS.MdiParent = Me
                 frmNewS.Show()
             End If
