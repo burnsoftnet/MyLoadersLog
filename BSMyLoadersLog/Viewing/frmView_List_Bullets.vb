@@ -214,9 +214,10 @@ Namespace Viewing
         Private Sub OutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OutOfStockToolStripMenuItem.Click
             Try
                 Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim SQL As String = "UPDATE List_Bullets set QTY=0 where ID=" & itemId
-                Dim Obj As New BSDatabase
-                Obj.ConnExec(SQL)
+                'Dim SQL As String = "UPDATE List_Bullets set QTY=0 where ID=" & itemId
+                'Dim Obj As New BSDatabase
+                'Obj.ConnExec(SQL)
+                If Not BulletsInventory.UpdateQty(DatabasePath, itemId, 0, _errOut) Then Throw New Exception(_errOut)
                 Call LoadData()
             Catch ex As Exception
                 Call LogError(Name, "OutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
