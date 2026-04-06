@@ -99,15 +99,20 @@ Namespace Viewing
         Private Sub DeleteBullet()
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
+                'Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
                 Dim strSQLTable As String = "List_Bullets"
                 Dim strName As String = ObjG.GetName("SELECT * from " & strSQLTable & " where ID=" & itemId, "Name")
                 ' TODO: Enable on next beta update which this will be in there.
-                'Dim strName As String = BulletsInventory.GetName(DatabasePath, itemId, errOut)
+                'Dim strName As String = BulletsInventory.GetName(DatabasePath, itemId, _errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
-                If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                'Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
+                'If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                If strAns = vbYes Then
+                    If Not BulletsInventory.Delete(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
+                    Call LoadData()
+                End If
+                
             Catch ex As Exception
                 Call LogError(Name, "DeleteBullet", Err.Number, ex.Message.ToString)
             End Try
