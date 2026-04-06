@@ -675,7 +675,7 @@ Public Class MdiParentMain
                 frmNew.MdiParent = Me
                 frmNew.Show()
             Else
-                Dim frmNewS As New frmView_List_ConfigurationsByCal_SG
+                Dim frmNewS As New FrmViewListConfigurationsByCalSg
                 frmNewS.CALID = lngCalId
                 frmNewS.MdiParent = Me
                 frmNewS.Show()
