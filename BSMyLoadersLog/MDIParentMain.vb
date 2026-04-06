@@ -670,7 +670,7 @@ Public Class MdiParentMain
             Dim isNsg As Boolean = ConfigListGeneral.IsNotInShotgunConfigByCaliber(DatabasePath, lngCalId, _errOut)
             If _errOut.Length > 0 Then Throw new Exception(_errOut)
             If isNsg Then
-                Dim frmNew As New frmView_List_ConfigurationsByCal
+                Dim frmNew As New FrmViewListConfigurationsByCal
                 frmNew.CALID = lngCalId
                 frmNew.MdiParent = Me
                 frmNew.Show()
