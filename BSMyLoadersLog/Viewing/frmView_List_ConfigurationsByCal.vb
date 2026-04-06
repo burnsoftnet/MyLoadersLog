@@ -1,4 +1,5 @@
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.ConfigSheets
 
 Namespace Viewing
 
@@ -11,7 +12,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut As String
+        Dim _errOut As String
         ''' <summary>
         ''' The calid
         ''' </summary>
@@ -100,17 +101,21 @@ Namespace Viewing
         Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
             Try
                 Dim lngConfigId As Long = lstConfigSheets.SelectedValue
-                Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim strName As String = ObjG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+                'Dim Obj As New BSDatabase
+                'Dim ObjG As New GlobalFunctions
+                'Dim strName As String = ObjG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+                Dim strName As String = ConfigListDataName.GetName(DatabasePath, lngConfigId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
+                'Dim SQL As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
                 If strAns = vbYes Then
-                    Obj.ConnExec(SQL)
-                    SQL = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
-                    Obj.ConnExec(SQL)
-                    SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
-                    Obj.ConnExec(SQL)
+                    if Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw New Exception(_errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                    'Obj.ConnExec(SQL)
+                    'SQL = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
+                    'Obj.ConnExec(SQL)
+                    'SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
+                    'Obj.ConnExec(SQL)
                     Call LoadData()
                     Call MDIParentMain.RefreshConfigData()
                 End If
