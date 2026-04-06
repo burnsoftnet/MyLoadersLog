@@ -671,7 +671,7 @@ Public Class MdiParentMain
             If _errOut.Length > 0 Then Throw new Exception(_errOut)
             If isNsg Then
                 Dim frmNew As New FrmViewListConfigurationsByCal
-                frmNew.CALID = lngCalId
+                frmNew.CaliberId = lngCalId
                 frmNew.MdiParent = Me
                 frmNew.Show()
             Else

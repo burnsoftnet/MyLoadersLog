@@ -15,70 +15,123 @@ Namespace Viewing
         ''' <summary>
         ''' The calid
         ''' </summary>
-        Public CALID As Long
+        Public CaliberId As Long
+        ''' <summary>
+        ''' Loads the data.
+        ''' </summary>
         Public Sub LoadData()
-            ConfigListSimpleBindingSource.ResetBindings(True)
-            Dim SelectedView As String = ToolStripComboBox1.SelectedItem.ToString
-            Select Case UCase(SelectedView)
-                Case UCase("All")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Caliber(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case UCase("Active Only")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Active(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case UCase("Inactive Only")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Inactive(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case UCase("All Favorites")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Fav(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case UCase("Personal Loads")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Personal(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case UCase("Reffered Loads")
-                    Me.ConfigList_SimpleTableAdapter.FillBy_NonPersonal(Me.MLLDataSet.ConfigList_Simple, CALID)
-                Case Else
-                    Me.ConfigList_SimpleTableAdapter.FillBy_Caliber(Me.MLLDataSet.ConfigList_Simple, CALID)
-            End Select
+           Try
+               ConfigListSimpleBindingSource.ResetBindings(True)
+               Dim selectedView As String = ToolStripComboBox1.SelectedItem.ToString
+               Select Case UCase(selectedView)
+                   Case UCase("All")
+                       ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case UCase("Active Only")
+                       ConfigList_SimpleTableAdapter.FillBy_Active(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case UCase("Inactive Only")
+                       ConfigList_SimpleTableAdapter.FillBy_Inactive(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case UCase("All Favorites")
+                       ConfigList_SimpleTableAdapter.FillBy_Fav(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case UCase("Personal Loads")
+                       ConfigList_SimpleTableAdapter.FillBy_Personal(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case UCase("Reffered Loads")
+                       ConfigList_SimpleTableAdapter.FillBy_NonPersonal(MLLDataSet.ConfigList_Simple, CaliberId)
+                   Case Else
+                       ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
+               End Select
+           Catch ex As Exception
+               Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
+           End Try
             lstConfigSheets.Refresh()
         End Sub
-        Private Sub frmView_List_ConfigurationsByCal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-            If CALID = 0 Then
-                Dim sMsg As String = "Please Select a Caliber from the Side Caliber List!"
-                MsgBox(sMsg)
-                Me.Close()
-            Else
-                lstConfigSheets.Text = "All"
-                Call LoadData()
-            End If
+        ''' <summary>
+        ''' Handles the Load event of the frmView_List_ConfigurationsByCal control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        Private Sub frmView_List_ConfigurationsByCal_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+            try
+                If CaliberId = 0 Then
+                    Dim sMsg As String = "Please Select a Caliber from the Side Caliber List!"
+                    MsgBox(sMsg)
+                    Close()
+                Else
+                    lstConfigSheets.Text = $"All"
+                    Call LoadData()
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "frmView_List_ConfigurationsByCal_Load", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-        Private Sub lstConfigSheets_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConfigSheets.DoubleClick
-            Dim lngConfigID As Long = lstConfigSheets.SelectedValue
-            Dim frmNew As New FrmViewConfigurationSheet
-            frmNew.ConfigId = lngConfigID
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.Show()
+        ''' <summary>
+        ''' Handles the DoubleClick event of the lstConfigSheets control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub lstConfigSheets_DoubleClick(ByVal sender As Object, ByVal e As EventArgs) Handles lstConfigSheets.DoubleClick
+            Try
+                Dim lngConfigId As Long = lstConfigSheets.SelectedValue
+                Dim frmNew As New FrmViewConfigurationSheet
+                frmNew.ConfigId = lngConfigId
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()    
+            Catch ex As Exception
+                Call LogError(Name, "lstConfigSheets_DoubleClick", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-        Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-            frmConfig_Add_Wizard.MdiParent = Me.MdiParent
-            frmConfig_Add_Wizard.Show()
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
+            Try
+                frmConfig_Add_Wizard.MdiParent = MdiParent
+                frmConfig_Add_Wizard.Show()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-        Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
-            Dim lngConfigID As Long = lstConfigSheets.SelectedValue
-            Dim Obj As New BSDatabase
-            Dim ObjG As New GlobalFunctions
-            Dim strName As String = ObjG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigID, "ConfigName")
-            Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-            Dim SQL As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigID
-            If strAns = vbYes Then
-                Obj.ConnExec(SQL)
-                SQL = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigID
-                Obj.ConnExec(SQL)
-                SQL = "DELETE from Config_List_Name where ID=" & lngConfigID
-                Obj.ConnExec(SQL)
-                Call LoadData()
-                Call MDIParentMain.RefreshConfigData()
-            End If
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton2 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
+            Try
+                Dim lngConfigId As Long = lstConfigSheets.SelectedValue
+                Dim Obj As New BSDatabase
+                Dim ObjG As New GlobalFunctions
+                Dim strName As String = ObjG.GetName("SELECT * from Config_List_Name where ID=" & lngConfigId, "ConfigName")
+                Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
+                Dim SQL As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
+                If strAns = vbYes Then
+                    Obj.ConnExec(SQL)
+                    SQL = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
+                    Obj.ConnExec(SQL)
+                    SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
+                    Obj.ConnExec(SQL)
+                    Call LoadData()
+                    Call MDIParentMain.RefreshConfigData()
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton2_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-        Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged event of the ToolStripComboBox1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripComboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadData()
         End Sub
-        Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton3 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Call LoadData()
         End Sub
     End Class
