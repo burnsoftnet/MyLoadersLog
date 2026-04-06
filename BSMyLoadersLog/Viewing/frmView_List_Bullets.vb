@@ -2,6 +2,7 @@ Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BSMyLoadersLog.ViewReports
+Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
     ''' <summary>
@@ -97,13 +98,15 @@ Namespace Viewing
         ''' </summary>
         Private Sub DeleteBullet()
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
                 Dim strSQLTable As String = "List_Bullets"
-                Dim strName As String = ObjG.GetName("SELECT * from " & strSQLTable & " where ID=" & ItemID, "Name")
+                Dim strName As String = ObjG.GetName("SELECT * from " & strSQLTable & " where ID=" & itemId, "Name")
+                ' TODO: Enable on next beta update which this will be in there.
+                'Dim strName As String = BulletsInventory.GetName(DatabasePath, itemId, errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
+                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
                 If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
             Catch ex As Exception
                 Call LogError(Name, "DeleteBullet", Err.Number, ex.Message.ToString)
