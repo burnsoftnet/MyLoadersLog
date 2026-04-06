@@ -55,11 +55,20 @@ Namespace Viewing
                 Call LogError(Name, "frmView_List_Bullets_FormClosing", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Resize event of the frmView_List_Bullets control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmView_List_Bullets_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
-            If Height <> 0 Then
-                DataGridView1.Height = Height - (65)
-                DataGridView1.Width = Width - 15
-            End If
+            Try
+                If Height <> 0 Then
+                    DataGridView1.Height = Height - (65)
+                    DataGridView1.Width = Width - 15
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "frmView_List_Bullets_Resize", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         ''' <summary>
         ''' Handles the Load event of the frmView_List_Bullets control.
@@ -204,8 +213,8 @@ Namespace Viewing
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub OutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OutOfStockToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim SQL As String = "UPDATE List_Bullets set QTY=0 where ID=" & ItemID
+                Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim SQL As String = "UPDATE List_Bullets set QTY=0 where ID=" & itemId
                 Dim Obj As New BSDatabase
                 Obj.ConnExec(SQL)
                 Call LoadData()
