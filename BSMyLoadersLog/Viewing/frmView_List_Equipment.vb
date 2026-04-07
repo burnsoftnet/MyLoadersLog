@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
+Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
     ''' <summary>
@@ -12,7 +13,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut As String
+        Dim _errOut As String
         ''' <summary>
         ''' Handles the Resize event of the frmView_List_Equipment control.
         ''' </summary>
@@ -35,7 +36,8 @@ Namespace Viewing
             try
                 General_EquipmentTableAdapter.Fill(MLLDataSet.General_Equipment)
                 'Dim Obj As New GlobalFunctions
-                tslCost.Text = $"Current Total: {GeneralFunctions.TotalCostEquipment(DatabasePath, errOut)}"
+                tslCost.Text = $"Current Total: {GeneralFunctions.TotalCostEquipment(DatabasePath, _errOut)}"
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
@@ -73,13 +75,20 @@ Namespace Viewing
         ''' </summary>
         Sub DeleteData()
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
+                Dim itemId As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                'Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
-                Dim strName As String = ObjG.GetName("SELECT * from General_Equipment where ID=" & ItemID, "Name")
+                Dim strName As String = ObjG.GetName("SELECT * from General_Equipment where ID=" & itemId, "Name")
+                ' TODO #19 Replace function above with on below after next library update
+                'Dim strName As String = EquipmentInventory.GetName(DatabasePath, ItemID, errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from General_Equipment where ID=" & ItemID
-                If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                'Dim SQL As String = "DELETE from General_Equipment where ID=" & ItemID
+                'If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                If strAns = vbYes Then 
+                    If Not EquipmentInventory.Delete(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
+                    Call LoadData()
+                End If
             Catch ex As Exception
                 Call LogError(Name, "DeleteData", Err.Number, ex.Message.ToString)
             End Try
