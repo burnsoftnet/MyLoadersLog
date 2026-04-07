@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.LoadersLog
 
 Namespace Viewing
     ''' <summary>
@@ -11,7 +12,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut as String
+        Dim _errOut as String
         ''' <summary>
         ''' Loads the data.
         ''' </summary>
@@ -92,13 +93,20 @@ Namespace Viewing
         ''' </summary>
         Sub DeleteFirearm()
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
-                Dim strName As String = ObjG.GetName("SELECT * from Loaders_Log_Firearms where ID=" & ItemID, "FullName")
+                Dim strName As String = ObjG.GetName("SELECT * from Loaders_Log_Firearms where ID=" & itemId, "FullName")
+                ' TODO #19 Replace function above with on below after next library update
+                'Dim strName As String = Firearms.GetName(DatabasePath, itemId, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from Loaders_Log_Firearms where ID=" & ItemID
-                If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                'Dim SQL As String = "DELETE from Loaders_Log_Firearms where ID=" & itemId
+                'If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                If strAns = vbYes Then
+                    If Not Firearms.Delete(DatabasePath, itemId, _errOut) then Throw New Exception(_errOut)
+                    Call LoadData()
+                End If
             Catch ex As Exception
                 Call LogError(Name, "DeleteFirearm", Err.Number, ex.Message.ToString)
             End Try
@@ -124,10 +132,10 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
             try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmEditFirearm
                 frmNew.MdiParent = MdiParent
-                frmNew.FID = ItemID
+                frmNew.FID = itemId
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception

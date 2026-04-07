@@ -80,7 +80,7 @@ Namespace Viewing
                 Dim ObjG As New GlobalFunctions
                 Dim strName As String = ObjG.GetName("SELECT * from General_Equipment where ID=" & itemId, "Name")
                 ' TODO #19 Replace function above with on below after next library update
-                'Dim strName As String = EquipmentInventory.GetName(DatabasePath, ItemID, errOut)
+                'Dim strName As String = EquipmentInventory.GetName(DatabasePath, itemId, _errOut)
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 'Dim SQL As String = "DELETE from General_Equipment where ID=" & ItemID
