@@ -8,45 +8,88 @@ Namespace Viewing
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmViewListFirearms
+        ''' <summary>
+        ''' The error out
+        ''' </summary>
+        Dim errOut as String
+        ''' <summary>
+        ''' Loads the data.
+        ''' </summary>
         Public Sub LoadData()
-            Me.Loaders_Log_FirearmsTableAdapter.Fill(Me.MLLDataSet.Loaders_Log_Firearms)
+            Loaders_Log_FirearmsTableAdapter.Fill(MLLDataSet.Loaders_Log_Firearms)
         End Sub
-        Private Sub frmView_List_Firearms_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ''' <summary>
+        ''' Handles the Load event of the frmView_List_Firearms control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub frmView_List_Firearms_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 Call LoadData()
             Catch ex As Exception
-                Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
-        Private Sub frmView_List_Firearms_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
-            If Me.Height <> 0 Then
-                Me.DataGridView1.Height = Me.Height - (65)
-                Me.DataGridView1.Width = Me.Width - 15
-            End If
+        ''' <summary>
+        ''' Handles the Resize event of the frmView_List_Firearms control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub frmView_List_Firearms_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
+            Try
+                If Height <> 0 Then
+                    DataGridView1.Height = Height - (65)
+                    DataGridView1.Width = Width - 15
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "frmView_List_Firearms_Resize", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
-        Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-            FrmAddFirearm.MdiParent = Me.MdiParent
-            FrmAddFirearm.FromView = True
-            FrmAddFirearm.Show()
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
+            try
+                FrmAddFirearm.MdiParent = MdiParent
+                FrmAddFirearm.FromView = True
+                FrmAddFirearm.Show()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
-        Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton3 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Call LoadData()
         End Sub
-
-        Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton2 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
             Try
                 Call DeleteFirearm()
             Catch ex As Exception
-                Call LogError(Me.Name, "ToolStripButton2.Click", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "ToolStripButton2.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
-        Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+        ''' <summary>
+        ''' Handles the Click event of the DeleteToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Call DeleteFirearm()
         End Sub
+        ''' <summary>
+        ''' Deletes the firearm.
+        ''' </summary>
         Sub DeleteFirearm()
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -57,37 +100,69 @@ Namespace Viewing
                 Dim SQL As String = "DELETE from Loaders_Log_Firearms where ID=" & ItemID
                 If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
             Catch ex As Exception
-                Call LogError(Me.Name, "DeleteFirearm", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "DeleteFirearm", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
-        Private Sub AddToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddToolStripMenuItem.Click
-            FrmAddFirearm.MdiParent = Me.MdiParent
-            FrmAddFirearm.FromView = True
-            FrmAddFirearm.Show()
+        ''' <summary>
+        ''' Handles the Click event of the AddToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub AddToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddToolStripMenuItem.Click
+            Try
+                FrmAddFirearm.MdiParent = MdiParent
+                FrmAddFirearm.FromView = True
+                FrmAddFirearm.Show()
+            Catch ex As Exception
+                Call LogError(Name, "AddToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
-        Private Sub EditToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditToolStripMenuItem.Click
-            Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-            Dim frmNew As New frmEditFirearm
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.FID = ItemID
-            frmNew.FromView = True
-            frmNew.Show()
+        ''' <summary>
+        ''' Handles the Click event of the EditToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
+            try
+                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim frmNew As New frmEditFirearm
+                frmNew.MdiParent = MdiParent
+                frmNew.FID = ItemID
+                frmNew.FromView = True
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
-        Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton4.Click
-            Me.Cursor = Cursors.WaitCursor
-            frmReport_List_Firearms.MdiParent = Me.MdiParent
-            frmReport_List_Firearms.Show()
-            Me.Cursor = Cursors.Arrow
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton4 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
+            Try
+                Cursor = Cursors.WaitCursor
+                frmReport_List_Firearms.MdiParent = MdiParent
+                frmReport_List_Firearms.Show()
+                Cursor = Cursors.Arrow
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton4_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
-        Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles DataGridView1.BindingContextChanged
-            If DataGridView1.DataSource Is Nothing Then
-                Return
-            End If
-            DataGridView1.AutoResizeColumns()
+        ''' <summary>
+        ''' Handles the BindingContextChanged event of the DataGridView1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DataGridView1.BindingContextChanged
+            Try
+                If DataGridView1.DataSource Is Nothing Then
+                    Return
+                End If
+                DataGridView1.AutoResizeColumns()
+            Catch ex As Exception
+                Call LogError(Name, "DataGridView1_BindingContextChanged", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
     End Class
 End NameSpace
