@@ -1,4 +1,5 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
@@ -7,7 +8,7 @@ Public Class frmAddShot
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut as String
+    Dim errOut As String
     Public FromView As Boolean
     Sub AutoFill()
         Try
@@ -64,7 +65,7 @@ Public Class frmAddShot
                     Manu & "','" & Name & "','" & Mat & "','" & ShotNo & "','" & Weight & "'," & Cost & "," & ounces & _
                     "," & grams & "," & epps & ",0)"
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Shot.LoadData()
+            If FromView Then Call FrmViewListShot.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnAdd_Click", Err.Number, ex.Message.ToString)

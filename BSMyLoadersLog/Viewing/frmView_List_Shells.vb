@@ -4,8 +4,9 @@ Imports BSMyLoadersLog.ViewReports
 Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
+    ' TODO: #20 clean up code
     ''' <summary>
-    ''' Class FrmViewListShells.
+    ''' Class FrmViewListShells views the list of cases in inventory
     ''' Implements the <see cref="System.Windows.Forms.Form" />
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
@@ -114,12 +115,12 @@ Namespace Viewing
                 'Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
                 'If strAns = vbYes Then obj.ConnExec(SQL) : Call LoadData()
                 ' TODO #19 Replace function above with on below after next library update
-                'Dim strName As String = PrimerInventory.GetName(DatabasePath, itemId, _errOut)
+                'Dim strName As String = CaseInventory.GetName(DatabasePath, itemId, _errOut)
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 
                 If strAns = vbYes Then
-                    If Not PrimerInventory.Delete(DatabasePath, itemId, _errOut) then Throw new Exception(_errOut)
+                    If Not CaseInventory.Delete(DatabasePath, itemId, _errOut) then Throw new Exception(_errOut)
                     Call LoadData()
                 End If
             Catch ex As Exception

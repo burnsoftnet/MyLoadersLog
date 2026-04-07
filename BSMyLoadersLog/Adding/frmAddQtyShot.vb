@@ -2,6 +2,7 @@ Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmAddQtyShot
     Public BID As Long
@@ -72,7 +73,7 @@ Public Class frmAddQtyShot
     End Sub
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Call SaveData()
-        If FromView Then Call frmView_List_Shot.LoadData()
+        If FromView Then Call FrmViewListShot.LoadData()
         Me.Close()
     End Sub
 End Class
