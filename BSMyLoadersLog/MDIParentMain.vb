@@ -1144,8 +1144,8 @@ Public Class MdiParentMain
     Private Sub PrimerListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PrimerListToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_List_Primer.MdiParent = Me
-            frmView_List_Primer.Show()
+            FrmViewListPrimer.MdiParent = Me
+            FrmViewListPrimer.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow

@@ -78,7 +78,7 @@ Public Class frmAddQtyPrimers
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Try
             Call SaveData()
-            If FromView Then Call frmView_List_Primer.LoadData()
+            If FromView Then Call FrmViewListPrimer.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)

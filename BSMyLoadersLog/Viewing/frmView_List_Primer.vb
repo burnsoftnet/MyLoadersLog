@@ -4,7 +4,7 @@ Imports BurnSoft.Applications.MLL.Global
 
 Namespace Viewing
 
-    Public Class frmView_List_Primer
+    Public Class FrmViewListPrimer
         ''' <summary>
         ''' The error out
         ''' </summary>

@@ -80,7 +80,7 @@ Namespace Adding
                 If Not PrimerInventory.Add(DatabasePath, strManu, strName, intPriType, 
                                            dbPrice, intQty, _errOut) Then Throw New Exception(_errOut)
 
-                If FromView Then Call frmView_List_Primer.LoadData()
+                If FromView Then Call FrmViewListPrimer.LoadData()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
