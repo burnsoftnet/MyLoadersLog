@@ -63,7 +63,7 @@ Namespace Adding
                 If Not PowderInventory.Add(DatabasePath, strManu, strName, dbWei, 
                                            dbPrice, strNotes, _errOut) Then Throw New Exception(_errOut)
 
-                If FromView Then Call frmView_List_Powder.LoadData()
+                If FromView Then Call FrmViewListPowder.LoadData()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

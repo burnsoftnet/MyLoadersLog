@@ -60,7 +60,7 @@ Public Class frmEditPowder
                                 "weightlbs=" & strWei & ",weightgn=" & dbWeiGrn & "," & _
                                 "Price=" & dbPrice & ",Notes='" & strNotes & "',eppp=" & EstCostPerItem & " where ID=" & PID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Powder.LoadData()
+            If FromView Then Call FrmViewListPowder.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

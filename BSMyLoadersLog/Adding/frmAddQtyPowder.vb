@@ -103,7 +103,7 @@ Public Class frmAddQtyPowder
     End Sub
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Call SaveData()
-        If FromView Then Call frmView_List_Powder.LoadData()
+        If FromView Then Call FrmViewListPowder.LoadData()
         Me.Close()
     End Sub
     Private Sub btnViewCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnViewCalc.Click

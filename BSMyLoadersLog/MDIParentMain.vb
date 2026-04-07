@@ -1161,8 +1161,8 @@ Public Class MdiParentMain
     Private Sub PowderListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PowderListToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_List_Powder.MdiParent = Me
-            frmView_List_Powder.Show()
+            FrmViewListPowder.MdiParent = Me
+            FrmViewListPowder.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow

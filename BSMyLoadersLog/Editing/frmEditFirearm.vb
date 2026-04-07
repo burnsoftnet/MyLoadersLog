@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmEditFirearm
     Public FID As Long
@@ -56,7 +57,7 @@ Public Class frmEditFirearm
                         ",SerialNo='" & strSerial & "',GType='" & strType & "',exclude=" & iExclude & _
                         " where ID=" & FID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Firearms.LoadData()
+            If FromView Then Call FrmViewListFirearms.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
