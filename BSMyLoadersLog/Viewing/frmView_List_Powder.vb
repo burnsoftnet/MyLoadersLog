@@ -5,6 +5,7 @@
 Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
+Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
     ''' <summary>
@@ -16,7 +17,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private errOut as String
+        Private _errOut as String
         ''' <summary>
         ''' Registry View Name for settings
         ''' </summary>
@@ -54,7 +55,7 @@ Namespace Viewing
             'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
             Try
                 If Not MyRegistry.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString, 
-                                                   errOut) Then Throw New Exception(errOut)
+                                                   _errOut) Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "frmView_List_Powder_FormClosing", Err.Number, ex.Message.ToString)
             End Try
@@ -69,8 +70,8 @@ Namespace Viewing
             Try
                 'Dim ObjR As New BSRegistry
                 'ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
-                ToolStripComboBox1.Text = MyRegistry.GetViewSettings(RegViewName, errOut, "All")
-                if errOut.Length > 0 Then Throw New Exception(errOut)
+                ToolStripComboBox1.Text = MyRegistry.GetViewSettings(RegViewName, _errOut, "All")
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Call LoadData()
             Catch ex As Exception
                 Call LogError(Name, "frmView_List_Powder_Load", Err.Number, ex.Message.ToString)
@@ -119,14 +120,21 @@ Namespace Viewing
         ''' </summary>
         Sub DeletePowder()
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
+                Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                'Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
                 Dim strSQLTable As String = "General_Powder"
-                Dim strName As String = ObjG.GetName("SELECT * from " & strSQLTable & " where ID=" & ItemID, "Name")
+                Dim strName As String = ObjG.GetName("SELECT * from " & strSQLTable & " where ID=" & itemId, "Name")
+                ' TODO #19 Replace function above with on below after next library update
+                'Dim strName As String = EquipmentInventory.GetName(DatabasePath, itemId, _errOut)
+                if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
-                If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                'Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
+                'If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadData()
+                If strAns = vbYes Then
+                    If Not PowderInventory.Delete(DatabasePath, itemId, _errOut) then Throw new Exception(_errOut)
+                    Call LoadData()
+                End If
             Catch ex As Exception
                 Call LogError(Name, "DeletePowder", Err.Number, ex.Message.ToString)
             End Try
@@ -173,10 +181,10 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmEditPowder
                 frmNew.MdiParent = MdiParent
-                frmNew.PID = ItemID
+                frmNew.PID = itemId
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
@@ -205,10 +213,10 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub AddtoCurrentToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddtoCurrentToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmAddQtyPowder
                 frmNew.MdiParent = MdiParent
-                frmNew.PID = ItemID
+                frmNew.PID = itemId
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
@@ -230,10 +238,11 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub MarkAsOutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MarkAsOutOfStockToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "UPDATE General_Powder set weightgn=0, weightlbs=0 where ID=" & ItemID
-                Obj.ConnExec(SQL)
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                If Not PowderInventory.UpdateQty(DatabasePath, itemId, 0,0, _errOut) Then Throw New Exception(_errOut)
+                'Dim Obj As New BSDatabase
+                'Dim SQL As String = "UPDATE General_Powder set weightgn=0, weightlbs=0 where ID=" & itemId
+                'Obj.ConnExec(SQL)
                 Call LoadData()
             Catch ex As Exception
                 Call LogError(Name, "MarkAsOutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
