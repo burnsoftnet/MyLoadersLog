@@ -216,7 +216,7 @@ Namespace Viewing
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmAddQtyPrimers
                 frmNew.MdiParent = MdiParent
-                frmNew.PID = itemId
+                frmNew.PrimerId = itemId
                 frmNew.Show()
             Catch ex As Exception
                 Call LogError(Name, "AddToQtyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
