@@ -106,9 +106,17 @@ Namespace Viewing
                 Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton4 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
             Call LoadData()
         End Sub
+        ''' <summary>
+        ''' Deletes the powder.
+        ''' </summary>
         Sub DeletePowder()
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -123,6 +131,11 @@ Namespace Viewing
                 Call LogError(Name, "DeletePowder", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton2 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
             Try
                 Call DeletePowder()
@@ -130,9 +143,19 @@ Namespace Viewing
                 Call LogError(Name, "ToolStripButton2.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the DeleteToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Call DeletePowder()
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the AddToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub AddToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddToolStripMenuItem.Click
             Try
                 Dim frmNew As New frmAddPowder
@@ -143,6 +166,11 @@ Namespace Viewing
                 Call LogError(Name, "AddToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the EditToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -155,7 +183,11 @@ Namespace Viewing
                 Call LogError(Name, "EditToolStripMenuItem.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton3 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Cursor = Cursors.WaitCursor
             Try
@@ -166,7 +198,11 @@ Namespace Viewing
             End Try
             Cursor = Cursors.Arrow
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the AddtoCurrentToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub AddtoCurrentToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddtoCurrentToolStripMenuItem.Click
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -179,10 +215,19 @@ Namespace Viewing
                 Call LogError(Name, "AddtoCurrentToolStripMenuItem.Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged1 event of the ToolStripComboBox1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripComboBox1_SelectedIndexChanged1(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadData()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the MarkAsOutOfStockToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub MarkAsOutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MarkAsOutOfStockToolStripMenuItem.Click
             Try
                 Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -194,7 +239,11 @@ Namespace Viewing
                 Call LogError(Name, "MarkAsOutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the BindingContextChanged event of the DataGridView1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DataGridView1.BindingContextChanged
             try
                 If DataGridView1.DataSource Is Nothing Then
@@ -205,7 +254,11 @@ Namespace Viewing
                 Call LogError(Name, "DataGridView1_BindingContextChanged", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ExportToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ExportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ExportToolStripMenuItem.Click
             Try
                 Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
@@ -222,7 +275,11 @@ Namespace Viewing
                 Call LogError(Name, "ExportToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ImportToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ImportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ImportToolStripMenuItem.Click
             Try
                 Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
