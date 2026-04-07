@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmAddQtySlug
     Public SID As Long
@@ -81,7 +82,7 @@ Public Class frmAddQtySlug
 
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Call SaveData()
-        If FromView Then Call frmView_List_Slug.LoadData()
+        If FromView Then Call FrmViewListSlug.LoadData()
         Me.Close()
     End Sub
 

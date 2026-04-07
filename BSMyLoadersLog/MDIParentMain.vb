@@ -1866,8 +1866,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub SlugListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SlugListToolStripMenuItem.Click
-        frmView_List_Slug.MdiParent = Me
-        frmView_List_Slug.Show()
+        FrmViewListSlug.MdiParent = Me
+        FrmViewListSlug.Show()
     End Sub
     ''' <summary>
     ''' Handles the Click event of the SlugInventoryToolStripMenuItem control.

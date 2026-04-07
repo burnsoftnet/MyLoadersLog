@@ -1,4 +1,5 @@
 Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
@@ -6,7 +7,7 @@ Public Class frmAddSlugs
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut as String
+    Dim errOut As String
     Public FromView As Boolean
     Sub AutoFill()
         Try
@@ -62,7 +63,7 @@ Public Class frmAddSlugs
             SQL = "INSERT INTO List_SG_ShotType_Details(Manufacturer,Name,IsSlug,CAL,QTY,weight,epps,Price) VALUES('" & _
                     Manu & "','" & Name & "',1,'" & CAL & "'," & Qty & ",'" & Weight & "'," & epps & "," & Cost & ")"
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Slug.LoadData()
+            If FromView Then Call FrmViewListSlug.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmEditSlug
     Public FromView As Boolean
@@ -54,7 +55,7 @@ Public Class frmEditSlug
                     ",weight='" & Weight & "',epps=" & epps & ",Price=" & _
                     Cost & " where ID=" & SID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Slug.LoadData()
+            If FromView Then Call FrmViewListSlug.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

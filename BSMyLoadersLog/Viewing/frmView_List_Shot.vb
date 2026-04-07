@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
@@ -206,7 +207,7 @@ Namespace Viewing
             Try
                 Dim frmNew As New frmAddQtyShot
                 Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                frmNew.BID = itemId
+                frmNew.ShotId = itemId
                 frmNew.FromView = True
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
