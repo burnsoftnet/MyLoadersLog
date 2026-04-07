@@ -1,4 +1,5 @@
 Imports BSMyLoadersLog.Adding
+Imports BSMyLoadersLog.Editing
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
@@ -138,7 +139,7 @@ Namespace Viewing
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmEditHulls
                 frmNew.MdiParent = MdiParent
-                frmNew.SID = itemId
+                frmNew.HullId = itemId
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
