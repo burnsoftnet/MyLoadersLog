@@ -43,6 +43,12 @@ Namespace Viewing
                 Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the FormClosing event of the frmView_List_Powder control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        ''' <exception cref="System.Exception"></exception>
         Private Sub frmView_List_Powder_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
             'Dim ObjR As New BSRegistry
             'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
@@ -53,6 +59,12 @@ Namespace Viewing
                 Call LogError(Name, "frmView_List_Powder_FormClosing", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Load event of the frmView_List_Powder control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        ''' <exception cref="System.Exception"></exception>
         Private Sub frmView_List_Powder_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 'Dim ObjR As New BSRegistry
@@ -64,19 +76,35 @@ Namespace Viewing
                 Call LogError(Name, "frmView_List_Powder_Load", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Resize event of the frmView_List_Powder control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmView_List_Powder_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
-            If Height <> 0 Then
-                DataGridView1.Height = Height - (65)
-                DataGridView1.Width = Width - 15
-            End If
+            Try
+                If Height <> 0 Then
+                    DataGridView1.Height = Height - (65)
+                    DataGridView1.Width = Width - 15
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "frmView_List_Powder_Resize", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
-            Dim frmNew As New frmAddPowder
-            frmNew.MdiParent = MdiParent
-            frmNew.FromView = True
-            frmNew.Show()
+            try
+                Dim frmNew As New frmAddPowder
+                frmNew.MdiParent = MdiParent
+                frmNew.FromView = True
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
             Call LoadData()
@@ -106,10 +134,14 @@ Namespace Viewing
             Call DeletePowder()
         End Sub
         Private Sub AddToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddToolStripMenuItem.Click
-            Dim frmNew As New frmAddPowder
-            frmNew.MdiParent = MdiParent
-            frmNew.FromView = True
-            frmNew.Show()
+            Try
+                Dim frmNew As New frmAddPowder
+                frmNew.MdiParent = MdiParent
+                frmNew.FromView = True
+                frmNew.Show()    
+            Catch ex As Exception
+                Call LogError(Name, "AddToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
         Private Sub EditToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EditToolStripMenuItem.Click
             Try
@@ -126,8 +158,12 @@ Namespace Viewing
 
         Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
             Cursor = Cursors.WaitCursor
-            frmReport_PowderInventory.MdiParent = MdiParent
-            frmReport_PowderInventory.Show()
+            Try
+                frmReport_PowderInventory.MdiParent = MdiParent
+                frmReport_PowderInventory.Show()
+            Catch ex As Exception
+                Call LogError(Name, "ToolStripButton3_Click", Err.Number, ex.Message.ToString)
+            End Try
             Cursor = Cursors.Arrow
         End Sub
 
@@ -148,47 +184,63 @@ Namespace Viewing
         End Sub
 
         Private Sub MarkAsOutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MarkAsOutOfStockToolStripMenuItem.Click
-            Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-            Dim Obj As New BSDatabase
-            Dim SQL As String = "UPDATE General_Powder set weightgn=0, weightlbs=0 where ID=" & ItemID
-            Obj.ConnExec(SQL)
-            Call LoadData()
+            Try
+                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim Obj As New BSDatabase
+                Dim SQL As String = "UPDATE General_Powder set weightgn=0, weightlbs=0 where ID=" & ItemID
+                Obj.ConnExec(SQL)
+                Call LoadData()
+            Catch ex As Exception
+                Call LogError(Name, "MarkAsOutOfStockToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
 
         Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DataGridView1.BindingContextChanged
-            If DataGridView1.DataSource Is Nothing Then
-                Return
-            End If
-            DataGridView1.AutoResizeColumns()
+            try
+                If DataGridView1.DataSource Is Nothing Then
+                    Return
+                End If
+                DataGridView1.AutoResizeColumns()
+            Catch ex As Exception
+                Call LogError(Name, "DataGridView1_BindingContextChanged", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
 
         Private Sub ExportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ExportToolStripMenuItem.Click
-            Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
-            SaveFileDialog1.FilterIndex = 1
-            SaveFileDialog1.Filter = "XML File(*.xml)|*.xml"
-            SaveFileDialog1.Title = "Export Data to XML File"
-            SaveFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
-            If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
-            Dim strFilePath As String = SaveFileDialog1.FileName
-            Dim objE As New Inventory_Export_Import
-            objE.XML_Generate_Powder_Export(strFilePath)
-            MsgBox("Export Completed!")
+            Try
+                Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
+                SaveFileDialog1.FilterIndex = 1
+                SaveFileDialog1.Filter = $"XML File(*.xml)|*.xml"
+                SaveFileDialog1.Title = $"Export Data to XML File"
+                SaveFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
+                If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
+                Dim strFilePath As String = SaveFileDialog1.FileName
+                Dim objE As New Inventory_Export_Import
+                objE.XML_Generate_Powder_Export(strFilePath)
+                MsgBox("Export Completed!")
+            Catch ex As Exception
+                Call LogError(Name, "ExportToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
 
         Private Sub ImportToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ImportToolStripMenuItem.Click
-            Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
-            OpenFileDialog1.FilterIndex = 1
-            OpenFileDialog1.Filter = "XML File(*.xml)|*.xml"
-            OpenFileDialog1.Title = "Import Powder XML into Database"
-            OpenFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
-            If OpenFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
-            Dim sFilePath As String = OpenFileDialog1.FileName
-            Dim objE As New Inventory_Export_Import
-            Cursor = Cursors.WaitCursor
-            objE.XML_Generate_Powder_Import(sFilePath)
-            Cursor = Cursors.Arrow
-            Call LoadData()
-            MsgBox("Import Completed!")
+            Try
+                Dim DefaultFileName As String = "Export_Inventory_Powder.xml"
+                OpenFileDialog1.FilterIndex = 1
+                OpenFileDialog1.Filter = $"XML File(*.xml)|*.xml"
+                OpenFileDialog1.Title = $"Import Powder XML into Database"
+                OpenFileDialog1.FileName = Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-")
+                If OpenFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
+                Dim sFilePath As String = OpenFileDialog1.FileName
+                Dim objE As New Inventory_Export_Import
+                Cursor = Cursors.WaitCursor
+                objE.XML_Generate_Powder_Import(sFilePath)
+                Cursor = Cursors.Arrow
+                Call LoadData()
+                MsgBox("Import Completed!")
+            Catch ex As Exception
+                Call LogError(Name, "ImportToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
     End Class
 End NameSpace
