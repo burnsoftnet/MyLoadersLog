@@ -1631,8 +1631,8 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ShellListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ShellListToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        frmView_List_ShellHulls.MdiParent = Me
-        frmView_List_ShellHulls.Show()
+        FrmViewListShellHulls.MdiParent = Me
+        FrmViewListShellHulls.Show()
         Cursor = Cursors.Arrow
     End Sub
     ''' <summary>

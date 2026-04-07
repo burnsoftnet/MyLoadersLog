@@ -2,12 +2,13 @@ Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmEditHulls
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut as String
+    Dim errOut As String
     Public SID As Integer
     Public FromView As Boolean
     Sub AutoLoad()
@@ -93,7 +94,7 @@ Public Class frmEditHulls
                     "Qty=" & intQty & ",Price=" & dbPrice & ",GID=" & LngGAID & _
                     ", DRAM='" & sDRAM & "' where id=" & SID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_ShellHulls.LoadData()
+            If FromView Then Call FrmViewListShellHulls.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
