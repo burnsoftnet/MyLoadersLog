@@ -653,8 +653,8 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
         Cursor = Cursors.WaitCursor
-        frmView_List_Firearms.MdiParent = Me
-        frmView_List_Firearms.Show()
+        FrmViewListFirearms.MdiParent = Me
+        FrmViewListFirearms.Show()
         Cursor = Cursors.Arrow
     End Sub
     ''' <summary>
@@ -1066,8 +1066,8 @@ Public Class MdiParentMain
     Private Sub MyFirearmCollectionsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MyFirearmCollectionsToolStripMenuItem.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_List_Firearms.MdiParent = Me
-            frmView_List_Firearms.Show()
+            FrmViewListFirearms.MdiParent = Me
+            FrmViewListFirearms.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Call LogError(Name, "MyFirearmCollectionsToolStripMenuItem_Click", Err.Number, 
@@ -1110,8 +1110,8 @@ Public Class MdiParentMain
     Private Sub EquipmentToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles EquipmentToolStripMenuItem1.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_List_Equipment.MdiParent = Me
-            frmView_List_Equipment.Show()
+            FrmViewListEquipment.MdiParent = Me
+            FrmViewListEquipment.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
