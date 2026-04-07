@@ -8,6 +8,7 @@ Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
+    ' TODO: #20 clean up code
     ''' <summary>
     ''' Class FrmViewListPowder.
     ''' Implements the <see cref="System.Windows.Forms.Form" />

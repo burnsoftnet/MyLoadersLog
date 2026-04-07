@@ -6,6 +6,7 @@ Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
 
 Namespace Adding
+    ' TODO: #20 clean up code
     ''' <summary>
     ''' Class frmAddQtyPrimers.
     ''' Implements the <see cref="System.Windows.Forms.Form" />

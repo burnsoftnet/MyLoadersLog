@@ -1,9 +1,11 @@
 Imports BSMyLoadersLog.Adding
+Imports BSMyLoadersLog.Editing
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Viewing
+    ' TODO: #20 clean up code
     ''' <summary>
     ''' Class FrmViewListPrimer.
     ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -177,7 +179,7 @@ Namespace Viewing
                 Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmEditPrimer
                 frmNew.MdiParent = MdiParent
-                frmNew.PID = itemId
+                frmNew.PrimerId = itemId
                 frmNew.Show()
             Catch ex As Exception
                 Call LogError(Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
