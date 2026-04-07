@@ -1,6 +1,7 @@
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
+Imports BSMyLoadersLog.Viewing
 
 Namespace Adding
     ''' <summary>
@@ -85,7 +86,7 @@ Namespace Adding
 
                 Dim sAns As String = MsgBox("Equipment was added to the database, do you with to add another?", 
                                             MsgBoxStyle.YesNo, Text)
-                If FromView Then Call frmView_List_Equipment.LoadData()
+                If FromView Then Call FrmViewListEquipment.LoadData()
                 If sAns = vbYes Then
                     ClearFields()
                 Else

@@ -94,7 +94,7 @@ Namespace Viewing
         Sub DeleteFirearm()
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
+                'Dim Obj As New BSDatabase
                 Dim ObjG As New GlobalFunctions
                 Dim strName As String = ObjG.GetName("SELECT * from Loaders_Log_Firearms where ID=" & itemId, "FullName")
                 ' TODO #19 Replace function above with on below after next library update

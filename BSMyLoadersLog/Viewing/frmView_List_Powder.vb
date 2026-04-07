@@ -7,8 +7,12 @@ Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 
 Namespace Viewing
-
-    Public Class frmView_List_Powder
+    ''' <summary>
+    ''' Class FrmViewListPowder.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
+    Public Class FrmViewListPowder
         ''' <summary>
         ''' The error out
         ''' </summary>
