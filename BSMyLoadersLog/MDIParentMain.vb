@@ -1581,7 +1581,7 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub ShotgunToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ShotgunToolStripMenuItem1.Click
         Cursor = Cursors.WaitCursor
-        Dim frmNew As New frmViewDataSheet_Shotgun
+        Dim frmNew As New FrmViewDataSheetShotgun
         frmNew.MdiParent = Me
         frmNew.Show()
         Cursor = Cursors.Arrow
