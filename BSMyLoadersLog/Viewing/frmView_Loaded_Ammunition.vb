@@ -170,7 +170,6 @@ Namespace Viewing
                 'Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 'Dim sql As String = "DELETE from " & strSqlTable & " where ID=" & itemId
                 'If strAns = vbYes Then obj.ConnExec(sql) : Call LoadData()
-                'TODO #19 Replace function above with on below after next library update
                 Dim strName As String = LoadersLogAmmunition.GetName(DatabasePath, itemId, _errOut)
                 If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")

@@ -95,10 +95,9 @@ Namespace Viewing
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 'Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim strName As String = ObjG.GetName("SELECT * from Loaders_Log_Firearms where ID=" & itemId, "FullName")
-                ' TODO #19 Replace function above with on below after next library update
-                'Dim strName As String = Firearms.GetName(DatabasePath, itemId, _errOut)
+                'Dim ObjG As New GlobalFunctions
+                'Dim strName As String = ObjG.GetName("SELECT * from Loaders_Log_Firearms where ID=" & itemId, "FullName")
+                Dim strName As String = Firearms.GetName(DatabasePath, itemId, _errOut)
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 'Dim SQL As String = "DELETE from Loaders_Log_Firearms where ID=" & itemId
