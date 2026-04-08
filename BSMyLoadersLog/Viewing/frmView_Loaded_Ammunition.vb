@@ -1,10 +1,15 @@
-Imports System.Data.Odbc
-Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
+'Imports System.Web.UI.WebControls.Expressions
+'Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MGC.LoadersLog
+Imports BurnSoft.Applications.MGC.Types
 Imports BurnSoft.Applications.MLL.Global
-Imports BurnSoft.Applications.MLL.Helpers
+'Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.LoadersLog
+Imports BurnSoft.Applications.MLL.Types
 
 Namespace Viewing
+    ' TODO: #20 Clean up Code
     ''' <summary>
     ''' Class FrmViewLoadedAmmunition.
     ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -42,49 +47,60 @@ Namespace Viewing
         ''' </summary>
         Sub ExportToMgc()
             Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim ObjMGC As New BSMGC
-                Dim iQty As Long = 0
-                Dim AID As Long = 0
-                Dim MID As Long = 0
-                Dim cQty As Long = 0
-                Dim strManu As String = ""
-                Dim strName As String = ""
-                Dim strCaliber As String = ""
-                Dim strGrains As String = ""
-                Dim strJacket As String = ""
-                Dim sVelocity As String = ""
-                Dim dcal As Double = 0
-                Dim SQL As String = "SELECT * from Loaders_Log_Ammunition"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    cQty = RS("Qty")
-                    MID = RS("ID")
-                    strManu = GeneralHelpers.FluffContent(RS("Manufacturer"))
-                    strName = GeneralHelpers.FluffContent(RS("Name"))
-                    strCaliber = GeneralHelpers.FluffContent(RS("Cal"))
-                    strGrains = GeneralHelpers.FluffContent(RS("Grain"))
-                    strJacket = GeneralHelpers.FluffContent(RS("Jacket"))
-                    sVelocity = GeneralHelpers.FluffContent(RS("Vel"))
-                    dcal = RS("dcal")
-                    If ObjMGC.AmmoIsAlreadyListed(strManu, strName, strCaliber, _
-                                                  strGrains, strJacket, iQty, AID) Then
-                        SQL = "UPDATE Gun_Collection_Ammo set Qty='" & (cQty + iQty) & "' where id=" & AID
-                        ObjMGC.ConnExec(SQL)
-                    Else
-                        SQL = "INSERT INTO Gun_Collection_Ammo(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,vel_n) VALUES('" & _
-                              strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
-                              strJacket & "'," & cQty & "," & dcal & "," & sVelocity & ")"
-                        ObjMGC.ConnExec(SQL)
-                    End If
-                    Obj.ConnExec("DELETE from Loaders_Log_Ammunition where ID=" & MID)
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
+                Dim loadedList As List(Of LoadersLogAmmunitionData) = LoadersLogAmmunition.GetAll(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                Dim newList as List(Of Ammunition) = New List(Of Ammunition)()
+                For Each o As LoadersLogAmmunitionData In loadedList
+                    newList = AmmoHelper.AddedToAmmoList(newList, o.Manufacturer, o.Name, o.Caliber, o.Grain, 
+                                                         o.Jacket, o.Qty, o.Velocity, _errOut)
+                    If _errOut.Length > 0 Then throw New Exception(_errOut)
+                Next
+
+                If Not AmmoHelper.ImportAmmoMade(newList, _errOut) Then Throw New Exception(_errOut)
+
+                'Dim Obj As New BSDatabase
+                'Call Obj.ConnectDB()
+                'Dim ObjMGC As New BSMGC
+                'Dim iQty As Long = 0
+                'Dim AID As Long = 0
+                'Dim MID As Long = 0
+                'Dim cQty As Long = 0
+                'Dim strManu As String = ""
+                'Dim strName As String = ""
+                'Dim strCaliber As String = ""
+                'Dim strGrains As String = ""
+                'Dim strJacket As String = ""
+                'Dim sVelocity As String = ""
+                'Dim dcal As Double = 0
+                'Dim SQL As String = "SELECT * from Loaders_Log_Ammunition"
+                'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                'Dim RS As OdbcDataReader
+                'RS = CMD.ExecuteReader
+                'While RS.Read
+                '    cQty = RS("Qty")
+                '    MID = RS("ID")
+                '    strManu = GeneralHelpers.FluffContent(RS("Manufacturer"))
+                '    strName = GeneralHelpers.FluffContent(RS("Name"))
+                '    strCaliber = GeneralHelpers.FluffContent(RS("Cal"))
+                '    strGrains = GeneralHelpers.FluffContent(RS("Grain"))
+                '    strJacket = GeneralHelpers.FluffContent(RS("Jacket"))
+                '    sVelocity = GeneralHelpers.FluffContent(RS("Vel"))
+                '    dcal = RS("dcal")
+                '    If ObjMGC.AmmoIsAlreadyListed(strManu, strName, strCaliber, _
+                '                                  strGrains, strJacket, iQty, AID) Then
+                '        SQL = "UPDATE Gun_Collection_Ammo set Qty='" & (cQty + iQty) & "' where id=" & AID
+                '        ObjMGC.ConnExec(SQL)
+                '    Else
+                '        SQL = "INSERT INTO Gun_Collection_Ammo(Manufacturer,Name,Cal,Grain,Jacket,Qty,dcal,vel_n) VALUES('" & _
+                '              strManu & "','" & strName & "','" & strCaliber & "','" & strGrains & "','" & _
+                '              strJacket & "'," & cQty & "," & dcal & "," & sVelocity & ")"
+                '        ObjMGC.ConnExec(SQL)
+                '    End If
+                '    Obj.ConnExec("DELETE from Loaders_Log_Ammunition where ID=" & MID)
+                'End While
+                'RS.Close()
+                'RS = Nothing
+                'CMD = Nothing
             Catch ex As Exception
                 Call LogError(Name, "ExportToMGC", Err.Number, ex.Message.ToString)
             End Try
