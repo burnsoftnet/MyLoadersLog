@@ -752,8 +752,8 @@ Public Class MdiParentMain
     Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
         Try
             Cursor = Cursors.WaitCursor
-            frmView_Loaded_Ammunition.MdiParent = Me
-            frmView_Loaded_Ammunition.Show()
+            FrmViewLoadedAmmunition.MdiParent = Me
+            FrmViewLoadedAmmunition.Show()
             Cursor = Cursors.Arrow
         Catch ex As Exception
             Cursor = Cursors.Arrow
@@ -1802,8 +1802,8 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub LoadedAmmunitionToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles LoadedAmmunitionToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        frmView_Loaded_Ammunition.MdiParent = Me
-        frmView_Loaded_Ammunition.Show()
+        FrmViewLoadedAmmunition.MdiParent = Me
+        FrmViewLoadedAmmunition.Show()
         Cursor = Cursors.Arrow
     End Sub
     ''' <summary>
