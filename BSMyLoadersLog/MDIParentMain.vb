@@ -1642,8 +1642,8 @@ Public Class MdiParentMain
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub WADListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles WADListToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        frmView_List_WADS.MdiParent = Me
-        frmView_List_WADS.Show()
+        FrmViewListWads.MdiParent = Me
+        FrmViewListWads.Show()
         Cursor = Cursors.Arrow
     End Sub
     ''' <summary>

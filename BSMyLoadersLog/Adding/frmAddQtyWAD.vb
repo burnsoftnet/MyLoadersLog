@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmAddQtyWAD
     Public FromView As Boolean
@@ -81,12 +82,12 @@ Public Class frmAddQtyWAD
 
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Call SaveData()
-        If FromView Then Call frmView_List_WADS.LoadData()
+        If FromView Then Call FrmViewListWads.LoadData()
         Me.Close()
     End Sub
 
     Private Sub btnViewCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnViewCalc.Click
-        txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)), 
+        txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)),
                                     CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0)))
     End Sub
 End Class
