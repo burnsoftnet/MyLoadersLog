@@ -1,94 +1,140 @@
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.LoadersLog
+Imports BurnSoft.Applications.MLL.Types
 
 Namespace Viewing
-
+    ''' <summary>
+    ''' Class FrmViewDataSheetShotgun.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmViewDataSheetShotgun
         'TODO: #19 UPDATE THIS FORM
-        Public FID As Long
+        ''' <summary>
+        ''' The error out
+        ''' </summary>
+        Dim _errOut as String
+        ''' <summary>
+        ''' The firearm identifier
+        ''' </summary>
+        Public FirearmId As Long
+        ''' <summary>
+        ''' The firearm name
+        ''' </summary>
         Public FirearmName As String
+        ''' <summary>
+        ''' Loads the ComboBox.
+        ''' </summary>
+        ''' <exception cref="System.Exception"></exception>
         Sub LoadComboBox()
             Try
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT * from Loaders_Log_Firearms where GType like '%shotgun%' and exclude=0 order by FullName ASC"
-                Call Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                Dim FullName As String = ""
+                Dim lst as List(Of FirearmCollection) = Firearms.GetAll(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                For Each o As FirearmCollection In lst
+                    ToolStripComboBox1.Items.Add(o.FullName)
+                Next
+                'Dim Obj As New BSDatabase
+                'Dim SQL As String = "SELECT * from Loaders_Log_Firearms where GType like '%shotgun%' and exclude=0 order by FullName ASC"
+                'Call Obj.ConnectDB()
+                'Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                'Dim RS As OdbcDataReader
+                'RS = CMD.ExecuteReader
+                'Dim FullName As String = ""
 
-                While RS.Read
-                    ToolStripComboBox1.Items.Add(RS("FullName"))
-                    'If Len(ToolStripComboBox1.Text) = 0 Then FullName = RS("FullName")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Obj.CloseDB()
+                'While RS.Read
+                '    ToolStripComboBox1.Items.Add(RS("FullName"))
+                '    'If Len(ToolStripComboBox1.Text) = 0 Then FullName = RS("FullName")
+                'End While
+                'RS.Close()
+                'RS = Nothing
+                'CMD = Nothing
+                'Obj.CloseDB()
                 'ToolStripComboBox1.Text = FullName
                 ToolStripComboBox1.SelectedIndex = 0
             Catch ex As Exception
-                Call LogError(Me.Name, "LoadComboBox", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "LoadComboBox", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Updates the labels.
+        ''' </summary>
         Sub UpdateLabels()
             Try
                 Dim Obj As New GlobalFunctions
-                FID = Obj.GetFirearmID(FirearmName)
-                Dim sCal As String = ""
-                Dim sSerial As String = ""
-                Dim sBar As String = ""
-                Call Obj.GetFirearmDetails(FID, 0, "", "", "", sCal, sBar, sSerial)
-                tslCal.Text = "Caliber: " & sCal
-                tslBarrel.Text = "Barrel: " & sBar
-                tslSerialNo.Text = "Serial No. " & sSerial
+                'FirearmId = Obj.GetFirearmID(FirearmName)
+                FirearmId = Firearms.GetId(DatabasePath, FirearmName, _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                'Dim sCal As String = ""
+                'Dim sSerial As String = ""
+                'Dim sBar As String = ""
+                'Call Obj.GetFirearmDetails(FirearmId, 0, "", "", "", sCal, sBar, sSerial)
+                'tslCal.Text = "Caliber: " & sCal
+                'tslBarrel.Text = "Barrel: " & sBar
+                'tslSerialNo.Text = "Serial No. " & sSerial
+
+                Dim lst as List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(FirearmId), _errOut)
+                If _errOut.Length > 0 Then throw New Exception(_errOut)
+                For Each o As FirearmCollection In lst
+                    tslCal.Text = $"Caliber: {o.Caliber}"
+                    tslBarrel.Text = $"Barrel: {o.Barrel}"
+                    tslSerialNo.Text = $"Serial No. {o.SerialNo}"
+                Next
             Catch ex As Exception
-                Call LogError(Me.Name, "UpdateLabels", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "UpdateLabels", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        Private Sub WithConfigToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles WithConfigToolStripMenuItem.Click
-            Me.Cursor = Cursors.WaitCursor
-            Dim frmNew As New frmReport_DataLoader_Shotgun
-            frmNew.FID = FID
-            frmNew.FirearmName = FirearmName
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.Show()
-            Me.Cursor = Cursors.Arrow
-        End Sub
-
-        Private Sub WithoutConfigToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles WithoutConfigToolStripMenuItem.Click
-            Me.Cursor = Cursors.WaitCursor
-            Dim frmNew As New frmReport_DataLoader_ShotgunWOC
-            frmNew.FID = FID
-            frmNew.FirearmName = FirearmName
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.Show()
-            Me.Cursor = Cursors.Arrow
-        End Sub
-
-        Sub LoadDatabyID()
+        Private Sub WithConfigToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles WithConfigToolStripMenuItem.Click
+            Cursor = Cursors.WaitCursor
             Try
-                Me.Loaders_Log_SGTableAdapter.FillBy_FID(Me.MLLDataSet.Loaders_Log_SG, FID)
-                'Me.Loaders_Log_SGTableAdapter.FillBy_FID(Me.MLLDataSet.Loaders_Log_SG, FID)
+                Dim frmNew As New frmReport_DataLoader_Shotgun
+                frmNew.FID = FirearmId
+                frmNew.FirearmName = FirearmName
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
             Catch ex As Exception
-                Call LogError(Me.Name, "LoadDatabyID", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
+            Cursor = Cursors.Arrow
+        End Sub
+
+        Private Sub WithoutConfigToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles WithoutConfigToolStripMenuItem.Click
+            Cursor = Cursors.WaitCursor
+            Try
+                Dim frmNew As New frmReport_DataLoader_ShotgunWOC
+                frmNew.FID = FirearmId
+                frmNew.FirearmName = FirearmName
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
+            Cursor = Cursors.Arrow
+        End Sub
+
+        Sub LoadDatabyId()
+            Try
+                Loaders_Log_SGTableAdapter.FillBy_FID(MLLDataSet.Loaders_Log_SG, FirearmId)
+                'Loaders_Log_SGTableAdapter.FillBy_FID(MLLDataSet.Loaders_Log_SG, FID)
+            Catch ex As Exception
+                Call LogError(Name, "LoadDatabyID", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         Sub LoadDatabyName()
             Try
-                Me.Loaders_Log_SGTableAdapter.FillBy_FirearmName(Me.MLLDataSet.Loaders_Log_SG, FirearmName)
+                Loaders_Log_SGTableAdapter.FillBy_FirearmName(MLLDataSet.Loaders_Log_SG, FirearmName)
             Catch ex As Exception
-                Call LogError(Me.Name, "LoadDatabyName", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "LoadDatabyName", Err.Number, ex.Message.ToString)
             End Try
         End Sub
         Public Sub LoadData()
             Call LoadComboBox()
-            If FID = 0 Then
+            If FirearmId = 0 Then
                 FirearmName = ToolStripComboBox1.Text
                 Call LoadDatabyName()
             Else
-                Call LoadDatabyID()
+                Call LoadDatabyId()
                 ToolStripComboBox1.Text = FirearmName
             End If
             Call UpdateLabels()
@@ -98,75 +144,99 @@ Namespace Viewing
             Call LoadDatabyName()
             Call UpdateLabels()
         End Sub
-        Private Sub frmViewDataSheet_Shotgun_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Private Sub frmViewDataSheet_Shotgun_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Call LoadData()
         End Sub
 
-        Private Sub ManuallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ManuallyToolStripMenuItem.Click
-            Dim frmNew As New frmAddDataSheet_ShotGun_MAN
-            frmNew.FID = FID
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.FromView = True
-            frmNew.Show()
-        End Sub
-
-        Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UseConfigurationToolStripMenuItem.Click
-            Dim frmNew As New FrmAddDataSheetShotGunCfg
-            frmNew.Fid = FID
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.FromView = True
-            frmNew.Show()
-        End Sub
-
-        Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
-            Call LoadDataCur()
-        End Sub
-
-        Private Sub frmViewDataSheet_Shotgun_Resize(sender As Object, e As System.EventArgs) Handles Me.Resize
-            If Me.Height <> 0 Then
-                Me.DataGridView1.Height = Me.Height - (65)
-                Me.DataGridView1.Width = Me.Width - 15
-            End If
-        End Sub
-        Sub Delete_LogData()
+        Private Sub ManuallyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ManuallyToolStripMenuItem.Click
             Try
-                Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim strSQLTable As String = "Loaders_Log_SG"
-                Dim strAns As String = MsgBox("Are you sure you want to delete this from the Log?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & ItemID
-                If strAns = vbYes Then Obj.ConnExec(SQL) : Call LoadDataCur()
+                Dim frmNew As New frmAddDataSheet_ShotGun_MAN
+                frmNew.FID = FirearmId
+                frmNew.MdiParent = MdiParent
+                frmNew.FromView = True
+                frmNew.Show()
             Catch ex As Exception
-                Dim strProcedure As String = "LoadData"
-                Call LogError(Me.Name, strProcedure, Err.Number, ex.Message.ToString)
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
             End Try
         End Sub
 
-        Private Sub ToolStripButton3_Click(sender As Object, e As System.EventArgs) Handles ToolStripButton3.Click
+        Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles UseConfigurationToolStripMenuItem.Click
+            Try
+                Dim frmNew As New FrmAddDataSheetShotGunCfg
+                frmNew.Fid = FirearmId
+                frmNew.MdiParent = MdiParent
+                frmNew.FromView = True
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+
+        Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+            Call LoadDataCur()
+        End Sub
+
+        Private Sub frmViewDataSheet_Shotgun_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+            Try
+                If Height <> 0 Then
+                    DataGridView1.Height = Height - (65)
+                    DataGridView1.Width = Width - 15
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+        Sub Delete_LogData()
+            Try
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                'Dim obj As New BSDatabase
+                'Dim objG As New GlobalFunctions
+                'Dim strSQLTable As String = "Loaders_Log_SG"
+                Dim strAns As String = MsgBox("Are you sure you want to delete this from the Log?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
+                'Dim SQL As String = "DELETE from " & strSQLTable & " where ID=" & itemId
+                'If strAns = vbYes Then obj.ConnExec(SQL) : Call LoadDataCur()
+
+                If strAns = vbYes Then 
+                    If Not LoadersLogShotgun.Delete(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
+                    Call LoadDataCur()
+                End If
+            Catch ex As Exception
+                Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+
+        Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
             Call Delete_LogData()
         End Sub
 
-        Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+        Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Call Delete_LogData()
         End Sub
 
-        Private Sub EditToolStripMenuItem_Click(sender As Object, e As System.EventArgs) Handles EditToolStripMenuItem.Click
-            Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-            Dim frmNew As New frmEditDataSheet_ShotGun
-            frmNew.CFGID = ItemID
-            frmNew.FromView = True
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.Show()
+        Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+            Try
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim frmNew As New frmEditDataSheet_ShotGun
+                frmNew.CFGID = itemId
+                frmNew.FromView = True
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
 
-        Private Sub CopyToolStripMenuItem_Click(sender As Object, e As System.EventArgs) Handles CopyToolStripMenuItem.Click
-            Dim frmNew As New FrmCopyDataSheetCopyShotGun
-            Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-            frmNew.CFGID = ItemID
-            frmNew.FromView = True
-            frmNew.MdiParent = Me.MdiParent
-            frmNew.Show()
+        Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+            Try
+                Dim frmNew As New FrmCopyDataSheetCopyShotGun
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                frmNew.CFGID = itemId
+                frmNew.FromView = True
+                frmNew.MdiParent = MdiParent
+                frmNew.Show()
+            Catch ex As Exception
+                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+            End Try
         End Sub
     End Class
 End NameSpace
