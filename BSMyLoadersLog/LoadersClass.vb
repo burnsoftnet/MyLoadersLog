@@ -1,14 +1,14 @@
-Imports System
-Imports System.IO
+'Imports System
+'Imports System.IO
 Imports System.Xml
-Imports System.Text
-Imports System.Data
+'Imports System.Text
+'Imports System.Data
 Imports System.Data.Odbc
-Imports System.Windows.Forms
-Imports Microsoft.Win32
+'Imports System.Windows.Forms
+'Imports Microsoft.Win32
 Imports System.Configuration
 Imports BurnSoft.Applications.MLL.Global
-Imports BurnSoft.Applications.MLL.Helpers
+'Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
 Namespace LoadersClass
@@ -1095,33 +1095,33 @@ Namespace LoadersClass
                               Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        <Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms")>
-        Public Function GetFirearmID(ByVal Fullname As String) As Long
-            Dim lAns As Long = 0
-            Try
-                Dim Obj As New BSDatabase
-                Call Obj.ConnectDB()
-                Dim SQL As String = "Select ID from Loaders_Log_Firearms where FullName='" & Fullname & "'"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    lAns = RS("id")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-            Catch ex As Exception
-                'Dim strform As String = "LoadersClass.GlobalFunctions"
-                'Dim strProcedure As String = "GetFirearmID"
-                'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
-                'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
-                'ObjFS.LogFile(MyLogFile, sMessage)
-                Call LogError("LoadersClass", "GetFirearmID", 
-                              Err.Number, ex.Message.ToString)
-            End Try
-            Return lAns
-        End Function
+        '<Obsolete("Replaced with the BurnSoft.Applications.MLL.LoadersLog.Firearms")>
+        'Public Function GetFirearmID(ByVal Fullname As String) As Long
+        '    Dim lAns As Long = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Call Obj.ConnectDB()
+        '        Dim SQL As String = "Select ID from Loaders_Log_Firearms where FullName='" & Fullname & "'"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            lAns = RS("id")
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '    Catch ex As Exception
+        '        'Dim strform As String = "LoadersClass.GlobalFunctions"
+        '        'Dim strProcedure As String = "GetFirearmID"
+        '        'Dim ObjFS As New BSMyLoadersLog.LoadersClass.BSFileSystem
+        '        'Dim sMessage As String = strform & "." & strProcedure & "::" & Err.Number & "::" & ex.Message.ToString()
+        '        'ObjFS.LogFile(MyLogFile, sMessage)
+        '        Call LogError("LoadersClass", "GetFirearmID", 
+        '                      Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return lAns
+        'End Function
         Public Function GetGaugeID(ByVal Fullname As String) As Long
             Dim lAns As Long = 0
             Try
@@ -1305,15 +1305,15 @@ Namespace LoadersClass
     Public Class BSMGC
         Private _RegPath As String
         Public Conn As OdbcConnection
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Property DefaultRegPath() As String
-            Get
-                Return "Software\\BurnSoft\\BSMGC"
-            End Get
-            Set(ByVal value As String)
-                _RegPath = value
-            End Set
-        End Property
+        '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+        'Public Property DefaultRegPath() As String
+        '    Get
+        '        Return "Software\\BurnSoft\\BSMGC"
+        '    End Get
+        '    Set(ByVal value As String)
+        '        _RegPath = value
+        '    End Set
+        'End Property
         '<Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
         'Public Function MyGunCollectionIsInstalled() As Boolean
         '    Dim bAns As Boolean = False
@@ -1623,28 +1623,28 @@ Namespace LoadersClass
             Call ConnExec(SQL)
             If Not CaliberExists(Cal) Then ConnExec("INSERT INTO Gun_Cal (Cal) VALUES('" & Cal & "')")
         End Sub
-        <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
-        Public Function AmmoIsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
-       ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
-            Dim bAns As Boolean = False
-            Call ConnectDB()
-            Dim SQL As String = "SELECT * from Gun_Collection_Ammo where Manufacturer='" & _
-                        Manufacturer & "' and Name='" & Name & "' and Cal='" & Cal & _
-                        "' and Grain='" & Grain & "' and Jacket='" & Jacket & "'"
-            Dim CMD As New OdbcCommand(SQL, Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            bAns = RS.HasRows
-            While RS.Read
-                Qty = RS("qty")
-                MID = RS("ID")
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            CloseDB()
-            Return bAns
-        End Function
+       ' <Obsolete("Replaced with function with simular name in BurnSoft.Applications.MGC.LoadersLog.FirearmHelpers")>
+       ' Public Function AmmoIsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
+       'ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
+       '     Dim bAns As Boolean = False
+       '     Call ConnectDB()
+       '     Dim SQL As String = "SELECT * from Gun_Collection_Ammo where Manufacturer='" & _
+       '                 Manufacturer & "' and Name='" & Name & "' and Cal='" & Cal & _
+       '                 "' and Grain='" & Grain & "' and Jacket='" & Jacket & "'"
+       '     Dim CMD As New OdbcCommand(SQL, Conn)
+       '     Dim RS As OdbcDataReader
+       '     RS = CMD.ExecuteReader
+       '     bAns = RS.HasRows
+       '     While RS.Read
+       '         Qty = RS("qty")
+       '         MID = RS("ID")
+       '     End While
+       '     RS.Close()
+       '     RS = Nothing
+       '     CMD = Nothing
+       '     CloseDB()
+       '     Return bAns
+       ' End Function
     End Class
     Public Class InventoryMath
         '''' <summary>
@@ -1662,31 +1662,31 @@ Namespace LoadersClass
         ''' Just pass the Configuration ID to this function
         ''' </summary>
         ''' <returns></returns>
-        <Obsolete("Replaced in new library under ConfigListDataPowder.GetDefaultPowderId")>
-        Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
-            Dim iAns As Integer = 0
-            Try
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT PID,Load_Mid,FPS_MID from Config_List_Powder_Data_NSG where IsPref=1 and CLNID=" & ConfigID
-                Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                While RS.Read
-                    iAns = RS("PID")
-                    DefaultPowderLoad = RS("Load_Mid")
-                    DefaultFPS = RS("FPS_MID")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Obj.CloseDB()
-            Catch ex As Exception
-                Call LogError("LoadersClass.InventoryMath", "GetPrefNSGPowderID", 
-                              Err.Number, ex.Message.ToString())
-            End Try
-            Return iAns
-        End Function
+        '<Obsolete("Replaced in new library under ConfigListDataPowder.GetDefaultPowderId")>
+        'Function GetPrefNSGPowderID(ByVal ConfigID As Long, Optional ByRef DefaultPowderLoad As Double = 0, Optional ByRef DefaultFPS As Double = 0) As Long
+        '    Dim iAns As Integer = 0
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Dim SQL As String = "SELECT PID,Load_Mid,FPS_MID from Config_List_Powder_Data_NSG where IsPref=1 and CLNID=" & ConfigID
+        '        Obj.ConnectDB()
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        While RS.Read
+        '            iAns = RS("PID")
+        '            DefaultPowderLoad = RS("Load_Mid")
+        '            DefaultFPS = RS("FPS_MID")
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Obj.CloseDB()
+        '    Catch ex As Exception
+        '        Call LogError("LoadersClass.InventoryMath", "GetPrefNSGPowderID", 
+        '                      Err.Number, ex.Message.ToString())
+        '    End Try
+        '    Return iAns
+        'End Function
         ''' <summary>
         ''' Get the Powder ID ( OID ) from the Config_List_Powder_Data_SG Table for Shotguns
         ''' and returns the ID along with the Default Powder Load ( byref DefaultPowderLoad ) value.
@@ -1990,36 +1990,36 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
-        <Obsolete("Replaced in new Library with the  CaseInventory.GetDetails function.")>
-        Public Sub LoadCaseInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
-                                Optional ByRef Name As String = "", Optional ByRef Trim2length As String = "", _
-                                Optional ByRef TimesUsed As String = "0", Optional ByRef lQty As Long = 0, _
-                                Optional ByRef ePPC As Double = 0)
-            Try
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "SELECT * from List_Case where ID=" & lngID
-                Call Obj.ConnectDB()
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                Dim intNew As Integer = 0
-                While RS.Read
-                    If Not IsDBNull(RS("Manufacturer")) Then Manufacturer = RS("Manufacturer")
-                    If Not IsDBNull(RS("Name")) Then Name = RS("Name")
-                    If Not IsDBNull(RS("ttl")) Then Trim2length = RS("ttl")
-                    If Not IsDBNull(RS("TimesUsed")) Then TimesUsed = RS("TimesUsed")
-                    lQty = RS("Qty")
-                    ePPC = CDbl(RS("ePPC"))
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-            Catch ex As Exception
-                'Call LogError("LoadCaseInfo", Err.Number, ex.Message.ToString())
-                Call LogError("LoadersClass.InventoryMath", "LoadCaseInfo", 
-                              Err.Number, ex.Message.ToString())
-            End Try
-        End Sub
+        '<Obsolete("Replaced in new Library with the  CaseInventory.GetDetails function.")>
+        'Public Sub LoadCaseInfo(ByVal lngID As Long, Optional ByRef Manufacturer As String = "", _
+        '                        Optional ByRef Name As String = "", Optional ByRef Trim2length As String = "", _
+        '                        Optional ByRef TimesUsed As String = "0", Optional ByRef lQty As Long = 0, _
+        '                        Optional ByRef ePPC As Double = 0)
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Dim SQL As String = "SELECT * from List_Case where ID=" & lngID
+        '        Call Obj.ConnectDB()
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        Dim intNew As Integer = 0
+        '        While RS.Read
+        '            If Not IsDBNull(RS("Manufacturer")) Then Manufacturer = RS("Manufacturer")
+        '            If Not IsDBNull(RS("Name")) Then Name = RS("Name")
+        '            If Not IsDBNull(RS("ttl")) Then Trim2length = RS("ttl")
+        '            If Not IsDBNull(RS("TimesUsed")) Then TimesUsed = RS("TimesUsed")
+        '            lQty = RS("Qty")
+        '            ePPC = CDbl(RS("ePPC"))
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '    Catch ex As Exception
+        '        'Call LogError("LoadCaseInfo", Err.Number, ex.Message.ToString())
+        '        Call LogError("LoadersClass.InventoryMath", "LoadCaseInfo", 
+        '                      Err.Number, ex.Message.ToString())
+        '    End Try
+        'End Sub
         ''' <summary>
         '''  Get the Shull/shotgun Case information by passing the Case ID and optionally getting the Manufacturer,
         '''  Name, Trim to Length, Current Qty, Estimated Price Per Case, and DRAM
@@ -2187,109 +2187,109 @@ Namespace LoadersClass
         '''
         ''' </summary>
         ''' <returns></returns>
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.MetallicUpdate")>
-        Public Sub ARUNSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
-                    ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, ByVal dGrainsUses As Double)
-            Try
-                Dim lNewBullet As Long = lQBullet - lQty
-                Dim lNewCase As Long = lQCase - lQty
-                Dim lNewPrimer As Long = lQPrimer - lQty
-                Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "UPDATE List_Bullets set Qty=" & lNewBullet & " where ID=" & BID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE List_Case set Qty=" & lNewCase & " where id=" & CID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE General_Primer set Qty=" & lNewPrimer & " where id=" & PRID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
-                Obj.ConnExec(SQL)
-            Catch ex As Exception
-                'Call LogError("ARUNSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
-                Call LogError("LoadersClass.InventoryMath", "ARUNSG_UpdateInventoryQty", 
-                              Err.Number, ex.Message.ToString())
-            End Try
-        End Sub
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.MetallicUpdate")>
+        'Public Sub ARUNSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
+        '            ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, ByVal dGrainsUses As Double)
+        '    Try
+        '        Dim lNewBullet As Long = lQBullet - lQty
+        '        Dim lNewCase As Long = lQCase - lQty
+        '        Dim lNewPrimer As Long = lQPrimer - lQty
+        '        Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
+        '        Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
+        '        Dim Obj As New BSDatabase
+        '        Dim SQL As String = "UPDATE List_Bullets set Qty=" & lNewBullet & " where ID=" & BID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE List_Case set Qty=" & lNewCase & " where id=" & CID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE General_Primer set Qty=" & lNewPrimer & " where id=" & PRID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
+        '        Obj.ConnExec(SQL)
+        '    Catch ex As Exception
+        '        'Call LogError("ARUNSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+        '        Call LogError("LoadersClass.InventoryMath", "ARUNSG_UpdateInventoryQty", 
+        '                      Err.Number, ex.Message.ToString())
+        '    End Try
+        'End Sub
         ''' <summary>
         '''
         ''' </summary>
         ''' <returns></returns>
-        <Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.ShotgunUpdate")>
-        Public Sub ARUSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
-                    ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, _
-                    ByVal dGrainsUses As Double, ByVal lQWADS As Long, ByVal WID As Long, ByVal IsSlug As Boolean, _
-                    ByVal lQSHOT_OZ As Double, ByVal lQSHOT_GR As Double, ByVal dQPrefLoad As Double)
-            Try
-                Dim lNewBullet As Long = 0
-                Dim lNewCase As Long = lQCase - lQty
-                Dim lNewPrimer As Long = lQPrimer - lQty
-                Dim lNewWad As Long = lQWADS - lQty
-                Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
-                Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
-                Dim dNewShotGrans As Double = 0
-                Dim dNewShotOz As Double = 0
-                Dim dNewShotLBS As Double = 0
-                Dim Obj As New BSDatabase
-                Dim SQL As String = ""
-                If IsSlug Then
-                    lNewBullet = lQBullet - lQty
-                    SQL = "UPDATE List_SG_ShotType_Details set Qty=" & lNewBullet & " where ID=" & BID
-                Else
-                    dNewShotOz = lQSHOT_OZ - (dQPrefLoad * lQty)
-                    dNewShotGrans = dNewShotOz * WeightValues.WEIGHT_GRAMS_OZ
-                    dNewShotLBS = dNewShotOz / WeightValues.WEIGHT_OZ_1LBS
-                    SQL = "UPDATE List_SG_ShotType_Details set weight=" & dNewShotLBS & _
-                            ", ounces=" & dNewShotOz & ", grams=" & dNewShotGrans & " where ID=" & BID
-                End If
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE List_SG_WAD set Qty=" & lNewWad & " where id=" & WID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE List_SG_Case set Qty=" & lNewCase & " where id=" & CID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE General_Primer set Qty=" & lNewPrimer & " where id=" & PRID
-                Obj.ConnExec(SQL)
-                SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
-                Obj.ConnExec(SQL)
-            Catch ex As Exception
-                'Call LogError("ARUSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
-                Call LogError("LoadersClass.InventoryMath", "ARUSG_UpdateInventoryQty", 
-                              Err.Number, ex.Message.ToString())
-            End Try
-        End Sub
+        '<Obsolete("Replaced with BurnSoft.Applications.MLL.Inventory.InventoryUpdate.ShotgunUpdate")>
+        'Public Sub ARUSG_UpdateInventoryQty(ByVal lQty As Long, ByVal lQBullet As Long, ByVal BID As Long, ByVal lQPrimer As Long, _
+        '            ByVal PRID As Long, ByVal lQCase As Long, ByVal CID As Long, ByVal dQPowder As Double, ByVal PPID As Long, _
+        '            ByVal dGrainsUses As Double, ByVal lQWADS As Long, ByVal WID As Long, ByVal IsSlug As Boolean, _
+        '            ByVal lQSHOT_OZ As Double, ByVal lQSHOT_GR As Double, ByVal dQPrefLoad As Double)
+        '    Try
+        '        Dim lNewBullet As Long = 0
+        '        Dim lNewCase As Long = lQCase - lQty
+        '        Dim lNewPrimer As Long = lQPrimer - lQty
+        '        Dim lNewWad As Long = lQWADS - lQty
+        '        Dim lNewPowder As Double = dQPowder - (dGrainsUses * lQty)
+        '        Dim dPounds As Double = Math.Round(lNewPowder / WeightValues.WEIGHT_GRAINS_1LBS, 3)
+        '        Dim dNewShotGrans As Double = 0
+        '        Dim dNewShotOz As Double = 0
+        '        Dim dNewShotLBS As Double = 0
+        '        Dim Obj As New BSDatabase
+        '        Dim SQL As String = ""
+        '        If IsSlug Then
+        '            lNewBullet = lQBullet - lQty
+        '            SQL = "UPDATE List_SG_ShotType_Details set Qty=" & lNewBullet & " where ID=" & BID
+        '        Else
+        '            dNewShotOz = lQSHOT_OZ - (dQPrefLoad * lQty)
+        '            dNewShotGrans = dNewShotOz * WeightValues.WEIGHT_GRAMS_OZ
+        '            dNewShotLBS = dNewShotOz / WeightValues.WEIGHT_OZ_1LBS
+        '            SQL = "UPDATE List_SG_ShotType_Details set weight=" & dNewShotLBS & _
+        '                    ", ounces=" & dNewShotOz & ", grams=" & dNewShotGrans & " where ID=" & BID
+        '        End If
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE List_SG_WAD set Qty=" & lNewWad & " where id=" & WID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE List_SG_Case set Qty=" & lNewCase & " where id=" & CID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE General_Primer set Qty=" & lNewPrimer & " where id=" & PRID
+        '        Obj.ConnExec(SQL)
+        '        SQL = "UPDATE General_Powder set weightgn=" & lNewPowder & ",weightlbs=" & dPounds & " where id=" & PPID
+        '        Obj.ConnExec(SQL)
+        '    Catch ex As Exception
+        '        'Call LogError("ARUSG_UpdateInventoryQty", Err.Number, ex.Message.ToString())
+        '        Call LogError("LoadersClass.InventoryMath", "ARUSG_UpdateInventoryQty", 
+        '                      Err.Number, ex.Message.ToString())
+        '    End Try
+        'End Sub
         ''' <summary>
         '''
         ''' </summary>
         ''' <returns></returns>
-        <Obsolete("Replaced by BurnSoft.Applications.MLL.Inventory.LoadersLogAmmunition.IsAlreadyListed")>
-        Public Function IsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
-        ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
-            Dim bAns As Boolean = False
-            Try
-                Dim Obj As New BSDatabase
-                Obj.ConnectDB()
-                Dim SQL As String = "SELECT * from Loaders_Log_Ammunition where Manufacturer='" & _
-                            Manufacturer & "' and Name='" & Name & "' and Cal='" & Cal & _
-                            "' and Grain='" & Grain & "' and Jacket='" & Jacket & "'"
-                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-                Dim RS As OdbcDataReader
-                RS = CMD.ExecuteReader
-                bAns = RS.HasRows
-                While RS.Read
-                    Qty = RS("qty")
-                    MID = RS("ID")
-                End While
-                RS.Close()
-                RS = Nothing
-                CMD = Nothing
-                Obj.CloseDB()
-            Catch ex As Exception
-                'Call LogError("IsAlreadyListed", Err.Number, ex.Message.ToString())
-                Call LogError("LoadersClass.InventoryMath", "IsAlreadyListed", 
-                              Err.Number, ex.Message.ToString())
-            End Try
-            Return bAns
-        End Function
+        '<Obsolete("Replaced by BurnSoft.Applications.MLL.Inventory.LoadersLogAmmunition.IsAlreadyListed")>
+        'Public Function IsAlreadyListed(ByVal Manufacturer As String, ByVal Name As String, _
+        'ByVal Cal As String, ByVal Grain As String, ByVal Jacket As String, Optional ByRef Qty As Long = 0, Optional ByRef MID As Long = 0)
+        '    Dim bAns As Boolean = False
+        '    Try
+        '        Dim Obj As New BSDatabase
+        '        Obj.ConnectDB()
+        '        Dim SQL As String = "SELECT * from Loaders_Log_Ammunition where Manufacturer='" & _
+        '                    Manufacturer & "' and Name='" & Name & "' and Cal='" & Cal & _
+        '                    "' and Grain='" & Grain & "' and Jacket='" & Jacket & "'"
+        '        Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+        '        Dim RS As OdbcDataReader
+        '        RS = CMD.ExecuteReader
+        '        bAns = RS.HasRows
+        '        While RS.Read
+        '            Qty = RS("qty")
+        '            MID = RS("ID")
+        '        End While
+        '        RS.Close()
+        '        RS = Nothing
+        '        CMD = Nothing
+        '        Obj.CloseDB()
+        '    Catch ex As Exception
+        '        'Call LogError("IsAlreadyListed", Err.Number, ex.Message.ToString())
+        '        Call LogError("LoadersClass.InventoryMath", "IsAlreadyListed", 
+        '                      Err.Number, ex.Message.ToString())
+        '    End Try
+        '    Return bAns
+        'End Function
         ''' <summary>
         '''
         ''' </summary>
