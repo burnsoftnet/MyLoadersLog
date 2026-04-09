@@ -1,6 +1,6 @@
-Imports System.Data.Odbc
+'Imports System.Data.Odbc
 Imports BSMyLoadersLog.Adding
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.LoadersLog
 Imports BurnSoft.Applications.MLL.Types
 
@@ -11,7 +11,7 @@ Namespace Viewing
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmViewDataSheetShotgun
-        'TODO: #19 UPDATE THIS FORM
+        'TODO: #20 Clean Up code
         ''' <summary>
         ''' The error out
         ''' </summary>
@@ -62,7 +62,7 @@ Namespace Viewing
         ''' </summary>
         Sub UpdateLabels()
             Try
-                Dim Obj As New GlobalFunctions
+                'Dim Obj As New GlobalFunctions
                 'FirearmId = Obj.GetFirearmID(FirearmName)
                 FirearmId = Firearms.GetId(DatabasePath, FirearmName, _errOut)
                 If _errOut.Length > 0 Then throw New Exception(_errOut)
@@ -85,6 +85,11 @@ Namespace Viewing
                 Call LogError(Name, "UpdateLabels", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Handles the Click event of the WithConfigToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub WithConfigToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles WithConfigToolStripMenuItem.Click
             Cursor = Cursors.WaitCursor
             Try
@@ -94,11 +99,15 @@ Namespace Viewing
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "WithConfigToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
             Cursor = Cursors.Arrow
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the WithoutConfigToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub WithoutConfigToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles WithoutConfigToolStripMenuItem.Click
             Cursor = Cursors.WaitCursor
             Try
@@ -108,11 +117,13 @@ Namespace Viewing
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "WithoutConfigToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
             Cursor = Cursors.Arrow
         End Sub
-
+        ''' <summary>
+        ''' Loads the databy identifier.
+        ''' </summary>
         Sub LoadDatabyId()
             Try
                 Loaders_Log_SGTableAdapter.FillBy_FID(MLLDataSet.Loaders_Log_SG, FirearmId)
@@ -121,6 +132,9 @@ Namespace Viewing
                 Call LogError(Name, "LoadDatabyID", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Loads the name of the databy.
+        ''' </summary>
         Sub LoadDatabyName()
             Try
                 Loaders_Log_SGTableAdapter.FillBy_FirearmName(MLLDataSet.Loaders_Log_SG, FirearmName)
@@ -128,6 +142,9 @@ Namespace Viewing
                 Call LogError(Name, "LoadDatabyName", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Loads the data.
+        ''' </summary>
         Public Sub LoadData()
             Call LoadComboBox()
             If FirearmId = 0 Then
@@ -139,15 +156,27 @@ Namespace Viewing
             End If
             Call UpdateLabels()
         End Sub
+        ''' <summary>
+        ''' Loads the data current.
+        ''' </summary>
         Public Sub LoadDataCur()
             FirearmName = ToolStripComboBox1.Text
             Call LoadDatabyName()
             Call UpdateLabels()
         End Sub
+        ''' <summary>
+        ''' Handles the Load event of the frmViewDataSheet_Shotgun control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmViewDataSheet_Shotgun_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Call LoadData()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ManuallyToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ManuallyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ManuallyToolStripMenuItem.Click
             Try
                 Dim frmNew As New frmAddDataSheet_ShotGun_MAN
@@ -156,10 +185,14 @@ Namespace Viewing
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "ManuallyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the UseConfigurationToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles UseConfigurationToolStripMenuItem.Click
             Try
                 Dim frmNew As New FrmAddDataSheetShotGunCfg
@@ -168,14 +201,22 @@ Namespace Viewing
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "UseConfigurationToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the SelectedIndexChanged event of the ToolStripComboBox1 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
             Call LoadDataCur()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Resize event of the frmViewDataSheet_Shotgun control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub frmViewDataSheet_Shotgun_Resize(sender As Object, e As EventArgs) Handles Me.Resize
             Try
                 If Height <> 0 Then
@@ -183,9 +224,13 @@ Namespace Viewing
                     DataGridView1.Width = Width - 15
                 End If
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "frmViewDataSheet_Shotgun_Resize", Err.Number, ex.Message.ToString)
             End Try
         End Sub
+        ''' <summary>
+        ''' Deletes the log data.
+        ''' </summary>
+        ''' <exception cref="System.Exception"></exception>
         Sub Delete_LogData()
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -204,15 +249,27 @@ Namespace Viewing
                 Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the ToolStripButton3 control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
             Call Delete_LogData()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the DeleteToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
             Call Delete_LogData()
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the EditToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
@@ -222,10 +279,14 @@ Namespace Viewing
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "EditToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-
+        ''' <summary>
+        ''' Handles the Click event of the CopyToolStripMenuItem control.
+        ''' </summary>
+        ''' <param name="sender">The source of the event.</param>
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
             Try
                 Dim frmNew As New FrmCopyDataSheetCopyShotGun
@@ -235,7 +296,7 @@ Namespace Viewing
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
-                Call LogError(Name, "", Err.Number, ex.Message.ToString)
+                Call LogError(Name, "CopyToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
     End Class
