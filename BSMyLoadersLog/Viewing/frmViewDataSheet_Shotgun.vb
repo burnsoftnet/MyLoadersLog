@@ -196,7 +196,7 @@ Namespace Viewing
         Private Sub UseConfigurationToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles UseConfigurationToolStripMenuItem.Click
             Try
                 Dim frmNew As New FrmAddDataSheetShotGunCfg
-                frmNew.Fid = FirearmId
+                frmNew.FirearmId = FirearmId
                 frmNew.MdiParent = MdiParent
                 frmNew.FromView = True
                 frmNew.Show()
