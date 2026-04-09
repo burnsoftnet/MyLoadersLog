@@ -3,6 +3,7 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BSMyLoadersLog.ViewReports
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
@@ -463,30 +464,30 @@ Public Class frmView_Configuration_Shotgun_Sheet
         Me.Cursor = Cursors.WaitCursor
         Try
             If Not IsSlug Then
-                Dim frmNew As New frmReport_Configuration_Sheet_SG
-                frmNew.Config_ID = ConfigID
-                frmNew.Config_Name = ConfigName
-                frmNew.Config_AT = txtAmmoType.Text
-                frmNew.Config_Cal = txtCal.Text
-                frmNew.Config_Notes = txtNotes.Text
-                frmNew.Pro_Manu = txtShotManu.Text
-                frmNew.Pro_Name = txtShotName.Text
-                frmNew.Pro_Material = txtShotMat.Text
-                frmNew.Pro_ShotNo = txtShotNo.Text
-                frmNew.Pro_SelectedLoad = txtPrefLoad.Text
-                frmNew.WAD_Manu = txtWADManu.Text
-                frmNew.WAD_Name = txtWADName.Text
-                frmNew.WAD_MaxLoad = txtWADLoad.Text
-                frmNew.Pri_Manu = txtPManu.Text
-                frmNew.Pri_Name = txtPName.Text
-                frmNew.Pri_PT = txtPType.Text
-                frmNew.Case_Manu = txtCManu.Text
-                frmNew.Case_Name = txtCName.Text
-                frmNew.Case_TTL = txtCTOL.Text
-                frmNew.Case_DRAM = txtDRAM.Text
-                frmNew.Config_ISPersonal = IsPersonal
-                frmNew.Config_Ref = lblReffer.Text
-                frmNew.Config_Fav = chkFav.Checked
+                Dim frmNew As New FrmReportConfigurationSheetSg
+                frmNew.ConfigId = ConfigID
+                frmNew.ConfigName = ConfigName
+                frmNew.ConfigAmmoType = txtAmmoType.Text
+                frmNew.ConfigCaliber = txtCal.Text
+                frmNew.ConfigNotes = txtNotes.Text
+                frmNew.ProjectileManufacturer = txtShotManu.Text
+                frmNew.ProjectileName = txtShotName.Text
+                frmNew.ProjectileMaterial = txtShotMat.Text
+                frmNew.ProjectileShotNo = txtShotNo.Text
+                frmNew.ProjectileSelectedLoad = txtPrefLoad.Text
+                frmNew.WadManufacturer = txtWADManu.Text
+                frmNew.WadName = txtWADName.Text
+                frmNew.WadMaxLoad = txtWADLoad.Text
+                frmNew.PrimerManufacturer = txtPManu.Text
+                frmNew.PrimerName = txtPName.Text
+                frmNew.PrimerType = txtPType.Text
+                frmNew.CaseManufacturer = txtCManu.Text
+                frmNew.CaseName = txtCName.Text
+                frmNew.CaseTrimToLength = txtCTOL.Text
+                frmNew.CaseDram = txtDRAM.Text
+                frmNew.ConfigIsPersonal = IsPersonal
+                frmNew.ConfigRefference = lblReffer.Text
+                frmNew.ConfigFavorite = chkFav.Checked
                 frmNew.MdiParent = Me.MdiParent
                 frmNew.Show()
             Else

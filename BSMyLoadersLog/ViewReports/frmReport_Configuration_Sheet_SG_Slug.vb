@@ -39,7 +39,7 @@ Public Class frmReport_Configuration_Sheet_SG_Slug
             parmList.Add(New ReportParameter("WAD_Name", WAD_Name))
             parmList.Add(New ReportParameter("WAD_MaxLoad", WAD_MaxLoad))
             parmList.Add(New ReportParameter("Pri_Manu", Pri_Manu))
-            parmList.Add(New ReportParameter("Pri_Name", Pri_Name))
+            parmList.Add(New ReportParameter("PrimerName", Pri_Name))
             parmList.Add(New ReportParameter("Pri_PT", Pri_PT))
             parmList.Add(New ReportParameter("Case_Manu", Case_Manu))
             parmList.Add(New ReportParameter("Case_Name", Case_Name))
