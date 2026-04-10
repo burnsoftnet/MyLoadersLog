@@ -187,6 +187,8 @@ Module GlobalVars
         Dim objFs As New BurnSoft.Universal.FileIO
         Dim sMessage As String = sForm & "." & sProcedure & "::" & iErrNo & "::" & sErrorDesc
         objFs.LogFile(MyLogFile, sMessage)
+        MDIParentMain.tsslErrorsFound.Visible = True
+        MDIParentMain.tsslErrorsFound.Enabled = True
     End Sub
 
 End Module
