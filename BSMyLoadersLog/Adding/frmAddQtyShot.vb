@@ -96,19 +96,19 @@ Namespace Adding
             Try
                 '93.8 pellets per oz
                 'BPI Nickel Plated Lead Shot #2 11 lb Box
-                Dim CQty As Long = CLng(GeneralHelpers.FluffContent(txtCQty.Text, 0))
-                Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
-                Dim UQty As Long = CDbl(GeneralHelpers.FluffContent(txtUQty.Text, 0))
-                Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
+                Dim currentQty As Long = CLng(GeneralHelpers.FluffContent(txtCQty.Text, 0))
+                Dim currentPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
+                Dim newQty As Long = CDbl(GeneralHelpers.FluffContent(txtUQty.Text, 0))
+                Dim newPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
                 'If Not ShotgunShotTypeInventory.UpdateQty(DatabasePath, ShotId, )
-                Dim SQL As String = ""
-                Dim Obj As New BSDatabase
-                Dim NQty As Long = CQty + UQty
-                Dim NPrice As Double = CPrice + UPrice
-                Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * NQty
-                SQL = "Update List_SG_ShotType_Details set Price=" & NPrice & ", weight='" & NQty & _
+                Dim sql As String = ""
+                Dim obj As New BSDatabase
+                Dim nQty As Long = currentQty + newQty
+                Dim nPrice As Double = currentPrice + newPrice
+                Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * nQty
+                sql = "Update List_SG_ShotType_Details set Price=" & nPrice & ", weight='" & nQty & _
                       "',ounces=" & ounces & " where ID=" & ShotId
-                Obj.ConnExec(SQL)
+                obj.ConnExec(sql)
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
             End Try
