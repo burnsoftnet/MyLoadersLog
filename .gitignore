@@ -147,3 +147,4 @@ BSMyLoadersLog/obj/Debug/BSMyLoadersLog.vbprojAssemblyReference.cache
 .vs/BSMyLoadersLog/v16/TestStore/0/000.testlog
 .vs/BSMyLoadersLog/v16/TestStore/0/testlog.manifest
 /packages
+*.ldb
