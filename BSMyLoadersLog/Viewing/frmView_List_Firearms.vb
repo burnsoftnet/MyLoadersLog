@@ -1,8 +1,9 @@
 Imports BSMyLoadersLog.Adding
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.LoadersLog
 
 Namespace Viewing
+    ' TODO: #20 Clean up code
     ''' <summary>
     ''' Class FrmViewListFirearms.
     ''' Implements the <see cref="System.Windows.Forms.Form" />

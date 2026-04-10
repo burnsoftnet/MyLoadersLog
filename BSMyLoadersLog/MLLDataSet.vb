@@ -35,3 +35,9 @@
     End Class
 
 End Class
+
+Namespace BSMyLoadersLog.MLLDataSetTableAdapters
+    
+    Partial Public Class Loaders_Log_FirearmsTableAdapter
+    End Class
+End Namespace
