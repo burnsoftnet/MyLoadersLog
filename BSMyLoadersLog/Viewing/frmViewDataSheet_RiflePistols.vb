@@ -28,7 +28,7 @@ Namespace Viewing
             Try
                 Dim i As Integer = 0
                 Dim lst as List(Of FirearmCollection) = Firearms.GetAll(DatabasePath, _errOut)
-
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In lst
                     If Not o.GunType.ToLower().Contains("shotgun") Then
                         If Not o.Exclude Then
