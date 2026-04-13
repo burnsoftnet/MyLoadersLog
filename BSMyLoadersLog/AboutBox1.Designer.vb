@@ -40,15 +40,15 @@ Partial Class AboutBox1
         Me.LabelCompanyName = New System.Windows.Forms.Label()
         Me.TextBoxDescription = New System.Windows.Forms.TextBox()
         Me.OKButton = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel.SuspendLayout()
-        CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        Me.TableLayoutPanel.SuspendLayout
+        CType(Me.LogoPictureBox,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'TableLayoutPanel
         '
         Me.TableLayoutPanel.ColumnCount = 2
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.0!))
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.0!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67!))
         Me.TableLayoutPanel.Controls.Add(Me.LogoPictureBox, 0, 0)
         Me.TableLayoutPanel.Controls.Add(Me.LabelProductName, 1, 0)
         Me.TableLayoutPanel.Controls.Add(Me.LabelVersion, 1, 1)
@@ -60,26 +60,26 @@ Partial Class AboutBox1
         Me.TableLayoutPanel.Location = New System.Drawing.Point(9, 9)
         Me.TableLayoutPanel.Name = "TableLayoutPanel"
         Me.TableLayoutPanel.RowCount = 6
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10!))
         Me.TableLayoutPanel.Size = New System.Drawing.Size(396, 258)
         Me.TableLayoutPanel.TabIndex = 0
         '
         'LogoPictureBox
         '
         Me.LogoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"), System.Drawing.Image)
+        Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"),System.Drawing.Image)
         Me.LogoPictureBox.Location = New System.Drawing.Point(3, 3)
         Me.LogoPictureBox.Name = "LogoPictureBox"
         Me.TableLayoutPanel.SetRowSpan(Me.LogoPictureBox, 6)
         Me.LogoPictureBox.Size = New System.Drawing.Size(124, 252)
         Me.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.LogoPictureBox.TabIndex = 0
-        Me.LogoPictureBox.TabStop = False
+        Me.LogoPictureBox.TabStop = false
         '
         'LabelProductName
         '
@@ -134,18 +134,18 @@ Partial Class AboutBox1
         Me.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBoxDescription.Location = New System.Drawing.Point(136, 103)
         Me.TextBoxDescription.Margin = New System.Windows.Forms.Padding(6, 3, 3, 3)
-        Me.TextBoxDescription.Multiline = True
+        Me.TextBoxDescription.Multiline = true
         Me.TextBoxDescription.Name = "TextBoxDescription"
-        Me.TextBoxDescription.ReadOnly = True
+        Me.TextBoxDescription.ReadOnly = true
         Me.TextBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.TextBoxDescription.Size = New System.Drawing.Size(257, 123)
         Me.TextBoxDescription.TabIndex = 0
-        Me.TextBoxDescription.TabStop = False
+        Me.TextBoxDescription.TabStop = false
         Me.TextBoxDescription.Text = resources.GetString("TextBoxDescription.Text")
         '
         'OKButton
         '
-        Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.OKButton.Location = New System.Drawing.Point(318, 232)
         Me.OKButton.Name = "OKButton"
@@ -155,24 +155,24 @@ Partial Class AboutBox1
         '
         'AboutBox1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.OKButton
         Me.ClientSize = New System.Drawing.Size(414, 276)
         Me.Controls.Add(Me.TableLayoutPanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
+        Me.MaximizeBox = false
+        Me.MinimizeBox = false
         Me.Name = "AboutBox1"
         Me.Padding = New System.Windows.Forms.Padding(9)
-        Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = false
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "About My Loaders Log"
-        Me.TableLayoutPanel.ResumeLayout(False)
-        Me.TableLayoutPanel.PerformLayout()
-        CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        Me.TableLayoutPanel.ResumeLayout(false)
+        Me.TableLayoutPanel.PerformLayout
+        CType(Me.LogoPictureBox,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
 
 End Class
