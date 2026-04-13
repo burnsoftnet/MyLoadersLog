@@ -27,6 +27,10 @@ Namespace Adding
         ''' From view
         ''' </summary>
         Public FromView As Boolean
+        ''' <summary>
+        ''' The current price per item
+        ''' </summary>
+        Dim currentPricePerItem as Double
         'Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
         '    Dim dAns As Double = 0
         '    Dim ObjIM As New InventoryMath
@@ -46,6 +50,7 @@ Namespace Adding
                 For Each o As ShotgunShotTypeData In lst
                     txtCQty.Text = o.Qty
                     txtCPrice.Text = Converters.ConvertToDollars(o.Price)
+                    currentPricePerItem = o.EstimatedPricePerItem
                 Next
                 'Dim Obj As New BSDatabase
                 'Call Obj.ConnectDB()
@@ -100,7 +105,8 @@ Namespace Adding
                 Dim currentPrice As Double = CDbl(GeneralHelpers.FluffContent(txtCPrice.Text, 0))
                 Dim newQty As Long = CDbl(GeneralHelpers.FluffContent(txtUQty.Text, 0))
                 Dim newPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
-                'If Not ShotgunShotTypeInventory.UpdateQty(DatabasePath, ShotId, )
+                'Dim currentPricePerItem as Double = 0
+                'If Not ShotgunShotTypeInventory.UpdateQty(DatabasePath, ShotId, currentQty, currentPrice, currentPricePerItem, newQty, newPrice, errOut) Then throw new exception(errOut)
                 Dim sql As String = ""
                 Dim obj As New BSDatabase
                 Dim nQty As Long = currentQty + newQty
