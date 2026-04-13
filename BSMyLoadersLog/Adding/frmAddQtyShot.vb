@@ -1,7 +1,7 @@
 'Imports System.Data.Odbc
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
-Imports BurnSoft.Applications.MLL.Global
+'Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.Types
@@ -30,7 +30,7 @@ Namespace Adding
         ''' <summary>
         ''' The current price per item
         ''' </summary>
-        Dim currentPricePerItem as Double
+        Dim _currentPricePerItem as Double
         'Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
         '    Dim dAns As Double = 0
         '    Dim ObjIM As New InventoryMath
@@ -50,7 +50,7 @@ Namespace Adding
                 For Each o As ShotgunShotTypeData In lst
                     txtCQty.Text = o.Qty
                     txtCPrice.Text = Converters.ConvertToDollars(o.Price)
-                    currentPricePerItem = o.EstimatedPricePerItem
+                    _currentPricePerItem = o.EstimatedPricePerItem
                 Next
                 'Dim Obj As New BSDatabase
                 'Call Obj.ConnectDB()
@@ -106,15 +106,16 @@ Namespace Adding
                 Dim newQty As Long = CDbl(GeneralHelpers.FluffContent(txtUQty.Text, 0))
                 Dim newPrice As Double = CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0))
                 'Dim currentPricePerItem as Double = 0
-                'If Not ShotgunShotTypeInventory.UpdateQty(DatabasePath, ShotId, currentQty, currentPrice, currentPricePerItem, newQty, newPrice, errOut) Then throw new exception(errOut)
-                Dim sql As String = ""
-                Dim obj As New BSDatabase
-                Dim nQty As Long = currentQty + newQty
-                Dim nPrice As Double = currentPrice + newPrice
-                Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * nQty
-                sql = "Update List_SG_ShotType_Details set Price=" & nPrice & ", weight='" & nQty & _
-                      "',ounces=" & ounces & " where ID=" & ShotId
-                obj.ConnExec(sql)
+                If Not ShotgunShotTypeInventory.UpdateQty(DatabasePath, ShotId, currentQty, currentPrice, 
+                                                          _currentPricePerItem, newQty, newPrice, _errOut) Then throw new exception(_errOut)
+                'Dim sql As String = ""
+                'Dim obj As New BSDatabase
+                'Dim nQty As Long = currentQty + newQty
+                'Dim nPrice As Double = currentPrice + newPrice
+                'Dim ounces As Double = WeightValues.WEIGHT_OZ_1LBS * nQty
+                'sql = "Update List_SG_ShotType_Details set Price=" & nPrice & ", weight='" & nQty & _
+                '      "',ounces=" & ounces & " where ID=" & ShotId
+                'obj.ConnExec(sql)
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
             End Try
