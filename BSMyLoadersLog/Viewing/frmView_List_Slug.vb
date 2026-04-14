@@ -203,7 +203,7 @@ Namespace Viewing
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 frmAddQtySlug.MdiParent = MdiParent
                 frmAddQtySlug.fromview = True
-                frmAddQtySlug.SID = itemId
+                frmAddQtySlug.SlugId = itemId
                 frmAddQtySlug.Show()
             Catch ex As Exception
                 Call LogError(Name, "", Err.Number, ex.Message.ToString)
