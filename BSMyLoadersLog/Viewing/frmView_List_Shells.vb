@@ -207,7 +207,7 @@ Namespace Viewing
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmAddQtyShellcase
                 frmNew.MdiParent = MdiParent
-                frmNew.SID = itemId
+                frmNew.CaseId = itemId
                 frmNew.FromView = True
                 frmNew.Show()
             Catch ex As Exception
