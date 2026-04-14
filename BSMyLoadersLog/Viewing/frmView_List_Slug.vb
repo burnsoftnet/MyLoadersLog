@@ -1,4 +1,5 @@
-Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Adding
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
 
@@ -13,7 +14,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private _errOut as String
+        Private _errOut As String
         ''' <summary>
         ''' Registry Selected View Settings
         ''' </summary>
@@ -47,7 +48,7 @@ Namespace Viewing
         ''' <exception cref="System.Exception"></exception>
         Private Sub DeleteSlug()
             Try
-                Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 'Dim obj As New BSDatabase
                 'Dim objG As New GlobalFunctions
                 'Dim strSqlTable As String = "List_SG_ShotType_Details"
@@ -56,11 +57,11 @@ Namespace Viewing
                 'Dim sql As String = "DELETE from " & strSqlTable & " where ID=" & itemId
                 'If strAns = vbYes Then obj.ConnExec(sql) : Call LoadData()
                 Dim strName As String = ShotgunShotTypeInventory.GetName(DatabasePath, itemId, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
-                    
+
                 If strAns = vbYes Then
-                    If Not ShotgunShotTypeInventory.Delete(DatabasePath, itemId, _errOut) then Throw new Exception(_errOut)
+                    If Not ShotgunShotTypeInventory.Delete(DatabasePath, itemId, _errOut) Then Throw New Exception(_errOut)
                     Call LoadData()
                 End If
             Catch ex As Exception
@@ -81,7 +82,7 @@ Namespace Viewing
             Try
                 'Dim ObjR As New BSRegistry
                 'Call ObjR.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString)
-                If Not MyRegistry.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString, 
+                If Not MyRegistry.SaveViewSettings(RegViewName, ToolStripComboBox1.SelectedItem.ToString,
                                                    _errOut) Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "frmView_List_Slug_FormClosing", Err.Number, ex.Message.ToString)
@@ -99,7 +100,7 @@ Namespace Viewing
             'Call LoadData()
             Try
                 ToolStripComboBox1.Text = MyRegistry.GetViewSettings(RegViewName, _errOut, "All")
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 'Dim ObjR As New BSRegistry
                 'ToolStripComboBox1.Text = ObjR.GetViewSettings(RegViewName, "All")
                 Call LoadData()
@@ -113,7 +114,7 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub DataGridView1_BindingContextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DataGridView1.BindingContextChanged
-            try
+            Try
                 If DataGridView1.DataSource Is Nothing Then
                     Return
                 End If
@@ -130,7 +131,7 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
-            try
+            Try
                 frmAddSlugs.MdiParent = MdiParent
                 frmAddSlugs.FromView = True
                 frmAddSlugs.Show()
@@ -201,10 +202,10 @@ Namespace Viewing
         Private Sub AddToQtyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddToQtyToolStripMenuItem.Click
             Try
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                frmAddQtySlug.MdiParent = MdiParent
-                frmAddQtySlug.fromview = True
-                frmAddQtySlug.SlugId = itemId
-                frmAddQtySlug.Show()
+                FrmAddQtySlug.MdiParent = MdiParent
+                FrmAddQtySlug.FromView = True
+                FrmAddQtySlug.SlugId = itemId
+                FrmAddQtySlug.Show()
             Catch ex As Exception
                 Call LogError(Name, "", Err.Number, ex.Message.ToString)
             End Try
@@ -225,8 +226,8 @@ Namespace Viewing
         ''' <exception cref="System.Exception"></exception>
         Private Sub OutOfStockToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OutOfStockToolStripMenuItem.Click
             Try
-                Dim itemId As long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
-                If Not ShotgunShotTypeInventory.UpdateSlugQty(DatabasePath, itemId, 0, _errOut) Then Throw new Exception(_errOut)
+                Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+                If Not ShotgunShotTypeInventory.UpdateSlugQty(DatabasePath, itemId, 0, _errOut) Then Throw New Exception(_errOut)
                 'Dim SQL As String = "UPDATE List_SG_ShotType_Details set qty=0 where ID=" & itemId
                 'Dim Obj As New BSDatabase
                 'Obj.ConnExec(SQL)
@@ -237,4 +238,4 @@ Namespace Viewing
         End Sub
 #End Region
     End Class
-End NameSpace
+End Namespace
