@@ -10,6 +10,7 @@ Namespace Adding
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmAddShell
+        ' TODO: #20 clean up code
         ''' <summary>
         ''' The error out
         ''' </summary>
