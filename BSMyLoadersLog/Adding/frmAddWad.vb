@@ -1,8 +1,10 @@
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Adding
+    ' TODO #20 Code Clean Up
     ''' <summary>
     ''' Class FrmAddWad.
     ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -12,7 +14,7 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut as String
+        Dim _errOut as String
         ''' <summary>
         ''' Automatics the load.
         ''' </summary>
@@ -23,12 +25,12 @@ Namespace Adding
                 'txtManu.AutoCompleteCustomSource = ObjAF.List_SG_WAD_Manufacturer
                 'txtWAD.AutoCompleteCustomSource = ObjAF.List_SG_WAD_WAD
                 'txtPrice.AutoCompleteCustomSource = ObjAF.List_SG_WAD_Price
-                txtManu.AutoCompleteCustomSource = ConfigShotgun.WadManufacturer(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtWAD.AutoCompleteCustomSource = ConfigShotgun.Wads(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
-                txtPrice.AutoCompleteCustomSource = ConfigShotgun.WadPrice(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                txtManu.AutoCompleteCustomSource = ConfigShotgun.WadManufacturer(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtWAD.AutoCompleteCustomSource = ConfigShotgun.Wads(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                txtPrice.AutoCompleteCustomSource = ConfigShotgun.WadPrice(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "AutoLoad", Err.Number, ex.Message.ToString)
             End Try
@@ -38,26 +40,30 @@ Namespace Adding
         ''' </summary>
         Sub SaveData()
             Try
-                Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
-                Dim strName As String = GeneralHelpers.FluffContent(txtWAD.Text)
-                Dim intQty As Integer = nudQty.Value
-                Dim dPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
-                Dim sLoad As String = GeneralHelpers.FluffContent(txtLoad.Text, "0")
-                Dim dLoad As Double = Converters.ConvertOZToDouble(sLoad, errOut)
-                Dim GName As String = cmdGauge.Text
-                Dim GID As Integer = cmdGauge.SelectedValue
-                Dim eppw As Double = 0
-                If Not GeneralHelpers.IsRequired(strManu, "Manufacturer", Text) Then Exit Sub
-                If Not GeneralHelpers.IsRequired(strName, "Name", Text) Then Exit Sub
-                If dPrice <> 0 Then
-                    eppw = (dPrice / intQty)
-                End If
-                Dim Obj As New BSDatabase
-                Dim SQL As String = "INSERT INTO List_SG_WAD (Manufacturer,WAD,Qty,Price,eppw,gauge,GID,load_t,load_d) VALUES('" & _
-                                    strManu & "','" & strName & "'," & intQty & "," & dPrice & "," & eppw & _
-                                    ",'" & GName & "'," & GID & ",'" & sLoad & "'," & dLoad & ")"
-                Obj.ConnExec(SQL)
-                Dim sAns As String = MsgBox(strManu & " " & strName & " was added to the database." & _
+                Dim manufacturer As String = GeneralHelpers.FluffContent(txtManu.Text)
+                Dim itemName As String = GeneralHelpers.FluffContent(txtWAD.Text)
+                Dim qty As Integer = nudQty.Value
+                Dim price As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
+                Dim loadValue As String = GeneralHelpers.FluffContent(txtLoad.Text, "0")
+                'Dim doubleLoadValue As Double = Converters.ConvertOZToDouble(loadValue, errOut)
+                Dim gaugeName As String = cmdGauge.Text
+                Dim gaugeId As Integer = cmdGauge.SelectedValue
+                'Dim eppw As Double = 0
+                If Not GeneralHelpers.IsRequired(manufacturer, "Manufacturer", Text) Then Exit Sub
+                If Not GeneralHelpers.IsRequired(itemName, "Name", Text) Then Exit Sub
+
+                If Not WadInventory.Add(DatabasePath, manufacturer, itemName, gaugeName, gaugeId, 
+                                        loadValue, qty, price, _errOut) Then Throw new Exception(_errOut)
+
+                'If price <> 0 Then
+                '    eppw = (price / qty)
+                'End If
+                'Dim Obj As New BSDatabase
+                'Dim SQL As String = "INSERT INTO List_SG_WAD (Manufacturer,WAD,Qty,Price,eppw,gauge,GID,load_t,load_d) VALUES('" & _
+                '                    manufacturer & "','" & itemName & "'," & qty & "," & price & "," & eppw & _
+                '                    ",'" & gaugeName & "'," & gaugeId & ",'" & loadValue & "'," & doubleLoadValue & ")"
+                'Obj.ConnExec(SQL)
+                Dim sAns As String = MsgBox(manufacturer & " " & itemName & " was added to the database." & _
                                             Chr(10) & "Do you wish to add another?", MsgBoxStyle.YesNo, Text)
                 If sAns = vbNo Then
                     Close()
