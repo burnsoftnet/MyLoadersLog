@@ -7,6 +7,11 @@ Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Adding
     ' TODO #20 Code Clean Up
+    ''' <summary>
+    ''' Class FrmAddShot.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmAddShot
         ''' <summary>
         ''' The error out

@@ -11,7 +11,11 @@ Imports BurnSoft.Applications.MLL.Xml
 'Imports BurnSoft.Universal
 ' TODO: #20 Code Cleanup
 Namespace Viewing
-
+    ''' <summary>
+    ''' Class FrmViewConfigurationSheet.
+    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' </summary>
+    ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmViewConfigurationSheet
         ''' <summary>
         ''' The error out
