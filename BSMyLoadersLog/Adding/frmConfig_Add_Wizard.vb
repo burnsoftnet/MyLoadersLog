@@ -93,8 +93,8 @@ Namespace Adding
                 'End If
                 If isMetallic Then
                     FrmConfigAddWizardRp1.ConfigName = configName
-                    FrmConfigAddWizardRp1.CalID = caliberId
-                    FrmConfigAddWizardRp1.ConfigID = configId
+                    FrmConfigAddWizardRp1.CaliberId = caliberId
+                    FrmConfigAddWizardRp1.ConfigId = configId
                     FrmConfigAddWizardRp1.MdiParent = MdiParent
                     FrmConfigAddWizardRp1.Show()
                     Close()

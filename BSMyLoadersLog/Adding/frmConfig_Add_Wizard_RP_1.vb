@@ -1,4 +1,4 @@
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
@@ -14,11 +14,11 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut as String
+        Dim _errOut as String
         ''' <summary>
         ''' The cal identifier
         ''' </summary>
-        Public CalID As Long
+        Public CaliberId As Long
         ''' <summary>
         ''' The configuration name
         ''' </summary>
@@ -26,11 +26,11 @@ Namespace Adding
         ''' <summary>
         ''' The configuration identifier
         ''' </summary>
-        Public ConfigID As Long
+        Public ConfigId As Long
         ''' <summary>
         ''' The is personal
         ''' </summary>
-        Dim isPersonal As Boolean
+        Dim _isPersonal As Boolean
         ''' <summary>
         ''' Handles the Load event of the frmConfig_Add_Wizard_RP_1 control.
         ''' </summary>
@@ -40,18 +40,18 @@ Namespace Adding
         Private Sub frmConfig_Add_Wizard_RP_1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 General_Ammunition_TypeTableAdapter.Fill(MLLDataSet.General_Ammunition_Type)
-                isPersonal = True
-                List_CaseTableAdapter.FillBy_CALID(MLLDataSet.List_Case, CalID)
+                _isPersonal = True
+                List_CaseTableAdapter.FillBy_CALID(MLLDataSet.List_Case, CaliberId)
                 General_PrimerTableAdapter.Fill(MLLDataSet.General_Primer)
-                List_BulletsTableAdapter.FillBy_CALID(MLLDataSet.List_Bullets, CalID)
-                If isPersonal Then
+                List_BulletsTableAdapter.FillBy_CALID(MLLDataSet.List_Bullets, CaliberId)
+                If _isPersonal Then
                     txtLoad.Enabled = False
                     chkPersonal.Checked = True
                 End If
                 'Dim ObjAF As New AutoFillCollections
                 'txtLoad.AutoCompleteCustomSource = ObjAF.Config_Source_NSG
-                txtLoad.AutoCompleteCustomSource = ConfigMetalic.Source(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                txtLoad.AutoCompleteCustomSource = ConfigMetalic.Source(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
             End Try
@@ -104,20 +104,20 @@ Namespace Adding
                 Dim strSource As String = GeneralHelpers.FluffContent(txtLoad.Text)
                 If chkBook.Checked Then
                     ' TODO: #19 Update when newer library is applied
-                    'If Not ConfigListDataName.SetPersonal(DatabasePath, ConfigID, false, errOut) Then Throw New Exception(errOut)
+                    'If Not ConfigListDataName.SetPersonal(DatabasePath, ConfigID, false, _errOut) Then Throw New Exception(_errOut)
                     'SQL = "UPDATE Config_List_Name set IsPersonal=0 where id=" & ConfigID
                     'Obj.ConnExec(SQL)
                 End If
 
-                If Not ConfigListDataMetalic.Add(DatabasePath, ConfigID, lngAmmoType, CalID, 
+                If Not ConfigListDataMetalic.Add(DatabasePath, ConfigId, lngAmmoType, CaliberId, 
                                                  lngBullet, lngPrimer, lngCase, strSource, 
-                                                 errOut) Then Throw New Exception(errOut)
+                                                 _errOut) Then Throw New Exception(_errOut)
 
                 'SQL = "INSERT INTO Config_List_Data_NSG(CLNID,ATID,CALID,BID,PRID,CAID,Source) VALUES (" & _
                 '      ConfigID & "," & lngAmmoType & "," & CalID & "," & lngBullet & "," & _
                 '      lngPrimer & "," & lngCase & ",'" & strSource & "')"
                 'Obj.ConnExec(SQL)
-                FrmConfigAddWizardPowder.ConfigId = ConfigID
+                FrmConfigAddWizardPowder.ConfigId = ConfigId
                 FrmConfigAddWizardPowder.ConfigName = ConfigName
                 FrmConfigAddWizardPowder.FromConfigWiz = True
                 FrmConfigAddWizardPowder.MdiParent = MdiParent
