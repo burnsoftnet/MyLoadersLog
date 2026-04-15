@@ -4,16 +4,42 @@ Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
 
+''' <summary>
+''' Class frmConfig_Add_Wizard_SG_3.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class frmConfig_Add_Wizard_SG_3
     ''' <summary>
     ''' The error out
     ''' </summary>
     Dim errOut as String
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The cal identifier
+    ''' </summary>
     Public CalID As Long
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
+    ''' <summary>
+    ''' The cal name
+    ''' </summary>
     Public CalName As String
+    ''' <summary>
+    ''' The gid
+    ''' </summary>
     Public GID As Long
+    ''' <summary>
+    ''' Handles the Load event of the frmConfig_Add_Wizard_SG_3 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
     Private Sub frmConfig_Add_Wizard_SG_3_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
             List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List_Slug(MLLDataSet.List_SG_ShotType_Details, CalName)
@@ -29,7 +55,11 @@ Public Class frmConfig_Add_Wizard_SG_3
             Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkPersonal control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub chkPersonal_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkPersonal.CheckedChanged
         If chkPersonal.Checked Then
             txtSource.ReadOnly = True
@@ -37,7 +67,11 @@ Public Class frmConfig_Add_Wizard_SG_3
             txtSource.ReadOnly = False
         End If
     End Sub
-
+    ''' <summary>
+    ''' Handles the Click event of the btnNext control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
         Try
             Dim PID As Long = cmbPrimer.SelectedValue
