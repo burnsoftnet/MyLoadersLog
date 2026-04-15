@@ -1,4 +1,5 @@
 'Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Adding
 Imports BurnSoft.Applications.MLL.ConfigSheets
 
 Namespace Viewing
@@ -21,28 +22,28 @@ Namespace Viewing
         ''' Loads the data.
         ''' </summary>
         Public Sub LoadData()
-           Try
-               ConfigListSimpleBindingSource.ResetBindings(True)
-               Dim selectedView As String = ToolStripComboBox1.SelectedItem.ToString
-               Select Case UCase(selectedView)
-                   Case UCase("All")
-                       ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case UCase("Active Only")
-                       ConfigList_SimpleTableAdapter.FillBy_Active(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case UCase("Inactive Only")
-                       ConfigList_SimpleTableAdapter.FillBy_Inactive(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case UCase("All Favorites")
-                       ConfigList_SimpleTableAdapter.FillBy_Fav(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case UCase("Personal Loads")
-                       ConfigList_SimpleTableAdapter.FillBy_Personal(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case UCase("Reffered Loads")
-                       ConfigList_SimpleTableAdapter.FillBy_NonPersonal(MLLDataSet.ConfigList_Simple, CaliberId)
-                   Case Else
-                       ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
-               End Select
-           Catch ex As Exception
-               Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
-           End Try
+            Try
+                ConfigListSimpleBindingSource.ResetBindings(True)
+                Dim selectedView As String = ToolStripComboBox1.SelectedItem.ToString
+                Select Case UCase(selectedView)
+                    Case UCase("All")
+                        ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case UCase("Active Only")
+                        ConfigList_SimpleTableAdapter.FillBy_Active(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case UCase("Inactive Only")
+                        ConfigList_SimpleTableAdapter.FillBy_Inactive(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case UCase("All Favorites")
+                        ConfigList_SimpleTableAdapter.FillBy_Fav(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case UCase("Personal Loads")
+                        ConfigList_SimpleTableAdapter.FillBy_Personal(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case UCase("Reffered Loads")
+                        ConfigList_SimpleTableAdapter.FillBy_NonPersonal(MLLDataSet.ConfigList_Simple, CaliberId)
+                    Case Else
+                        ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, CaliberId)
+                End Select
+            Catch ex As Exception
+                Call LogError(Name, "LoadData", Err.Number, ex.Message.ToString)
+            End Try
             lstConfigSheets.Refresh()
         End Sub
         ''' <summary>
@@ -51,7 +52,7 @@ Namespace Viewing
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub frmView_List_ConfigurationsByCal_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-            try
+            Try
                 If CaliberId = 0 Then
                     Dim sMsg As String = "Please Select a Caliber from the Side Caliber List!"
                     MsgBox(sMsg)
@@ -75,7 +76,7 @@ Namespace Viewing
                 Dim frmNew As New FrmViewConfigurationSheet
                 frmNew.ConfigId = lngConfigId
                 frmNew.MdiParent = MdiParent
-                frmNew.Show()    
+                frmNew.Show()
             Catch ex As Exception
                 Call LogError(Name, "lstConfigSheets_DoubleClick", Err.Number, ex.Message.ToString)
             End Try
@@ -87,8 +88,8 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
             Try
-                frmConfig_Add_Wizard.MdiParent = MdiParent
-                frmConfig_Add_Wizard.Show()
+                FrmConfigAddWizard.MdiParent = MdiParent
+                FrmConfigAddWizard.Show()
             Catch ex As Exception
                 Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
             End Try
@@ -109,7 +110,7 @@ Namespace Viewing
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 'Dim SQL As String = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & lngConfigId
                 If strAns = vbYes Then
-                    if Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw New Exception(_errOut)
+                    If Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw New Exception(_errOut)
                     If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'Obj.ConnExec(SQL)
                     'SQL = "DELETE from Config_List_Data_NSG where CLNID=" & lngConfigId
@@ -117,7 +118,7 @@ Namespace Viewing
                     'SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
                     'Obj.ConnExec(SQL)
                     Call LoadData()
-                    Call MDIParentMain.RefreshConfigData()
+                    Call MdiParentMain.RefreshConfigData()
                 End If
             Catch ex As Exception
                 Call LogError(Name, "ToolStripButton2_Click", Err.Number, ex.Message.ToString)
@@ -140,4 +141,4 @@ Namespace Viewing
             Call LoadData()
         End Sub
     End Class
-End NameSpace
+End Namespace

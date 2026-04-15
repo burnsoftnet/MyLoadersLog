@@ -1,23 +1,45 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
-
+''' <summary>
+''' Class frmConfig_Add_Wizard_RP_1.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class frmConfig_Add_Wizard_RP_1
     ''' <summary>
     ''' The error out
     ''' </summary>
     Dim errOut as String
+    ''' <summary>
+    ''' The cal identifier
+    ''' </summary>
     Public CalID As Long
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
+    ''' <summary>
+    ''' The is personal
+    ''' </summary>
     Dim isPersonal As Boolean
-    Private Sub frmConfig_Add_Wizard_RP_1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the frmConfig_Add_Wizard_RP_1 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
+    Private Sub frmConfig_Add_Wizard_RP_1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.General_Ammunition_TypeTableAdapter.Fill(Me.MLLDataSet.General_Ammunition_Type)
+            General_Ammunition_TypeTableAdapter.Fill(MLLDataSet.General_Ammunition_Type)
             isPersonal = True
-            Me.List_CaseTableAdapter.FillBy_CALID(Me.MLLDataSet.List_Case, CalID)
-            Me.General_PrimerTableAdapter.Fill(Me.MLLDataSet.General_Primer)
-            Me.List_BulletsTableAdapter.FillBy_CALID(Me.MLLDataSet.List_Bullets, CalID)
+            List_CaseTableAdapter.FillBy_CALID(MLLDataSet.List_Case, CalID)
+            General_PrimerTableAdapter.Fill(MLLDataSet.General_Primer)
+            List_BulletsTableAdapter.FillBy_CALID(MLLDataSet.List_Bullets, CalID)
             If isPersonal Then
                 txtLoad.Enabled = False
                 chkPersonal.Checked = True
@@ -27,29 +49,45 @@ Public Class frmConfig_Add_Wizard_RP_1
             txtLoad.AutoCompleteCustomSource = ConfigMetalic.Source(DatabasePath, errOut)
             If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-
-    Private Sub chkPersonal_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPersonal.CheckedChanged
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkPersonal control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub chkPersonal_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkPersonal.CheckedChanged
         If chkPersonal.Checked Then
             txtLoad.Enabled = False
             chkBook.Checked = False
         End If
     End Sub
-
-    Private Sub chkBook_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkBook.CheckedChanged
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkBook control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub chkBook_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkBook.CheckedChanged
         If chkBook.Checked Then
             txtLoad.Enabled = True
             chkPersonal.Checked = False
         End If
     End Sub
-
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
-
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
             Dim lngBullet As Long = cmbBullet.SelectedValue
             Dim lngPrimer As Long = cmbPrimer.SelectedValue
@@ -72,11 +110,11 @@ Public Class frmConfig_Add_Wizard_RP_1
             frmConfig_Add_Wizard_Powder.ConfigID = ConfigID
             frmConfig_Add_Wizard_Powder.ConfigName = ConfigName
             frmConfig_Add_Wizard_Powder.FromConfigWiz = True
-            frmConfig_Add_Wizard_Powder.MdiParent = Me.MdiParent
+            frmConfig_Add_Wizard_Powder.MdiParent = MdiParent
             frmConfig_Add_Wizard_Powder.Show()
-            Me.Close()
+            Close()
         Catch ex As Exception
-            Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 End Class

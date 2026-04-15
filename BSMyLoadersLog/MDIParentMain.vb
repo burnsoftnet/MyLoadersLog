@@ -611,8 +611,8 @@ Public Class MdiParentMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnAddConfig_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddConfig.Click
-        frmConfig_Add_Wizard.MdiParent = Me
-        frmConfig_Add_Wizard.Show()
+        FrmConfigAddWizard.MdiParent = Me
+        FrmConfigAddWizard.Show()
     End Sub
     ''' <summary>
     ''' Views the configs.

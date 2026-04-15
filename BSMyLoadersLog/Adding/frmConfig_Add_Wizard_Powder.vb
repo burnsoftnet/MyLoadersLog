@@ -2,20 +2,49 @@ Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
 
+''' <summary>
+''' Class frmConfig_Add_Wizard_Powder.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class frmConfig_Add_Wizard_Powder
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
+    ''' <summary>
+    ''' From configuration wiz
+    ''' </summary>
     Public FromConfigWiz As Boolean
-    Private Sub frmConfig_Add_Wizard_Powder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the frmConfig_Add_Wizard_Powder control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub frmConfig_Add_Wizard_Powder_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.General_PowderTableAdapter.Fill(Me.MLLDataSet.General_Powder)
+            General_PowderTableAdapter.Fill(MLLDataSet.General_Powder)
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+    ''' <summary>
+    ''' Handles the Click event of the btnCancel control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
+    ''' <summary>
+    ''' Determines whether [has perf powder] [the specified LNG identifier].
+    ''' </summary>
+    ''' <param name="lngID">The LNG identifier.</param>
+    ''' <returns><c>true</c> if [has perf powder] [the specified LNG identifier]; otherwise, <c>false</c>.</returns>
     Private Function HasPerfPowder(ByVal lngID As Long) As Boolean
         Dim bAns As Boolean = False
         Try
@@ -32,11 +61,16 @@ Public Class frmConfig_Add_Wizard_Powder
             CMD = Nothing
             Obj.CloseDB()
         Catch ex As Exception
-            Call LogError(Me.Name, "HasPerfPowder", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "HasPerfPowder", Err.Number, ex.Message.ToString)
         End Try
         Return bAns
     End Function
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    ''' <summary>
+    ''' Handles the Click event of the btnAdd control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Try
             Dim lngPowderID As Long = cmbPowder.SelectedValue
             Dim LMin As Double = GeneralHelpers.FluffContent(txtLMin.Text, 0)
@@ -50,7 +84,7 @@ Public Class frmConfig_Add_Wizard_Powder
             Dim CUPSMax As Double = GeneralHelpers.FluffContent(txtCUPSMax.Text, 0)
             Dim intPerf As Integer = 0
             If Not HasPerfPowder(ConfigID) Then intPerf = 1
-            If Not GeneralHelpers.IsRequired(LMid, 0, "Mid Load/Preferred Load", Me.Text) Then Exit Sub
+            If Not GeneralHelpers.IsRequired(LMid, 0, "Mid Load/Preferred Load", Text) Then Exit Sub
             Dim Obj As New BSDatabase
             Dim SQL As String = "INSERT INTO Config_List_Powder_Data_NSG(CLNID,PID," & _
                                     "Load_Min,Load_Mid,Load_Max,FPS_Min,FPS_MID,FPS_Max," & _
@@ -60,9 +94,9 @@ Public Class frmConfig_Add_Wizard_Powder
                                     CUPSMid & "," & CUPSMax & "," & intPerf & ")"
             Obj.ConnExec(SQL)
             If FromConfigWiz Then Call MDIParentMain.RefreshConfigData()
-            Me.Close()
+            Close()
         Catch ex As Exception
-            Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
 

@@ -1,4 +1,5 @@
 'Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Adding
 Imports BurnSoft.Applications.MLL.ConfigSheets
 
 Namespace Viewing
@@ -11,7 +12,7 @@ Namespace Viewing
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim _errOut as String
+        Dim _errOut As String
         ''' <summary>
         ''' The calid
         ''' </summary>
@@ -87,8 +88,8 @@ Namespace Viewing
         ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
             Try
-                frmConfig_Add_Wizard.MdiParent = MdiParent
-                frmConfig_Add_Wizard.Show()
+                FrmConfigAddWizard.MdiParent = MdiParent
+                FrmConfigAddWizard.Show()
             Catch ex As Exception
                 Call LogError(Name, "ToolStripButton1_Click", Err.Number, ex.Message.ToString)
             End Try
@@ -109,7 +110,7 @@ Namespace Viewing
                 Dim strAns As String = MsgBox("Are you sure you want to delete " & strName & "?", MsgBoxStyle.YesNo, "Delete Item from the Database.")
                 'Dim SQL As String = "DELETE from Config_List_Powder_Data_SG where CLNID=" & lngConfigId
                 If strAns = vbYes Then
-                    if Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw New Exception(_errOut)
+                    If Not ConfigListDataName.Delete(DatabasePath, lngConfigId, _errOut) Then Throw New Exception(_errOut)
                     If _errOut.Length > 0 Then Throw New Exception(_errOut)
                     'obj.ConnExec(SQL)
                     'SQL = "DELETE from Config_List_Data_SG where CLNID=" & lngConfigId
@@ -117,7 +118,7 @@ Namespace Viewing
                     'SQL = "DELETE from Config_List_Name where ID=" & lngConfigId
                     'obj.ConnExec(SQL)
                     Call LoadData()
-                    Call MDIParentMain.RefreshConfigData()
+                    Call MdiParentMain.RefreshConfigData()
                 End If
             Catch ex As Exception
                 Call LogError(Name, "ToolStripButton2_Click", Err.Number, ex.Message.ToString)
@@ -140,4 +141,4 @@ Namespace Viewing
             Call LoadData()
         End Sub
     End Class
-End NameSpace
+End Namespace
