@@ -1,5 +1,5 @@
-Imports BSMyLoadersLog.LoadersClass
-Imports System.Data.Odbc
+'Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Applications.MLL.Types
@@ -24,15 +24,15 @@ Public Class frmAddQtyShellcase
     ''' From view
     ''' </summary>
     Public FromView As Boolean
-    Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
-        Dim dAns As Double = 0
-        Dim ObjIM As New InventoryMath
-        If lQty > 0 Then
-            dAns = dPrice / lQty
-        End If
-        Converters.ConvertToDollars(dAns)
-        Return dAns
-    End Function
+    'Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
+    '    Dim dAns As Double = 0
+    '    Dim ObjIM As New InventoryMath
+    '    If lQty > 0 Then
+    '        dAns = dPrice / lQty
+    '    End If
+    '    Converters.ConvertToDollars(dAns)
+    '    Return dAns
+    'End Function
     ''' <summary>
     ''' Loads the data.
     ''' </summary>
@@ -114,8 +114,17 @@ Public Class frmAddQtyShellcase
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     Private Sub btnViewCalc_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCalc.Click
-        txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)),
-                                    CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0)))
+        'txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)),
+        '                            CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0)))
+        Try
+            If CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)) > 0 Then
+                txtUPPI.Text = Converters.ConvertToDollars(
+                    CDbl(GeneralHelpers.FluffContent(txtUPrice.Text, 0)) / 
+                    CLng(GeneralHelpers.FluffContent(txtUQty.Text, 0)))
+            End If
+        Catch ex As Exception
+            Call LogError(Name, "btnViewCalc_Click", Err.Number, ex.Message.ToString)
+        End Try
     End Sub
     ''' <summary>
     ''' Handles the Click event of the btnCancel control.
