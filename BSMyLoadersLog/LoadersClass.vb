@@ -7,7 +7,7 @@ Imports System.Data.Odbc
 'Imports System.Windows.Forms
 'Imports Microsoft.Win32
 Imports System.Configuration
-Imports BurnSoft.Applications.MLL.Global
+'Imports BurnSoft.Applications.MLL.Global
 'Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
