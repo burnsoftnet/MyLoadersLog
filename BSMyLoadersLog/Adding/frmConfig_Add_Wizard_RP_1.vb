@@ -109,11 +109,11 @@ Namespace Adding
                       ConfigID & "," & lngAmmoType & "," & CalID & "," & lngBullet & "," & _
                       lngPrimer & "," & lngCase & ",'" & strSource & "')"
                 Obj.ConnExec(SQL)
-                frmConfig_Add_Wizard_Powder.ConfigID = ConfigID
-                frmConfig_Add_Wizard_Powder.ConfigName = ConfigName
-                frmConfig_Add_Wizard_Powder.FromConfigWiz = True
-                frmConfig_Add_Wizard_Powder.MdiParent = MdiParent
-                frmConfig_Add_Wizard_Powder.Show()
+                FrmConfigAddWizardPowder.ConfigId = ConfigID
+                FrmConfigAddWizardPowder.ConfigName = ConfigName
+                FrmConfigAddWizardPowder.FromConfigWiz = True
+                FrmConfigAddWizardPowder.MdiParent = MdiParent
+                FrmConfigAddWizardPowder.Show()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

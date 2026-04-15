@@ -1,5 +1,6 @@
 'Imports System.Data.Odbc
 'Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.ViewReports
 Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
@@ -481,8 +482,8 @@ Namespace Viewing
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
-                Dim frmNew As New frmConfig_Add_Wizard_Powder
-                frmNew.ConfigID = ConfigId
+                Dim frmNew As New FrmConfigAddWizardPowder
+                frmNew.ConfigId = ConfigId
                 frmNew.ConfigName = ConfigName
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
