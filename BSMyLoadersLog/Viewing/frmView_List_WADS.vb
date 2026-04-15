@@ -1,3 +1,4 @@
+Imports BSMyLoadersLog.Adding
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Inventory
