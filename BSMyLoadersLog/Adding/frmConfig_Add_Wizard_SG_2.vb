@@ -3,26 +3,51 @@ Imports System.Data.Odbc
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
 Imports BurnSoft.Applications.MLL.Helpers
-
+''' <summary>
+''' Class frmConfig_Add_Wizard_SG_2.
+''' Implements the <see cref="System.Windows.Forms.Form" />
+''' </summary>
+''' <seealso cref="System.Windows.Forms.Form" />
 Public Class frmConfig_Add_Wizard_SG_2
     ''' <summary>
     ''' The error out
     ''' </summary>
     Dim errOut as String
+    ''' <summary>
+    ''' The configuration name
+    ''' </summary>
     Public ConfigName As String
+    ''' <summary>
+    ''' The cal identifier
+    ''' </summary>
     Public CalID As Long
+    ''' <summary>
+    ''' The cal name
+    ''' </summary>
     Public CalName As String
+    ''' <summary>
+    ''' The gid
+    ''' </summary>
     Public GID As Long
+    ''' <summary>
+    ''' The configuration identifier
+    ''' </summary>
     Public ConfigID As Long
-    Private Sub frmConfig_Add_Wizard_SG_2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    ''' <summary>
+    ''' Handles the Load event of the frmConfig_Add_Wizard_SG_2 control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    ''' <exception cref="System.Exception"></exception>
+    Private Sub frmConfig_Add_Wizard_SG_2_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
-            Me.List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List(Me.MLLDataSet.List_SG_ShotType_Details)
-            Me.List_SG_CaseTableAdapter.FillBy_CFG_List(Me.MLLDataSet.List_SG_Case, GID)
-            Me.List_SG_WADTableAdapter.FillBy_CFG_WADList(Me.MLLDataSet.List_SG_WAD, GID)
-            Me.ViewPrimerListTableAdapter.FillBy_CFG_List(Me.MLLDataSet.viewPrimerList)
+            List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_ShotType_Details)
+            List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GID)
+            List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GID)
+            ViewPrimerListTableAdapter.FillBy_CFG_List(MLLDataSet.viewPrimerList)
             Dim WID As Long = cmdWAD.SelectedValue
             txtShotCharge.Text = GetMaxWADCharge(WID)
-            Me.List_SG_ShotCharge_LoadsTableAdapter.Fill(Me.MLLDataSet.List_SG_ShotCharge_Loads)
+            List_SG_ShotCharge_LoadsTableAdapter.Fill(MLLDataSet.List_SG_ShotCharge_Loads)
             'Dim ObjAF As New AutoFillCollections.ShotGun
             'txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
             'txtShotCharge.AutoCompleteCustomSource = ObjAF.Config_LoadInOZ_SG
@@ -32,9 +57,14 @@ Public Class frmConfig_Add_Wizard_SG_2
             txtShotCharge.AutoCompleteCustomSource = ConfigShotgun.LoadInOunces(DatabasePath, errOut)
             If errOut.Length > 0 Then Throw New Exception(errOut)
         Catch ex As Exception
-            Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
+    ''' <summary>
+    ''' Gets the maximum wad charge.
+    ''' </summary>
+    ''' <param name="iID">The i identifier.</param>
+    ''' <returns>System.String.</returns>
     Function GetMaxWADCharge(ByVal iID As Long) As String
         Dim sAns As String = ""
         Try
@@ -52,16 +82,26 @@ Public Class frmConfig_Add_Wizard_SG_2
             CMD = Nothing
             Obj.CloseDB()
         Catch ex As Exception
-            Call LogError(Me.Name, "GetMaxWADCharge", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "GetMaxWADCharge", Err.Number, ex.Message.ToString)
         End Try
         Return sAns
     End Function
-    Private Sub cmdWAD_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdWAD.SelectedIndexChanged
+    ''' <summary>
+    ''' Handles the SelectedIndexChanged event of the cmdWAD control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub cmdWAD_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cmdWAD.SelectedIndexChanged
         Dim WID As Long = cmdWAD.SelectedValue
         txtShotCharge.Text = GetMaxWADCharge(WID)
     End Sub
 
-    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+    ''' <summary>
+    ''' Handles the Click event of the btnNext control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
         Try
             Dim PID As Long = cmbPrimer.SelectedValue
             Dim HID As Long = cmdHull.SelectedValue
@@ -83,7 +123,7 @@ Public Class frmConfig_Add_Wizard_SG_2
             Obj.ConnExec(SQL)
             SQL = "UPDATE Config_List_Name set IsPersonal=" & iPersonal & " where id=" & ConfigID
             Obj.ConnExec(SQL)
-            frmConfig_Add_Wizard_SG_Powder.MdiParent = Me.MdiParent
+            frmConfig_Add_Wizard_SG_Powder.MdiParent = MdiParent
             frmConfig_Add_Wizard_SG_Powder.ConfigID = ConfigID
             frmConfig_Add_Wizard_SG_Powder.ConfigName = ConfigName
             frmConfig_Add_Wizard_SG_Powder.CalName = CalName
@@ -91,13 +131,17 @@ Public Class frmConfig_Add_Wizard_SG_2
             frmConfig_Add_Wizard_SG_Powder.CalID = CalID
             frmConfig_Add_Wizard_SG_Powder.GID = GID
             frmConfig_Add_Wizard_SG_Powder.Show()
-            Me.Close()
+            Close()
         Catch ex As Exception
-            Call LogError(Me.Name, "btnNext.Click", Err.Number, ex.Message.ToString)
+            Call LogError(Name, "btnNext.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-
-    Private Sub chkPersonal_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkPersonal.CheckedChanged
+    ''' <summary>
+    ''' Handles the CheckedChanged event of the chkPersonal control.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    Private Sub chkPersonal_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkPersonal.CheckedChanged
         If chkPersonal.Checked Then
             txtSource.ReadOnly = True
         Else
