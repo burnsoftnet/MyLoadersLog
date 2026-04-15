@@ -214,7 +214,7 @@ Namespace Viewing
                 Dim itemId As Long = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
                 Dim frmNew As New frmAddQtyWAD
                 frmNew.FromView = True
-                frmNew.WID = itemId
+                frmNew.WadId = itemId
                 frmNew.MdiParent = MdiParent
                 frmNew.Show()
             Catch ex As Exception
