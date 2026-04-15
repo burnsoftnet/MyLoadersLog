@@ -1,8 +1,10 @@
-Imports BSMyLoadersLog.LoadersClass
+'Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
 
 Namespace Adding
+    ' TODO #20 Code Clean Up
     ''' <summary>
     ''' Class frmConfig_Add_Wizard.
     ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -12,7 +14,7 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Dim errOut as String
+        Dim _errOut as String
         ''' <summary>
         ''' Handles the Load event of the frmConfig_Add control.
         ''' </summary>
@@ -24,8 +26,8 @@ Namespace Adding
                 List_CalibersTableAdapter.Fill(MLLDataSet.List_Calibers)
                 'Dim Obj As New AutoFillCollections
                 'txtConfigID.AutoCompleteCustomSource = Obj.ConfigName
-                txtConfigID.AutoCompleteCustomSource = ConfigMetalic.ConfigName(DatabasePath, errOut)
-                If errOut.Length > 0 Then Throw New Exception(errOut)
+                txtConfigID.AutoCompleteCustomSource = ConfigMetalic.ConfigName(DatabasePath, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 chkShotgun.Enabled = UseShotgun
                 If LoaderTypeShotGun And LoaderTypeMetalic Then
                     chkShotgun.Checked = False
@@ -50,49 +52,60 @@ Namespace Adding
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
             Try
-                Dim strConfigName As String = GeneralHelpers.FluffContent(txtConfigID.Text)
-                Dim bRP As Boolean = chkRP.Checked
-                Dim bSG As Boolean = chkShotgun.Checked
-                Dim lngCal As Long = cmbCal.SelectedValue
-                Dim LoadType As Integer = 0
-                If bSG Then LoadType = 1
-                If Not GeneralHelpers.IsRequired(strConfigName, "Configuration ID", Text) Then Exit Sub
-                Dim Obj As New BSDatabase
-                Dim ObjG As New GlobalFunctions
-                Dim SQL As String = ""
-                Dim MyID As Long = 0
-                If ObjG.ObjectExistsinDB(strConfigName, "ConfigName", "Config_List_Name") Then
-                    Dim sAns As String = MsgBox(strConfigName & " already exists!" & Chr(10) & "Do you wish to overwrite?", MsgBoxStyle.YesNo)
-                    If sAns = vbYes Then
-                        MyID = ObjG.GetID("SELECT * from Config_list_Name where ConfigName='" & strConfigName & "'")
-                        SQL = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & MyID
-                        Obj.ConnExec(SQL)
-                        SQL = "DELETE from Config_List_Data_NSG where CLNID=" & MyID
-                        Obj.ConnExec(SQL)
-                    Else
-                        Exit Sub
-                    End If
-                Else
-                    SQL = "INSERT INTO Config_List_Name(ConfigName,IsPersonal,IsShotGun) VALUES('" & _
-                          strConfigName & "',1," & LoadType & ")"
-                    Obj.ConnExec(SQL)
-                    MyID = ObjG.GetID("SELECT * from Config_list_Name where ConfigName='" & strConfigName & "'")
+                Dim configName As String = GeneralHelpers.FluffContent(txtConfigID.Text)
+                Dim isMetallic As Boolean = chkRP.Checked
+                Dim isShotgun As Boolean = chkShotgun.Checked
+                Dim caliberId As Long = cmbCal.SelectedValue
+                'Dim loadType As Integer = 0
+                'If isShotgun Then loadType = 1
+                If Not GeneralHelpers.IsRequired(configName, "Configuration ID", Text) Then Exit Sub
+                
+                'Dim Obj As New BSDatabase
+                'Dim ObjG As New GlobalFunctions
+                'Dim SQL As String = ""
+                Dim configId As Long = 0
+                If ConfigListDataName.DataExists(DatabasePath, configName, _errOut) Then
+                    Dim sAns As String = MsgBox($"{configName} already exists! {Environment.NewLine} Do you wish to overwrite?", MsgBoxStyle.YesNo)
+                    If sAns = vbNo Then Exit Sub
+                    configId = ConfigListDataName.GetId(DatabasePath, configName, _errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                    If Not ConfigListDataName.Delete(DatabasePath, configId, _errOut) Then Throw New Exception(_errOut)
+                Else 
+                    If Not ConfigListDataName.Add(DatabasePath, configName, True, isShotgun, "  ", 
+                                                  True, False, _errOut) Then Throw New Exception(_errOut)
                 End If
-                If bRP Then
-                    frmConfig_Add_Wizard_RP_1.ConfigName = strConfigName
-                    frmConfig_Add_Wizard_RP_1.CalID = lngCal
-                    frmConfig_Add_Wizard_RP_1.ConfigID = MyID
-                    frmConfig_Add_Wizard_RP_1.MdiParent = MdiParent
-                    frmConfig_Add_Wizard_RP_1.Show()
+                'If ObjG.ObjectExistsinDB(configName, "ConfigName", "Config_List_Name") Then
+                '    Dim sAns As String = MsgBox(configName & " already exists!" & Chr(10) & "Do you wish to overwrite?", MsgBoxStyle.YesNo)
+                '    If sAns = vbYes Then
+                '        configId = ObjG.GetID("SELECT * from Config_list_Name where ConfigName='" & configName & "'")
+                '        SQL = "DELETE from Config_List_Powder_Data_NSG where CLNID=" & configId
+                '        Obj.ConnExec(SQL)
+                '        SQL = "DELETE from Config_List_Data_NSG where CLNID=" & configId
+                '        Obj.ConnExec(SQL)
+                '    Else
+                '        Exit Sub
+                '    End If
+                'Else
+                '    SQL = "INSERT INTO Config_List_Name(ConfigName,IsPersonal,IsShotGun) VALUES('" & _
+                '          configName & "',1," & loadType & ")"
+                '    Obj.ConnExec(SQL)
+                '    configId = ObjG.GetID("SELECT * from Config_list_Name where ConfigName='" & configName & "'")
+                'End If
+                If isMetallic Then
+                    FrmConfigAddWizardRp1.ConfigName = configName
+                    FrmConfigAddWizardRp1.CalID = caliberId
+                    FrmConfigAddWizardRp1.ConfigID = configId
+                    FrmConfigAddWizardRp1.MdiParent = MdiParent
+                    FrmConfigAddWizardRp1.Show()
                     Close()
                 End If
-                If bSG Then
-                    frmConfig_Add_Wizard_SG_1.ConfigName = strConfigName
-                    frmConfig_Add_Wizard_SG_1.CalID = lngCal
-                    frmConfig_Add_Wizard_SG_1.ConfigID = MyID
-                    frmConfig_Add_Wizard_SG_1.CalName = cmbCal.Text
-                    frmConfig_Add_Wizard_SG_1.MdiParent = MdiParent
-                    frmConfig_Add_Wizard_SG_1.Show()
+                If isShotgun Then
+                    FrmConfigAddWizardSg1.ConfigName = configName
+                    FrmConfigAddWizardSg1.CalID = caliberId
+                    FrmConfigAddWizardSg1.ConfigID = configId
+                    FrmConfigAddWizardSg1.CalName = cmbCal.Text
+                    FrmConfigAddWizardSg1.MdiParent = MdiParent
+                    FrmConfigAddWizardSg1.Show()
                     Close()
                 End If
             Catch ex As Exception
