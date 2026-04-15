@@ -101,9 +101,9 @@ Namespace Adding
                 End If
                 If isShotgun Then
                     FrmConfigAddWizardSg1.ConfigName = configName
-                    FrmConfigAddWizardSg1.CalID = caliberId
-                    FrmConfigAddWizardSg1.ConfigID = configId
-                    FrmConfigAddWizardSg1.CalName = cmbCal.Text
+                    FrmConfigAddWizardSg1.CaliberId = caliberId
+                    FrmConfigAddWizardSg1.ConfigId = configId
+                    FrmConfigAddWizardSg1.CaliberName = cmbCal.Text
                     FrmConfigAddWizardSg1.MdiParent = MdiParent
                     FrmConfigAddWizardSg1.Show()
                     Close()
