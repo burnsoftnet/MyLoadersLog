@@ -1,5 +1,6 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Helpers
 
 Namespace Adding
@@ -96,20 +97,26 @@ Namespace Adding
                 Dim lngPrimer As Long = cmbPrimer.SelectedValue
                 Dim lngCase As Long = cmbCase.SelectedValue
                 Dim lngAmmoType As Long = cmbAmmo.SelectedValue
-                Dim bPersonal As Boolean = chkPersonal.Checked
-                Dim bOther As Boolean = chkBook.Checked
-                Dim SQL As String = ""
-                Dim Obj As New BSDatabase
+                'Dim bPersonal As Boolean = chkPersonal.Checked
+                'Dim bOther As Boolean = chkBook.Checked
+                'Dim SQL As String = ""
+                'Dim Obj As New BSDatabase
                 Dim strSource As String = GeneralHelpers.FluffContent(txtLoad.Text)
-                If bOther Then
-                    SQL = "UPDATE Config_List_Name set IsPersonal=0 where id=" & ConfigID
-                    Obj.ConnExec(SQL)
+                If chkBook.Checked Then
+                    ' TODO: #19 Update when newer library is applied
+                    'If Not ConfigListDataName.SetPersonal(DatabasePath, ConfigID, false, errOut) Then Throw New Exception(errOut)
+                    'SQL = "UPDATE Config_List_Name set IsPersonal=0 where id=" & ConfigID
+                    'Obj.ConnExec(SQL)
                 End If
 
-                SQL = "INSERT INTO Config_List_Data_NSG(CLNID,ATID,CALID,BID,PRID,CAID,Source) VALUES (" & _
-                      ConfigID & "," & lngAmmoType & "," & CalID & "," & lngBullet & "," & _
-                      lngPrimer & "," & lngCase & ",'" & strSource & "')"
-                Obj.ConnExec(SQL)
+                If Not ConfigListDataMetalic.Add(DatabasePath, ConfigID, lngAmmoType, CalID, 
+                                                 lngBullet, lngPrimer, lngCase, strSource, 
+                                                 errOut) Then Throw New Exception(errOut)
+
+                'SQL = "INSERT INTO Config_List_Data_NSG(CLNID,ATID,CALID,BID,PRID,CAID,Source) VALUES (" & _
+                '      ConfigID & "," & lngAmmoType & "," & CalID & "," & lngBullet & "," & _
+                '      lngPrimer & "," & lngCase & ",'" & strSource & "')"
+                'Obj.ConnExec(SQL)
                 FrmConfigAddWizardPowder.ConfigId = ConfigID
                 FrmConfigAddWizardPowder.ConfigName = ConfigName
                 FrmConfigAddWizardPowder.FromConfigWiz = True
