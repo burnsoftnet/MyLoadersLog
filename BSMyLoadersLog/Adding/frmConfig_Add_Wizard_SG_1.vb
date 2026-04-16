@@ -52,13 +52,13 @@ Namespace Adding
                 If _errOut.Length > 0 then Throw New Exception(_errOut)
 
                 If bShot Then
-                    frmConfig_Add_Wizard_SG_2.ConfigID = ConfigId
-                    frmConfig_Add_Wizard_SG_2.CalID = CaliberId
-                    frmConfig_Add_Wizard_SG_2.CalName = CaliberName
-                    frmConfig_Add_Wizard_SG_2.GID = gaugeId
-                    frmConfig_Add_Wizard_SG_2.ConfigName = ConfigName
-                    frmConfig_Add_Wizard_SG_2.MdiParent = MdiParent
-                    frmConfig_Add_Wizard_SG_2.Show()
+                    FrmConfigAddWizardSg2.ConfigID = ConfigId
+                    FrmConfigAddWizardSg2.CalID = CaliberId
+                    FrmConfigAddWizardSg2.CalName = CaliberName
+                    FrmConfigAddWizardSg2.GID = gaugeId
+                    FrmConfigAddWizardSg2.ConfigName = ConfigName
+                    FrmConfigAddWizardSg2.MdiParent = MdiParent
+                    FrmConfigAddWizardSg2.Show()
                     Close()
                 End If
                 If bSlug Then
