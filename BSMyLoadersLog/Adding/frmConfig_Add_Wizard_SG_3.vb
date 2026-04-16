@@ -24,19 +24,19 @@ Namespace Adding
         ''' <summary>
         ''' The cal identifier
         ''' </summary>
-        Public CalID As Long
+        Public CaliberId As Long
         ''' <summary>
         ''' The configuration identifier
         ''' </summary>
-        Public ConfigID As Long
+        Public ConfigId As Long
         ''' <summary>
         ''' The cal name
         ''' </summary>
-        Public CalName As String
+        Public CaliberName As String
         ''' <summary>
         ''' The gid
         ''' </summary>
-        Public GID As Long
+        Public GaugeId As Long
         ''' <summary>
         ''' Handles the Load event of the frmConfig_Add_Wizard_SG_3 control.
         ''' </summary>
@@ -45,10 +45,10 @@ Namespace Adding
         ''' <exception cref="System.Exception"></exception>
         Private Sub frmConfig_Add_Wizard_SG_3_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
-                List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List_Slug(MLLDataSet.List_SG_ShotType_Details, CalName)
+                List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List_Slug(MLLDataSet.List_SG_ShotType_Details, CaliberName)
                 List_SG_ShotCharge_LoadsTableAdapter.Fill(MLLDataSet.List_SG_ShotCharge_Loads)
-                List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GID)
-                List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GID)
+                List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GaugeId)
+                List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GaugeId)
                 ViewPrimerListTableAdapter.Fill(MLLDataSet.viewPrimerList)
                 'Dim ObjAF As New AutoFillCollections.ShotGun
                 'txtSource.AutoCompleteCustomSource = ObjAF.Config_Source_SG
@@ -77,29 +77,29 @@ Namespace Adding
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
             Try
-                Dim PID As Long = cmbPrimer.SelectedValue
-                Dim HID As Long = cmdHull.SelectedValue
-                Dim WID As Long = cmdWAD.SelectedValue
-                Dim STID As Long = cmbSlug.SelectedValue
-                Dim LTID As Long = cmbLoadType.SelectedValue
-                Dim sSource As String = GeneralHelpers.FluffContent(txtSource.Text)
-                Dim IsPersonal As Boolean = chkPersonal.Checked
+                Dim primerId As Long = cmbPrimer.SelectedValue
+                Dim hullId As Long = cmdHull.SelectedValue
+                Dim wadId As Long = cmdWAD.SelectedValue
+                Dim slugId As Long = cmbSlug.SelectedValue
+                Dim loadTypeId As Long = cmbLoadType.SelectedValue
+                Dim source As String = GeneralHelpers.FluffContent(txtSource.Text)
+                Dim isPersonal As Boolean = chkPersonal.Checked
                 Dim iPersonal As Integer = 1
-                Dim SQL As String = ""
-                Dim Obj As New BSDatabase
-                If Not IsPersonal Then iPersonal = 0
-                SQL = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,WAD" & _
-                      ",SCL,Source,GID,IsPersonal,LTID) VALUES(" & ConfigID & "," & CalID & "," & GID & "," & PID & _
-                      "," & HID & "," & WID & "," & STID & ",'" & _
-                      sSource & "'," & GID & "," & iPersonal & "," & LTID & ")"
-                Obj.ConnExec(SQL)
+                Dim sql As String = ""
+                Dim obj As New BSDatabase
+                If Not isPersonal Then iPersonal = 0
+                sql = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,WAD" & _
+                      ",SCL,Source,GID,IsPersonal,LTID) VALUES(" & ConfigId & "," & CaliberId & "," & GaugeId & "," & primerId & _
+                      "," & hullId & "," & wadId & "," & slugId & ",'" & _
+                      source & "'," & GaugeId & "," & iPersonal & "," & loadTypeId & ")"
+                obj.ConnExec(sql)
                 frmConfig_Add_Wizard_SG_Powder.MdiParent = Me.MdiParent
-                frmConfig_Add_Wizard_SG_Powder.ConfigID = ConfigID
+                frmConfig_Add_Wizard_SG_Powder.ConfigID = ConfigId
                 frmConfig_Add_Wizard_SG_Powder.ConfigName = ConfigName
-                frmConfig_Add_Wizard_SG_Powder.CalName = CalName
-                frmConfig_Add_Wizard_SG_Powder.CalID = CalID
+                frmConfig_Add_Wizard_SG_Powder.CalName = CaliberName
+                frmConfig_Add_Wizard_SG_Powder.CalID = CaliberId
                 frmConfig_Add_Wizard_SG_Powder.FromConfigWiz = True
-                frmConfig_Add_Wizard_SG_Powder.GID = GID
+                frmConfig_Add_Wizard_SG_Powder.GID = GaugeId
                 frmConfig_Add_Wizard_SG_Powder.Show()
                 Me.Close()
             Catch ex As Exception
