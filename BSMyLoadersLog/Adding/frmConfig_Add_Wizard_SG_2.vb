@@ -22,19 +22,19 @@ Namespace Adding
         ''' <summary>
         ''' The cal identifier
         ''' </summary>
-        Public CalID As Long
+        Public CaliberId As Long
         ''' <summary>
         ''' The cal name
         ''' </summary>
-        Public CalName As String
+        Public CaliberName As String
         ''' <summary>
-        ''' The gid
+        ''' The gauge id
         ''' </summary>
-        Public GID As Long
+        Public GaugeId As Long
         ''' <summary>
         ''' The configuration identifier
         ''' </summary>
-        Public ConfigID As Long
+        Public ConfigId As Long
         ''' <summary>
         ''' Handles the Load event of the frmConfig_Add_Wizard_SG_2 control.
         ''' </summary>
@@ -44,8 +44,8 @@ Namespace Adding
         Private Sub frmConfig_Add_Wizard_SG_2_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             Try
                 List_SG_ShotType_DetailsTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_ShotType_Details)
-                List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GID)
-                List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GID)
+                List_SG_CaseTableAdapter.FillBy_CFG_List(MLLDataSet.List_SG_Case, GaugeId)
+                List_SG_WADTableAdapter.FillBy_CFG_WADList(MLLDataSet.List_SG_WAD, GaugeId)
                 ViewPrimerListTableAdapter.FillBy_CFG_List(MLLDataSet.viewPrimerList)
                 Dim WID As Long = cmdWAD.SelectedValue
                 txtShotCharge.Text = GetMaxWADCharge(WID)
@@ -119,19 +119,19 @@ Namespace Adding
                 Dim Obj As New BSDatabase
                 If Not IsPersonal Then iPersonal = 0
                 SQL = "INSERT INTO Config_List_Data_SG (CLNID,ATID,CALID,PRID,CAID,SW,SW_t,WAD" & _
-                      ",SCL,Source,GID,IsPersonal,LTID) VALUES(" & ConfigID & "," & CalID & "," & GID & "," & PID & _
+                      ",SCL,Source,GID,IsPersonal,LTID) VALUES(" & ConfigId & "," & CaliberId & "," & GaugeId & "," & PID & _
                       "," & HID & "," & dLoad & ",'" & sLoad & "'," & WID & "," & SLTID & ",'" & _
-                      sSource & "'," & GID & "," & iPersonal & "," & LTID & ")"
+                      sSource & "'," & GaugeId & "," & iPersonal & "," & LTID & ")"
                 Obj.ConnExec(SQL)
-                SQL = "UPDATE Config_List_Name set IsPersonal=" & iPersonal & " where id=" & ConfigID
+                SQL = "UPDATE Config_List_Name set IsPersonal=" & iPersonal & " where id=" & ConfigId
                 Obj.ConnExec(SQL)
                 frmConfig_Add_Wizard_SG_Powder.MdiParent = MdiParent
-                frmConfig_Add_Wizard_SG_Powder.ConfigID = ConfigID
+                frmConfig_Add_Wizard_SG_Powder.ConfigID = ConfigId
                 frmConfig_Add_Wizard_SG_Powder.ConfigName = ConfigName
-                frmConfig_Add_Wizard_SG_Powder.CalName = CalName
+                frmConfig_Add_Wizard_SG_Powder.CalName = CaliberName
                 frmConfig_Add_Wizard_SG_Powder.FromConfigWiz = True
-                frmConfig_Add_Wizard_SG_Powder.CalID = CalID
-                frmConfig_Add_Wizard_SG_Powder.GID = GID
+                frmConfig_Add_Wizard_SG_Powder.CalID = CaliberId
+                frmConfig_Add_Wizard_SG_Powder.GID = GaugeId
                 frmConfig_Add_Wizard_SG_Powder.Show()
                 Close()
             Catch ex As Exception
