@@ -62,13 +62,13 @@ Namespace Adding
                     Close()
                 End If
                 If bSlug Then
-                    frmConfig_Add_Wizard_SG_3.ConfigID = ConfigId
-                    frmConfig_Add_Wizard_SG_3.CalID = CaliberId
-                    frmConfig_Add_Wizard_SG_3.CalName = CaliberName
-                    frmConfig_Add_Wizard_SG_3.GID = gaugeId
-                    frmConfig_Add_Wizard_SG_3.ConfigName = ConfigName
-                    frmConfig_Add_Wizard_SG_3.MdiParent = MdiParent
-                    frmConfig_Add_Wizard_SG_3.Show()
+                    FrmConfigAddWizardSg3.ConfigID = ConfigId
+                    FrmConfigAddWizardSg3.CalID = CaliberId
+                    FrmConfigAddWizardSg3.CalName = CaliberName
+                    FrmConfigAddWizardSg3.GID = gaugeId
+                    FrmConfigAddWizardSg3.ConfigName = ConfigName
+                    FrmConfigAddWizardSg3.MdiParent = MdiParent
+                    FrmConfigAddWizardSg3.Show()
                     Close()
                 End If
             Catch ex As Exception

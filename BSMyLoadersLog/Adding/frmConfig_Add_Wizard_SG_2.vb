@@ -14,6 +14,7 @@ Namespace Adding
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmConfigAddWizardSg2
+        ' TODO: #20 Code Cleanup
         ''' <summary>
         ''' The error out
         ''' </summary>
