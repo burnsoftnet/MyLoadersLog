@@ -1,12 +1,15 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
+Imports BurnSoft.Applications.MGC.LoadersLog
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmImportFirearms
+    Dim errOut As String
     Dim iCount As Integer
     Private Sub frmImportFirearms_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Obj As New BSMGC
-        iCount = Obj.CountFirearms
+        'iCount = Obj.CountFirearms
+        iCount = FirearmHelpers.CountFirearms(errOut)
         If iCount = 1 Then
             Label1.Text = "You have " & iCount & " firearm in your collection, are you ready to import or update to the local database?"
         ElseIf iCount > 1 Then

@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -20,3 +21,5 @@ When you are getting started, you will need to the following before creating a c
 * Put in your current inventory of  Shot &/ Slugs (Shotgun Reloaders).
 * Put in the Caliber's that you reload for.
 * Add in / import your firearm collection to the MLL database.
+
+[back](./)

@@ -10,19 +10,19 @@ Public Class frmAddQtyPowder
     Public FromView As Boolean
     Function PricePerItem(ByVal lValue As Long, ByVal dPrice As Double, ByVal sType As String) As Double
         Dim dAns As Double = 0
-        Dim ObjIM As New InventoryMath
+        'Dim ObjIM As New InventoryMath
         Dim lNewValue As Long = 0
         Select Case sType
             Case "Grains (grs)"
                 lNewValue = lValue
             Case "Pounds (lbs)"
-                lNewValue = lValue * WeightGrains1Lbs
+                lNewValue = lValue * WeightValues.WEIGHT_GRAINS_1LBS
         End Select
         If lValue > 0 Then
             dAns = dPrice / lNewValue
         End If
-        ObjIM.ConvertToDollars(dAns)
-        Return dAns
+        'Converters.ConvertToDollars(dAns)
+        Return Converters.ConvertToDollars( dAns)
     End Function
     Sub LoadData()
         Try
@@ -42,8 +42,9 @@ Public Class frmAddQtyPowder
                 If Not IsDBNull(RS("eppp")) Then eppo = RS("eppp")
                 txtCQty2.Text = iQty
                 txtCPPI.Text = eppo
-                Dim ObjIM As New InventoryMath
-                txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                'Dim ObjIM As New InventoryMath
+                'txtCPrice.Text = Converters.ConvertToDollars(dPrice)
+                txtCPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing
@@ -102,7 +103,7 @@ Public Class frmAddQtyPowder
     End Sub
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Call SaveData()
-        If FromView Then Call frmView_List_Powder.LoadData()
+        If FromView Then Call FrmViewListPowder.LoadData()
         Me.Close()
     End Sub
     Private Sub btnViewCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnViewCalc.Click

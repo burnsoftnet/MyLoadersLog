@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -34,3 +35,6 @@ Once you have made your changes in the Rifle and Pistol Details window, you can 
 The Powder Tab/Window will allow you to change the details of the powder(s) that you have listed for this configuration and it will also allow you to change the default powder for the configuration.
 
 Once you have made your changes in the Powder window, you can click on Save Powder button to save your changes or you can click on Save button All to everything and to Exit the Edit Window.
+
+
+[back](./)

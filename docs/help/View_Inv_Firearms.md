@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -48,3 +49,5 @@ To Delete a firearm in the list, just click once on the firearm that you wish to
 If you are sure this is the firearm that you wish to delete, then click on the Yes button.
 
 ![](images/View_Firearm_Delete_List.jpg)
+
+[back](./)

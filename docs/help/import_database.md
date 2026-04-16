@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -25,3 +26,5 @@ Now Click on the "Import" button to restore the database.
 ![](images/import_5.jpg)
 
 If the program successfully import the dB, or if there was an error, a message box will come up and tell you.
+
+[back](./)

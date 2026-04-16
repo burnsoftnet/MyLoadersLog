@@ -5,9 +5,9 @@ Imports BurnSoft.Applications.MLL.Inventory
 Namespace Adding
     ''' <summary>
     ''' Class FrmAddCaliberToCollection.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddCaliberToCollection
         ''' <summary>
         ''' The error out

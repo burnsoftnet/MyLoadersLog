@@ -1,98 +1,104 @@
-﻿Imports BSMyLoadersLog.LoadersClass
-Imports System.Data.Odbc
+﻿Imports System.Data.Odbc
+Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.Helpers
 
-Public Class frmAddQtyHulls
-    Public SID As Long
-    Public FromView As Boolean
-    Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
-        Dim dAns As Double = 0
-        Dim ObjIM As New InventoryMath
-        If lQty > 0 Then
-            dAns = dPrice / lQty
-        End If
-        ObjIM.ConvertToDollars(dAns)
-        Return dAns
-    End Function
-    Sub LoadData()
-        Try
-            Dim Obj As New BSDatabase
-            Call Obj.ConnectDB()
-            Dim SQL As String = "SELECT * from List_SG_Case where ID=" & SID
-            Dim CMD As New OdbcCommand(SQL, Obj.Conn)
-            Dim RS As OdbcDataReader
-            RS = CMD.ExecuteReader
-            Dim TimesUsed As Long = 0
-            Dim iQty As Integer = 0
-            Dim eppo As Double = 0
-            Dim dPrice As Double = 0
-            While RS.Read
-                If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
-                If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
-                If Not IsDBNull(RS("ePPs")) Then eppo = RS("ePPs")
-                txtCQty.Text = iQty
-                txtCPPI.Text = eppo
-                Dim ObjIM As New InventoryMath
-                txtCPrice.Text = ObjIM.ConvertToDollars(dPrice)
-            End While
-            RS.Close()
-            RS = Nothing
-            CMD = Nothing
-            Call Obj.CloseDB()
-        Catch ex As Exception
-            Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-    Sub SaveData()
-        Try
-            Dim CQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtCQty.Text), 0))
-            Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPrice.Text), 0))
-            Dim CPPI As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPPI.Text), 0))
-            Dim UQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0))
-            Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0))
-            Dim UPPI As Double = PricePerItem(UQty, UPrice)
-            txtUPPI.Text = UPPI
-            If Not GeneralHelpers.IsRequired(UQty, "Update Qty", Me.Text) Then Exit Sub
-            If Not GeneralHelpers.IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
+Namespace Adding
 
-            Dim NQty As Long = CQty + UQty
-            Dim NPrice As Double = (CQty * CPPI) + UPrice
-            Dim NPPI As Double = PricePerItem(NQty, NPrice)
-            Dim SQL As String = ""
-            Dim Obj As New BSDatabase
-            If CPPI = UPPI Then
-                SQL = "UPDATE List_SG_Case set QTY=" & NQty & ", Price=" & NPrice & " where ID=" & SID
-            ElseIf UPrice = 0 And UQty = 0 Then
-                SQL = "UPDATE List_SG_Case set QTY=0, Price=0, epps=0 where ID=" & SID
-            Else
-                SQL = "UPDATE List_SG_Case set QTY=" & NQty & ", Price=" & NPrice & ", epps=" & NPPI & " where ID=" & SID
+    Public Class FrmAddQtyHulls
+        ' TODO: #33 Update when this function as been added to the library.
+        Dim errOut As String
+        Public SID As Long
+        Public FromView As Boolean
+        Function PricePerItem(ByVal lQty As Long, ByVal dPrice As Double) As Double
+            Dim dAns As Double = 0
+            'Dim ObjIM As New InventoryMath
+            If lQty > 0 Then
+                dAns = dPrice / lQty
             End If
-            Obj.ConnExec(SQL)
-        Catch ex As Exception
-            Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-    Private Sub frmAddQtyHulls_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Call LoadData()
-    End Sub
+            'Converters.ConvertToDollars(dAns)
+            Return Converters.ConvertToDollars(dAns)
+        End Function
+        Sub LoadData()
+            Try
+                Dim Obj As New BSDatabase
+                Call Obj.ConnectDB()
+                Dim SQL As String = "SELECT * from List_SG_Case where ID=" & SID
+                Dim CMD As New OdbcCommand(SQL, Obj.Conn)
+                Dim RS As OdbcDataReader
+                RS = CMD.ExecuteReader
+                Dim TimesUsed As Long = 0
+                Dim iQty As Integer = 0
+                Dim eppo As Double = 0
+                Dim dPrice As Double = 0
+                While RS.Read
+                    If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
+                    If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
+                    If Not IsDBNull(RS("ePPs")) Then eppo = RS("ePPs")
+                    txtCQty.Text = iQty
+                    txtCPPI.Text = eppo
+                    Dim ObjIM As New InventoryMath
+                    'txtCPrice.Text = Converters.ConvertToDollars(dPrice)
+                    txtCPrice.Text = Converters.ConvertToDollars(dPrice)
+                End While
+                RS.Close()
+                RS = Nothing
+                CMD = Nothing
+                Call Obj.CloseDB()
+            Catch ex As Exception
+                Call LogError(Me.Name, "LoadData", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+        Sub SaveData()
+            Try
+                Dim CQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtCQty.Text), 0))
+                Dim CPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPrice.Text), 0))
+                Dim CPPI As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtCPPI.Text), 0))
+                Dim UQty As Long = CLng(GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0))
+                Dim UPrice As Double = CDbl(GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0))
+                Dim UPPI As Double = PricePerItem(UQty, UPrice)
+                txtUPPI.Text = UPPI
+                If Not GeneralHelpers.IsRequired(UQty, "Update Qty", Me.Text) Then Exit Sub
+                If Not GeneralHelpers.IsRequired(UPrice, "Update Price", Me.Text) Then Exit Sub
 
-    Private Sub btnViewCalc_Click(sender As System.Object, e As System.EventArgs) Handles btnViewCalc.Click
-        txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0)),
-                                    CDbl(GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0)))
-    End Sub
+                Dim NQty As Long = CQty + UQty
+                Dim NPrice As Double = (CQty * CPPI) + UPrice
+                Dim NPPI As Double = PricePerItem(NQty, NPrice)
+                Dim SQL As String = ""
+                Dim Obj As New BSDatabase
+                If CPPI = UPPI Then
+                    SQL = "UPDATE List_SG_Case set QTY=" & NQty & ", Price=" & NPrice & " where ID=" & SID
+                ElseIf UPrice = 0 And UQty = 0 Then
+                    SQL = "UPDATE List_SG_Case set QTY=0, Price=0, epps=0 where ID=" & SID
+                Else
+                    SQL = "UPDATE List_SG_Case set QTY=" & NQty & ", Price=" & NPrice & ", epps=" & NPPI & " where ID=" & SID
+                End If
+                Obj.ConnExec(SQL)
+            Catch ex As Exception
+                Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+        Private Sub frmAddQtyHulls_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+            Call LoadData()
+        End Sub
 
-    Private Sub btnUpdate_Click(sender As System.Object, e As System.EventArgs) Handles btnUpdate.Click
-        Try
-            Call SaveData()
-            If FromView Then Call FrmViewListShells.LoadData()
+        Private Sub btnViewCalc_Click(sender As System.Object, e As System.EventArgs) Handles btnViewCalc.Click
+            txtUPPI.Text = PricePerItem(CLng(GeneralHelpers.FluffContent(CDbl(txtUQty.Text), 0)),
+                                        CDbl(GeneralHelpers.FluffContent(CDbl(txtUPrice.Text), 0)))
+        End Sub
+
+        Private Sub btnUpdate_Click(sender As System.Object, e As System.EventArgs) Handles btnUpdate.Click
+            Try
+                Call SaveData()
+                If FromView Then Call FrmViewListShells.LoadData()
+                Me.Close()
+            Catch ex As Exception
+                Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
+            End Try
+        End Sub
+
+        Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
             Me.Close()
-        Catch ex As Exception
-            Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
-        End Try
-    End Sub
-
-    Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
-    End Sub
-End Class
+        End Sub
+    End Class
+End NameSpace

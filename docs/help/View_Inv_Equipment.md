@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -53,3 +54,4 @@ If you are sure this is the equipment that you wish to delete, then click on the
 
 ![](images/View_Inv_Equipm_Delete_List_After.jpg)
 
+[back](./)

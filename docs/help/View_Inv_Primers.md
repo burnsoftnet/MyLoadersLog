@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -78,3 +79,4 @@ Since the list also stores Primer that you may not have but is listed in a confi
 
 ![](images/View_Primer_List_Reference.jpg)
 
+[back](./)

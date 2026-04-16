@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmEditEquipment
     Public EID As Long
@@ -46,7 +47,7 @@ Public Class frmEditEquipment
                                 "Use='" & strUse & "', Cost=" & strPrice & ", Notes='" & strNotes & "' where ID=" & EID
             Obj.ConnExec(SQL)
             Obj = Nothing
-            If FromView Then Call frmView_List_Equipment.LoadData()
+            If FromView Then Call FrmViewListEquipment.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

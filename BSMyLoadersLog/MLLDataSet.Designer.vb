@@ -16242,6 +16242,10 @@ Partial Public Class MLLDataSet
         
         Private columnPrice As Global.System.Data.DataColumn
         
+        Private columnounces As Global.System.Data.DataColumn
+        
+        Private columngrams As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -16366,6 +16370,22 @@ Partial Public Class MLLDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ouncesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnounces
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property gramsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columngrams
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16402,9 +16422,9 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddList_SG_ShotType_DetailsRow(ByVal Manufacturer As String, ByVal Name As String, ByVal IsSlug As Integer, ByVal mat As String, ByVal ShotNo As String, ByVal weight As String, ByVal CAL As String, ByVal Qty As Integer, ByVal epps As Double, ByVal Price As Double) As List_SG_ShotType_DetailsRow
+        Public Overloads Function AddList_SG_ShotType_DetailsRow(ByVal Manufacturer As String, ByVal Name As String, ByVal IsSlug As Integer, ByVal mat As String, ByVal ShotNo As String, ByVal weight As String, ByVal CAL As String, ByVal Qty As Integer, ByVal epps As Double, ByVal Price As Double, ByVal ounces As Double, ByVal grams As Double) As List_SG_ShotType_DetailsRow
             Dim rowList_SG_ShotType_DetailsRow As List_SG_ShotType_DetailsRow = CType(Me.NewRow,List_SG_ShotType_DetailsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price, ounces, grams}
             rowList_SG_ShotType_DetailsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowList_SG_ShotType_DetailsRow)
             Return rowList_SG_ShotType_DetailsRow
@@ -16444,6 +16464,8 @@ Partial Public Class MLLDataSet
             Me.columnQty = MyBase.Columns("Qty")
             Me.columnepps = MyBase.Columns("epps")
             Me.columnPrice = MyBase.Columns("Price")
+            Me.columnounces = MyBase.Columns("ounces")
+            Me.columngrams = MyBase.Columns("grams")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16471,6 +16493,10 @@ Partial Public Class MLLDataSet
             MyBase.Columns.Add(Me.columnepps)
             Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrice)
+            Me.columnounces = New Global.System.Data.DataColumn("ounces", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnounces)
+            Me.columngrams = New Global.System.Data.DataColumn("grams", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columngrams)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AllowDBNull = false
@@ -27240,6 +27266,36 @@ Partial Public Class MLLDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ounces() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableList_SG_ShotType_Details.ouncesColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ounces' in table 'List_SG_ShotType_Details' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableList_SG_ShotType_Details.ouncesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property grams() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableList_SG_ShotType_Details.gramsColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'grams' in table 'List_SG_ShotType_Details' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableList_SG_ShotType_Details.gramsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsManufacturerNull() As Boolean
             Return Me.IsNull(Me.tableList_SG_ShotType_Details.ManufacturerColumn)
         End Function
@@ -27356,6 +27412,30 @@ Partial Public Class MLLDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetPriceNull()
             Me(Me.tableList_SG_ShotType_Details.PriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsouncesNull() As Boolean
+            Return Me.IsNull(Me.tableList_SG_ShotType_Details.ouncesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetouncesNull()
+            Me(Me.tableList_SG_ShotType_Details.ouncesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsgramsNull() As Boolean
+            Return Me.IsNull(Me.tableList_SG_ShotType_Details.gramsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetgramsNull()
+            Me(Me.tableList_SG_ShotType_Details.gramsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -51043,6 +51123,8 @@ Namespace MLLDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Qty", "Qty")
             tableMapping.ColumnMappings.Add("epps", "epps")
             tableMapping.ColumnMappings.Add("Price", "Price")
+            tableMapping.ColumnMappings.Add("ounces", "ounces")
+            tableMapping.ColumnMappings.Add("grams", "grams")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -51053,7 +51135,8 @@ Namespace MLLDataSetTableAdapters
                 ")) AND ((? = 1 AND `weight` IS NULL) OR (`weight` = ?)) AND ((? = 1 AND `CAL` IS"& _ 
                 " NULL) OR (`CAL` = ?)) AND ((? = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = "& _ 
                 "1 AND `epps` IS NULL) OR (`epps` = ?)) AND ((? = 1 AND `Price` IS NULL) OR (`Pri"& _ 
-                "ce` = ?)))"
+                "ce` = ?)) AND ((? = 1 AND `ounces` IS NULL) OR (`ounces` = ?)) AND ((? = 1 AND `"& _ 
+                "grams` IS NULL) OR (`grams` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Manufacturer", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -51076,11 +51159,15 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_epps", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "epps", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Price", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Price", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ounces", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ounces", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_grams", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_grams", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `List_SG_ShotType_Details` (`Manufacturer`, `Name`, `IsSlug`, `mat`, "& _ 
-                "`ShotNo`, `weight`, `CAL`, `Qty`, `epps`, `Price`) VALUES (?, ?, ?, ?, ?, ?, ?, "& _ 
-                "?, ?, ?)"
+                "`ShotNo`, `weight`, `CAL`, `Qty`, `epps`, `Price`, `ounces`, `grams`) VALUES (?,"& _ 
+                " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Name", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Name", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -51092,17 +51179,21 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("epps", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "epps", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Price", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ounces", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("grams", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `List_SG_ShotType_Details` SET `Manufacturer` = ?, `Name` = ?, `IsSlug` = "& _ 
                 "?, `mat` = ?, `ShotNo` = ?, `weight` = ?, `CAL` = ?, `Qty` = ?, `epps` = ?, `Pri"& _ 
-                "ce` = ? WHERE ((`ID` = ?) AND ((? = 1 AND `Manufacturer` IS NULL) OR (`Manufactu"& _ 
-                "rer` = ?)) AND ((? = 1 AND `Name` IS NULL) OR (`Name` = ?)) AND ((? = 1 AND `IsS"& _ 
-                "lug` IS NULL) OR (`IsSlug` = ?)) AND ((? = 1 AND `mat` IS NULL) OR (`mat` = ?)) "& _ 
-                "AND ((? = 1 AND `ShotNo` IS NULL) OR (`ShotNo` = ?)) AND ((? = 1 AND `weight` IS"& _ 
-                " NULL) OR (`weight` = ?)) AND ((? = 1 AND `CAL` IS NULL) OR (`CAL` = ?)) AND ((?"& _ 
-                " = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = 1 AND `epps` IS NULL) OR (`epp"& _ 
-                "s` = ?)) AND ((? = 1 AND `Price` IS NULL) OR (`Price` = ?)))"
+                "ce` = ?, `ounces` = ?, `grams` = ? WHERE ((`ID` = ?) AND ((? = 1 AND `Manufactur"& _ 
+                "er` IS NULL) OR (`Manufacturer` = ?)) AND ((? = 1 AND `Name` IS NULL) OR (`Name`"& _ 
+                " = ?)) AND ((? = 1 AND `IsSlug` IS NULL) OR (`IsSlug` = ?)) AND ((? = 1 AND `mat"& _ 
+                "` IS NULL) OR (`mat` = ?)) AND ((? = 1 AND `ShotNo` IS NULL) OR (`ShotNo` = ?)) "& _ 
+                "AND ((? = 1 AND `weight` IS NULL) OR (`weight` = ?)) AND ((? = 1 AND `CAL` IS NU"& _ 
+                "LL) OR (`CAL` = ?)) AND ((? = 1 AND `Qty` IS NULL) OR (`Qty` = ?)) AND ((? = 1 A"& _ 
+                "ND `epps` IS NULL) OR (`epps` = ?)) AND ((? = 1 AND `Price` IS NULL) OR (`Price`"& _ 
+                " = ?)) AND ((? = 1 AND `ounces` IS NULL) OR (`ounces` = ?)) AND ((? = 1 AND `gra"& _ 
+                "ms` IS NULL) OR (`grams` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Name", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Name", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -51114,6 +51205,8 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Qty", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("epps", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "epps", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Price", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ounces", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("grams", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Manufacturer", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Manufacturer", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Manufacturer", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -51135,6 +51228,10 @@ Namespace MLLDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_epps", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "epps", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Price", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Price", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Price", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ounces", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ounces", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ounces", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_grams", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_grams", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "grams", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -51151,12 +51248,13 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details"
+                ", ounces, grams FROM List_SG_ShotType_Details"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, Cstr(Name & "" #"" & ShotNo & "" ("" & mat & "")"") as Name FROM List_SG_Sho"& _ 
-                "tType_Details where IsSlug=0 order by Manufacturer, Name ASC"
+            Me._commandCollection(1).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Price, Qty, ShotNo, epps, grams, mat, ounce"& _ 
+                "s, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY Manufacturer"& _ 
+                ", Name"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
@@ -51166,197 +51264,202 @@ Namespace MLLDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("@CAL", Global.System.Data.OleDb.OleDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CAL", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(3) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 order by Manufacturer, Name ASC"
+            Me._commandCollection(3).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY Manufa"& _ 
+                "cturer, Name"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 order by mat ASC"
+            Me._commandCollection(4).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY mat"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 order by Price ASC"
+            Me._commandCollection(5).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY Price"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(6) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 order by ShotNo ASC"
+            Me._commandCollection(6).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY ShotNo"& _ 
+                ""
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 order by weight ASC"
+            Me._commandCollection(7).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) ORDER BY weight"& _ 
+                ""
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)>0 and Price > 0 o"& _ 
-                "rder by Manufacturer,Name ASC"
+            Me._commandCollection(8).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) > 0) AND (Price > 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(9) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(9).Connection = Me.Connection
-            Me._commandCollection(9).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)>0 and Price > 0 o"& _ 
-                "rder by Material ASC"
+            Me._commandCollection(9).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) > 0) AND (Price > 0) ORDER BY Material"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(10) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(10).Connection = Me.Connection
-            Me._commandCollection(10).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)>0 and Price > 0 o"& _ 
-                "rder by Price ASC"
+            Me._commandCollection(10).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) > 0) AND (Price > 0) ORDER BY Price"
             Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(11) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(11).Connection = Me.Connection
-            Me._commandCollection(11).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)>0 and Price > 0 o"& _ 
-                "rder by ShotNo ASC"
+            Me._commandCollection(11).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) > 0) AND (Price > 0) ORDER BY ShotNo"
             Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(12) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(12).Connection = Me.Connection
-            Me._commandCollection(12).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)>0 and Price > 0 o"& _ 
-                "rder by weight ASC"
+            Me._commandCollection(12).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) > 0) AND (Price > 0) ORDER BY weight"
             Me._commandCollection(12).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(13) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(13).Connection = Me.Connection
-            Me._commandCollection(13).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)=0 and Price > 0 o"& _ 
-                "rder by Manufacturer,Name ASC"
+            Me._commandCollection(13).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) = 0) AND (Price > 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(14) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(14).Connection = Me.Connection
-            Me._commandCollection(14).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)=0 and Price > 0 o"& _ 
-                "rder by mat ASC"
+            Me._commandCollection(14).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) = 0) AND (Price > 0) ORDER BY mat"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(15) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(15).Connection = Me.Connection
-            Me._commandCollection(15).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)=0 and Price > 0 o"& _ 
-                "rder by Price ASC"
+            Me._commandCollection(15).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) = 0) AND (Price > 0) ORDER BY Price"
             Me._commandCollection(15).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(16) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(16).Connection = Me.Connection
-            Me._commandCollection(16).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)=0 and Price > 0 o"& _ 
-                "rder by ShotNo ASC"
+            Me._commandCollection(16).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) = 0) AND (Price > 0) ORDER BY ShotNo"
             Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(17) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(17).Connection = Me.Connection
-            Me._commandCollection(17).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=0 and cdbl(weight)=0 and Price = 0 o"& _ 
-                "rder by Manufacturer,Name ASC"
+            Me._commandCollection(17).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 0) AND (cdbl(weigh"& _ 
+                "t) = 0) AND (Price = 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(17).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(18) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(18).Connection = Me.Connection
-            Me._commandCollection(18).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 order by Manufacturer, Name ASC"
+            Me._commandCollection(18).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) ORDER BY Manufa"& _ 
+                "cturer, Name"
             Me._commandCollection(18).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(19) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(19).Connection = Me.Connection
-            Me._commandCollection(19).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 order by CAL ASC"
+            Me._commandCollection(19).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) ORDER BY CAL"
             Me._commandCollection(19).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(20) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(20).Connection = Me.Connection
-            Me._commandCollection(20).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 order by Price ASC"
+            Me._commandCollection(20).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) ORDER BY Price"
             Me._commandCollection(20).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(21) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(21).Connection = Me.Connection
-            Me._commandCollection(21).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 order by Qty ASC"
+            Me._commandCollection(21).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) ORDER BY Qty"
             Me._commandCollection(21).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(22) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(22).Connection = Me.Connection
-            Me._commandCollection(22).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 order by weight ASC"
+            Me._commandCollection(22).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) ORDER BY weight"& _ 
+                ""
             Me._commandCollection(22).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(23) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(23).Connection = Me.Connection
-            Me._commandCollection(23).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty>0 and Price > 0 order by C"& _ 
-                "AL ASC"
+            Me._commandCollection(23).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty > 0) A"& _ 
+                "ND (Price > 0) ORDER BY CAL"
             Me._commandCollection(23).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(24) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(24).Connection = Me.Connection
-            Me._commandCollection(24).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty>0 and Price > 0 order by M"& _ 
-                "anufacturer,Name ASC"
+            Me._commandCollection(24).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty > 0) A"& _ 
+                "ND (Price > 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(24).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(25) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(25).Connection = Me.Connection
-            Me._commandCollection(25).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty>0 and Price > 0 order by P"& _ 
-                "rice ASC"
+            Me._commandCollection(25).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty > 0) A"& _ 
+                "ND (Price > 0) ORDER BY Price"
             Me._commandCollection(25).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(26) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(26).Connection = Me.Connection
-            Me._commandCollection(26).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty>0 and Price > 0 order by Q"& _ 
-                "ty ASC"
+            Me._commandCollection(26).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty > 0) A"& _ 
+                "ND (Price > 0) ORDER BY Qty"
             Me._commandCollection(26).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(27) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(27).Connection = Me.Connection
-            Me._commandCollection(27).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty>0 and Price > 0 order by W"& _ 
-                "eight ASC"
+            Me._commandCollection(27).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty > 0) A"& _ 
+                "ND (Price > 0) ORDER BY weight"
             Me._commandCollection(27).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(28) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(28).Connection = Me.Connection
-            Me._commandCollection(28).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price > 0 order by C"& _ 
-                "AL ASC"
+            Me._commandCollection(28).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price > 0) ORDER BY CAL"
             Me._commandCollection(28).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(29) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(29).Connection = Me.Connection
-            Me._commandCollection(29).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price > 0 order by M"& _ 
-                "anufacturer, Name ASC"
+            Me._commandCollection(29).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price > 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(29).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(30) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(30).Connection = Me.Connection
-            Me._commandCollection(30).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price > 0 order by P"& _ 
-                "rice ASC"
+            Me._commandCollection(30).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price > 0) ORDER BY Price"
             Me._commandCollection(30).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(31) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(31).Connection = Me.Connection
-            Me._commandCollection(31).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price > 0 order by Q"& _ 
-                "ty ASC"
+            Me._commandCollection(31).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price > 0) ORDER BY Qty"
             Me._commandCollection(31).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(32) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(32).Connection = Me.Connection
-            Me._commandCollection(32).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price > 0 order by w"& _ 
-                "eight ASC"
+            Me._commandCollection(32).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price > 0) ORDER BY weight"
             Me._commandCollection(32).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(33) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(33).Connection = Me.Connection
-            Me._commandCollection(33).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price = 0 order by C"& _ 
-                "AL ASC"
+            Me._commandCollection(33).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price = 0) ORDER BY CAL"
             Me._commandCollection(33).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(34) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(34).Connection = Me.Connection
-            Me._commandCollection(34).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price = 0 order by M"& _ 
-                "anufacturer,Name ASC"
+            Me._commandCollection(34).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price = 0) ORDER BY Manufacturer, Name"
             Me._commandCollection(34).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(35) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(35).Connection = Me.Connection
-            Me._commandCollection(35).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price = 0 order by Q"& _ 
-                "ty ASC"
+            Me._commandCollection(35).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price = 0) ORDER BY Qty"
             Me._commandCollection(35).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(36) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(36).Connection = Me.Connection
-            Me._commandCollection(36).CommandText = "SELECT ID, Manufacturer, Name, IsSlug, mat, ShotNo, weight, CAL, Qty, epps, Price"& _ 
-                " FROM List_SG_ShotType_Details where IsSlug=1 and Qty=0 and Price = 0 order by w"& _ 
-                "eight ASC"
+            Me._commandCollection(36).CommandText = "SELECT CAL, ID, IsSlug, Manufacturer, Name, Price, Qty, ShotNo, epps, grams, mat,"& _ 
+                " ounces, weight FROM List_SG_ShotType_Details WHERE (IsSlug = 1) AND (Qty = 0) A"& _ 
+                "ND (Price = 0) ORDER BY weight"
             Me._commandCollection(36).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -51415,7 +51518,7 @@ Namespace MLLDataSetTableAdapters
         Public Overloads Overridable Function FillBy_CFG_List_Slug(ByVal dataTable As MLLDataSet.List_SG_ShotType_DetailsDataTable, ByVal __CAL As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (__CAL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("__CAL")
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(__CAL,String)
             End If
@@ -51433,7 +51536,7 @@ Namespace MLLDataSetTableAdapters
         Public Overloads Overridable Function GetDataBy_CFG_List_Slug(ByVal __CAL As String) As MLLDataSet.List_SG_ShotType_DetailsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (__CAL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("__CAL")
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(__CAL,String)
             End If
@@ -52290,7 +52393,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Manufacturer As String, ByVal Original_Name As String, ByVal Original_IsSlug As Global.System.Nullable(Of Integer), ByVal Original_mat As String, ByVal Original_ShotNo As String, ByVal Original_weight As String, ByVal Original_CAL As String, ByVal Original_Qty As Global.System.Nullable(Of Integer), ByVal Original_epps As Global.System.Nullable(Of Double), ByVal Original_Price As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer, ByVal Original_Manufacturer As String, ByVal Original_Name As String, ByVal Original_IsSlug As Global.System.Nullable(Of Integer), ByVal Original_mat As String, ByVal Original_ShotNo As String, ByVal Original_weight As String, ByVal Original_CAL As String, ByVal Original_Qty As Global.System.Nullable(Of Integer), ByVal Original_epps As Global.System.Nullable(Of Double), ByVal Original_Price As Global.System.Nullable(Of Double), ByVal Original_ounces As Global.System.Nullable(Of Double), ByVal Original_grams As Global.System.Nullable(Of Double)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
             If (Original_Manufacturer Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
@@ -52362,6 +52465,20 @@ Namespace MLLDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
+            If (Original_ounces.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_ounces.Value,Double)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (Original_grams.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_grams.Value,Double)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -52381,7 +52498,7 @@ Namespace MLLDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Manufacturer As String, ByVal Name As String, ByVal IsSlug As Global.System.Nullable(Of Integer), ByVal mat As String, ByVal ShotNo As String, ByVal weight As String, ByVal CAL As String, ByVal Qty As Global.System.Nullable(Of Integer), ByVal epps As Global.System.Nullable(Of Double), ByVal Price As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Insert(ByVal Manufacturer As String, ByVal Name As String, ByVal IsSlug As Global.System.Nullable(Of Integer), ByVal mat As String, ByVal ShotNo As String, ByVal weight As String, ByVal CAL As String, ByVal Qty As Global.System.Nullable(Of Integer), ByVal epps As Global.System.Nullable(Of Double), ByVal Price As Global.System.Nullable(Of Double), ByVal ounces As Global.System.Nullable(Of Double), ByVal grams As Global.System.Nullable(Of Double)) As Integer
             If (Manufacturer Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -52432,6 +52549,16 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
+            If (ounces.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(ounces.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (grams.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(grams.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -52462,6 +52589,8 @@ Namespace MLLDataSetTableAdapters
                     ByVal Qty As Global.System.Nullable(Of Integer),  _
                     ByVal epps As Global.System.Nullable(Of Double),  _
                     ByVal Price As Global.System.Nullable(Of Double),  _
+                    ByVal ounces As Global.System.Nullable(Of Double),  _
+                    ByVal grams As Global.System.Nullable(Of Double),  _
                     ByVal Original_ID As Integer,  _
                     ByVal Original_Manufacturer As String,  _
                     ByVal Original_Name As String,  _
@@ -52472,7 +52601,9 @@ Namespace MLLDataSetTableAdapters
                     ByVal Original_CAL As String,  _
                     ByVal Original_Qty As Global.System.Nullable(Of Integer),  _
                     ByVal Original_epps As Global.System.Nullable(Of Double),  _
-                    ByVal Original_Price As Global.System.Nullable(Of Double)) As Integer
+                    ByVal Original_Price As Global.System.Nullable(Of Double),  _
+                    ByVal Original_ounces As Global.System.Nullable(Of Double),  _
+                    ByVal Original_grams As Global.System.Nullable(Of Double)) As Integer
             If (Manufacturer Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -52523,76 +52654,100 @@ Namespace MLLDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_ID,Integer)
-            If (Original_Manufacturer Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            If (ounces.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(ounces.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Manufacturer,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (Original_Name Is Nothing) Then
+            If (grams.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(grams.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_ID,Integer)
+            If (Original_Manufacturer Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Name,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Manufacturer,String)
             End If
-            If (Original_IsSlug.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_IsSlug.Value,Integer)
-            Else
+            If (Original_Name Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Name,String)
             End If
-            If (Original_mat Is Nothing) Then
+            If (Original_IsSlug.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_IsSlug.Value,Integer)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_mat,String)
             End If
-            If (Original_ShotNo Is Nothing) Then
+            If (Original_mat Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_ShotNo,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_mat,String)
             End If
-            If (Original_weight Is Nothing) Then
+            If (Original_ShotNo Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_weight,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_ShotNo,String)
             End If
-            If (Original_CAL Is Nothing) Then
+            If (Original_weight Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_CAL,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_weight,String)
             End If
-            If (Original_Qty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Qty.Value,Integer)
-            Else
+            If (Original_CAL Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_CAL,String)
             End If
-            If (Original_epps.HasValue = true) Then
+            If (Original_Qty.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_epps.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Qty.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            If (Original_Price.HasValue = true) Then
+            If (Original_epps.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Price.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_epps.Value,Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Price.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Price.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ounces.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_ounces.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
+            End If
+            If (Original_grams.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_grams.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _

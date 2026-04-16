@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -77,3 +78,4 @@ Since the list also stores Case that you may not have but is listed in a configu
 
 ![](images/View_Case_List_Reference.jpg)
 
+[back](./)

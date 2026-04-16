@@ -1,6 +1,7 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BSMyLoadersLog.Viewing
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 
 Public Class frmEditPowder
@@ -25,11 +26,11 @@ Public Class frmEditPowder
                 If Not IsDBNull(RS("weightgn")) Then iQty = RS("weightgn")
                 If Not IsDBNull(RS("eppp")) Then eppo = RS("eppp")
                 'If Not IsDBNull(RS("weightlbs")) Then txtwei.Text = RS("weightlbs")
-                txtwei.Text = Math.Round(iQty / WeightGrains1Lbs, 3)
+                txtwei.Text = Math.Round(iQty / WeightValues.WEIGHT_GRAINS_1LBS, 3)
                 dPrice = eppo * iQty
                 txtGrains.Text = iQty
                 Dim ObjIM As New InventoryMath
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing
@@ -59,7 +60,7 @@ Public Class frmEditPowder
                                 "weightlbs=" & strWei & ",weightgn=" & dbWeiGrn & "," & _
                                 "Price=" & dbPrice & ",Notes='" & strNotes & "',eppp=" & EstCostPerItem & " where ID=" & PID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_Powder.LoadData()
+            If FromView Then Call FrmViewListPowder.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

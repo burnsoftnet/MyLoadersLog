@@ -1,3 +1,5 @@
+[back](./)
+
 ---
 layout: default
 ---
@@ -38,3 +40,5 @@ If there was an ammunition type that you wanted to get rid of since it was not i
 Once you have the value selected, just hit your Delete key to delete the value from the database.
 
 ![](images/Edit_AmmunitionTypes_List_After_Delete.jpg)
+
+[back](./)

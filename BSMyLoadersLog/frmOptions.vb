@@ -59,6 +59,7 @@ Public Class FrmOptions
                     'Exit Function
                 End If
             End If
+            'TODO: #20 Clean up Code
             'If bSec Then iUsePassword = 1
             'Dim sql As String = ""
             'Dim obj As New BSDatabase
@@ -85,20 +86,21 @@ Public Class FrmOptions
                                                _errOut) Then Throw New Exception(_errOut)
             End If
             'obj.ConnExec(sql)
-            'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value, 
+            'objR.SaveSettings("0000", chkBAKCleanup.Checked, nudDays.Value,
             '                  False, False, chkAOBU.Checked, chkBackupOnExit.Checked,
-            '                  chkDoOriginalImage.Checked, bShotGun, bRiflePistol, 
+            '                  chkDoOriginalImage.Checked, bShotGun, bRiflePistol,
             '                  strDefaultList, chkIPer.Checked, chkViewFPS.Checked, chkViewCUPS.Checked)
             Dim mySettings As List(Of RegistrySettings) = MyRegistry.BuildRegistry(
                 AlertOnBackUp := chkAOBU.Checked, BackupOnExit := chkBackupOnExit.Checked, 
                 UseOrgImage := chkDoOriginalImage.Checked, LOADERTYPE_SHOTGUN := bShotGun, 
                 LOADERTYPE_NONSHOTGUN := bRiflePistol, DefaultList := strDefaultList, IndvReports := chkIPer.Checked, 
-                VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked)
+                VIEW_FPS := chkViewFPS.Checked, VIEW_CUPS := chkViewCUPS.Checked, 
+                TrackHistory:=chkBAKCleanup.Checked, TrackHistoryDays := nudDays.Value)
             If Not MyRegistry.SaveSettings(mySettings, _errOut) Then Throw New Exception(_errOut)
 
-            LoadertypeShotgun = bShotGun
+            LoaderTypeShotGun = bShotGun
             OwnerLoadName = Replace(strLoadName, "''", "'")
-            LoadertypeNonshotgun = bRiflePistol
+            LoaderTypeMetalic = bRiflePistol
             ViewFps = chkViewFPS.Checked
             ViewCups = chkViewCUPS.Checked
             Defaultlist = strDefaultList
@@ -124,13 +126,18 @@ Public Class FrmOptions
             chkAOBU.Checked = o.AlertOnBackUp
             nudDays.Value = o.TrackHistoryDays
             chkBAKCleanup.Checked = o.TrackHistory
-            chkBackupOnExit.Checked = o.AutoBackup
+            chkBackupOnExit.Checked = o.BackupOnExit
             chkDoOriginalImage.Checked = o.UseOrgImage
             chkIPer.Checked = o.IndvReports
+            LoaderTypeShotGun = o.LoaderTypeShotGun
+            LoaderTypeMetalic = o.LoaderTypeMetalic
+            Defaultlist = o.DefaultList
+            ViewFps = o.ViewFps
+            ViewCups = o.ViewCups
         Next
 
-        chkShotGun.Checked = LoadertypeShotgun
-        chkRiflePistol.Checked = LoadertypeNonshotgun
+        chkShotGun.Checked = LoaderTypeShotGun
+        chkRiflePistol.Checked = LoaderTypeMetalic
         cmbDefaultList.Text = Defaultlist
         chkViewFPS.Checked = ViewFps
         chkViewCUPS.Checked = ViewCups
@@ -141,6 +148,7 @@ Public Class FrmOptions
     ''' <exception cref="System.Exception"></exception>
     Sub GetDbData()
         Try
+            'TODO: #20 Clean up Code
             'Dim obj As New BSDatabase
             'Dim intUsePass As Integer
             'Call obj.ConnectDB()
@@ -193,14 +201,14 @@ Public Class FrmOptions
                     txtState.Text = Trim(o.State)
                     txtZip.Text = Trim(o.ZipCode)
                     txtPhone.Text = Trim(o.Phone) ' oEncrypt.DecryptSHA(RS("Phone"))
-                    txtLic.Text = One.Decrypt(o.License)
+                    txtLic.Text = o.License
                     chkSec.Checked = o.UseLock
                     If o.UseLock Then
                         txtPWD.Text = One.Decrypt(o.Password)
                         txtCPWD.Text = txtPWD.Text
-                        txtUID.Text = One.Decrypt(o.UserName)
-                        txtPhrase.Text = One.Decrypt(o.ForgetPhrase)
-                        txtWord.Text = One.Decrypt(o.Forgot)
+                        txtUID.Text = o.UserName
+                        txtPhrase.Text = o.ForgetPhrase
+                        txtWord.Text = o.Forgot
                     End If
                 Next
             Else

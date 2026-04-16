@@ -3,10 +3,16 @@ Imports System.Data.Odbc
 Imports System.IO
 Imports System.Xml
 Imports System.Data
+Imports BSMyLoadersLog.ViewReports
+Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
 Imports BurnSoft.Universal
 
 Public Class frmView_Configuration_Shotgun_Sheet
+    ''' <summary>
+    ''' The error out
+    ''' </summary>
+    Dim errOut as String
     Public ConfigID As Long
     Public ConfigName As String
     Dim IsPersonal As Boolean
@@ -126,15 +132,15 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Dim dC1RA As Double = 0
             Dim Obj As New InventoryMath
             If Not IsSlug Then
-                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightGramsOz) ' * COST_SHOT
+                COST_BULLET = COST_SHOT * (SHOT_PREFLOAD * WeightValues.WEIGHT_GRAMS_OZ) ' * COST_SHOT
             Else
                 COST_BULLET = COST_SLUG
             End If
-            txtCPB.Text = Obj.ConvertToDollars(COST_BULLET)
-            txtCPP.Text = Obj.ConvertToDollars(COST_PRIMER)
-            txtCPC.Text = Obj.ConvertToDollars(COST_CASE)
-            txtCOPMid.Text = Obj.ConvertToDollars((COST_POWDER * MID_POWDER))
-            txtCPW.Text = Obj.ConvertToDollars(COST_WAD)
+            txtCPB.Text = Converters.ConvertToDollars(COST_BULLET)
+            txtCPP.Text = Converters.ConvertToDollars(COST_PRIMER)
+            txtCPC.Text = Converters.ConvertToDollars(COST_CASE)
+            txtCOPMid.Text = Converters.ConvertToDollars((COST_POWDER * MID_POWDER))
+            txtCPW.Text = Converters.ConvertToDollars(COST_WAD)
             dC1RA = Converters.CostOfRoundsOfAmmoShotGun(COST_PRIMER, COST_CASE, COST_BULLET, COST_POWDER, MID_POWDER, COST_WAD)
             txtC1RA.Text = dC1RA
             txtCNWIS.Text = INSTOCK_WAD
@@ -169,7 +175,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             End If
 
             txtNMR.Text = lnmr
-            txtTCR.Text = lnmr * Obj.ConvertToDollars(dC1RA)
+            txtTCR.Text = lnmr * Converters.ConvertToDollars(dC1RA)
         Catch ex As Exception
             Call LogError(Me.Name, "LoadCosts", Err.Number, ex.Message.ToString)
         End Try
@@ -177,12 +183,14 @@ Public Class frmView_Configuration_Shotgun_Sheet
     Public Sub LoadData()
         Try
             Lastconfigedviewed = ConfigID
-            Dim ObjG As New GlobalFunctions
+            'Dim ObjG As New GlobalFunctions
             Dim Obj As New InventoryMath
             Me.Loaders_Log_Ammunition_AuditTableAdapter.FillByConfigID(Me.MLLDataSet.Loaders_Log_Ammunition_Audit, ConfigID)
             IsShotGun = False
             IsPersonal = False
-            ConfigName = ObjG.GetTitle(ConfigID)
+            'ConfigName = ObjG.GetTitle(ConfigID)
+            ConfigName = GeneralFunctions.GetTitle(DatabasePath,ConfigID, errOut)
+            If errOut.Length > 0 Then Throw New Exception(errOut)
             Me.Text = ConfigName & " Configuration Sheet"
             txtConfigName.Text = ConfigName
             PrefferedPowderID = Obj.GetPrefSGPowderID(ConfigID, MID_POWDER)
@@ -333,11 +341,11 @@ Public Class frmView_Configuration_Shotgun_Sheet
         Return sAns
     End Function
 
-    Private Sub frmView_Configuration_Shotgun_Sheet_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
+    Private Sub frmView_Configuration_Shotgun_Sheet_Disposed(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Disposed
         Dim objS As New ViewSizeSettings
         objS.SaveView_Configuration_Shotgun_Sheet(Me.Height, Me.Width, Me.Location.X, Me.Location.Y)
     End Sub
-    Private Sub frmView_Configuration_Shotgun_Sheet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmView_Configuration_Shotgun_Sheet_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         Try
             Dim objS As New ViewSizeSettings
             objS.LoadView_Configuration_Shotgun_Sheet(Me.Height, Me.Width, Me.Location)
@@ -349,7 +357,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call LogError(Me.Name, "Load", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub frmView_Configuration_Shotgun_Sheet_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
+    Private Sub frmView_Configuration_Shotgun_Sheet_Resize(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Resize
         If Me.Width > 0 Then
             TabControl1.Width = Me.Width - 5
             TabControl1.Height = Me.Height - 60
@@ -359,7 +367,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             txtNotes.Height = TabControl1.Height - 69
         End If
     End Sub
-    Private Sub chkFav_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFav.CheckedChanged
+    Private Sub chkFav_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkFav.CheckedChanged
         If chkFav.Checked Then
             isFav = True
             Call UpdateFav(1)
@@ -369,7 +377,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
         End If
         Call MdiParentMain.RefreshConfigData()
     End Sub
-    Private Sub rbstatus1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus1.CheckedChanged
+    Private Sub rbstatus1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus1.CheckedChanged
         If rbstatus1.Checked Then
             rbstatus2.Checked = False
             isActive = True
@@ -377,7 +385,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call MdiParentMain.RefreshConfigData()
         End If
     End Sub
-    Private Sub rbstatus2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbstatus2.CheckedChanged
+    Private Sub rbstatus2_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rbstatus2.CheckedChanged
         If rbstatus2.Checked Then
             rbstatus1.Checked = False
             isActive = False
@@ -385,7 +393,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call MdiParentMain.RefreshConfigData()
         End If
     End Sub
-    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
+    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeleteToolStripMenuItem.Click
         Try
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
             Dim Obj As New BSDatabase
@@ -398,7 +406,7 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
+    Private Sub SetAsDefaultToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SetAsDefaultToolStripMenuItem.Click
         Try
             Dim ItemID As String = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
             Dim Obj As New BSDatabase
@@ -413,15 +421,15 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call LogError(Me.Name, "DeleteToolStripMenuItem_Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefresh.Click
+    Private Sub btnRefresh_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRefresh.Click
         Call LoadPowderGrid()
     End Sub
-    Private Sub btnAddNotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddNotes.Click
+    Private Sub btnAddNotes_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddNotes.Click
         btnAddNotes.Enabled = False
         btnUpdate.Visible = True
         txtNotes.ReadOnly = False
     End Sub
-    Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         btnUpdate.Visible = False
         btnAddNotes.Enabled = True
         txtNotes.ReadOnly = True
@@ -434,52 +442,52 @@ Public Class frmView_Configuration_Shotgun_Sheet
             Call LogError(Me.Name, "btnUpdate.Click", Err.Number, ex.Message.ToString)
         End Try
     End Sub
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Dim frmNew As New frmConfig_Add_Wizard_SG_Powder
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName
         frmNew.MdiParent = Me.MdiParent
         frmNew.Show()
     End Sub
-    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+    Private Sub ToolStripButton2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton2.Click
         Me.Close()
     End Sub
-    Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
-        Dim frmNew As New frmLoadMakeReady_Details
+    Private Sub ToolStripButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton1.Click
+        Dim frmNew As New FrmLoadMakeReadyDetails
         frmNew.MdiParent = Me.MdiParent
-        frmNew.ConfigID = ConfigID
+        frmNew.ConfigId = ConfigID
         frmNew.ConfigName = ConfigName
         frmNew.Show()
         Me.Close()
     End Sub
-    Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton4.Click
+    Private Sub ToolStripButton4_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton4.Click
         Me.Cursor = Cursors.WaitCursor
         Try
             If Not IsSlug Then
-                Dim frmNew As New frmReport_Configuration_Sheet_SG
-                frmNew.Config_ID = ConfigID
-                frmNew.Config_Name = ConfigName
-                frmNew.Config_AT = txtAmmoType.Text
-                frmNew.Config_Cal = txtCal.Text
-                frmNew.Config_Notes = txtNotes.Text
-                frmNew.Pro_Manu = txtShotManu.Text
-                frmNew.Pro_Name = txtShotName.Text
-                frmNew.Pro_Material = txtShotMat.Text
-                frmNew.Pro_ShotNo = txtShotNo.Text
-                frmNew.Pro_SelectedLoad = txtPrefLoad.Text
-                frmNew.WAD_Manu = txtWADManu.Text
-                frmNew.WAD_Name = txtWADName.Text
-                frmNew.WAD_MaxLoad = txtWADLoad.Text
-                frmNew.Pri_Manu = txtPManu.Text
-                frmNew.Pri_Name = txtPName.Text
-                frmNew.Pri_PT = txtPType.Text
-                frmNew.Case_Manu = txtCManu.Text
-                frmNew.Case_Name = txtCName.Text
-                frmNew.Case_TTL = txtCTOL.Text
-                frmNew.Case_DRAM = txtDRAM.Text
-                frmNew.Config_ISPersonal = IsPersonal
-                frmNew.Config_Ref = lblReffer.Text
-                frmNew.Config_Fav = chkFav.Checked
+                Dim frmNew As New FrmReportConfigurationSheetSg
+                frmNew.ConfigId = ConfigID
+                frmNew.ConfigName = ConfigName
+                frmNew.ConfigAmmoType = txtAmmoType.Text
+                frmNew.ConfigCaliber = txtCal.Text
+                frmNew.ConfigNotes = txtNotes.Text
+                frmNew.ProjectileManufacturer = txtShotManu.Text
+                frmNew.ProjectileName = txtShotName.Text
+                frmNew.ProjectileMaterial = txtShotMat.Text
+                frmNew.ProjectileShotNo = txtShotNo.Text
+                frmNew.ProjectileSelectedLoad = txtPrefLoad.Text
+                frmNew.WadManufacturer = txtWADManu.Text
+                frmNew.WadName = txtWADName.Text
+                frmNew.WadMaxLoad = txtWADLoad.Text
+                frmNew.PrimerManufacturer = txtPManu.Text
+                frmNew.PrimerName = txtPName.Text
+                frmNew.PrimerType = txtPType.Text
+                frmNew.CaseManufacturer = txtCManu.Text
+                frmNew.CaseName = txtCName.Text
+                frmNew.CaseTrimToLength = txtCTOL.Text
+                frmNew.CaseDram = txtDRAM.Text
+                frmNew.ConfigIsPersonal = IsPersonal
+                frmNew.ConfigRefference = lblReffer.Text
+                frmNew.ConfigFavorite = chkFav.Checked
                 frmNew.MdiParent = Me.MdiParent
                 frmNew.Show()
             Else
@@ -513,19 +521,19 @@ Public Class frmView_Configuration_Shotgun_Sheet
         End Try
         Me.Cursor = Cursors.Arrow
     End Sub
-    Private Sub ToolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton5.Click
+    Private Sub ToolStripButton5_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton5.Click
         Dim DefaultFileName As String = "ExportConfig_" & ConfigName & ".xml"
         SaveFileDialog1.FilterIndex = 1
         SaveFileDialog1.Filter = "XML File(*.xml)|*.xml"
         SaveFileDialog1.Title = "Export Data to XML File"
         SaveFileDialog1.FileName = Replace(Replace(Replace(Replace(DefaultFileName, " ", "_"), "/", "-"), "\", "-"), Chr(34), "")
-        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.Cancel Then Exit Sub
+        If SaveFileDialog1.ShowDialog() = DialogResult.Cancel Then Exit Sub
         Dim strFilePath As String = SaveFileDialog1.FileName
         Call XML_Generate(strFilePath)
         Me.Close()
     End Sub
 
-    Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton3.Click
+    Private Sub ToolStripButton3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolStripButton3.Click
         Dim frmNew As New frmEditConfig
         frmNew.ConfigID = ConfigID
         frmNew.ConfigName = ConfigName
@@ -534,11 +542,11 @@ Public Class frmView_Configuration_Shotgun_Sheet
         Me.Close()
     End Sub
 
-    Private Sub GroupBox6_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub GroupBox6_Enter(ByVal sender As Object, ByVal e As EventArgs)
 
     End Sub
 
-    Private Sub TabPage1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabPage1.Click
+    Private Sub TabPage1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TabPage1.Click
 
     End Sub
 End Class

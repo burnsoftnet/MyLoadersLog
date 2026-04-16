@@ -1,6 +1,10 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports BSMyLoadersLog.ImportExport.ExportModule
+Imports BurnSoft.Applications.MLL
+
 Public Class frmReport_Custom
+    ' TODO #18 Add Comments
+    Dim errOut as String
     Public SQL As String
     Private GridPrinter As DataGridPrinter
     Private MyDataTable As DataTable
@@ -17,8 +21,10 @@ Public Class frmReport_Custom
     End Sub
     Sub LoadData()
         Try
-            Dim Obj As New BSDatabase
-            MyDataTable = Obj.GetData(SQL)
+            'Dim Obj As New BSDatabase
+            'MyDataTable = Obj.GetData(SQL)
+            MyDataTable = Database.GetDataFromTable(DatabasePath, SQL, errOut)
+            If errOut.Length > 0 then Throw new Exception(errOut)
             MyDataTable.TableName = Replace(ReportName, " ", "_")
             With DataGrid1
                 .DataSource = MyDataTable

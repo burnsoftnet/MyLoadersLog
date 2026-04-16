@@ -1,12 +1,13 @@
 Imports BSMyLoadersLog.LoadersClass
 Imports System.Data.Odbc
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BSMyLoadersLog.Viewing
 
 Public Class frmEditWADS
     ''' <summary>
     ''' The error out
     ''' </summary>
-    Dim errOut as String
+    Dim errOut As String
     Public SID As Integer
     Public FromView As Boolean
     Sub Loaddata()
@@ -24,7 +25,7 @@ Public Class frmEditWADS
             Dim GID As Integer
             While RS.Read
                 If Not IsDBNull(RS("Manufacturer")) Then txtManu.Text = GeneralHelpers.UnFluffContent(RS("Manufacturer"))
-                If Not IsDBNull(RS("WAD")) Then txtWAD.Text =GeneralHelpers.UnFluffContent(RS("WAD"))
+                If Not IsDBNull(RS("WAD")) Then txtWAD.Text = GeneralHelpers.UnFluffContent(RS("WAD"))
                 If Not IsDBNull(RS("Price")) Then dPrice = RS("Price")
                 If Not IsDBNull(RS("Qty")) Then iQty = RS("Qty")
                 If Not IsDBNull(RS("eppw")) Then eppo = RS("eppw")
@@ -34,7 +35,7 @@ Public Class frmEditWADS
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
                 Dim ObjIM As New InventoryMath
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing
@@ -49,9 +50,9 @@ Public Class frmEditWADS
             Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
             Dim strName As String = GeneralHelpers.FluffContent(txtWAD.Text)
             Dim intQty As Integer = nudQty.Value
-            Dim dbPrice As Double = GeneralHelpers.FluffContent(cdbl(txtPrice.Text), 0)
+            Dim dbPrice As Double = GeneralHelpers.FluffContent(CDbl(txtPrice.Text), 0)
             Dim sLoad As String = GeneralHelpers.FluffContent(txtLoad.Text, "0")
-            Dim dLoad As Double = Converters.ConvertOZToDouble(sLoad, errOut)
+            Dim dLoad As Double = Converters.ConvertOzToDouble(sLoad, errOut)
             Dim GName As String = cmdGauge.Text
             Dim GID As Integer = cmdGauge.SelectedValue
 
@@ -67,7 +68,7 @@ Public Class frmEditWADS
                     ",gauge='" & GName & "',GID=" & GID & ",load_t='" & sLoad & _
                     "',load_d=" & dLoad & " where id=" & SID
             Obj.ConnExec(SQL)
-            If FromView Then Call frmView_List_WADS.LoadData()
+            If FromView Then Call FrmViewListWads.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "SaveData", Err.Number, ex.Message.ToString)

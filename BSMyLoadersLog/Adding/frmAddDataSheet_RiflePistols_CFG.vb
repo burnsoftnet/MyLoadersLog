@@ -1,17 +1,18 @@
-Imports System.Data.Odbc
-Imports BSMyLoadersLog.LoadersClass
+Imports BSMyLoadersLog.Viewing
 Imports BurnSoft.Applications.MLL.AutoFill
+Imports BurnSoft.Applications.MLL.ConfigSheets
 Imports BurnSoft.Applications.MLL.Global
 Imports BurnSoft.Applications.MLL.Helpers
+Imports BurnSoft.Applications.MLL.Inventory
 Imports BurnSoft.Applications.MLL.LoadersLog
 Imports BurnSoft.Applications.MLL.Types
 
 Namespace Adding
     ''' <summary>
     ''' Class FrmAddDataSheetRiflePistolsCfg.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddDataSheetRiflePistolsCfg
         ''' <summary>
         ''' From view
@@ -24,7 +25,7 @@ Namespace Adding
         ''' <summary>
         ''' The error out
         ''' </summary>
-        Private _errOut as String
+        Private _errOut As String
         ''' <summary>
         ''' Loads the automatic fill.
         ''' </summary>
@@ -32,11 +33,11 @@ Namespace Adding
         Sub LoadAutoFill()
             Try
                 txtGroup.AutoCompleteCustomSource = ConfigMetalic.GroupSize(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtCon.AutoCompleteCustomSource = ConfigMetalic.Conditions(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 txtLen.AutoCompleteCustomSource = ConfigMetalic.TotalLenght(DatabasePath, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
             Catch ex As Exception
                 Call LogError(Name, "LoadAutoFill", Err.Number, ex.Message.ToString)
             End Try
@@ -46,72 +47,99 @@ Namespace Adding
         ''' </summary>
         Sub SaveData()
             Try
-                Dim lngFid As Long = cmbFirearm.SelectedValue
-                Dim strFireArm As String = cmbFirearm.Text
-                Dim strDateTested As String = dtpTested.Value
-                Dim strGroup As String = GeneralHelpers.FluffContent(txtGroup.Text)
-                Dim lngNumShots As Integer = nudShots.Value
-                Dim lngYards As Integer = nudYards.Value
+                Dim firearmId As Long = cmbFirearm.SelectedValue
+                Dim firearmName As String = cmbFirearm.Text
+                Dim dateCreated As String = dtpTested.Value
+                Dim groupSize As String = GeneralHelpers.FluffContent(txtGroup.Text)
+                Dim numberOfShots As Integer = nudShots.Value
+                Dim yards As Integer = nudYards.Value
                 Dim configId As Long = cmbConfig.SelectedValue
                 Dim configName As String = cmbConfig.Text
-                Dim strCond As String = GeneralHelpers.FluffContent(txtCon.Text)
-                Dim strLen As String = GeneralHelpers.FluffContent(txtLen.Text)
-                Dim strNotes As String = GeneralHelpers.FluffContent(txtNotes.Text)
-                Dim strBarLen As String = ""
-                Dim powName As String = ""
-                Dim powWei As Double = 0
-                Dim powManu As String = ""
-                Dim bulManu As String = ""
-                Dim bulName As String = ""
-                Dim bulWei As String = ""
-                Dim priManu As String = ""
-                Dim priName As String = ""
+                Dim condition As String = GeneralHelpers.FluffContent(txtCon.Text)
+                Dim oal As String = GeneralHelpers.FluffContent(txtLen.Text)
+                Dim notes As String = GeneralHelpers.FluffContent(txtNotes.Text)
+                Dim barrelLenght As String = ""
+                Dim powderName As String = ""
+                Dim powderWeight As Double = 0
+                Dim powderManufacturer As String = ""
+                Dim bulletManufacturer As String = ""
+                Dim bulletName As String = ""
+                Dim bulletWeight As String = ""
+                Dim primerManufacturer As String = ""
+                Dim primerName As String = ""
                 Dim caseName As String = ""
                 Dim caseManu As String = ""
                 Dim caseStatus As String = ""
                 Dim caliber As String = ""
-                Dim obj As New BSDatabase
-                Dim objIm As New InventoryMath
-                Dim objGf As New GlobalFunctions
-                Dim prefferedPowderId As Long = objIm.GetPrefNSGPowderID(configId, powWei)
-                Call objGf.GetFirearmDetails(lngFid, 0, "", "", "", "", strBarLen)
-                Dim sql As String = "SELECT * from Config_List_Data_NSG where CLNID=" & configId
-                Call obj.ConnectDB()
-                Dim cmd As New OdbcCommand(sql, obj.Conn)
-                Dim rs As OdbcDataReader
-                rs = cmd.ExecuteReader
-                While rs.Read
-                    caliber = objIm.GetCaliber(rs("CALID"))
-                    Call objIm.LoadBulletInfo(rs("BID"), bulManu, bulName, "", _
-                                              bulWei)
-                    Call objIm.LoadPrimerInfo(rs("PRID"), priManu, priName)
-                    Call objIm.LoadCaseInfo(rs("CAID"), caseManu, caseName, "", caseStatus)
-                    Call objIm.GetPowderDetails(prefferedPowderId, powManu, powName)
-                End While
-                rs.Close()
+                Dim prefferedPowderId As Long = ConfigListDataPowder.GetDefaultPowderId(DatabasePath, configId, powderWeight, _errOut)
+
+                Dim lst As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, CInt(firearmId), _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                For Each o As FirearmCollection In lst
+                    barrelLenght = o.Barrel
+                Next
+
+                Dim configList As List(Of ConfigListDataMetalicData) = ConfigListDataMetalic.GetDetails(
+                    DatabasePath, configId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                Dim bulletId As Long
+                Dim primerId As Long
+                Dim caseId As Long
+                For Each o As ConfigListDataMetalicData In configList
+                    caliber = CaliberInventory.GetName(DatabasePath, o.CaliberId, _errOut)
+                    If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                    bulletId = o.BulletId
+                    primerId = o.PrimerId
+                    caseId = o.CaseId
+                Next
+
+                Dim bulletList As List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, bulletId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                For Each o As BulletListings In bulletList
+                    bulletManufacturer = o.Manufacturer
+                    bulletName = o.Name
+                    bulletWeight = o.Weight
+                Next
+
+                Dim primerList As List(Of PrimerListings) = PrimerInventory.GetDetails(DatabasePath, primerId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                For Each o As PrimerListings In primerList
+                    primerManufacturer = o.Manufacturer
+                    primerName = o.Name
+                Next
+
+                Dim caseList As List(Of CaseListings) = CaseInventory.GetDetails(DatabasePath, caseId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                For Each o As CaseListings In caseList
+                    caseManu = o.Manufacturer
+                    caseName = o.Name
+                    caseStatus = o.TimesUsed
+                Next
+
+                Dim powderList as List(Of PowderListing) = PowderInventory.GetDetails(DatabasePath, prefferedPowderId, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
+                For Each o As PowderListing In powderList
+                    powderManufacturer = o.Manufacturer
+                    powderName = o.Name
+                Next
 
                 If CLng(caseStatus) = 0 Then
                     caseStatus = "(NEW)"
                 Else
                     caseStatus = "(USED)"
                 End If
-                Dim powderDetails as String = GeneralHelpers.FluffContent(powName & " - " & powWei & " - " & powManu)
-                Dim bulletDetails As String = GeneralHelpers.FluffContent(bulManu & " " & bulName) & " (" & bulWei & ")"
-                Dim primerDetails As String = priManu & " " & priName
+                Dim powderDetails As String = GeneralHelpers.FluffContent(powderName & " - " & powderWeight & " - " & powderManufacturer)
+                Dim bulletDetails As String = GeneralHelpers.FluffContent(bulletManufacturer & " " & bulletName) & " (" & bulletWeight & ")"
+                Dim primerDetails As String = primerManufacturer & " " & primerName
                 Dim caseDetails As String = caseManu & " " & caseName & " " & caseStatus
 
-                If Not LoadersLogMetallic.Add(DatabasePath, firearmId := lngFid, dateCreated := strDateTested, 
-                                              yards := lngYards, groupSize := strGroup, numberOfShots := lngNumShots, 
-                                              powderDetails := powderDetails, bulletDetails := bulletDetails, 
-                                              primerDetails := primerDetails, caseDetails := caseDetails, 
-                                              condition := strCond, oal := strLen, notes := strNotes, 
-                                              configName := configName, FirearmName := strFireArm, 
-                                              caliber := caliber, BarrelLenght := strBarLen, _errOut) Then
-                    Throw New Exception(_errOut)
-                End If
+                If Not LoadersLogMetallic.Add(DatabasePath, firearmId, dateCreated, yards, groupSize, numberOfShots,
+                                              powderDetails, bulletDetails, primerDetails, caseDetails,
+                                              condition, oal, notes, configName, firearmName,
+                                              caliber,barrelLenght, _errOut) Then Throw New Exception(_errOut)
 
                 MsgBox("Information was saved to the Loaders Log!")
-                If FromView Then Call frmViewDataSheet_RiflePistols.LoadDataCur()
+                If FromView Then Call FrmViewDataSheetRiflePistols.LoadDataCur()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "SaveData", Err.Number, ex.Message.ToString)
@@ -156,15 +184,15 @@ Namespace Adding
                 Dim lngFid As Integer = cmbFirearm.SelectedValue
                 Dim strCal As String = ""
                 Dim values As List(Of FirearmCollection) = Firearms.GetDetails(DatabasePath, lngFid, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As FirearmCollection In values
                     strCal = o.Caliber
                 Next
-                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath,strCal, _errOut)
-                if _errOut.Length > 0 Then Throw New Exception(_errOut)
+                Dim calId As Long = GeneralFunctions.GetCaliberID(DatabasePath, strCal, _errOut)
+                If _errOut.Length > 0 Then Throw New Exception(_errOut)
                 ConfigList_SimpleTableAdapter.FillBy_Caliber(MLLDataSet.ConfigList_Simple, calId)
             Catch ex As Exception
-                Call LogError(Name, "UpdateConfigList", Err.Number, 
+                Call LogError(Name, "UpdateConfigList", Err.Number,
                               ex.Message.ToString)
             End Try
         End Sub
@@ -185,4 +213,4 @@ Namespace Adding
 
         End Sub
     End Class
-End NameSpace
+End Namespace

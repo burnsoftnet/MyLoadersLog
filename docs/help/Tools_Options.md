@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -42,3 +43,4 @@ The Misc section allow you to set the Default Side list to display when the appl
 
 Once you are finished click on Save to save and exit or Apply to save.
 
+[back](./)

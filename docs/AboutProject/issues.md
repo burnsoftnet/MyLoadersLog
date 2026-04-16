@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -9,3 +10,5 @@ The Issues Sections of the Project contains Bugs that was found and Future enhan
 To submit a but or request an issues you must be registered or sign-up with Github.
 
 To view the issues section [Click here](https://github.com/burnsoftnet/MyLoadersLog/issues)
+
+[back](./)

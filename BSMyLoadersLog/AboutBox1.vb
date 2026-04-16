@@ -1,4 +1,4 @@
-Imports BSMyLoadersLog.LoadersClass
+
 ''' <summary>
 ''' Class AboutBox1. This class cannot be inherited.
 ''' Implements the <see cref="System.Windows.Forms.Form" />
@@ -27,7 +27,8 @@ Public NotInheritable Class AboutBox1
         '    properties dialog (under the "Project" menu).
         LabelProductName.Text = My.Application.Info.ProductName
         Dim dbVersion As Long = BurnSoft.Applications.MLL.Database.GetDatabaseVersion(DatabasePath, errOut)
-        LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & "  ,  " & String.Format("DB Version {0}", dbVersion)
+        LabelVersion.Text = String.Format("App Version {0}", Application.ProductVersion.ToString) & 
+                            "  ,  " & String.Format("DB Version {0}", dbVersion)
         LabelCopyright.Text = My.Application.Info.Copyright
         LabelCompanyName.Text = My.Application.Info.CompanyName
         TextBoxDescription.Text = My.Application.Info.Description

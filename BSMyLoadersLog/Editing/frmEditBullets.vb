@@ -41,7 +41,7 @@ Public Class frmEditBullets
                 If Not IsDBNull(RS("ePPB")) Then eppo = RS("ePPB")
                 dPrice = eppo * iQty
                 nudQty.Value = iQty
-                txtPrice.Text = ObjIM.ConvertToDollars(dPrice)
+                txtPrice.Text = Converters.ConvertToDollars(dPrice)
             End While
             RS.Close()
             RS = Nothing
@@ -99,7 +99,7 @@ Public Class frmEditBullets
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Try
             Call SaveData()
-            If FromView Then Call frmView_List_Bullets.LoadData()
+            If FromView Then Call FrmViewListBullets.LoadData()
             Me.Close()
         Catch ex As Exception
             Call LogError(Me.Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

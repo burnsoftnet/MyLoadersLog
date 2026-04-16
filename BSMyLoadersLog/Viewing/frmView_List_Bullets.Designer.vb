@@ -1,6 +1,6 @@
 Namespace Viewing
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-    Partial Class frmView_List_Bullets
+    Partial Class FrmViewListBullets
         Inherits System.Windows.Forms.Form
 
         'Form overrides dispose to clean up the component list.
@@ -24,7 +24,7 @@ Namespace Viewing
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container
-            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmView_List_Bullets))
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmViewListBullets))
             Me.DataGridView1 = New System.Windows.Forms.DataGridView
             Me.cmnusGrid = New System.Windows.Forms.ContextMenuStrip(Me.components)
             Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -341,7 +341,7 @@ Namespace Viewing
             Me.HelpProvider1.SetHelpNavigator(Me, System.Windows.Forms.HelpNavigator.KeywordIndex)
             Me.HelpProvider1.SetHelpString(Me, "View Bullet List")
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-            Me.Name = "frmView_List_Bullets"
+            Me.Name = "FrmViewListBullets"
             Me.HelpProvider1.SetShowHelp(Me, True)
             Me.Text = "Bullet List"
             CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()

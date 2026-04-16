@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -17,3 +18,5 @@ Once the form comes up Just type in the Manufacturer, Name, Use, and Price.
 Once you are done, just click on the Add button to store the information.  You can View your equipment list from the View Equipment List section
 
 ![](images/View_Reloading_Equipment.jpg)
+
+[back](./)

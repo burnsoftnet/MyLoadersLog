@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -37,3 +38,6 @@ If there was a primer type that you wanted to get rid of since it was not in use
 Once you have the value selected, just hit your Delete key to delete the value from the database.
 
 ![](images/Edit_PrimerTypes_List_After_Delete.jpg)
+
+
+[back](./)

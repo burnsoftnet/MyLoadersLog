@@ -1,4 +1,11 @@
 ﻿Partial Class MLLDataSet
+    Partial Public Class Loaders_Log_FirearmsDataTable
+        Private Sub Loaders_Log_FirearmsDataTable_Loaders_Log_FirearmsRowChanging(sender As Object, e As BSMyLoadersLog.MLLDataSet.Loaders_Log_FirearmsRowChangeEvent) Handles Me.Loaders_Log_FirearmsRowChanging
+
+        End Sub
+
+    End Class
+
     Partial Class ConfigList_Simple_SGDataTable
 
         Private Sub ConfigList_Simple_SGDataTable_ConfigList_Simple_SGRowChanging(ByVal sender As System.Object, ByVal e As ConfigList_Simple_SGRowChangeEvent) Handles Me.ConfigList_Simple_SGRowChanging
@@ -35,3 +42,5 @@
     End Class
 
 End Class
+
+

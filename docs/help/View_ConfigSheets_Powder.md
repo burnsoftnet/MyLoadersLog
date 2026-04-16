@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -17,3 +18,5 @@ The amount of powder that I used was only 23.5, no min or max on this configurat
 Remember, if you do not want to display the FPS or CUPs while viewing a Configuration, you can disable them in the application Options section under the Misc Tab.
 
 Of Course if you wish to add more powders to this configuration, you can just by Clicking on the Add button.  [Click here](Add_New_Config.md) on instructions on Adding Powders to a Configuration.
+
+[back](./)

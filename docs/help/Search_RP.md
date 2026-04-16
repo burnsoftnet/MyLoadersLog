@@ -1,3 +1,4 @@
+[back](./)
 ---
 layout: default
 ---
@@ -89,3 +90,4 @@ If you try to save the report using the same name of an existing report, it will
 The Regular Reports will allow you to export the reports to an Excel file or PDF File.   In order to try and keep the custom reports up to par with the Stock reports and remain in compliance with BATFE regulations on being able to save the information to a computer file, we added the ability to export the custom report to Text, CSV, HTML or XML file formats.
 
 
+[back](./)

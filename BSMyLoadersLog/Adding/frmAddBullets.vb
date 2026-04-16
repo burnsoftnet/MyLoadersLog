@@ -8,9 +8,9 @@ Namespace Adding
 
     ''' <summary>
     ''' Class FrmAddBullets.
-    ''' Implements the <see cref="System.Windows.Forms.Form" />
+    ''' Implements the <see cref="Form" />
     ''' </summary>
-    ''' <seealso cref="System.Windows.Forms.Form" />
+    ''' <seealso cref="Form" />
     Public Class FrmAddBullets
         ''' <summary>
         ''' From view
@@ -23,7 +23,7 @@ Namespace Adding
         ''' <summary>
         ''' The bullet id
         ''' </summary>
-        Public Bid As Long
+        Public BulletId As Long
         ''' <summary>
         ''' The error out
         ''' </summary>
@@ -34,7 +34,7 @@ Namespace Adding
         Sub LoadData()
             Try
                 Dim values As List(Of BulletListings) = BulletsInventory.GetDetails(DatabasePath, 
-                                                                                    Bid, _errOut)
+                                                                                    BulletId, _errOut)
                 if _errOut.Length > 0 Then Throw New Exception(_errOut)
                 For Each o As BulletListings In values
                     txtManu.Text = o.Manufacturer
@@ -61,7 +61,7 @@ Namespace Adding
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
         ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        Private Sub frmAddBullets_Load(ByVal sender As System.Object, ByVal e As EventArgs) Handles MyBase.Load
+        Private Sub frmAddBullets_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             General_Ammunition_TypeTableAdapter.Fill(MLLDataSet.General_Ammunition_Type)
             Try
                 List_CalibersTableAdapter.Fill(MLLDataSet.List_Calibers)
@@ -75,8 +75,8 @@ Namespace Adding
         ''' Handles the Click event of the btnCancel control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
             Close()
         End Sub
         ''' <summary>
@@ -108,8 +108,8 @@ Namespace Adding
         ''' Handles the Click event of the btnAdd control.
         ''' </summary>
         ''' <param name="sender">The source of the event.</param>
-        ''' <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAdd.Click
+        ''' <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
             Try
                 Dim strManu As String = GeneralHelpers.FluffContent(txtManu.Text)
                 Dim strName As String = GeneralHelpers.FluffContent(txtName.Text)
@@ -135,7 +135,7 @@ Namespace Adding
                                             strSecDia, strPartNo, strBc, intBt, strQty, dbPrice, cal, _errOut) Then
                     Throw new Exception(_errOut)
                 End If
-                If FromView Then Call frmView_List_Bullets.LoadData()
+                If FromView Then Call FrmViewListBullets.LoadData()
                 Close()
             Catch ex As Exception
                 Call LogError(Name, "btnAdd.Click", Err.Number, ex.Message.ToString)

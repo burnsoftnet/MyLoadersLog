@@ -1,3 +1,5 @@
+[back](./)
+
 ---
 layout: default
 ---
@@ -19,3 +21,5 @@ The Following windows will appear:
 Type in the new name for the configuration, then click on the OK button.
 
 Once you click on the Ok button, the menu list will update and you will be able to view or edit the configuration you just copied.
+
+[back](./)

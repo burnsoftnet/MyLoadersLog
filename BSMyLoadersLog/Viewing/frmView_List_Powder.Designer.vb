@@ -1,6 +1,6 @@
 Namespace Viewing
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-    Partial Class frmView_List_Powder
+    Partial Class FrmViewListPowder
         Inherits System.Windows.Forms.Form
 
         'Form overrides dispose to clean up the component list.
@@ -24,7 +24,7 @@ Namespace Viewing
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container
-            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmView_List_Powder))
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmViewListPowder))
             Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
             Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
             Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox
@@ -287,7 +287,7 @@ Namespace Viewing
             Me.HelpProvider1.SetHelpNavigator(Me, System.Windows.Forms.HelpNavigator.KeywordIndex)
             Me.HelpProvider1.SetHelpString(Me, "View Powder List")
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-            Me.Name = "frmView_List_Powder"
+            Me.Name = "FrmViewListPowder"
             Me.HelpProvider1.SetShowHelp(Me, True)
             Me.Text = "Powder List"
             Me.ToolStrip1.ResumeLayout(False)
