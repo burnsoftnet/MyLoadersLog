@@ -1,15 +1,20 @@
 'Imports System.Data
-Imports System.Data.Odbc
-Imports BSMyLoadersLog.LoadersClass
+'Imports System.Data.Odbc
+'Imports BSMyLoadersLog.LoadersClass
+Imports BurnSoft.Applications.MLL.Inventory
 
 Namespace Adding
-    'TODO: #19 This section is missing for table List_SG_Gauge
     ''' <summary>
     ''' Class frmConfig_Add_Wizard_SG_1.
     ''' Implements the <see cref="System.Windows.Forms.Form" />
     ''' </summary>
     ''' <seealso cref="System.Windows.Forms.Form" />
     Public Class FrmConfigAddWizardSg1
+        ' TODO: #20 Code Cleanup
+        ''' <summary>
+        ''' The error out
+        ''' </summary>
+        Dim _errOut as String
         ''' <summary>
         ''' The configuration name
         ''' </summary>
@@ -43,11 +48,14 @@ Namespace Adding
             Try
                 Dim bShot As Boolean = chkShot.Checked
                 Dim bSlug As Boolean = chkSlug.Checked
+                Dim gaugeId as Long = ShotgunGauges.GenerateGaugeId(DatabasePath, CaliberName, _errOut)
+                If _errOut.Length > 0 then Throw New Exception(_errOut)
+
                 If bShot Then
                     frmConfig_Add_Wizard_SG_2.ConfigID = ConfigId
                     frmConfig_Add_Wizard_SG_2.CalID = CaliberId
                     frmConfig_Add_Wizard_SG_2.CalName = CaliberName
-                    frmConfig_Add_Wizard_SG_2.GID = GenerateGaugeId(CaliberName)
+                    frmConfig_Add_Wizard_SG_2.GID = gaugeId
                     frmConfig_Add_Wizard_SG_2.ConfigName = ConfigName
                     frmConfig_Add_Wizard_SG_2.MdiParent = MdiParent
                     frmConfig_Add_Wizard_SG_2.Show()
@@ -57,7 +65,7 @@ Namespace Adding
                     frmConfig_Add_Wizard_SG_3.ConfigID = ConfigId
                     frmConfig_Add_Wizard_SG_3.CalID = CaliberId
                     frmConfig_Add_Wizard_SG_3.CalName = CaliberName
-                    frmConfig_Add_Wizard_SG_3.GID = GenerateGaugeId(CaliberName)
+                    frmConfig_Add_Wizard_SG_3.GID = gaugeId
                     frmConfig_Add_Wizard_SG_3.ConfigName = ConfigName
                     frmConfig_Add_Wizard_SG_3.MdiParent = MdiParent
                     frmConfig_Add_Wizard_SG_3.Show()
@@ -67,47 +75,39 @@ Namespace Adding
                 Call LogError(Name, "btnCon_Click", Err.Number, ex.Message.ToString)
             End Try
         End Sub
-        ''' <summary>
-        ''' Generates the gauge identifier.
-        ''' </summary>
-        ''' <param name="sCalName">Name of the s cal.</param>
-        ''' <returns>System.Int64.</returns>
-        Function GenerateGaugeId(ByVal sCalName As String) As Long
-            Dim lAns As Long = 0
-            Dim obj As New BSDatabase
-            lAns = GetGaugeId(sCalName)
-            If lAns = 0 Then
-                obj.ConnExec("INSERT INTO List_SG_Gauge(ga) VALUES('" & sCalName & "')")
-                lAns = GetGaugeId(sCalName)
-            End If
-            Return lAns
-        End Function
-        ''' <summary>
-        ''' Gets the gauge identifier.
-        ''' </summary>
-        ''' <param name="sCalName">Name of the s cal.</param>
-        ''' <returns>System.Int64.</returns>
-        Function GetGaugeId(ByVal sCalName As String) As Long
-            Dim lAns As Long = 0
-            Try
-                Dim sql As String = "SELECT ID from List_SG_Gauge where ga='" & sCalName & "'"
-                Dim obj As New BSDatabase
-                Call obj.ConnectDB()
-                Dim cmd As New OdbcCommand(sql, obj.Conn)
-                Dim rs As OdbcDataReader
-                rs = cmd.ExecuteReader
-                While rs.Read
-                    lAns = rs("ID")
-                End While
-                rs.Close()
-                rs = Nothing
-                cmd = Nothing
-                obj.CloseDB()
-            Catch ex As Exception
-                Call LogError(Name, "GetGaugeID", Err.Number, ex.Message.ToString)
-            End Try
-            Return lAns
-        End Function
+ 
+        'Function GenerateGaugeId(ByVal sCalName As String) As Long
+        '    Dim lAns As Long = 0
+        '    Dim obj As New BSDatabase
+        '    lAns = GetGaugeId(sCalName)
+        '    If lAns = 0 Then
+        '        obj.ConnExec("INSERT INTO List_SG_Gauge(ga) VALUES('" & sCalName & "')")
+        '        lAns = GetGaugeId(sCalName)
+        '    End If
+        '    Return lAns
+        'End Function
+        
+        'Function GetGaugeId(ByVal sCalName As String) As Long
+        '    Dim lAns As Long = 0
+        '    Try
+        '        Dim sql As String = "SELECT ID from List_SG_Gauge where ga='" & sCalName & "'"
+        '        Dim obj As New BSDatabase
+        '        Call obj.ConnectDB()
+        '        Dim cmd As New OdbcCommand(sql, obj.Conn)
+        '        Dim rs As OdbcDataReader
+        '        rs = cmd.ExecuteReader
+        '        While rs.Read
+        '            lAns = rs("ID")
+        '        End While
+        '        rs.Close()
+        '        rs = Nothing
+        '        cmd = Nothing
+        '        obj.CloseDB()
+        '    Catch ex As Exception
+        '        Call LogError(Name, "GetGaugeID", Err.Number, ex.Message.ToString)
+        '    End Try
+        '    Return lAns
+        'End Function
         ''' <summary>
         ''' Handles the CheckedChanged event of the chkShot control.
         ''' </summary>
